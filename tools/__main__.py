@@ -39,23 +39,6 @@ def generate():
     """Generate files from YAML specifications"""
     pass
 
-@generate.command()
-@click.option(
-    '--profile',
-    default='FinOps++',
-    type=click.Choice(list(profiles().keys())),
-    help='Which assessment profile to generate. Defaults to "FinOps++',
-)
-@click.option(
-    '--name',
-    default='FinOps++ Framework (test)',
-    help='Name (without extension) of file to generate',
-)
-def assessment(profile, name):
-    """Generate a FinOps++ Assessment from the specifications for a given profile"""
-    click.echo(f'Creating "{name}.xlsx" assessment for {profile} profile')
-
-
 def sub_specification_helper(doc, spec_file):
     """Helps find and pull Specification subsection from a specification"""
     id_ = doc.get('ID')
@@ -128,8 +111,8 @@ def overrides_helper(doc, profile):
     type=click.Choice(list(profiles().keys())),
     help='Which assessment profile to generate. Defaults to "FinOps++"',
 )
-def framework(profile):
-    """Generate Framework markdown files from their specifications"""
+def assessment(profile):
+    """Generate assessment files from their specifications"""
     env = Environment(loader=PackageLoader('finopspp', 'templates'))
     template = env.get_template('framework.md.j2')
 
@@ -146,6 +129,7 @@ def framework(profile):
         click.echo('Profile includes no domains. Exiting')
         sys.exit(1)
 
+    profile_id = doc.get('ID')
     for domain in doc.get('Domains'):
         capabilities = []
 
@@ -167,7 +151,7 @@ def framework(profile):
         if doc_id:
             doc_id = str(doc.get('ID'))
             file = '0'*(3-len(doc_id)) + doc_id
-            title = f'<a href="/assessments/domains/{file}.md">{file}</a>: {title}'
+            title = f'<a href="/components/domains/{file}.md">{file}</a>: {title}'
 
         domains.append({
             'name': title,
@@ -200,7 +184,7 @@ def framework(profile):
             if doc_id:
                 doc_id = str(doc.get('ID'))
                 file = '0'*(3-len(doc_id)) + doc_id
-                title = f'<a href="/assessments/capabilities/{file}.md">{file}</a>: {title}'
+                title = f'<a href="/components/capabilities/{file}.md">{file}</a>: {title}'
 
             capabilities.append({
                 'name': title,
@@ -218,18 +202,34 @@ def framework(profile):
                 doc_id = str(doc_id)
                 description = doc.get('Description')
                 file = '0'*(3-len(doc_id)) + doc_id
-                action = f'<a href="/assessments/actions/{file}.md">{file}</a>: {description}'
+                action = f'<a href="/components/actions/{file}.md">{file}</a>: {description}'
 
                 actions.append(action)
 
-    output = template.render(profile=profile, domains=domains)
-    outpath = os.path.join(
+    # render file before writing it
+    # include profile title with linkable ID.
+    doc_id = str(profile_id)
+    file = '0'*(3-len(doc_id)) + doc_id
+    profile_title = f'<a href="/components/profiles/{file}.md">{file}</a>: {profile}'
+    output = template.render(profile=profile_title, domains=domains)
+
+    # check if assessment directory exists for this framework profile
+    # and if it does not create it
+    base_path = os.path.join(
         os.getcwd(),
         'assessments',
-        'frameworks',
-        f'{profile}.md'
+        profile
     )
-    with open(outpath, 'w') as outfile:
+    if not os.path.exists(base_path):
+        os.mkdir(base_path)
+
+    # finally, create framework markdown for this profile
+    # from the rendered output
+    out_path = os.path.join(
+        base_path,
+        'framework.md'
+    )
+    with open(out_path, 'w') as outfile:
         outfile.write(output)
 
 @generate.command()
@@ -238,8 +238,8 @@ def framework(profile):
     type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
     help='Which specification type to show. Defaults to "profiles"'
 )
-def specifications(specification_type):
-    """Generate Framework markdown files from their specifications"""
+def components(specification_type):
+    """Generate component markdown files from their specifications"""
     # pull in template and specification files for given specification type
     env = Environment(loader=PackageLoader('finopspp', 'templates'))
     template = env.get_template(f'{specification_type}.md.j2')
@@ -261,20 +261,25 @@ def specifications(specification_type):
         for subspec in doc.get(subspec_type.capitalize(), []):
             subdoc = sub_specification_helper(subspec, subspec_files)
             subdoc_id = str(subdoc.get('ID'))
-            subspec['File'] = f'/assessments/{subspec_type}/{"0"*(3-len(subdoc_id))}{subdoc_id}.md'
+            subspec['File'] = f'/components/{subspec_type}/{"0"*(3-len(subdoc_id))}{subdoc_id}.md'
             subspec['Title'] = subdoc.get('Title')
 
+
+        output = template.render(spec=doc)
+
+        # finally, write out rendered output to file
+        # make sure serialized ID is the same as the one
+        # used in the specification files.
         doc_id = doc.get('ID')
         doc_id = str(doc_id)
         file_prefix = '0'*(3-len(doc_id)) + doc_id
-        output = template.render(spec=doc)
-        outpath = os.path.join(
+        out_path = os.path.join(
             os.getcwd(),
-            'assessments',
+            'components',
             specification_type,
             f'{file_prefix}.md'
         )
-        with open(outpath, 'w') as outfile:
+        with open(out_path, 'w') as outfile:
             outfile.write(output)
 
 @cli.group()
