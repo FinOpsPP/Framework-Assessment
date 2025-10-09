@@ -5,6 +5,9 @@ from importlib.resources import files
 import click
 import yaml
 from jinja2 import Environment, PackageLoader
+from pydantic import TypeAdapter
+
+from finopspp import models
 
 PROFILES_MAP = {}
 def profiles():
@@ -426,6 +429,40 @@ def show(id, metadata, specification_type):
                 indent=2
             )
         )
+
+@specifications.command()
+@click.option(
+    '--specification-type',
+    type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
+    default='profiles',
+    help='Which specification type to show. Defaults to "profiles"'
+)
+def schema(specification_type):
+    """Give schema (in YAML format) for a given specification type
+    
+    The schema is based on the pydantic version of the JSON and OpenAPI
+    Schemas. For more info on this type of schema specification, please view:
+    https://docs.pydantic.dev/latest/concepts/json_schema/
+    """
+    schema = None
+    click.echo(f'Schema definition for specification-type={specification_type}:\n')
+    match specification_type:
+        case 'actions':
+            schema = TypeAdapter(models.Action).json_schema(mode='serialization')
+        case 'capabilities':
+            schema = TypeAdapter(models.Capability).json_schema(mode='serialization')
+        case 'domains':
+            schema = TypeAdapter(models.Domain).json_schema(mode='serialization')
+        case 'profiles':
+            schema = TypeAdapter(models.Profile).json_schema(mode='serialization')
+    click.echo(            
+        yaml.dump(
+            schema,
+            default_flow_style=False,
+            sort_keys=False,
+            indent=2
+        )
+    )
 
 if __name__ == "__main__":
     cli()
