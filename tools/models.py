@@ -54,13 +54,13 @@ class _Version:
 @dataclass(config=CONFIG)
 class Approver():
     Name: str | None = Field(
-        default=None, example='Reviewer One'
+        example='Reviewer One'
     )
     Email: str | None = Field(
-        default=None, example='reviewer1@example.com'
+        example='reviewer1@example.com'
     )
     Date: datetime.date | None = Field(
-        default=None, description='ISO 8601 date of approval from approver'
+        description='ISO 8601 date of approval from approver'
     )
 
 class StatusEnum(str, Enum):
@@ -71,22 +71,23 @@ class StatusEnum(str, Enum):
 @dataclass(config=CONFIG)
 class MetadataSpec():
     Proposed: datetime.date = Field(
-        default=datetime.date.today(), description='ISO 8601 date a specification was proposal'
+        example=datetime.date.today(), description='ISO 8601 date a specification was proposal'
     )
     Adoption: datetime.date | None = Field(
-        default=None, description='ISO 8601 date a specification was adapted'
+        description='ISO 8601 date a specification was adapted'
     )
     Modified: datetime.date | None = Field(
-        default=None, description='ISO 8601 date a specification was last modified'
+        description='ISO 8601 date a specification was last modified'
     )
     Version: _Version = Field(
-        default='0.0.1', description='Semantic version for a specification'
+        example='0.0.1', description='Semantic version for a specification'
     )
     Status: StatusEnum = Field(
-        default=StatusEnum.proposed, description='Lifecycle status for a specification'
+        example=StatusEnum.proposed, description='Lifecycle status for a specification'
     )
     Approvers: list[Approver] = Field(
-        default=[Approver()], description='List of approvers for a specification'
+        example=[Approver(Name=None, Email=None, Date=None)],
+        description='List of approvers for a specification'
     )
 
 @dataclass(config=CONFIG)
@@ -96,16 +97,16 @@ class SpecID():
 @dataclass(config=CONFIG)
 class SpecBase():
     Title: str | None = Field(
-        default=None, description='Short title a specification'
+        description='Short title a specification'
     )
     Description: str | None = Field(
-        default=None, description='Longer form description of a specification is attempting to address'
+        description='Longer form description of a specification is attempting to address'
     )
 
 @dataclass(config=CONFIG)
 class BaseOverride():
     Profile: str = Field(
-        ..., description='Profile override is tied to.'
+        description='Profile override is tied to.'
     )
     TitleUpdate: Optional[str] = Field(
         default=None, description='Update the title of a specification'
@@ -132,33 +133,35 @@ class StdOverride(BaseOverride):
 @dataclass(config=CONFIG)
 class Reference():
     Name: str | None = Field(
-        default=None, description='Name or short title of a reference'
+        description='Name or short title of a reference'
     )
     Link: str | None = Field(
-        default=None, description='URL link for a reference'
+        description='URL link for a reference'
     )
     Comment: str | None = Field(
-        default=None,
         description='Comments or longer form description of how a reference related to a specification'
     )
 
 @dataclass(config=CONFIG)
 class ActionSpec(SpecBase, SpecID):
     ImplementationTypes: list[str | None] = Field(
-        default=[None],
+        example=[None],
         description='List of how the specification is implemented',
         alias='Implementation Types'
     )
     References: list[Reference] = Field(
-        default=[Reference()], description='List reference objects'
+        example=[Reference(Name=None, Link=None, Comment=None)],
+        description='List reference objects'
     )
     Notes: list[str | None] = Field(
-        default=[None], description='List of notes related to a specific action'
+        example=[None], description='List of notes related to a specific action'
     )
 
 @dataclass(config=CONFIG)
 class ActionItem(SpecID):
-    Overrides: list[ActionOverride] | None = Field(default=None, description='List of action overrides by profile')
+    Overrides: Optional[list[ActionOverride] | None] = Field(
+        default=None, description='List of action overrides by profile'
+    )
 
 @dataclass(config=CONFIG)
 class Action():
@@ -167,11 +170,11 @@ class Action():
 
 @dataclass(config=CONFIG)
 class CapabilityItem(SpecBase):
-    Actions: list[SpecID | ActionItem] | None = Field(default=None, description='List of action IDs')
+    Actions: list[SpecID | ActionItem] | None = Field(description='List of action IDs')
 
 @dataclass(config=CONFIG)
 class CapabilitySpec(CapabilityItem, SpecBase, SpecID):
-    Overrides: list[StdOverride] | None = Field(default=None, description='List of overrides by profile')
+    Overrides: list[StdOverride] | None = Field(description='List of overrides by profile')
 
 @dataclass(config=CONFIG)
 class Capability():
@@ -186,7 +189,7 @@ class DomainItem(SpecBase):
 
 @dataclass(config=CONFIG)
 class DomainSpec(DomainItem, SpecBase, SpecID):
-    Overrides: list[StdOverride] | None = Field(default=None, description='List of overrides by profile')
+    Overrides: list[StdOverride] | None = Field(description='List of overrides by profile')
 
 @dataclass(config=CONFIG)
 class Domain():
