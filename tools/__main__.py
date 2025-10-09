@@ -1,5 +1,6 @@
 import os
 import sys
+from collections import namedtuple
 from importlib.resources import files
 
 import click
@@ -500,7 +501,6 @@ class AllOrIntRangeParamType(click.ParamType):
 def validate(selection, specification_type):
     """Validate all or a specific specification ID, for a given specification type."""
     model = None
-    click.echo(f'Validating "{selection}" for specification-type={specification_type}:\n')
     match specification_type:
         case 'actions':
             model = models.Action
@@ -511,18 +511,31 @@ def validate(selection, specification_type):
         case 'profiles':
             model = models.Profile
 
-    file = '0'*(3-len(selection)) + selection
-    specification_file = files(
-        f'finopspp.specifications.{specification_type}'
-    ).joinpath(f'{file}.yaml')
+    specs_files = files(f'finopspp.specifications.{specification_type}')
+    if selection == 'all':
+        specs = specs_files.iterdir()
+    else:
+        file = '0'*(3-len(selection)) + selection
+        Spec = namedtuple('Spec', ['name'])
+        specs = [Spec(name=f'{file}.yaml')]
 
-    with open(specification_file, 'r') as file:
-        specification_data = yaml.safe_load(file)
+    for spec in specs:
+        click.echo(f'Validating "{spec.name}" for specification-type={specification_type}:')
+        path = specs_files.joinpath(spec.name)
+        with open(path, 'r') as yaml_file:
+            specification_data = yaml.safe_load(yaml_file)
 
-    try:
-        model(**specification_data)
-    except ValidationError as val_error:
-        click.echo(str(val_error))
+        try:
+            model(**specification_data)
+        except ValidationError as val_error:
+            click.secho(
+                f'Validation for "{spec.name}" failed with --\n', fg='yellow'
+            )
+            click.secho(str(val_error) + '\n', err=True, fg='red')
+        else:
+            click.secho(
+                f'Validation for "{spec.name}" passed', fg='green'
+            )
 
 
 if __name__ == "__main__":

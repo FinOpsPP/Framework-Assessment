@@ -65,7 +65,7 @@ class Approver():
 
 class StatusEnum(str, Enum):
     proposed = 'Proposed'
-    approved = 'Approved'
+    accepted = 'Accepted'
     deprecated = 'Deprecated'
 
 @dataclass(config=CONFIG)
