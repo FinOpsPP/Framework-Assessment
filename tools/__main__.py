@@ -32,15 +32,18 @@ SPEC_SUBSPEC_MAP = {
     'actions': '' # empty string just to help with functionality below
 }
 
+
 @click.group()
 def cli():
     """FinOps++ administration tool"""
     pass
 
+
 @cli.group()
 def generate():
     """Generate files from YAML specifications"""
     pass
+
 
 def sub_specification_helper(doc, spec_file):
     """Helps find and pull Specification subsection from a specification"""
@@ -235,6 +238,7 @@ def assessment(profile):
     with open(out_path, 'w') as outfile:
         outfile.write(output)
 
+
 @generate.command()
 @click.option(
     '--specification-type',
@@ -285,10 +289,12 @@ def components(specification_type):
         with open(out_path, 'w') as outfile:
             outfile.write(output)
 
+
 @cli.group()
 def specifications():
     """Informational command on Specifications"""
     pass
+
 
 @specifications.command()
 @click.option(
@@ -345,6 +351,7 @@ def update(after, key, specification_type, value, start):
                 indent=2
             )
 
+
 @specifications.command(name='list')
 @click.option(
     '--profile',
@@ -395,6 +402,7 @@ def list_specs(profile):
                 unique_id = f'{domain_id}.{capability_id}-{action_id}'
                 click.echo(unique_id)
 
+
 @specifications.command()
 @click.option(
     '--metadata',
@@ -407,7 +415,7 @@ def list_specs(profile):
     default='profiles',
     help='Which specification type to show. Defaults to "profiles"'
 )
-@click.argument('id')
+@click.argument('id', type=click.IntRange(0, 999))
 def show(id, metadata, specification_type):
     """Show information on a given specification by ID by type"""
     data_type = 'Specification'
@@ -429,6 +437,7 @@ def show(id, metadata, specification_type):
                 indent=2
             )
         )
+
 
 @specifications.command()
 @click.option(
@@ -463,6 +472,53 @@ def schema(specification_type):
             indent=2
         )
     )
+
+
+class AllOrIntRangeParamType(click.ParamType):
+    name = 'All or ID'
+
+    def get_metavar(self, param, ctx):
+        return f'{param.name.upper()} [all|0-999]'
+
+    def convert(self, value, param, ctx):
+        try:
+            if value == 'all':
+                return value
+            else:
+                return click.IntRange(0, 999).convert(value, param, ctx)
+        except:
+            self.fail(f"'{value}' must be \"all\" or an int between 0-999")
+
+@specifications.command()
+@click.option(
+    '--specification-type',
+    type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
+    default='profiles',
+    help='Which specification type to show. Defaults to "profiles"'
+)
+@click.argument('selection', type=AllOrIntRangeParamType())
+def validate(selection, specification_type):
+    """Validate all or a specific specification ID, for a given specification type."""
+    schema = None
+    click.echo(f'Schema definition for specification-type={specification_type}:\n')
+    match specification_type:
+        case 'actions':
+            schema = TypeAdapter(models.Action).json_schema(mode='serialization')
+        case 'capabilities':
+            schema = TypeAdapter(models.Capability).json_schema(mode='serialization')
+        case 'domains':
+            schema = TypeAdapter(models.Domain).json_schema(mode='serialization')
+        case 'profiles':
+            schema = TypeAdapter(models.Profile).json_schema(mode='serialization')
+    click.echo(            
+        yaml.dump(
+            schema,
+            default_flow_style=False,
+            sort_keys=False,
+            indent=2
+        )
+    )
+
 
 if __name__ == "__main__":
     cli()
