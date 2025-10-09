@@ -1,10 +1,14 @@
 import os
 import sys
+from collections import namedtuple
 from importlib.resources import files
 
 import click
 import yaml
 from jinja2 import Environment, PackageLoader
+from pydantic import TypeAdapter, ValidationError
+
+from finopspp import models
 
 PROFILES_MAP = {}
 def profiles():
@@ -29,15 +33,18 @@ SPEC_SUBSPEC_MAP = {
     'actions': '' # empty string just to help with functionality below
 }
 
+
 @click.group()
 def cli():
     """FinOps++ administration tool"""
     pass
 
+
 @cli.group()
 def generate():
     """Generate files from YAML specifications"""
     pass
+
 
 def sub_specification_helper(doc, spec_file):
     """Helps find and pull Specification subsection from a specification"""
@@ -232,6 +239,7 @@ def assessment(profile):
     with open(out_path, 'w') as outfile:
         outfile.write(output)
 
+
 @generate.command()
 @click.option(
     '--specification-type',
@@ -282,10 +290,12 @@ def components(specification_type):
         with open(out_path, 'w') as outfile:
             outfile.write(output)
 
+
 @cli.group()
 def specifications():
     """Informational command on Specifications"""
     pass
+
 
 @specifications.command()
 @click.option(
@@ -342,6 +352,7 @@ def update(after, key, specification_type, value, start):
                 indent=2
             )
 
+
 @specifications.command(name='list')
 @click.option(
     '--profile',
@@ -392,6 +403,7 @@ def list_specs(profile):
                 unique_id = f'{domain_id}.{capability_id}-{action_id}'
                 click.echo(unique_id)
 
+
 @specifications.command()
 @click.option(
     '--metadata',
@@ -404,7 +416,7 @@ def list_specs(profile):
     default='profiles',
     help='Which specification type to show. Defaults to "profiles"'
 )
-@click.argument('id')
+@click.argument('id', type=click.IntRange(0, 999))
 def show(id, metadata, specification_type):
     """Show information on a given specification by ID by type"""
     data_type = 'Specification'
@@ -426,6 +438,105 @@ def show(id, metadata, specification_type):
                 indent=2
             )
         )
+
+
+@specifications.command()
+@click.option(
+    '--specification-type',
+    type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
+    default='profiles',
+    help='Which specification type to show. Defaults to "profiles"'
+)
+def schema(specification_type):
+    """Give schema (in YAML format) for a given specification type
+    
+    The schema is based on the pydantic version of the JSON and OpenAPI
+    Schemas. For more info on this type of schema specification, please view:
+    https://docs.pydantic.dev/latest/concepts/json_schema/
+    """
+    schema = None
+    click.echo(f'Schema definition for specification-type={specification_type}:\n')
+    match specification_type:
+        case 'actions':
+            schema = TypeAdapter(models.Action).json_schema(mode='serialization')
+        case 'capabilities':
+            schema = TypeAdapter(models.Capability).json_schema(mode='serialization')
+        case 'domains':
+            schema = TypeAdapter(models.Domain).json_schema(mode='serialization')
+        case 'profiles':
+            schema = TypeAdapter(models.Profile).json_schema(mode='serialization')
+    click.echo(            
+        yaml.dump(
+            schema,
+            default_flow_style=False,
+            sort_keys=False,
+            indent=2
+        )
+    )
+
+
+class AllOrIntRangeParamType(click.ParamType):
+    name = 'All or ID'
+
+    def get_metavar(self, param, ctx):
+        return f'{param.name.upper()} [all|0-999]'
+
+    def convert(self, value, param, ctx):
+        try:
+            if value == 'all':
+                return value
+            else:
+                return str(click.IntRange(0, 999).convert(value, param, ctx))
+        except:
+            self.fail(f"'{value}' must be \"all\" or an int between 0-999")
+
+@specifications.command()
+@click.option(
+    '--specification-type',
+    type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
+    default='profiles',
+    help='Which specification type to show. Defaults to "profiles"'
+)
+@click.argument('selection', type=AllOrIntRangeParamType())
+def validate(selection, specification_type):
+    """Validate all or a specific specification ID, for a given specification type."""
+    model = None
+    match specification_type:
+        case 'actions':
+            model = models.Action
+        case 'capabilities':
+            model = models.Capability
+        case 'domains':
+            model = models.Domain
+        case 'profiles':
+            model = models.Profile
+
+    specs_files = files(f'finopspp.specifications.{specification_type}')
+    if selection == 'all':
+        specs = specs_files.iterdir()
+    else:
+        file = '0'*(3-len(selection)) + selection
+        Spec = namedtuple('Spec', ['name'])
+        specs = [Spec(name=f'{file}.yaml')]
+
+    for spec in specs:
+        click.echo(f'Validating "{spec.name}" for specification-type={specification_type}:')
+        path = specs_files.joinpath(spec.name)
+        with open(path, 'r') as yaml_file:
+            specification_data = yaml.safe_load(yaml_file)
+
+        try:
+            model(**specification_data)
+        except ValidationError as val_error:
+            click.secho(
+                f'Validation for "{spec.name}" failed with --\n', fg='yellow'
+            )
+            click.secho(str(val_error) + '\n', err=True, fg='red')
+        else:
+            click.secho(
+                f'Validation for "{spec.name}" passed', fg='green'
+            )
+
 
 if __name__ == "__main__":
     cli()
