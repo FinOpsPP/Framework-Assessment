@@ -5,7 +5,7 @@ from importlib.resources import files
 import click
 import yaml
 from jinja2 import Environment, PackageLoader
-from pydantic import TypeAdapter
+from pydantic import TypeAdapter, ValidationError
 
 from finopspp import models
 
@@ -485,7 +485,7 @@ class AllOrIntRangeParamType(click.ParamType):
             if value == 'all':
                 return value
             else:
-                return click.IntRange(0, 999).convert(value, param, ctx)
+                return str(click.IntRange(0, 999).convert(value, param, ctx))
         except:
             self.fail(f"'{value}' must be \"all\" or an int between 0-999")
 
@@ -499,25 +499,30 @@ class AllOrIntRangeParamType(click.ParamType):
 @click.argument('selection', type=AllOrIntRangeParamType())
 def validate(selection, specification_type):
     """Validate all or a specific specification ID, for a given specification type."""
-    schema = None
-    click.echo(f'Schema definition for specification-type={specification_type}:\n')
+    model = None
+    click.echo(f'Validating "{selection}" for specification-type={specification_type}:\n')
     match specification_type:
         case 'actions':
-            schema = TypeAdapter(models.Action).json_schema(mode='serialization')
+            model = models.Action
         case 'capabilities':
-            schema = TypeAdapter(models.Capability).json_schema(mode='serialization')
+            model = models.Capability
         case 'domains':
-            schema = TypeAdapter(models.Domain).json_schema(mode='serialization')
+            model = models.Domain
         case 'profiles':
-            schema = TypeAdapter(models.Profile).json_schema(mode='serialization')
-    click.echo(            
-        yaml.dump(
-            schema,
-            default_flow_style=False,
-            sort_keys=False,
-            indent=2
-        )
-    )
+            model = models.Profile
+
+    file = '0'*(3-len(selection)) + selection
+    specification_file = files(
+        f'finopspp.specifications.{specification_type}'
+    ).joinpath(f'{file}.yaml')
+
+    with open(specification_file, 'r') as file:
+        specification_data = yaml.safe_load(file)
+
+    try:
+        model(**specification_data)
+    except ValidationError as val_error:
+        click.echo(str(val_error))
 
 
 if __name__ == "__main__":
