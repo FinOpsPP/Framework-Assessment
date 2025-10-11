@@ -1,5 +1,5 @@
 Metadata:
-  Proposed: 2025-09-16
+  Proposed: '2025-09-16'
   Adoption: null
   Modified: null
   Version: 0.0.1
@@ -12,6 +12,7 @@ Specification:
   ID: 121
   Title: null
   Description: Align project timelines with budgets, dependencies, and releases.
+  Overrides: null
   Implementation Types:
   - null
   References:

@@ -4,7 +4,7 @@ from enum import Enum
 from typing import Any, Optional, Callable
 
 import semver
-from pydantic import BaseModel, ConfigDict, Field, GetJsonSchemaHandler
+from pydantic import BaseModel, ConfigDict, Field, GetJsonSchemaHandler, field_validator
 from pydantic_core import core_schema
 from pydantic.json_schema import JsonSchemaValue
 
@@ -12,6 +12,7 @@ class Config(BaseModel):
     model_config = ConfigDict(
         json_schema_serialization_defaults_required=True,
         frozen=True,
+        validate_assignment=True,
         validate_by_alias=True,
         validate_by_name=True,
         serialize_by_alias=True,
@@ -56,13 +57,13 @@ class _Version:
 
 class Approver(Config):
     Name: str | None = Field(
-        example='Reviewer One'
+        description='Name of of the approver'
     )
     Email: str | None = Field(
-        example='reviewer1@example.com'
+        description='Email address of the approver'
     )
     Date: datetime.date | None = Field(
-        description='ISO 8601 date of approval from approver'
+        description='ISO 8601 date of approval from the approver'
     )
 
 
@@ -73,7 +74,7 @@ class StatusEnum(str, Enum):
 
 class MetadataSpec(Config):
     Proposed: datetime.date = Field(
-        example=datetime.date.today(), description='ISO 8601 date a specification was proposal'
+        description='ISO 8601 date a specification was proposal'
     )
     Adoption: datetime.date | None = Field(
         description='ISO 8601 date a specification was adapted'
@@ -82,23 +83,27 @@ class MetadataSpec(Config):
         description='ISO 8601 date a specification was last modified'
     )
     Version: _Version = Field(
-        example='0.0.1', description='Semantic version for a specification'
+        description='Semantic version for a specification'
     )
     Status: StatusEnum = Field(
-        example=StatusEnum.proposed.value, description='Lifecycle status for a specification'
+        description='Lifecycle status for a specification'
     )
     Approvers: list[Approver] = Field(
-        example=[Approver(Name=None, Email=None, Date=None)],
         description='List of approvers for a specification'
     )
 
 
 class SpecID(Config):
-    ID: int | None = Field(description='Unique, with respect to a specification type, ID for a specification')
+    ID: int | None = Field(
+        description='Unique, with respect to a specification type, ID for a specification',
+        gt=0,
+        lt=1000
+    )
 
 class SpecBase(Config):
     Title: str | None = Field(
-        description='Short title a specification'
+        description='Short title of a specification',
+        max_length=100
     )
     Description: str | None = Field(
         description='Longer form description of a specification is attempting to address'
@@ -106,8 +111,8 @@ class SpecBase(Config):
 
 
 class BaseOverride(Config):
-    Profile: str = Field(
-        description='Profile override is tied to.'
+    Profile: str | SpecID = Field(
+        description='Title or ID of profile that override is tied to.'
     )
     TitleUpdate: Optional[str] = Field(
         default=None, description='Update the title of a specification'
@@ -116,24 +121,45 @@ class BaseOverride(Config):
         default=None, description='Update the description of a specification'
     )
 
-
 class ActionOverride(BaseOverride, Config):
     WeightUpdate: Optional[int] = Field(
         default=None, description='Update the weight for an action'
     )
 
 class StdOverride(BaseOverride, Config):
-    AddIDs: Optional[list[int]] = Field(
-        default=None, description='List of sub-specification IDs to add to a specification'
+    AddIDs: Optional[list[SpecID]] = Field(
+        default=[],
+        validate_default=True,
+        description='List of sub-specification IDs to add to a specification'
     )
-    DropIDs: Optional[list[int]] = Field(
-        default=None, description='List of sub-specification IDs to drop from a specification'
+    DropIDs: Optional[list[SpecID]] = Field(
+        default=[],
+        validate_default=True,
+        description='List of sub-specification IDs to drop from a specification'
     )
+
+    @field_validator('AddIDs', mode='after')
+    def add_default(cls, value, values, **kwargs):
+        if value:
+            return value
+        return []
+    
+    @field_validator('DropIDs', mode='after')
+    def drop_default(cls, value, values, **kwargs):
+        if value:
+            return value
+        return []
+
+OVERRIDE_MAP = {
+    'std': StdOverride,
+    'action': ActionOverride
+}
 
 
 class ActionItem(SpecID, Config):
-    Overrides: Optional[list[ActionOverride] | None] = Field(
-        default=None, description='List of action overrides by profile'
+    Overrides: Optional[list[ActionOverride]] = Field(
+        default=[],
+        description='List of action overrides by profile'
     )
 
 class Reference(Config):
@@ -149,16 +175,14 @@ class Reference(Config):
 
 class ActionSpec(ActionItem, SpecBase, SpecID, Config):
     ImplementationTypes: list[str | None] = Field(
-        example=[None],
         description='List of how the specification is implemented',
         alias='Implementation Types'
     )
     References: list[Reference] = Field(
-        example=[Reference(Name=None, Link=None, Comment=None)],
         description='List reference objects'
     )
     Notes: list[str | None] = Field(
-        example=[None], description='List of notes related to a specific action'
+        description='List of notes related to a specific action'
     )
 
 class Action(Config):

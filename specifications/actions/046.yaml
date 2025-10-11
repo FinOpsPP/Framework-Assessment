@@ -1,5 +1,5 @@
 Metadata:
-  Proposed: 2025-09-16
+  Proposed: '2025-09-16'
   Adoption: null
   Modified: null
   Version: 0.0.1
@@ -12,6 +12,7 @@ Specification:
   ID: 46
   Title: null
   Description: Publish "budget vs actual vs forecast" by business dimensions.
+  Overrides: null
   Implementation Types:
   - null
   References:

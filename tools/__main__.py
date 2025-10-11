@@ -38,6 +38,9 @@ def profiles():
         path = profiles.joinpath(file.name)
         with open(path, 'r') as yaml_file:
             title = yaml.safe_load(yaml_file).get('Specification').get('Title')
+            if not title:
+                continue
+
             PROFILES_MAP[title] = path
     
     return PROFILES_MAP
@@ -62,70 +65,52 @@ def generate():
     pass
 
 
-def sub_specification_helper(doc, spec_file):
+def sub_specification_helper(spec, spec_file):
     """Helps find and pull Specification subsection from a specification"""
-    id_ = doc.get('ID')
-    # if no ID, assume the full sub-specification is given and return
-    if not id_:
-        return doc
+    spec_id = spec.get('ID')
+    # if no ID, or it is ID 0, assume the full sub-specification is given and return
+    if not spec_id:
+        return spec
 
     # else look up sub-specification file ID
-    id_ = str(id_)
-    file = '0'*(3-len(id_)) + id_
+    spec_id = str(spec_id)
+    file = '0'*(3-len(spec_id)) + spec_id
     with open(spec_file.joinpath(f'{file}.yaml'), 'r') as yaml_file:
         return yaml.safe_load(yaml_file).get('Specification')
 
-def overrides_helper(doc, profile):
+def overrides_helper(spec, profile, override_type='std'):
     """Helper for receiving the overrides for a profile if they exist
     
     Also ensure that if an override exists, it conforms to the specification of an
     override
     """
-    overrides = doc.get('Overrides')
+    overrides = spec.get('Overrides')
     if not overrides:
         overrides = []
 
-    full_override = {'AddIDs': [], 'DropIDs': [], 'TitleUpdate': None}
+    # pull correct override model based on override type
+    model = models.OVERRIDE_MAP[override_type]
+
+    validated_override = model(Profile=profile)
     for override in overrides:
+        # Only validate the override for the relevant profile
         if override.get('Profile') != profile:
             continue
 
-        add_ids = override.get('AddIDs')
-        if isinstance(add_ids, list):
-            validated_ids = []
-            for add_id in add_ids:
-                if not isinstance(add_id, int):
-                    click.echo('IDs in AddIDs must be an integer. Exiting')
-                    sys.exit(1)
-
-                validated_ids.append({'ID': add_id})
-            full_override['AddIDs'] = validated_ids
-        elif add_ids is not None:
-            click.echo('AddIDs, if set, must be null or a list. Exiting')
+        try:
+            validated_override = model(**override)
+        except ValidationError as val_error:
+            click.secho(
+                f'Validation for override "{profile}" on {spec["Title"]} failed with --\n', fg='yellow'
+            )
+            click.secho(str(val_error) + '\n' + 'Exiting early!', err=True, fg='red')
             sys.exit(1)
 
-        drop_ids = override.get('DropIDs')
-        if isinstance(drop_ids, list):
-            validated_ids = []
-            for drop_id in drop_ids:
-                if not isinstance(drop_id, int):
-                    click.echo('IDs in DropIDs must be an integer. Exiting')
-                    sys.exit(1)
+        # after validating the correct override, which we take to be the first with a given
+        # title or Spec ID, we break out of the loop.
+        break
 
-                validated_ids.append(drop_id)
-            full_override['DropIDs'] = validated_ids
-        elif drop_ids is not None:
-            click.echo('DropIDs, if set, must be null or a list. Exiting')
-            sys.exit(1)
-
-        title_update = override.get('TitleUpdate')
-        if isinstance(title_update, str):
-            full_override['TitleUpdate'] = title_update
-        elif title_update is not None:
-            click.echo('TitleUpdate, if set, must be null or a str. Exiting')
-            sys.exit(1)
-    
-    return full_override
+    return validated_override.model_dump()
 
 @generate.command()
 @click.option(
@@ -143,96 +128,118 @@ def assessment(profile):
     cap_files = files('finopspp.specifications.capabilities')
     action_files = files('finopspp.specifications.actions')
     with open(PROFILES_MAP[profile], 'r') as yaml_file:
-        doc = yaml.safe_load(
+        spec = yaml.safe_load(
             yaml_file
         ).get('Specification')
 
     domains = []
-    if not doc.get('Domains'):
+    if not spec.get('Domains'):
         click.echo('Profile includes no domains. Exiting')
         sys.exit(1)
 
-    profile_id = doc.get('ID')
-    for domain in doc.get('Domains'):
+    profile_id = spec.get('ID')
+    for domain in spec.get('Domains'):
         capabilities = []
 
-        doc = sub_specification_helper(domain, domain_files)
-        domain_override = overrides_helper(doc, profile)
+        spec = sub_specification_helper(domain, domain_files)
+        domain_override = overrides_helper(spec, profile)
+        domain_drops = [drop['ID'] for drop in domain_override.get('DropIDs')]
 
-        title = doc.get('Title')
         if domain_override.get('TitleUpdate'):
-            title = domain_override.get('TitleUpdate')
-        if doc.get('Capabilities') is None:
-            doc['Capabilities'] = []
-        if not isinstance(doc.get('Capabilities'), list):
+            spec['Title'] = domain_override.get('TitleUpdate')
+        title = spec.get('Title')
+
+        if domain_override.get('DescriptionUpdate'):
+            spec['Description'] = domain_override.get('DescriptionUpdate')
+
+        if spec.get('Capabilities') is None:
+            spec['Capabilities'] = []
+        if not isinstance(spec.get('Capabilities'), list):
             click.echo(
                 'Capabilities for domain={title} must be null or a list. Exiting'
             )
             sys.exit(1)
 
-        doc_id = doc.get('ID')
-        if doc_id:
-            doc_id = str(doc.get('ID'))
-            file = '0'*(3-len(doc_id)) + doc_id
+        spec_id = spec.get('ID')
+        if spec_id:
+            spec_id = str(spec.get('ID'))
+            file = '0'*(3-len(spec_id)) + spec_id
             title = f'<a href="/components/domains/{file}.md">{file}</a>: {title}'
 
         domains.append({
             'name': title,
             'capabilities': capabilities
         })
-        doc.get('Capabilities').extend(domain_override.get('AddIDs'))
-        for capability in doc.get('Capabilities'):
+        spec.get('Capabilities').extend(domain_override.get('AddIDs'))
+        for capability in spec.get('Capabilities'):
             actions = []
 
-            doc = sub_specification_helper(capability, cap_files)
+            spec = sub_specification_helper(capability, cap_files)
 
             # continue early if the Capability ID is one to be dropped
-            doc_id = doc.get('ID')
-            if doc_id and doc_id in domain_override.get('DropIDs'):
+            spec_id = spec.get('ID')
+            if spec_id and spec_id in domain_drops:
                 continue
 
-            cap_override = overrides_helper(doc, profile)
+            cap_override = overrides_helper(spec, profile)
+            cap_drops = [drop['ID'] for drop in cap_override.get('DropIDs')]
 
-            title = doc.get('Title')
             if cap_override.get('TitleUpdate'):
-                title = cap_override.get('TitleUpdate')
-            if doc.get('Actions') is None:
-                doc['Actions'] = []
-            if not isinstance(doc.get('Actions'), list):
+                spec['Title'] = cap_override.get('TitleUpdate')
+            title = spec.get('Title')
+
+            if cap_override.get('DescriptionUpdate'):
+                spec['Description'] = cap_override.get('DescriptionUpdate')
+
+            if spec.get('Actions') is None:
+                spec['Actions'] = []
+            if not isinstance(spec.get('Actions'), list):
                 click.echo(
                     'Actions for capability={title} must be null or a list. Exiting'
                 )
                 sys.exit(1)
 
-            if doc_id:
-                doc_id = str(doc.get('ID'))
-                file = '0'*(3-len(doc_id)) + doc_id
+            if spec_id:
+                spec_id = str(spec.get('ID'))
+                file = '0'*(3-len(spec_id)) + spec_id
                 title = f'<a href="/components/capabilities/{file}.md">{file}</a>: {title}'
 
             capabilities.append({
                 'name': title,
                 'actions': actions
             })
-            doc.get('Actions').extend(cap_override.get('AddIDs'))
-            for action in doc.get('Actions'):
-                doc = sub_specification_helper(action, action_files)
+            spec.get('Actions').extend(cap_override.get('AddIDs'))
+            for action in spec.get('Actions'):
+                spec = sub_specification_helper(action, action_files)
 
                 # continue early if the Action ID is one to be dropped
-                doc_id = doc.get('ID')
-                if doc_id and doc_id in cap_override.get('DropIDs'):
+                spec_id = spec.get('ID')
+                if spec_id and spec_id in cap_drops:
                     continue
 
-                doc_id = str(doc_id)
-                description = doc.get('Description')
-                file = '0'*(3-len(doc_id)) + doc_id
+                act_override = overrides_helper(spec, profile, 'action')
+
+                if act_override.get('TitleUpdate'):
+                    spec['Title'] = act_override.get('TitleUpdate')
+                title = spec.get('Title')
+
+                if act_override.get('DescriptionUpdate'):
+                    spec['Description'] = act_override.get('DescriptionUpdate')
+
+                if act_override.get('WeightUpdate'):
+                    spec['Weight'] = act_override.get('WeightUpdate')
+
+                spec_id = str(spec_id)
+                description = spec.get('Description')
+                file = '0'*(3-len(spec_id)) + spec_id
                 action = f'<a href="/components/actions/{file}.md">{file}</a>: {description}'
 
                 actions.append(action)
 
     # render file before writing it
     # include profile title with linkable ID.
-    doc_id = str(profile_id)
-    file = '0'*(3-len(doc_id)) + doc_id
+    spec_id = str(profile_id)
+    file = '0'*(3-len(spec_id)) + spec_id
     profile_title = f'<a href="/components/profiles/{file}.md">{file}</a>: {profile}'
     output = template.render(profile=profile_title, domains=domains)
 
@@ -278,25 +285,29 @@ def components(specification_type):
 
     # iterate over the specification files and generate markdown files
     for spec in spec_files.iterdir():
+        number, _ = os.path.splitext(spec.name)
+        # skip over example 0 specs
+        if not int(number):
+            continue
+
         path = spec_files.joinpath(spec.name)
         with open(path, 'r') as yaml_file:
-            doc = yaml.safe_load(yaml_file).get('Specification')
+            spec = yaml.safe_load(yaml_file).get('Specification')
 
-        for subspec in doc.get(subspec_type.capitalize(), []):
-            subdoc = sub_specification_helper(subspec, subspec_files)
-            subdoc_id = str(subdoc.get('ID'))
-            subspec['File'] = f'/components/{subspec_type}/{"0"*(3-len(subdoc_id))}{subdoc_id}.md'
-            subspec['Title'] = subdoc.get('Title')
+        for subspec in spec.get(subspec_type.capitalize(), []):
+            subspec_doc = sub_specification_helper(subspec, subspec_files)
+            subspec_id = str(subspec_doc.get('ID'))
+            subspec['File'] = f'/components/{subspec_type}/{"0"*(3-len(subspec_id))}{subspec_id}.md'
+            subspec['Title'] = subspec_doc.get('Title')
 
-
-        output = template.render(spec=doc)
+        output = template.render(spec=spec)
 
         # finally, write out rendered output to file
         # make sure serialized ID is the same as the one
         # used in the specification files.
-        doc_id = doc.get('ID')
-        doc_id = str(doc_id)
-        file_prefix = '0'*(3-len(doc_id)) + doc_id
+        spec_id = spec.get('ID')
+        spec_id = str(spec_id)
+        file_prefix = '0'*(3-len(spec_id)) + spec_id
         out_path = os.path.join(
             os.getcwd(),
             'components',
@@ -320,15 +331,15 @@ def specifications():
     default='profiles',
     help='Which specification type to use. Defaults to "profiles"'
 )
-@click.argument('id', type=click.IntRange(0, 999))
+@click.argument('id', type=click.IntRange(1, 999))
 def new(id, specification_type):
     """Create a new specification for a new ID
 
     It is required that the ID be new itself for a given specification.
     The command will fail otherwise.
     """
-    doc_id = str(id)
-    file = '0'*(3-len(doc_id)) + doc_id
+    spec_id = str(id)
+    file = '0'*(3-len(spec_id)) + spec_id
     specification_file = files(
         f'finopspp.specifications.{specification_type}'
     ).joinpath(f'{file}.yaml')
@@ -365,54 +376,60 @@ def new(id, specification_type):
     type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
     help='Which specification type to show. Defaults to "profiles"'
 )
-@click.option(
-    '--value',
-    help='Optional value to use with key. Defaults to null'
-)
-@click.option(
-    '--start',
-    default=1,
-    type=click.INT,
-    help='Specification ID to start on. Default is 1'
-)
-@click.argument('after')
-@click.argument('key')
-def update(after, key, specification_type, value, start):
-    """Mass update the Specification format per type
-    
-    The AFTER argument is to be given in dot-format for the accessor path from which
-    to insert the new key-value pair. Ex "Specification.ID"
-    """
+def update(specification_type):
+    """Mass update the Specification format per type based on model"""
+    model = None
+    match specification_type:
+        case 'actions':
+            model = models.Action
+        case 'capabilities':
+            model = models.Capability
+        case 'domains':
+            model = models.Domain
+        case 'profiles':
+            model = models.Profile
+
+    failed = False
     specs_files = files(f'finopspp.specifications.{specification_type}')
     for spec in specs_files.iterdir():
         number, _ = os.path.splitext(spec.name)
-        if int(number) < start:
+        # skip over example 0 specs
+        if not int(number):
             continue
 
+        click.echo(f'Updating "{spec.name}" for specification-type={specification_type}:')
         path = specs_files.joinpath(spec.name)
         with open(path, 'r') as yaml_file:
-            base_doc = yaml.safe_load(yaml_file)
-
-        doc = base_doc
-        accessors = after.split('.')
-        target = accessors.pop()
-        for accessor in accessors:
-            doc = doc.get(accessor)
-
-        position = list(doc.keys()).index(target)
-        items = list(doc.items())
-        items.insert(position + 1, (key, value))
-        doc.clear()
-        doc.update(dict(items))
+            specification_data = yaml.safe_load(yaml_file)
         
-        with open(path, 'w') as yaml_file:
-            yaml.dump(
-                base_doc,
-                yaml_file,
-                default_flow_style=False,
-                sort_keys=False,
-                indent=2
+        passthrough_data = None
+        try:
+            passthrough_data = json.loads(
+                model(**specification_data).model_dump_json()
             )
+
+            # write out modified data back to spec file
+            with open(path, 'w') as yaml_file:
+                yaml.dump(
+                    passthrough_data,
+                    yaml_file,
+                    default_flow_style=False,
+                    sort_keys=False,
+                    indent=2
+                )
+        except Exception as error:
+            failed = True
+            click.secho(
+                f'Update for "{spec.name}" failed with --\n', fg='yellow'
+            )
+            click.secho(str(error) + '\n', err=True, fg='red')
+        else:
+            click.secho(
+                f'Update for "{spec.name}" succeeded', fg='green'
+            )
+
+    if failed:
+        sys.exit(1)
 
 
 @specifications.command(name='list')
@@ -478,14 +495,15 @@ def list_specs(profile):
     default='profiles',
     help='Which specification type to show. Defaults to "profiles"'
 )
-@click.argument('id', type=click.IntRange(0, 999))
+@click.argument('id', type=click.IntRange(1, 999))
 def show(id, metadata, specification_type):
     """Show information on a given specification by ID by type"""
     data_type = 'Specification'
     if metadata:
         data_type = 'Metadata'
 
-    file = '0'*(3-len(id)) + id
+    spec_id = str(id)
+    file = '0'*(3-len(spec_id)) + spec_id
     specification_file = files(
         f'finopspp.specifications.{specification_type}'
     ).joinpath(f'{file}.yaml')
@@ -541,16 +559,16 @@ class AllOrIntRangeParamType(click.ParamType):
     name = 'All or ID'
 
     def get_metavar(self, param, ctx):
-        return f'{param.name.upper()} [all|0-999]'
+        return f'{param.name.upper()} [all|1-999]'
 
     def convert(self, value, param, ctx):
         try:
             if value == 'all':
                 return value
             else:
-                return str(click.IntRange(0, 999).convert(value, param, ctx))
+                return str(click.IntRange(1, 999).convert(value, param, ctx))
         except:
-            self.fail(f"'{value}' must be \"all\" or an int between 0-999")
+            self.fail(f"'{value}' must be \"all\" or an int between 1-999")
 
 @specifications.command()
 @click.option(
@@ -581,7 +599,13 @@ def validate(selection, specification_type):
         Spec = namedtuple('Spec', ['name'])
         specs = [Spec(name=f'{file}.yaml')]
 
+    failed = False
     for spec in specs:
+        number, _ = os.path.splitext(spec.name)
+        # skip over example 0 specs
+        if not int(number):
+            continue
+
         click.echo(f'Validating "{spec.name}" for specification-type={specification_type}:')
         path = specs_files.joinpath(spec.name)
         with open(path, 'r') as yaml_file:
@@ -590,6 +614,7 @@ def validate(selection, specification_type):
         try:
             model(**specification_data)
         except ValidationError as val_error:
+            failed = True
             click.secho(
                 f'Validation for "{spec.name}" failed with --\n', fg='yellow'
             )
@@ -598,6 +623,9 @@ def validate(selection, specification_type):
             click.secho(
                 f'Validation for "{spec.name}" passed', fg='green'
             )
+
+    if failed:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
