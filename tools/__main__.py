@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 from collections import namedtuple
@@ -9,6 +10,17 @@ from jinja2 import Environment, PackageLoader
 from pydantic import TypeAdapter, ValidationError
 
 from finopspp import models
+from finopspp import defaults
+
+# presenters based on answers from
+# https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data 
+def str_presenter(dumper, data):
+  if len(data.splitlines()) > 1:  # check for multiline string
+    return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='>-')
+  return dumper.represent_scalar('tag:yaml.org,2002:str', data, style=None)
+
+yaml.add_representer(str, str_presenter)
+
 
 PROFILES_MAP = {}
 def profiles():
@@ -244,7 +256,7 @@ def assessment(profile):
 @click.option(
     '--specification-type',
     type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
-    help='Which specification type to show. Defaults to "profiles"'
+    help='Which specification type to generate. Defaults to "profiles"'
 )
 def components(specification_type):
     """Generate component markdown files from their specifications"""
@@ -295,6 +307,52 @@ def components(specification_type):
 def specifications():
     """Informational command on Specifications"""
     pass
+
+
+@specifications.command()
+@click.option(
+    '--specification-type',
+    type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
+    default='profiles',
+    help='Which specification type to use. Defaults to "profiles"'
+)
+@click.argument('id', type=click.IntRange(0, 999))
+def new(id, specification_type):
+    """Create a new specification for a new ID
+
+    It is required that the ID be new itself for a given specification.
+    The command will fail otherwise.
+    """
+    doc_id = str(id)
+    file = '0'*(3-len(doc_id)) + doc_id
+    specification_file = files(
+        f'finopspp.specifications.{specification_type}'
+    ).joinpath(f'{file}.yaml')
+
+    if os.path.exists(specification_file):
+        click.secho(f'Specification {specification_file} already exists', err=True, fg='red')
+
+    data = None
+    match specification_type:
+        case 'actions':
+            data = json.loads(defaults.Action.model_dump_json())
+        case 'capabilities':
+            data = json.loads(defaults.Capability.model_dump_json())
+        case 'domains':
+            data = json.loads(defaults.Domain.model_dump_json())
+        case 'profiles':
+            data = json.loads(defaults.Profile.model_dump_json())
+
+    data['Specification']['ID'] = id
+    with open(specification_file, 'w') as file:
+        yaml.dump(
+            data,
+            file,
+            default_flow_style=False,
+            sort_keys=False,
+            indent=2
+        )
+
 
 
 @specifications.command()
@@ -358,7 +416,7 @@ def update(after, key, specification_type, value, start):
     '--profile',
     default='FinOps++',
     type=click.Choice(list(profiles().keys())),
-    help='Which assessment profile to use. Defaults to "FinOps++"'
+    help='Which assessment profile to list. Defaults to "FinOps++"'
 )
 def list_specs(profile):
     """List all Specifications by fully qualified ID per profile
@@ -445,7 +503,7 @@ def show(id, metadata, specification_type):
     '--specification-type',
     type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
     default='profiles',
-    help='Which specification type to show. Defaults to "profiles"'
+    help='Which schema specification type to show. Defaults to "profiles"'
 )
 def schema(specification_type):
     """Give schema (in YAML format) for a given specification type

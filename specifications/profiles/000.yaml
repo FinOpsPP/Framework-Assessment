@@ -1,0 +1,25 @@
+Metadata:
+  Proposed: '2025-10-10'
+  Adoption: null
+  Modified: null
+  Version: 0.0.1
+  Status: Proposed
+  Approvers:
+  - Name: null
+    Email: null
+    Date: null
+Specification:
+  ID: 0
+  Title: null
+  Description: null
+  Domains:
+  - ID: null
+  - Title: null
+    Description: null
+    Capabilities:
+    - ID: null
+    - Title: null
+      Description: null
+      Actions:
+      - ID: null
+        Overrides: null
