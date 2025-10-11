@@ -137,10 +137,14 @@ class StdOverride(BaseOverride, Config):
         description='List of sub-specification IDs to drop from a specification'
     )
 
+    # Custom function to ensure that the validator is setup
+    # to always include the default lists for AddIDs and
+    # DropIDs. Can be defined with any name
     @field_validator('AddIDs', 'DropIDs', mode='after')
     def setup_default(cls, value, values, **kwargs):
         if value:
             return value
+
         return []
 
 OVERRIDE_MAP = {
@@ -178,6 +182,9 @@ class ActionSpec(ActionItem, SpecBase, SpecID, Config):
         description='List of notes related to a specific action'
     )
 
+    # Custom function to help make sure the overrides
+    # are always correctly ordered when serialized.
+    # Can be defined with any name
     @model_serializer(when_used='json')
     def serialize_json_model(self):
         model = self.model_dump()

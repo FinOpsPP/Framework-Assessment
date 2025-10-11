@@ -121,6 +121,9 @@ def overrides_helper(spec, profile, override_type='std'):
 )
 def assessment(profile):
     """Generate assessment files from their specifications"""
+    click.echo(f'Attempting to generate framework for profile={profile}:')
+
+    # pull in template and specification files for given specification type
     env = Environment(loader=PackageLoader('finopspp', 'templates'))
     template = env.get_template('framework.md.j2')
 
@@ -134,7 +137,7 @@ def assessment(profile):
 
     domains = []
     if not spec.get('Domains'):
-        click.echo('Profile includes no domains. Exiting')
+        click.secho('Profile includes no domains. Exiting', err=True, fg='red')
         sys.exit(1)
 
     profile_id = spec.get('ID')
@@ -155,8 +158,10 @@ def assessment(profile):
         if spec.get('Capabilities') is None:
             spec['Capabilities'] = []
         if not isinstance(spec.get('Capabilities'), list):
-            click.echo(
-                'Capabilities for domain={title} must be null or a list. Exiting'
+            click.secho(
+                f'Capabilities for domain={title} must be null or a list. Exiting',
+                err=True,
+                fg='red'
             )
             sys.exit(1)
 
@@ -194,8 +199,10 @@ def assessment(profile):
             if spec.get('Actions') is None:
                 spec['Actions'] = []
             if not isinstance(spec.get('Actions'), list):
-                click.echo(
-                    'Actions for capability={title} must be null or a list. Exiting'
+                click.secho(
+                    f'Actions for capability={title} must be null or a list. Exiting',
+                    err=True,
+                    fg='red'
                 )
                 sys.exit(1)
 
@@ -262,6 +269,8 @@ def assessment(profile):
     with open(out_path, 'w') as outfile:
         outfile.write(output)
 
+    click.secho(f'Attempt to generate framework markdown "{out_path}" succeeded', fg='green')
+
 
 @generate.command()
 @click.option(
@@ -314,8 +323,14 @@ def components(specification_type):
             specification_type,
             f'{file_prefix}.md'
         )
+        click.echo(
+            f'Attempting to generate component "{out_path}" for specification-type={specification_type}:'
+        )
+
         with open(out_path, 'w') as outfile:
             outfile.write(output)
+
+        click.secho(f'Attempt to generate "{out_path}" succeeded', fg='green')
 
 
 @cli.group()
@@ -340,12 +355,14 @@ def new(id, specification_type):
     """
     spec_id = str(id)
     file = '0'*(3-len(spec_id)) + spec_id
-    specification_file = files(
-        f'finopspp.specifications.{specification_type}'
+    path = files(
+        f'finopspp.specifications.{path}'
     ).joinpath(f'{file}.yaml')
+    click.echo(f'Attempting to create "{path}" for specification-type={specification_type}:')
 
-    if os.path.exists(specification_file):
-        click.secho(f'Specification {specification_file} already exists', err=True, fg='red')
+    if os.path.exists(path):
+        click.secho(f'Specification "{path}" already exists. Existing', err=True, fg='red')
+        sys.exit(1)
 
     data = None
     match specification_type:
@@ -359,7 +376,7 @@ def new(id, specification_type):
             data = json.loads(defaults.Profile.model_dump_json())
 
     data['Specification']['ID'] = id
-    with open(specification_file, 'w') as file:
+    with open(path, 'w') as file:
         yaml.dump(
             data,
             file,
@@ -368,6 +385,7 @@ def new(id, specification_type):
             indent=2
         )
 
+    click.secho(f'Specification "{path}" successfully created', fg='green')
 
 
 @specifications.command()
@@ -397,8 +415,8 @@ def update(specification_type):
         if not int(number):
             continue
 
-        click.echo(f'Updating "{spec.name}" for specification-type={specification_type}:')
         path = specs_files.joinpath(spec.name)
+        click.echo(f'Updating "{path}" for specification-type={specification_type}:')
         with open(path, 'r') as yaml_file:
             specification_data = yaml.safe_load(yaml_file)
         
@@ -420,12 +438,12 @@ def update(specification_type):
         except Exception as error:
             failed = True
             click.secho(
-                f'Update for "{spec.name}" failed with --\n', fg='yellow'
+                f'Update for "{path}" failed with --\n', fg='yellow'
             )
             click.secho(str(error) + '\n', err=True, fg='red')
         else:
             click.secho(
-                f'Update for "{spec.name}" succeeded', fg='green'
+                f'Update for "{path}" succeeded', fg='green'
             )
 
     if failed:
@@ -606,8 +624,8 @@ def validate(selection, specification_type):
         if not int(number):
             continue
 
-        click.echo(f'Validating "{spec.name}" for specification-type={specification_type}:')
         path = specs_files.joinpath(spec.name)
+        click.echo(f'Validating "{path}" for specification-type={specification_type}:')
         with open(path, 'r') as yaml_file:
             specification_data = yaml.safe_load(yaml_file)
 
@@ -616,12 +634,12 @@ def validate(selection, specification_type):
         except ValidationError as val_error:
             failed = True
             click.secho(
-                f'Validation for "{spec.name}" failed with --\n', fg='yellow'
+                f'Validation for "{path}" failed with --\n', fg='yellow'
             )
             click.secho(str(val_error) + '\n', err=True, fg='red')
         else:
             click.secho(
-                f'Validation for "{spec.name}" passed', fg='green'
+                f'Validation for "{path}" passed', fg='green'
             )
 
     if failed:
