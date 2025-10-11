@@ -15,9 +15,13 @@ from finopspp import defaults
 # presenters based on answers from
 # https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data 
 def str_presenter(dumper, data):
-  if len(data.splitlines()) > 1:  # check for multiline string
-    return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='>-')
-  return dumper.represent_scalar('tag:yaml.org,2002:str', data, style=None)
+    # for multi-line strings
+    dumped = None
+    if len(data.splitlines()) > 1:
+        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')
+
+    # for standard strings
+    return dumper.represent_scalar('tag:yaml.org,2002:str', data)
 
 yaml.add_representer(str, str_presenter)
 

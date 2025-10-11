@@ -30,12 +30,12 @@ Specification:
     Link: https://another.example.com
     Comment: Comment on second reference and why it is relevant
   Notes:
-  - >-
+  - |-
     Example of a note directly relating to the specification. Could be over implementation or
     related to discussion over tweaks to the maturity model. These notes could come from
     external sources and were selected for inclusion based on their importance. Such as if
     they provide clarification on some aspect of a particular specification.
-  - >-
+  - |
     Another example of a note on the specification. Is over information not in Description. It
     is meant to be a multiline string using the folded scalar syntax of YAML. For
     more on folded YAML scalars, read https://yaml.org/spec/1.2.2/#23-scalars
