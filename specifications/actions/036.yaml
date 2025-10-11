@@ -12,7 +12,6 @@ Specification:
   ID: 36
   Title: null
   Description: Coach engineering to own estimates; compare isolated components first.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -21,3 +20,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

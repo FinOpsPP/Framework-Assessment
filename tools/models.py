@@ -4,14 +4,13 @@ from enum import Enum
 from typing import Any, Optional, Callable
 
 import semver
-from pydantic import BaseModel, ConfigDict, Field, GetJsonSchemaHandler, field_validator
+from pydantic import BaseModel, ConfigDict, Field, GetJsonSchemaHandler, field_validator, model_serializer
 from pydantic_core import core_schema
 from pydantic.json_schema import JsonSchemaValue
 
 class Config(BaseModel):
     model_config = ConfigDict(
         json_schema_serialization_defaults_required=True,
-        frozen=True,
         validate_assignment=True,
         validate_by_alias=True,
         validate_by_name=True,
@@ -138,14 +137,8 @@ class StdOverride(BaseOverride, Config):
         description='List of sub-specification IDs to drop from a specification'
     )
 
-    @field_validator('AddIDs', mode='after')
-    def add_default(cls, value, values, **kwargs):
-        if value:
-            return value
-        return []
-    
-    @field_validator('DropIDs', mode='after')
-    def drop_default(cls, value, values, **kwargs):
+    @field_validator('AddIDs', 'DropIDs', mode='after')
+    def setup_default(cls, value, values, **kwargs):
         if value:
             return value
         return []
@@ -184,6 +177,21 @@ class ActionSpec(ActionItem, SpecBase, SpecID, Config):
     Notes: list[str | None] = Field(
         description='List of notes related to a specific action'
     )
+
+    @model_serializer(when_used='json')
+    def serialize_json_model(self):
+        model = self.model_dump()
+        
+        # ensure overrides are always at the end of the serialized output
+        # if they exist, by removing it and then adding it back.
+        if 'Overrides' in list(model.keys()):
+            overrides = model.get('Overrides')
+            del model['Overrides']
+            model['Overrides'] = overrides
+            return model
+
+        # else just return the original model
+        return model
 
 class Action(Config):
     Metadata: MetadataSpec = Field(description='Metadata for an Action specification')

@@ -13,7 +13,6 @@ Specification:
   Title: null
   Description: Leverage spot/negotiated discounts where safe; reassess after architecture
     shifts.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -22,3 +21,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

@@ -13,7 +13,6 @@ Specification:
   Title: null
   Description: Publish allocation taxonomy; include overlays (project, app ID, cost
     center).
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -22,3 +21,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

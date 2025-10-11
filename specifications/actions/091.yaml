@@ -12,7 +12,6 @@ Specification:
   ID: 91
   Title: null
   Description: Define org model, staffing/skills, and operating budget for FinOps.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -21,3 +20,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

@@ -12,7 +12,6 @@ Specification:
   ID: 24
   Title: null
   Description: Define severity tiers, thresholds, and response SLAs; publish runbooks.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -21,3 +20,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

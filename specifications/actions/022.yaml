@@ -12,7 +12,6 @@ Specification:
   ID: 22
   Title: null
   Description: Iterate based on feedback and outcome metrics, not just views.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -21,3 +20,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

@@ -12,7 +12,6 @@ Specification:
   ID: 79
   Title: null
   Description: Document commitment strategy (RIs/Savings Plans/CUDs) and guardrails.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -21,3 +20,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

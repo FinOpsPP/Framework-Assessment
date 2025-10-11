@@ -12,7 +12,6 @@ Specification:
   ID: 61
   Title: null
   Description: Establish intake/review process for new and existing architectures.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -21,3 +20,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

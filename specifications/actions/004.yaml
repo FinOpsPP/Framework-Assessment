@@ -13,7 +13,6 @@ Specification:
   Title: null
   Description: Define data granularity and ingestion frequency; include mandatory
     metadata.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -22,3 +21,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

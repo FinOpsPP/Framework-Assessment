@@ -13,7 +13,6 @@ Specification:
   Title: null
   Description: Configure detection for total cost spikes, cost/usage rate shifts,
     unit drops.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -22,3 +21,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

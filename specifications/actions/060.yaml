@@ -12,7 +12,6 @@ Specification:
   ID: 60
   Title: null
   Description: Communicate wins (unit cost reductions) to drive cultural adoption.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -21,3 +20,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

@@ -12,7 +12,6 @@ Specification:
   ID: 43
   Title: null
   Description: Define budgeting strategy (granularity, owners, holdbacks, thresholds).
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -21,3 +20,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

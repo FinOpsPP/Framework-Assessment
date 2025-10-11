@@ -13,7 +13,6 @@ Specification:
   Title: null
   Description: Track trends; compare like-for-like and measure unique items against
     self over time.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -22,3 +21,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

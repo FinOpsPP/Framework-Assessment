@@ -12,7 +12,6 @@ Specification:
   ID: 13
   Title: null
   Description: Validate allocation compliance; report gaps and financial impact.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -21,3 +20,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

@@ -12,7 +12,6 @@ Specification:
   ID: 40
   Title: null
   Description: Compare forecast vs actual; produce variance narratives and actions.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -21,3 +20,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

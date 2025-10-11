@@ -13,7 +13,6 @@ Specification:
   Title: null
   Description: Publish KPIs (adoption, tagging compliance, anomaly response, savings
     rate).
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -22,3 +21,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

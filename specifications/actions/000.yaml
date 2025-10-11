@@ -1,19 +1,19 @@
 Metadata:
-  Proposed: 2025-09-03 # ISO 8601 date format
-  Adoption: 2025-09-04 # ISO 8601 date format
-  Modified: 2025-09-04 # ISO 8601 date format
+  Proposed: '2025-09-03' # ISO 8601 date format
+  Adoption: '2025-09-04' # ISO 8601 date format
+  Modified: '2025-09-04' # ISO 8601 date format
   Version: 1.0.0 # Based on Semantic Versioning
   Status: Accepted # Lifecycle status of the specification
   Approvers: # Record of the initial approvers for a specification
   - Name: Reviewer 1
     Email: review1@example.com
-    Date: 2025-09-04 # ISO 8601 date format
+    Date: '2025-09-04' # ISO 8601 date format
   - Name: Reviewer 2
     Email: reviewer2@example.com
-    Date: 2025-09-04 # ISO 8601 date format
+    Date: '2025-09-04' # ISO 8601 date format
   - Name: Reviewer 3
     Email: reviewer3@example.com
-    Date: 2025-09-04 # ISO 8601 date format
+    Date: '2025-09-04' # ISO 8601 date format
 Specification:
   ID: 0
   Title: Title of specification

@@ -12,7 +12,6 @@ Specification:
   ID: 58
   Title: null
   Description: Set review cadence; align targets with product and finance goals.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -21,3 +20,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

@@ -12,7 +12,6 @@ Specification:
   ID: 1
   Title: null
   Description: Inventory all data sources (CSP cost/usage, performance, on-prem, internal).
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -21,3 +20,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

@@ -12,7 +12,6 @@ Specification:
   ID: 19
   Title: null
   Description: Publish documentation, data sensitivity rules, and support channels.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -21,3 +20,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null

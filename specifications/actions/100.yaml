@@ -12,7 +12,6 @@ Specification:
   ID: 100
   Title: null
   Description: Leverage CSP/vendor training; contextualize to your environment.
-  Overrides: null
   Implementation Types:
   - null
   References:
@@ -21,3 +20,4 @@ Specification:
     Comment: null
   Notes:
   - null
+  Overrides: null
