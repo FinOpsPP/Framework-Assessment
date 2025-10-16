@@ -14,6 +14,8 @@ Specification:
   Description: Re-assess on a set cadence; show progress and re-prioritize.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

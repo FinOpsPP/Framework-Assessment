@@ -14,6 +14,8 @@ Specification:
   Description: Set review cadence; align targets with product and finance goals.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

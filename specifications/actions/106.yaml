@@ -14,6 +14,8 @@ Specification:
   Description: Iterate policies based on outcomes and stakeholder feedback.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

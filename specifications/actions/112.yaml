@@ -14,6 +14,8 @@ Specification:
   Description: Resolve variances; increase shared-cost coverage over time.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

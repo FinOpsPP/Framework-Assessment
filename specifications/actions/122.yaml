@@ -14,6 +14,8 @@ Specification:
   Description: Start with lower envs; have a rollback plan before production cutover.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

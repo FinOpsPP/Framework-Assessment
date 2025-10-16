@@ -14,6 +14,8 @@ Specification:
   Description: Evaluate build vs buy; map requirements to vendor capabilities.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

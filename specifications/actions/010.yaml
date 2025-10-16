@@ -14,6 +14,8 @@ Specification:
   Description: Identify shared costs; agree apportionment rules and document them.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

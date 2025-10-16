@@ -14,6 +14,8 @@ Specification:
   Description: Publish "budget vs actual vs forecast" by business dimensions.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

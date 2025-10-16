@@ -14,6 +14,8 @@ Specification:
   Description: Align project timelines with budgets, dependencies, and releases.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

@@ -14,6 +14,8 @@ Specification:
   Description: Define org model, staffing/skills, and operating budget for FinOps.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

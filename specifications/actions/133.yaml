@@ -14,6 +14,8 @@ Specification:
   Description: Coordinate policy/gov changes cross-functionally; communicate broadly.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

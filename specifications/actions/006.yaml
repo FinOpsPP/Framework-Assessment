@@ -14,6 +14,8 @@ Specification:
   Description: Implement data quality checks, SLAs, and runbooks; monitor failures.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

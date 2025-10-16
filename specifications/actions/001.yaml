@@ -14,6 +14,8 @@ Specification:
   Description: Inventory all data sources (CSP cost/usage, performance, on-prem, internal).
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

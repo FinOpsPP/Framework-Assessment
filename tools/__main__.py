@@ -630,7 +630,7 @@ def validate(selection, specification_type):
             specification_data = yaml.safe_load(yaml_file)
 
         try:
-            model(**specification_data)
+            model.model_validate(specification_data, extra='forbid')
         except ValidationError as val_error:
             failed = True
             click.secho(

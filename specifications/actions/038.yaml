@@ -14,6 +14,8 @@ Specification:
   Description: Collect business drivers (launches, promos, growth) on a set schedule.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

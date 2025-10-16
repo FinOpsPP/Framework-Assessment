@@ -8,6 +8,11 @@ from pydantic import BaseModel, ConfigDict, Field, GetJsonSchemaHandler, field_v
 from pydantic_core import core_schema
 from pydantic.json_schema import JsonSchemaValue
 
+# For the configuration used here we ignore extra values that
+# are passed to our models. That is to help the update CLI 
+# command remove fields that are no longer needed.
+# But note that the validation CLI command will be validating
+# with extra='forbid'. Causing extra fields to fail validation.
 class Config(BaseModel):
     model_config = ConfigDict(
         json_schema_serialization_defaults_required=True,
@@ -15,7 +20,7 @@ class Config(BaseModel):
         validate_by_alias=True,
         validate_by_name=True,
         serialize_by_alias=True,
-        extra='forbid'
+        extra='ignore'
     )
 
 # from https://python-semver.readthedocs.io/en/latest/advanced/combine-pydantic-and-semver.html
@@ -174,6 +179,15 @@ class ActionSpec(ActionItem, SpecBase, SpecID, Config):
     ImplementationTypes: list[str | None] = Field(
         description='List of how the specification is implemented',
         alias='Implementation Types'
+    )
+    Weight: Optional[float] = Field(
+        default=0,
+        description='Priority or risk related weight for a score',
+        ge=0
+    )
+    Score: Optional[str] = Field(
+        default=None,
+        description='Scoring used to determine the maturity of an action'
     )
     References: list[Reference] = Field(
         description='List reference objects'

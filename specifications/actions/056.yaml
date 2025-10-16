@@ -14,6 +14,8 @@ Specification:
   Description: Document included financial inputs and exact formulas; version control.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null

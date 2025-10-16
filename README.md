@@ -12,7 +12,7 @@ To aid with formatting, transforming, and using the yaml specification, we built
 
 Once your venv is setup, [activate it](https://docs.python.org/3/library/venv.html#how-venvs-work) and run `python -m pip install -e .` from the same directory as this README. This command will pull in all required dependencies into the venv and then installs the script for you to use in your venv. It will also do this in what is called "[editable](https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-e)" mode. Which will allow you to change packages and files (including yaml specifications) used by `finopspp`, and to directly see those changes reflected in the invocation of the tool. Be careful when doing this, so as not to break the core functionality needed to generate the assessment.
 
-## Common commands
+## Generating commands
 
 The most useful commands to use with `finopspp` will be related to generate some aspect of the framework. Either markdown documentation or Excel files.
 
@@ -48,6 +48,42 @@ To generate the files in these folder fresh from the yaml files, you can call th
 ```{sh}
 finopspp generate components --specification-type=<desired-spec-type>
 ```
+
+## Specification commands
+
+A set of utility commands that can do a number of different actions relevant to the yaml specifications. This range from showing the [OpenAPI schema](https://www.openapis.org/what-is-openapi) for the different specifications types, to basic updates of the specification from [custom Pydantic models][/tools/models.py].
+
+### Validation
+
+One of the most useful command is the validation command
+
+```{sh}
+finopspp specifications validate --specification-type=<desired-spec-type> <spec-id-or-all>
+```
+
+With this, you can validate a specific specification by ID and type. Or, by passing in `all`, you can validate all specification for a specific type. Validation is relatively strict, and makes uses of [pydantic validator](https://docs.pydantic.dev/latest/concepts/validators/). Validation failures are logged to stderr for the user, and results in a failure return code on the command if any specifications fail to validate during a run.
+
+### Update
+
+Another really useful command is update, which can be called with the following
+
+```{sh}
+finopspp specifications update --specification-type=<desired-spec-type>
+```
+
+Based on the specification type, and corresponding [pydantic derived model](https://docs.pydantic.dev/latest/concepts/models/). The updates that work out-of-the-box are adding/removing fields. While other more complex updates, such as renaming a field or changing the order of fields in the schema, are allowed by creating custom alias for fields or by using pydantic [model_serializer](https://docs.pydantic.dev/latest/api/functional_serializers/#pydantic.functional_serializers.model_serializer).
+
+### New
+
+The new command will allow you to create new specification from smart defaults, which can be found, in code, under [/tools/defaults.py](/tools/defaults.py). The new specification, created for a desired specification type, can be used a template to fill-in until the specification is in a state that is ready to be publish. 
+
+The command to create these new specification is simply
+
+```{sh}
+finopspp specifications new --specification-type=<desired-spec-type> <desired-id>
+```
+
+The only requirement is that the desired ID be unique. If it has been used previously, an error will be returned and the specification will not be created.
 
 ## Developing the tool
 

@@ -14,6 +14,8 @@ Specification:
   Description: Establish collaboration with TBM, ITAM, Security, SRE, and PMO.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null
