@@ -853,7 +853,7 @@
             </tr>
             <tr>
                 <td>
-                Roles, Responsabilities, Authorities
+                Roles, Responsibilities, Authorities
                 </td>
                 <td>
                 <table>

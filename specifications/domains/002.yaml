@@ -1,5 +1,5 @@
 Metadata:
-  Proposed: 2025-09-16
+  Proposed: '2025-09-16'
   Adoption: null
   Modified: null
   Version: 0.0.1
@@ -20,7 +20,12 @@ Specification:
   - ID: 22
   Overrides:
   - Profile: FinOps++
-    AddIDs: [1, 2, 8, 20]
-    DropIDs: [7]
     TitleUpdate: Usage & Cost
     DescriptionUpdate: Domain for understanding, as well as optimizing usage as cost
+    AddIDs:
+    - ID: 1
+    - ID: 2
+    - ID: 8
+    - ID: 20
+    DropIDs:
+    - ID: 7

@@ -1,5 +1,5 @@
 Metadata:
-  Proposed: 2025-09-16
+  Proposed: '2025-09-16'
   Adoption: null
   Modified: null
   Version: 0.0.1
@@ -14,9 +14,12 @@ Specification:
   Description: Define metadata & hierarchy strategy; map to business units/products.
   Implementation Types:
   - null
+  Weight: 0.0
+  Score: null
   References:
   - Name: null
     Link: null
     Comment: null
   Notes:
   - null
+  Overrides: null
