@@ -75,7 +75,7 @@ Based on the specification type, and corresponding [pydantic derived model](http
 
 ### New
 
-The new command will allow you to create new specification from smart defaults, which can be found, in code, under [/tools/defaults.py](/tools/defaults.py). The new specification, created for a desired specification type, can be used a template to fill-in until the specification is in a state that is ready to be publish. 
+The new command will allow you to create new specification from smart defaults, which can be found, in code, under [/tools/defaults.py](/tools/defaults.py). The new specification, created for a desired specification type, can be used as template to fill-in until the specification is in a state that is ready to be publish. 
 
 The command to create these new specification is simply
 
