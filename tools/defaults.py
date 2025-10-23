@@ -26,6 +26,14 @@ Action = models.Action(
         ImplementationTypes=[
             None
         ],
+        Weight=0,
+        Formula=None,
+        Scoring=[
+            models.ScoringDetail(
+                Score=0,
+                Condition=None
+            )
+        ],
         References=[
             models.Reference(
                 Name=None,

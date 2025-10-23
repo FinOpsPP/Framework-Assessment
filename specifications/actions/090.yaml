@@ -15,7 +15,10 @@ Specification:
   Implementation Types:
   - null
   Weight: 0.0
-  Score: null
+  Formula: null
+  Scoring:
+  - Score: 0
+    Condition: null
   References:
   - Name: null
     Link: null

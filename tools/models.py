@@ -175,22 +175,37 @@ class Reference(Config):
         description='Comments or longer form description of how a reference related to a specification'
     )
 
+class ScoringDetail(Config):
+    Score: int = Field(
+        default=0,
+        description='Score value associated with a condition',
+        ge=0,
+        le=10
+    )
+    Condition: str | None = Field(
+        description='Conditional required to meet score value'
+    )
+
 class ActionSpec(ActionItem, SpecBase, SpecID, Config):
     ImplementationTypes: list[str | None] = Field(
         description='List of how the specification is implemented',
         alias='Implementation Types'
     )
-    Weight: Optional[float] = Field(
-        default=0,
+    Weight: float = Field(
         description='Priority or risk related weight for a score',
         ge=0
     )
-    Score: Optional[str] = Field(
+    Formula: Optional[str] = Field(
         default=None,
-        description='Scoring used to determine the maturity of an action'
+        description='Formula used to compute the score condition'
+    )
+    Scoring: list[ScoringDetail] = Field(
+        description='Scoring details used to determine the maturity of an action',
+        min_length=1, # must include at least one detail objects
+        max_length=11 # max of 11 (i.e ints 0-10) detail objects
     )
     References: list[Reference] = Field(
-        description='List reference objects'
+        description='List of reference objects'
     )
     Notes: list[str | None] = Field(
         description='List of notes related to a specific action'

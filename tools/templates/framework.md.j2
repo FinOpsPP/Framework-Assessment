@@ -8,21 +8,25 @@
 {%- for domain in domains %}
     <tr>
         <td>
-        <b>{{ domain.name }}</b>
+        <b>{% if domain.serial_number -%}
+        <a href="/components/domains/{{ domain.serial_number }}.md">{{ domain.serial_number }}</a>: {% endif -%}
+        {{ domain.domain }}</b>
         </td>
         <td>
         <table>
         {%- for capability in domain.capabilities %}
             <tr>
                 <td>
-                {{ capability.name }}
+                {% if capability.serial_number -%}
+                <a href="/components/capabilities/{{ capability.serial_number }}.md">{{ capability.serial_number }}</a>: {% endif -%}
+                {{ capability.capability }}
                 </td>
                 <td>
                 <table>
                 {%- for action in capability.actions %}
                     <tr>
                         <td>
-                        {{ action }}
+                        <a href="/components/actions/{{ action.serial_number }}.md">{{ action.serial_number }}</a>: {{ action.action }}
                         </td>
                     </tr>
                 {%- endfor %}
