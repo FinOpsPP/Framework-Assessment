@@ -68,10 +68,10 @@ With this, you can validate a specific specification by ID and type. Or, by pass
 Another really useful command is update, which can be called with the following
 
 ```{sh}
-finopspp specifications update --specification-type=<desired-spec-type>
+finopspp specifications update --specification-type=<desired-spec-type> <spec-id-or-all>
 ```
 
-Based on the specification type, and corresponding [pydantic derived model](https://docs.pydantic.dev/latest/concepts/models/). The updates that work out-of-the-box are adding/removing fields. While other more complex updates, such as renaming a field or changing the order of fields in the schema, are allowed by creating custom alias for fields or by using pydantic [model_serializer](https://docs.pydantic.dev/latest/api/functional_serializers/#pydantic.functional_serializers.model_serializer).
+Based on the specification type, and corresponding [pydantic derived model](https://docs.pydantic.dev/latest/concepts/models/), you can update a specific specification by ID or all at once. The updates that work out-of-the-box are adding/removing fields. While other more complex updates, such as renaming a field or changing the order of fields in the schema, are allowed by creating custom alias for fields or by using pydantic [model_serializer](https://docs.pydantic.dev/latest/api/functional_serializers/#pydantic.functional_serializers.model_serializer).
 
 ### New
 

@@ -5,6 +5,7 @@ from collections import namedtuple
 from importlib.resources import files
 
 import click
+import pandas
 import yaml
 from jinja2 import Environment, PackageLoader
 from pydantic import TypeAdapter, ValidationError
@@ -112,6 +113,12 @@ def overrides_helper(spec, profile, override_type='std'):
 
     return validated_override.model_dump()
 
+def actions_component_link(value):
+    """Helper function to convert serial numbers to hyperlinks for excel if they exist"""
+    if not value:
+        return str(value)
+    return f'=HYPERLINK("https://github.com/FinOpsPP/Framework-Assessment/tree/main/components/actions/{value}.md", "{value}")'
+
 @generate.command()
 @click.option(
     '--profile',
@@ -121,8 +128,7 @@ def overrides_helper(spec, profile, override_type='std'):
 )
 def assessment(profile):
     """Generate assessment files from their specifications"""
-    click.echo(f'Attempting to generate framework for profile={profile}:')
-
+    click.echo(f'Attempting to create assessment for profile={profile}:')
     # pull in template and specification files for given specification type
     env = Environment(loader=PackageLoader('finopspp', 'templates'))
     template = env.get_template('framework.md.j2')
@@ -166,13 +172,14 @@ def assessment(profile):
             sys.exit(1)
 
         spec_id = spec.get('ID')
+        serial_number = None
         if spec_id:
             spec_id = str(spec.get('ID'))
-            file = '0'*(3-len(spec_id)) + spec_id
-            title = f'<a href="/components/domains/{file}.md">{file}</a>: {title}'
+            serial_number = '0'*(3-len(spec_id)) + spec_id
 
         domains.append({
-            'name': title,
+            'serial_number': serial_number,
+            'domain': title,
             'capabilities': capabilities
         })
         spec.get('Capabilities').extend(domain_override.get('AddIDs'))
@@ -206,13 +213,14 @@ def assessment(profile):
                 )
                 sys.exit(1)
 
+            serial_number = None
             if spec_id:
                 spec_id = str(spec.get('ID'))
-                file = '0'*(3-len(spec_id)) + spec_id
-                title = f'<a href="/components/capabilities/{file}.md">{file}</a>: {title}'
+                serial_number = '0'*(3-len(spec_id)) + spec_id
 
             capabilities.append({
-                'name': title,
+                'serial_number': serial_number,
+                'capability': title,
                 'actions': actions
             })
             spec.get('Actions').extend(cap_override.get('AddIDs'))
@@ -238,19 +246,14 @@ def assessment(profile):
 
                 spec_id = str(spec_id)
                 description = spec.get('Description')
-                file = '0'*(3-len(spec_id)) + spec_id
-                action = f'<a href="/components/actions/{file}.md">{file}</a>: {description}'
+                serial_number = '0'*(3-len(spec_id)) + spec_id
 
-                actions.append(action)
+                actions.append({
+                    'serial_number': serial_number,
+                    'action': description
+                })
 
-    # render file before writing it
-    # include profile title with linkable ID.
-    spec_id = str(profile_id)
-    file = '0'*(3-len(spec_id)) + spec_id
-    profile_title = f'<a href="/components/profiles/{file}.md">{file}</a>: {profile}'
-    output = template.render(profile=profile_title, domains=domains)
-
-    # check if assessment directory exists for this framework profile
+    # check if assessment directory exists for this profile
     # and if it does not create it
     base_path = os.path.join(
         os.getcwd(),
@@ -259,6 +262,14 @@ def assessment(profile):
     )
     if not os.path.exists(base_path):
         os.mkdir(base_path)
+
+    # render file before writing it
+    # include profile title with linkable ID.
+    click.echo(f'Attempting to generate framework for profile={profile}:')
+    spec_id = str(profile_id)
+    file = '0'*(3-len(spec_id)) + spec_id
+    profile_title = f'<a href="/components/profiles/{file}.md">{file}</a>: {profile}'
+    output = template.render(profile=profile_title, domains=domains)
 
     # finally, create framework markdown for this profile
     # from the rendered output
@@ -270,6 +281,46 @@ def assessment(profile):
         outfile.write(output)
 
     click.secho(f'Attempt to generate framework markdown "{out_path}" succeeded', fg='green')
+
+    # next try and create the excel workbook for this profile
+    click.echo(f'Attempting to generate assessment.xlsx for profile={profile}:')
+    dataframe = pandas.json_normalize(
+        domains,
+        record_path=['capabilities', 'actions'], # path to actions
+        meta=['domain', ['capabilities', 'capability']]
+    )
+    dataframe.rename(
+        columns={
+            'capabilities.capability': 'capability'
+        },
+        inplace=True
+    )
+    dataframe['serial_number'] = dataframe['serial_number'].apply(actions_component_link)
+    dataframe.set_index(['domain', 'capability', 'action'], inplace=True)
+
+    out_path = os.path.join(
+        base_path,
+        'assessment.xlsx'
+    )
+    with pandas.ExcelWriter(out_path, engine='xlsxwriter') as writer:
+        dataframe.to_excel(
+            writer, sheet_name='Overview'
+        )
+
+        # format cells
+        workbook = writer.book
+        worksheet = writer.sheets['Overview']
+        index_format = workbook.add_format()
+        index_format.set_text_wrap()
+
+        worksheet.set_column('A:C', 20, index_format)
+
+        link_format = workbook.add_format({'bold': True})
+        link_format.set_font_color('blue')
+
+        worksheet.set_column('D:D', None, link_format)
+
+    click.secho(f'Attempt to generate assessment.xlsx "{out_path}" succeeded', fg='green')
 
 
 @generate.command()
@@ -386,68 +437,6 @@ def new(id, specification_type):
         )
 
     click.secho(f'Specification "{path}" successfully created', fg='green')
-
-
-@specifications.command()
-@click.option(
-    '--specification-type',
-    type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
-    help='Which specification type to show. Defaults to "profiles"'
-)
-def update(specification_type):
-    """Mass update the Specification format per type based on model"""
-    model = None
-    match specification_type:
-        case 'actions':
-            model = models.Action
-        case 'capabilities':
-            model = models.Capability
-        case 'domains':
-            model = models.Domain
-        case 'profiles':
-            model = models.Profile
-
-    failed = False
-    specs_files = files(f'finopspp.specifications.{specification_type}')
-    for spec in specs_files.iterdir():
-        number, _ = os.path.splitext(spec.name)
-        # skip over example 0 specs
-        if not int(number):
-            continue
-
-        path = specs_files.joinpath(spec.name)
-        click.echo(f'Updating "{path}" for specification-type={specification_type}:')
-        with open(path, 'r') as yaml_file:
-            specification_data = yaml.safe_load(yaml_file)
-        
-        passthrough_data = None
-        try:
-            passthrough_data = json.loads(
-                model(**specification_data).model_dump_json()
-            )
-
-            # write out modified data back to spec file
-            with open(path, 'w') as yaml_file:
-                yaml.dump(
-                    passthrough_data,
-                    yaml_file,
-                    default_flow_style=False,
-                    sort_keys=False,
-                    indent=2
-                )
-        except Exception as error:
-            failed = True
-            click.secho(
-                f'Update for "{path}" failed with --\n', fg='yellow'
-            )
-            click.secho(str(error) + '\n', err=True, fg='red')
-        else:
-            click.secho(
-                f'Update for "{path}" succeeded', fg='green'
-            )
-
-    if failed:
-        sys.exit(1)
 
 
 @specifications.command(name='list')
@@ -640,6 +629,76 @@ def validate(selection, specification_type):
         else:
             click.secho(
                 f'Validation for "{path}" passed', fg='green'
+            )
+
+    if failed:
+        sys.exit(1)
+
+
+@specifications.command()
+@click.option(
+    '--specification-type',
+    type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
+    help='Which specification type to show. Defaults to "profiles"'
+)
+@click.argument('selection', type=AllOrIntRangeParamType())
+def update(selection, specification_type):
+    """Mass update the Specification format per type based on model"""
+    model = None
+    match specification_type:
+        case 'actions':
+            model = models.Action
+        case 'capabilities':
+            model = models.Capability
+        case 'domains':
+            model = models.Domain
+        case 'profiles':
+            model = models.Profile
+
+    specs_files = files(f'finopspp.specifications.{specification_type}')
+    if selection == 'all':
+        specs = specs_files.iterdir()
+    else:
+        file = '0'*(3-len(selection)) + selection
+        Spec = namedtuple('Spec', ['name'])
+        specs = [Spec(name=f'{file}.yaml')]
+
+    failed = False
+    for spec in specs:
+        number, _ = os.path.splitext(spec.name)
+        # skip over example 0 specs
+        if not int(number):
+            continue
+
+        path = specs_files.joinpath(spec.name)
+        click.echo(f'Updating "{path}" for specification-type={specification_type}:')
+        with open(path, 'r') as yaml_file:
+            specification_data = yaml.safe_load(yaml_file)
+        
+        passthrough_data = None
+        try:
+            passthrough_data = json.loads(
+                model(**specification_data).model_dump_json()
+            )
+
+            # write out modified data back to spec file
+            with open(path, 'w') as yaml_file:
+                yaml.dump(
+                    passthrough_data,
+                    yaml_file,
+                    default_flow_style=False,
+                    sort_keys=False,
+                    indent=2
+                )
+        except Exception as error:
+            failed = True
+            click.secho(
+                f'Update for "{path}" failed with --\n', fg='yellow'
+            )
+            click.secho(str(error) + '\n', err=True, fg='red')
+        else:
+            click.secho(
+                f'Update for "{path}" succeeded', fg='green'
             )
 
     if failed:
