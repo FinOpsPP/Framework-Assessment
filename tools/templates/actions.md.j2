@@ -1,12 +1,9 @@
 # {{ spec.ID }}: {{ spec.Title | title }}
 
 **Implementation Types:**
-
 {% for implementation in spec['Implementation Types'] -%}
 - {{ implementation | title }}
 {%- endfor %}
-
-**Weight:** {{ spec.Weight | default('Weight is not defined') }}
 
 ## Descriptive Statement
 
@@ -19,11 +16,19 @@
 {% endfor %}
 ## Scoring Guide
 
-{{ spec.Score | default('Score is not defined') }}
+**Weight:** {{ spec.Weight | default('Weight is not defined') }}
 
-**Formula:**
+### Formula
 
 {{ spec.Formula | default('Formula is not defined') }}
+
+### Scoring Details
+
+| Score | Condition |
+| ----- | --------- |
+{%- for detail in spec.Scoring %}
+| {{ detail.Score }} | {{ detail.Condition }} |
+{%- endfor %}
 
 ## References
 

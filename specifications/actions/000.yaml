@@ -22,6 +22,17 @@ Specification:
   - Operational # Example
   - Management
   - etc
+  Weight: 2.4 # example weight that is used against a score value. Weights can be any positive float
+  Formula: |-
+    If given, this formula is used to calculate the condition for the score
+
+    Can be an equation or series of equations that feed into a final value
+    or range of values
+  Scoring: # scoring is a set of treatments for meeting a certain score value. Max value is 10, min is 0
+  - Score: 0 # Scores and conditions must be unique to an action.
+    Condition: Condition required for min score value of 0
+  - Score: 10  # That is, a score value and condition cannot be used more than once
+    Condition: Condition required for max score value of 10
   References:
   - Name: Example reference
     Link: https://example.com
