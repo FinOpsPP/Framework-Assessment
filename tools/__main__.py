@@ -115,8 +115,6 @@ def overrides_helper(spec, profile, override_type='std'):
 
 def actions_component_link(value):
     """Helper function to convert serial numbers to hyperlinks for excel if they exist"""
-    if not value:
-        return str(value)
     return f'=HYPERLINK("https://github.com/FinOpsPP/Framework-Assessment/tree/main/components/actions/{value}.md", "{value}")'
 
 @generate.command()
@@ -282,7 +280,11 @@ def assessment(profile):
 
     click.secho(f'Attempt to generate framework markdown "{out_path}" succeeded', fg='green')
 
-    # next try and create the excel workbook for this profile
+    # next try and create the excel workbook for this profile.
+    # the normalization that is done will remove domains and capabilities that
+    # do not have actions. That means, there can be divergences between the
+    # framework markdown, which does include these, and the assessment doc that
+    # does not. They are not included because without actions, nothing can be scored.  
     click.echo(f'Attempting to generate assessment.xlsx for profile={profile}:')
     dataframe = pandas.json_normalize(
         domains,
@@ -303,6 +305,9 @@ def assessment(profile):
         'assessment.xlsx'
     )
     with pandas.ExcelWriter(out_path, engine='xlsxwriter') as writer:
+        # pandas uses an incredible opinionated format for indices and headers
+        # which for this project is sufficient to meet the needs of the assessments.
+        # as such, will not try to update the index or header formatting given by pandas
         dataframe.to_excel(
             writer, sheet_name='Overview'
         )
@@ -310,15 +315,16 @@ def assessment(profile):
         # format cells
         workbook = writer.book
         worksheet = writer.sheets['Overview']
-        index_format = workbook.add_format()
-        index_format.set_text_wrap()
 
-        worksheet.set_column('A:C', 20, index_format)
-
-        link_format = workbook.add_format({'bold': True})
-        link_format.set_font_color('blue')
-
+        link_format = workbook.add_format({
+            'font_color': 'blue',
+            'align': 'center',
+            'bold': True
+        })
         worksheet.set_column('D:D', None, link_format)
+
+        # Autofit the worksheet.
+        worksheet.autofit()
 
     click.secho(f'Attempt to generate assessment.xlsx "{out_path}" succeeded', fg='green')
 
