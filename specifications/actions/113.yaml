@@ -17,8 +17,12 @@ Specification:
   Weight: 1.5
   Formula: null
   Scoring:
+  - Score: 1
+    Condition: Test for 1
+  - Score: 5
+    Condition: Test for 5
   - Score: 10
-    Condition: null
+    Condition: Test for 10
   References:
   - Name: null
     Link: null

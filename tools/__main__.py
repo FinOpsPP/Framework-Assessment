@@ -328,7 +328,7 @@ def assessment(profile):
             scores = [f'{scoring['Score']}: {scoring["Condition"]}' for scoring in row.scoring]
             worksheet.write(f'G{index}', scores[0]) # overwrite with correct default scores
             worksheet.data_validation(
-                f'F{index}',
+                f'G{index}',
                 {
                     'validate' : 'list',
                     'source': scores
@@ -346,8 +346,16 @@ def assessment(profile):
             )
 
         # write score info
-        worksheet.write_formula('J2', f'=SUM(E2:E{dataframe.shape[0]+1})') # sum of weights
-        worksheet.write_formula('K2', f'=SUM(H2:H{dataframe.shape[0]+1})/J2') # weighted scores
+        worksheet.add_table('J1:K2', {
+            'style': 'Table Style Light 11',
+            'autofilter': False,
+            'columns': [
+                {'header': 'Sum of Weights'},
+                {'header': 'Weighted Average Scores'}
+            ]
+        })
+        worksheet.write_formula('J2', f'=SUM(E2:E{dataframe.shape[0]+1})')
+        worksheet.write_formula('K2', f'=SUM(H2:H{dataframe.shape[0]+1})/J2')
 
         # Autofit the worksheet.
         worksheet.autofit()
