@@ -113,10 +113,6 @@ def overrides_helper(spec, profile, override_type='std'):
 
     return validated_override.model_dump()
 
-def actions_component_link(value):
-    """Helper function to convert serial numbers to hyperlinks for excel if they exist"""
-    return f'=HYPERLINK("https://github.com/FinOpsPP/Framework-Assessment/tree/main/components/actions/{value}.md", "{value}")'
-
 @generate.command()
 @click.option(
     '--profile',
@@ -243,12 +239,15 @@ def assessment(profile):
                     spec['Weight'] = act_override.get('WeightUpdate')
 
                 spec_id = str(spec_id)
-                description = spec.get('Description')
                 serial_number = '0'*(3-len(spec_id)) + spec_id
 
                 actions.append({
-                    'serial_number': serial_number,
-                    'action': description
+                    'action': spec.get('Description'),
+                    'serial number': serial_number,
+                    'weights': spec.get('Weight'),
+                    'formula': spec.get('Formula'),
+                    'scoring': spec.get('Scoring'),
+                    'weighted score': None
                 })
 
     # check if assessment directory exists for this profile
@@ -297,7 +296,6 @@ def assessment(profile):
         },
         inplace=True
     )
-    dataframe['serial_number'] = dataframe['serial_number'].apply(actions_component_link)
     dataframe.set_index(['domain', 'capability', 'action'], inplace=True)
 
     out_path = os.path.join(
@@ -316,15 +314,46 @@ def assessment(profile):
         workbook = writer.book
         worksheet = writer.sheets['Overview']
 
-        link_format = workbook.add_format({
-            'font_color': 'blue',
-            'align': 'center',
-            'bold': True
-        })
-        worksheet.set_column('D:D', None, link_format)
+        # Add a sample alternative link format.
+        link_format = workbook.add_format(
+            {
+                'align': 'center',
+                'bold': True,
+                'underline': True,
+                'font_color': 'blue'
+            }
+        )
+
+        for index, (_, row) in enumerate(dataframe.iterrows(), start=2):
+            scores = [f'{scoring['Score']}: {scoring["Condition"]}' for scoring in row.scoring]
+            worksheet.write(f'G{index}', scores[0]) # overwrite with correct default scores
+            worksheet.data_validation(
+                f'F{index}',
+                {
+                    'validate' : 'list',
+                    'source': scores
+                }
+            )
+            worksheet.write_formula(f'H{index}', f'=E{index}*VALUE(LEFT(G{index}, FIND(":", G{index})-1))')
+
+            # overwrite serial numbers with links to github markdown pages for the numbers
+            serial_number = row['serial number']
+            worksheet.write_url(
+                f'D{index}',
+                f'https://github.com/FinOpsPP/Framework-Assessment/tree/main/components/actions/{serial_number}.md',
+                link_format,
+                string=serial_number
+            )
+
+        # write score info
+        worksheet.write_formula('J2', f'=SUM(E2:E{dataframe.shape[0]+1})') # sum of weights
+        worksheet.write_formula('K2', f'=SUM(H2:H{dataframe.shape[0]+1})/J2') # weighted scores
 
         # Autofit the worksheet.
         worksheet.autofit()
+
+        # ignore certain warnings
+        worksheet.ignore_errors({'number_stored_as_text': 'D:D'})
 
     click.secho(f'Attempt to generate assessment.xlsx "{out_path}" succeeded', fg='green')
 
