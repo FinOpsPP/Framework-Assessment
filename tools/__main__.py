@@ -243,7 +243,7 @@ def assessment(profile):
 
                 actions.append({
                     'action': spec.get('Description'),
-                    'serial number': serial_number,
+                    'serial_number': serial_number,
                     'weights': spec.get('Weight'),
                     'formula': spec.get('Formula'),
                     'scoring': spec.get('Scoring'),
@@ -292,7 +292,8 @@ def assessment(profile):
     )
     dataframe.rename(
         columns={
-            'capabilities.capability': 'capability'
+            'capabilities.capability': 'capability',
+            'serial_number': 'serial number'
         },
         inplace=True
     )
