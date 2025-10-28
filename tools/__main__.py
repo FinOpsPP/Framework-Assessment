@@ -113,12 +113,6 @@ def overrides_helper(spec, profile, override_type='std'):
 
     return validated_override.model_dump()
 
-def actions_component_link(value):
-    """Helper function to convert serial numbers to hyperlinks for excel if they exist"""
-    if not value:
-        return str(value)
-    return f'=HYPERLINK("https://github.com/FinOpsPP/Framework-Assessment/tree/main/components/actions/{value}.md", "{value}")'
-
 @generate.command()
 @click.option(
     '--profile',
@@ -245,12 +239,15 @@ def assessment(profile):
                     spec['Weight'] = act_override.get('WeightUpdate')
 
                 spec_id = str(spec_id)
-                description = spec.get('Description')
                 serial_number = '0'*(3-len(spec_id)) + spec_id
 
                 actions.append({
+                    'action': spec.get('Description'),
                     'serial_number': serial_number,
-                    'action': description
+                    'weights': spec.get('Weight'),
+                    'formula': spec.get('Formula'),
+                    'scoring': spec.get('Scoring'),
+                    'weighted score': None
                 })
 
     # check if assessment directory exists for this profile
@@ -282,7 +279,11 @@ def assessment(profile):
 
     click.secho(f'Attempt to generate framework markdown "{out_path}" succeeded', fg='green')
 
-    # next try and create the excel workbook for this profile
+    # next try and create the excel workbook for this profile.
+    # the normalization that is done will remove domains and capabilities that
+    # do not have actions. That means, there can be divergences between the
+    # framework markdown, which does include these, and the assessment doc that
+    # does not. They are not included because without actions, nothing can be scored.  
     click.echo(f'Attempting to generate assessment.xlsx for profile={profile}:')
     dataframe = pandas.json_normalize(
         domains,
@@ -291,11 +292,11 @@ def assessment(profile):
     )
     dataframe.rename(
         columns={
-            'capabilities.capability': 'capability'
+            'capabilities.capability': 'capability',
+            'serial_number': 'serial number'
         },
         inplace=True
     )
-    dataframe['serial_number'] = dataframe['serial_number'].apply(actions_component_link)
     dataframe.set_index(['domain', 'capability', 'action'], inplace=True)
 
     out_path = os.path.join(
@@ -303,22 +304,105 @@ def assessment(profile):
         'assessment.xlsx'
     )
     with pandas.ExcelWriter(out_path, engine='xlsxwriter') as writer:
+        workbook = writer.book
+
+        # write Overview sheet first
+        overview_sheet = workbook.add_worksheet('Overview')
+        overview_sheet.add_table('A1:D2', {
+            'style': 'Table Style Light 11',
+            'autofilter': False,
+            'columns': [
+                {'header': 'Sum of Weights'},
+                {'header': 'Maximum Possible Score'},
+                {'header': 'Calculated Weighted Average Score'},
+                {'header': 'Difference from Maximum Score'}
+            ]
+        })
+
+        overview_sheet.write_formula('A2', f'=SUM(Scoring!E2:E{dataframe.shape[0]+1})')
+        overview_sheet.write_number('B2', 10)
+        overview_sheet.write_formula('C2', f'=SUM(Scoring!H2:H{dataframe.shape[0]+1})/A2')
+        overview_sheet.write_formula('D2', f'=B2-C2')
+
+        # overview sheet charts
+        domain_size = dataframe.groupby(level=0).size()
+
+        overview_sheet.write_column('AA1', domain_size.index)
+        overview_sheet.write_column('BB1', domain_size)
+
+        domain_chart = workbook.add_chart({'type': 'doughnut'})
+        domain_chart.add_series({
+            'name': f'Domains for {profile} by Action count',
+            'categories': f'=Overview!$AA$1:$AA${len(domain_size)}',
+            'values': f'=Overview!$BB$1:$BB${len(domain_size)}',
+            'data_labels': {
+                'value': True
+            }
+        })
+        domain_chart.set_style(37)
+
+        overview_sheet.insert_chart('A4', domain_chart)
+
+        overview_sheet.autofit()
+        overview_sheet.activate()
+
+        # add chart sheet with percentage difference between max
+        # score and the calculated score
+        score_diff_chart = workbook.add_chart({'type': 'pie'})
+        score_diff_chart.add_series({
+            'categories': '=Overview!$C$1:$D$1',
+            'values':     '=Overview!$C$2:$D$2',
+            'data_labels': {
+                'percentage': True
+            }
+        })
+        score_diff_chart.set_title({
+            'name': 'Attained Percentage of Maximum Possible Score'
+        })
+        score_diff_chart.set_style(37)
+
+        scoring_chart_sheet = workbook.add_chartsheet('Attained Percentage')
+        scoring_chart_sheet.set_chart(score_diff_chart)
+
+        # pandas uses an incredible opinionated format for indices and headers
+        # which for this project is sufficient to meet the needs of the assessments.
+        # as such, will not try to update the index or header formatting given by pandas
         dataframe.to_excel(
-            writer, sheet_name='Overview'
+            writer, sheet_name='Scoring'
         )
 
-        # format cells
-        workbook = writer.book
-        worksheet = writer.sheets['Overview']
-        index_format = workbook.add_format()
-        index_format.set_text_wrap()
+        # format cells for scoring sheet
+        scoring_sheet = writer.sheets['Scoring']
+        link_format = workbook.add_format({
+            'align': 'center',
+            'bold': True,
+            'underline': True,
+            'font_color': 'blue'
+        })
 
-        worksheet.set_column('A:C', 20, index_format)
+        for counter, (_, row) in enumerate(dataframe.iterrows(), start=2):
+            scores = [f'{scoring['Score']}: {scoring["Condition"]}' for scoring in row.scoring]
+            scoring_sheet.write(f'G{counter}', scores[0]) # overwrite with correct default scores
+            scoring_sheet.data_validation(f'G{counter}', {
+                'validate' : 'list',
+                'source': scores
+            })
+            scoring_sheet.write_formula(
+                f'H{counter}', f'=E{counter}*VALUE(LEFT(G{counter}, FIND(":", G{counter})-1))'
+            )
 
-        link_format = workbook.add_format({'bold': True})
-        link_format.set_font_color('blue')
+            # overwrite serial numbers with links to github markdown pages for the numbers
+            serial_number = row['serial number']
+            scoring_sheet.write_url(
+                f'D{counter}',
+                f'https://github.com/FinOpsPP/Framework-Assessment/tree/main/components/actions/{serial_number}.md',
+                link_format,
+                string=serial_number
+            )
 
-        worksheet.set_column('D:D', None, link_format)
+        # Autofit the scoring sheet and fix warning.
+        scoring_sheet.autofit()
+        scoring_sheet.ignore_errors({'number_stored_as_text': 'D:D'})
 
     click.secho(f'Attempt to generate assessment.xlsx "{out_path}" succeeded', fg='green')
 

@@ -14,11 +14,15 @@ Specification:
   Description: Define goals/scope; pick capabilities to measure this cycle.
   Implementation Types:
   - null
-  Weight: 0.0
+  Weight: 1.5
   Formula: null
   Scoring:
-  - Score: 0
-    Condition: null
+  - Score: 1
+    Condition: Test for 1
+  - Score: 5
+    Condition: Test for 5
+  - Score: 10
+    Condition: Test for 10
   References:
   - Name: null
     Link: null
