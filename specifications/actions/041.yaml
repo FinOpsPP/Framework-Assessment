@@ -1,24 +1,29 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adoption: null
+  Adopted: '2025-11-01'
   Modified: null
-  Version: 0.0.1
-  Status: Proposed
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: victoria.levy@alteryx.com
+    Date: '2025-11-01'
+  - Name: Andrew Quigley
+    Email: andrewquigley@northwesternmutual.com
+    Date: '2025-11-01'
 Specification:
   ID: 41
   Title: null
   Description: Automate variance alerts for budget owners and product leaders.
   Implementation Types:
   - null
-  Weight: 0.0
+  Weight: 1.0
   Formula: null
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No alerting
+  - Score: 10
+    Condition: Alerting exists
   References:
   - Name: null
     Link: null

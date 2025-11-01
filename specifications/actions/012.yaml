@@ -1,24 +1,47 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adoption: null
+  Adopted: '2025-11-01'
   Modified: null
-  Version: 0.0.1
-  Status: Proposed
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: victoria.levy@alteryx.com
+    Date: '2025-11-01'
+  - Name: Andrew Quigley
+    Email: andrewquigley@northwesternmutual.com
+    Date: '2025-11-01'
 Specification:
   ID: 12
   Title: null
   Description: Implement tagging/labeling standards; educate and enforce.
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
+  Weight: 1.0
+  Formula: Percentage of total costs that are tagged for Each Required Tag
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: 0%
+  - Score: 1
+    Condition: 10%
+  - Score: 2
+    Condition: 20%
+  - Score: 3
+    Condition: 30%
+  - Score: 4
+    Condition: 40%
+  - Score: 5
+    Condition: 50%
+  - Score: 6
+    Condition: 60%
+  - Score: 7
+    Condition: 70%
+  - Score: 8
+    Condition: 80%
+  - Score: 9
+    Condition: 90%
+  - Score: 10
+    Condition: Near 100%
   References:
   - Name: null
     Link: null

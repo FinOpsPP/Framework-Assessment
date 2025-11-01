@@ -1,13 +1,22 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adoption: null
+  Adopted: '2025-11-01'
   Modified: null
-  Version: 0.0.1
-  Status: Proposed
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: victoria.levy@alteryx.com
+    Date: '2025-11-01'
+  - Name: Andrew Quigley
+    Email: andrewquigley@northwesternmutual.com
+    Date: '2025-11-01'
+  - Name: Kevin Wade
+    Email: kevin_wade@shi.com
+    Date: '2025-11-01'
+  - Name: Prasshant Sharrma
+    Email: prasshant.sharrma@sysco.com
+    Date: '2025-11-01'
 Specification:
   ID: 22
   Title: Workload Optimization

@@ -17,7 +17,6 @@ from finopspp import defaults
 # https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data 
 def str_presenter(dumper, data):
     # for multi-line strings
-    dumped = None
     if len(data.splitlines()) > 1:
         return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')
 
@@ -373,6 +372,9 @@ def assessment(profile):
 
         # format cells for scoring sheet
         scoring_sheet = writer.sheets['Scoring']
+        text_wrap_format = workbook.add_format({'text_wrap': True})
+        scoring_sheet.set_column('F:F', 20, text_wrap_format)
+
         link_format = workbook.add_format({
             'align': 'center',
             'bold': True,
@@ -410,6 +412,7 @@ def assessment(profile):
 @generate.command()
 @click.option(
     '--specification-type',
+    default='profiles',
     type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
     help='Which specification type to generate. Defaults to "profiles"'
 )

@@ -1,24 +1,35 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adoption: null
+  Adopted: '2025-11-01'
   Modified: null
-  Version: 0.0.1
-  Status: Proposed
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: victoria.levy@alteryx.com
+    Date: '2025-11-01'
+  - Name: Andrew Quigley
+    Email: andrewquigley@northwesternmutual.com
+    Date: '2025-11-01'
 Specification:
   ID: 20
   Title: null
   Description: Embed reports into workflows (Slack/Jira/Teams) and set alerting.
   Implementation Types:
   - null
-  Weight: 0.0
+  Weight: 1.0
   Formula: null
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No alerting in worflow tools
+  - Score: 1
+    Condition: Alerting in at least one tool
+  - Score: 3
+    Condition: Alerting in some tooling [20%]
+  - Score: 6
+    Condition: Alerting in most tooling [60%]
+  - Score: 10
+    Condition: Alerting in all workflow tools [100%]
   References:
   - Name: null
     Link: null

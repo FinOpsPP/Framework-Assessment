@@ -1,25 +1,41 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adoption: null
+  Adopted: '2025-11-01'
   Modified: null
-  Version: 0.0.1
-  Status: Proposed
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: victoria.levy@alteryx.com
+    Date: '2025-11-01'
+  - Name: Andrew Quigley
+    Email: andrewquigley@northwesternmutual.com
+    Date: '2025-11-01'
 Specification:
   ID: 4
   Title: null
-  Description: Define data granularity and ingestion frequency; include mandatory
-    metadata.
+  Description: Define data granularity; include mandatory metadata.
   Implementation Types:
   - null
-  Weight: 0.0
+  Weight: 1.0
   Formula: null
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: Never
+  - Score: 1
+    Condition: Monthly or greater
+  - Score: 2
+    Condition: More than a week
+  - Score: 3
+    Condition: 7 days
+  - Score: 4
+    Condition: 5 days
+  - Score: 6
+    Condition: 2 days
+  - Score: 8
+    Condition: 1 day
+  - Score: 10
+    Condition: Instant
   References:
   - Name: null
     Link: null
