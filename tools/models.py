@@ -80,7 +80,7 @@ class MetadataSpec(Config):
     Proposed: datetime.date = Field(
         description='ISO 8601 date a specification was proposal'
     )
-    Adoption: datetime.date | None = Field(
+    Adopted: datetime.date | None = Field(
         description='ISO 8601 date a specification was adapted'
     )
     Modified: datetime.date | None = Field(

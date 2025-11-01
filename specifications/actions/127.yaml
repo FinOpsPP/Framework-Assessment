@@ -1,24 +1,44 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adoption: null
+  Adopted: '2025-11-01'
   Modified: null
-  Version: 0.0.1
-  Status: Proposed
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: victoria.levy@alteryx.com
+    Date: '2025-11-01'
+  - Name: Andrew Quigley
+    Email: andrewquigley@northwesternmutual.com
+    Date: '2025-11-01'
 Specification:
   ID: 127
   Title: null
   Description: Train users; "put data in the path" of existing workflows and tools.
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
+  Weight: 1.0
+  Formula: |-
+    * Define communication pathways between finops and the business
+    * Conduct trainings or create videos
+    * Send out period newsletters
+    * CI/CD governance
+    * Proactive recommendations at deployment
+
+    10*Ceil(x/5)
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
+  - Score: 10
+    Condition: 5 items completed
   References:
   - Name: null
     Link: null

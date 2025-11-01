@@ -1,6 +1,6 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adoption: null
+  Adopted: null
   Modified: null
   Version: 0.0.1
   Status: Proposed
@@ -14,15 +14,11 @@ Specification:
   Description: Define goals/scope; pick capabilities to measure this cycle.
   Implementation Types:
   - null
-  Weight: 1.5
+  Weight: 0.0
   Formula: null
   Scoring:
-  - Score: 1
-    Condition: Test for 1
-  - Score: 5
-    Condition: Test for 5
-  - Score: 10
-    Condition: Test for 10
+  - Score: 0
+    Condition: null
   References:
   - Name: null
     Link: null

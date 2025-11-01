@@ -12,18 +12,30 @@ Metadata:
     Email: andrewquigley@northwesternmutual.com
     Date: '2025-11-01'
 Specification:
-  ID: 109
+  ID: 4
   Title: null
-  Description: Co-design chargeback/showback with Finance; document rules and cadence.
+  Description: Define ingestion frequency; include mandatory metadata.
   Implementation Types:
   - null
   Weight: 1.0
   Formula: null
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: Never
+  - Score: 1
+    Condition: Monthly or greater
+  - Score: 2
+    Condition: More than a week
+  - Score: 3
+    Condition: 7 days
+  - Score: 4
+    Condition: 5 days
+  - Score: 6
+    Condition: 2 days
+  - Score: 8
+    Condition: 1 day
   - Score: 10
-    Condition: Done and clealy defined
+    Condition: Instant
   References:
   - Name: null
     Link: null

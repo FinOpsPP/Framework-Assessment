@@ -1,24 +1,41 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adoption: null
+  Adopted: '2025-11-01'
   Modified: null
-  Version: 0.0.1
-  Status: Proposed
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: victoria.levy@alteryx.com
+    Date: '2025-11-01'
+  - Name: Andrew Quigley
+    Email: andrewquigley@northwesternmutual.com
+    Date: '2025-11-01'
 Specification:
   ID: 18
   Title: null
   Description: Build dashboards for routine, showback, investigative, and ad hoc views.
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
+  Weight: 1.0
+  Formula: |-
+    * Dashboard for showback
+    * Dashboard where teams can dive in to investigate costs
+    * Ad-hoc dashboards avaialble to teams
+    * Dashboards for key metrics tracking (tagging, waste, etc.)
+
+    10*Ceil(x/4)
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No items completed
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 items completed
+  - Score: 8
+    Condition: 3 items completed
+  - Score: 10
+    Condition: 4 items completed
   References:
   - Name: null
     Link: null

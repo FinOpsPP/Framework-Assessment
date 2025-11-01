@@ -1,24 +1,43 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adoption: null
+  Adopted: '2025-11-01'
   Modified: null
-  Version: 0.0.1
-  Status: Proposed
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: victoria.levy@alteryx.com
+    Date: '2025-11-01'
+  - Name: Andrew Quigley
+    Email: andrewquigley@northwesternmutual.com
+    Date: '2025-11-01'
 Specification:
   ID: 14
   Title: null
   Description: Automate parsing/enforcement (policies, CI/CD checks, tag bots).
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
+  Weight: 1.0
+  Formula: |-
+    Effectiveness/Effort by strategy
+
+    * Manually asking teams to tag resources
+    * Remove untagged resources after time threshold
+    * Block deployments without proper tags
+    * Automatically tag based on CI/CD creator and team
+
+    10*Ceil(x/4)
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No items completed
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 items completed
+  - Score: 8
+    Condition: 3 items completed
+  - Score: 10
+    Condition: 4 items completed
   References:
   - Name: null
     Link: null

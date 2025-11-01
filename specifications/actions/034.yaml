@@ -1,24 +1,38 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adoption: null
+  Adopted: '2025-11-01'
   Modified: null
-  Version: 0.0.1
-  Status: Proposed
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: victoria.levy@alteryx.com
+    Date: '2025-11-01'
+  - Name: Andrew Quigley
+    Email: andrewquigley@northwesternmutual.com
+    Date: '2025-11-01'
 Specification:
   ID: 34
   Title: null
   Description: Establish decision process for which scenarios feed the forecast.
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
+  Weight: 1.0
+  Formula: |-
+    * Define and follow process for gathering deployment plans from teams
+    * Determine timeline for each new project to adjust the forecast during that time
+    * Determine how optimizations and lower run rate will impact the forecast on a rolling basis
+
+    10*Ceil(x/3)
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No items completed
+  - Score: 4
+    Condition: 1 item completed
+  - Score: 7
+    Condition: 2 items completed
+  - Score: 10
+    Condition: 3 items completed
   References:
   - Name: null
     Link: null

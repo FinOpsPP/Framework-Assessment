@@ -545,7 +545,7 @@
                     </tr>
                     <tr>
                         <td>
-                        <a href="/components/actions/004.md">004</a>: Define data granularity and ingestion frequency; include mandatory metadata.
+                        <a href="/components/actions/004.md">004</a>: Define data granularity; include mandatory metadata.
                         </td>
                     </tr>
                     <tr>
@@ -566,6 +566,11 @@
                     <tr>
                         <td>
                         <a href="/components/actions/008.md">008</a>: Continuously optimize pipelines for timeliness and cost.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <a href="/components/actions/004.md">004</a>: Define ingestion frequency; include mandatory metadata.
                         </td>
                     </tr>
                 </table>
