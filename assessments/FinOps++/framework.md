@@ -570,7 +570,7 @@
                     </tr>
                     <tr>
                         <td>
-                        <a href="/components/actions/004.md">004</a>: Define ingestion frequency; include mandatory metadata.
+                        <a href="/components/actions/135.md">135</a>: Define ingestion frequency; include mandatory metadata.
                         </td>
                     </tr>
                 </table>
