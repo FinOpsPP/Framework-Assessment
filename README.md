@@ -22,7 +22,7 @@ The Markdown files found in these subdirectories are navigable, allowing you to 
 
 ## Assessments
 
-The [assessments](/assessments/) directory is where you can find subdirectories (based on the profile names) containing both the markdown file detailing how a framework is put together, and the the assessment worksheet used for scoring against that framework. The worksheet is current an excel doc that can be easily downloaded from this repository and potentially convert to other cell-based, excel-like products (such as google sheets).
+The [assessments/](/assessments/) directory is where you can find subdirectories (based on the profile names) containing both the markdown file detailing how a framework is put together, and the the assessment worksheet used for scoring against that framework. The worksheet is current an excel doc that can be easily downloaded from this repository and potentially convert to other cell-based, excel-like products (such as google sheets).
 
 These subdirectories will be the primary entry point for most people using the FinOps++ project as the assessment is the primary product for it. The framework markdown and worksheet link to the different components used to create it as needed. With the hope of making it easy to trace out how a framework is designed to work (i.e what concerns a framework is trying to address).
 
