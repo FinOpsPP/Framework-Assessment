@@ -10,8 +10,6 @@ This assessment is an expansion of the existing FinOps Framework Assessment as o
 
 This repository is broken down into encapsulated directories, where the function of a directory reflects a core design aspect or goal of the project.
 
-## Assessments
-
 ## Components
 
 At the very beginning of this project, there was a desire to establish way to define the building blocks that would go into creating a framework and/or assessment. We quickly decided that since the project was inspired by the [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) (CSF), that we should also try to mirror the that frame by organizing the blocks into logical groupings, but with a FinOps flavor. 
@@ -21,6 +19,12 @@ The groups that were selected were all based on the what we call *actions*, whic
 In this way, the heart of this project is located in the [components/](/components/) directory. The formalism that was selected is directly represented in the folder structure of this directory. Each subdirectory being a key piece (or component if I may) of the FinOps++ scaffolding used to create frameworks and assessments.
 
 The Markdown files found in these subdirectories are navigable, allowing you to traverse the logical grouping going from `Profile -> Domain -> Capability -> Action` for the pre-defined profiles, domains, capabilities, and actions. 
+
+## Assessments
+
+The [assessments](/assessments/) directory is where you can find subdirectories (based on the profile names) containing both the markdown file detailing how a framework is put together, and the the assessment worksheet used for scoring against that framework. The worksheet is current an excel doc that can be easily downloaded from this repository and potentially convert to other cell-based, excel-like products (such as google sheets).
+
+These subdirectories will be the primary entry point for most people using the FinOps++ project as the assessment is the primary product for it. The framework markdown and worksheet link to the different components used to create it as needed. With the hope of making it easy to trace out how a framework is designed to work (i.e what concerns a framework is trying to address).
 
 ## Specifications
 
