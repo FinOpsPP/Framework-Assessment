@@ -7,6 +7,7 @@ from importlib.resources import files
 import click
 import pandas
 import yaml
+import semver
 from jinja2 import Environment, PackageLoader
 from pydantic import TypeAdapter, ValidationError
 
@@ -728,8 +729,14 @@ def validate(selection, specification_type):
     type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
     help='Which specification type to show. Defaults to "profiles"'
 )
+@click.option(
+    '--major',
+    is_flag=True,
+    default=False,
+    help='Specifies that the update should increase the major version. By default the minor version increases'
+)
 @click.argument('selection', type=AllOrIntRangeParamType())
-def update(selection, specification_type):
+def update(selection, specification_type, major):
     """Mass update the Specification format per type based on model"""
     model = None
     match specification_type:
@@ -767,6 +774,14 @@ def update(selection, specification_type):
             passthrough_data = json.loads(
                 model(**specification_data).model_dump_json()
             )
+
+            # update version
+            version = semver.Version.parse(passthrough_data['Metadata']['Version'])
+            if major:
+                version = version.bump_major()
+            else:
+                version = version.bump_minor()
+            passthrough_data['Metadata']['Version'] = str(version)
 
             # write out modified data back to spec file
             with open(path, 'w') as yaml_file:

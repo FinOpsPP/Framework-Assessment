@@ -4,7 +4,43 @@ A FinOps Assessment perspective as a NIST CSF Community Profile
 
 As organizations move their FinOps practices to shift-left, more of the FinOps optimization and maintenance tasks get pushed to the edge where the Engineers are. In this case, FinOps teams need to move their focus towards supporting the Inform and Operate phases of the FinOps lifecycle. Through building more formal FinOps Policies and Governance standards, FinOps teams can accelerate their iteration through the lifecycle phases to increase their practice maturity for the long run. Pulling inspiration from the Intersecting Discipline of Security, FinOps teams can solidify their position as a trusted partner to the business.
 
-This assessment is an expansion of the existing FinOps Framework Assessment as of 7/3/25. By combining FinOps capabilities with controls found in the NIST Cybersecurity Framework, FinOps practitioners can provide a structured and proven foundation for strengthening governance for cost accountability. Additionally, treating financial risk with the same rigor as cybersecurity empowers FinOps teams to better define their policies, processes, and enforecement of best practices for the organization. 
+This assessment is an expansion of the existing FinOps Framework Assessment as of 7/3/25. By combining FinOps capabilities with controls found in the NIST Cybersecurity Framework, FinOps practitioners can provide a structured and proven foundation for strengthening governance for cost accountability. Additionally, treating financial risk with the same rigor as cybersecurity empowers FinOps teams to better define their policies, processes, and enforcement of best practices for the organization.
+
+# Project Structure
+
+This repository is broken down into encapsulated directories, where the function of a directory reflects a core design aspect or goal of the project.
+
+## Components
+
+At the very beginning of this project, there was a desire to establish way to define the building blocks that would go into creating a framework and/or assessment. We quickly decided that since the project was inspired by the [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) (CSF), that we should also try to mirror the that frame by organizing the blocks into logical groupings, but with a FinOps flavor. 
+
+The groups that were selected were all based on the what we call *actions*, which map to the *sub-categories* in CSF. These actions are organized into *capabilities* from the FinOps framework, now made to correspond to *categories* from CSF. And as the FinOps framework does, these are placed into *domains* that we correlate with *functions* from CSF. To further fashion these building blocks into something useful, we place the domains into *profiles*, which closely parallel the function of the *profiles* from CSF.
+
+In this way, the heart of this project is located in the [components/](/components/) directory. The formalism that was selected is directly represented in the folder structure of this directory. Each subdirectory being a key piece (or component if I may) of the FinOps++ scaffolding used to create frameworks and assessments.
+
+The Markdown files found in these subdirectories are navigable, allowing you to traverse the logical grouping going from `Profile -> Domain -> Capability -> Action` for the pre-defined profiles, domains, capabilities, and actions. 
+
+## Assessments
+
+The [assessments/](/assessments/) directory is where you can find subdirectories (based on the profile names) containing both the markdown file detailing how a framework is put together, and the the assessment worksheet used for scoring against that framework. The worksheet is current an excel doc that can be easily downloaded from this repository and potentially convert to other cell-based, excel-like products (such as google sheets).
+
+These subdirectories will be the primary entry point for most people using the FinOps++ project as the assessment is the primary product for it. The framework markdown and worksheet link to the different components used to create it as needed. With the hope of making it easy to trace out how a framework is designed to work (i.e what concerns a framework is trying to address).
+
+## Specifications
+
+At the very beginning of this project, there was a desire to establish a way to define the components that went into an assessment in such a way that ensured that each component was verifiable correct and that the information used for that component was as reusable as possible. To meet this goal, we choose to use [yaml](https://yaml.org/) to create strict specification files that could be used to generate the components of a framework.
+
+These specifications can be found in the [specifications/](/specifications/) directory, in subdirectories that exactly echo those in [components/](/components/). If fact, these specifications are directly used to generate the files found in the different components subdirectories (as well as the assessments found in [assessments/](/assessments/)). More of the generating process can be read about below in [Generating commands](#generating-commands) below.
+
+## Tools
+
+Assisting in the goals that motivated the creation of the specifications, the [tools/](/tools/) directory was setup to house all the custom programming scripts and tools used on the specifications. The main "product" of this directory being the `finopspp` CLI tools. You can read more about this tool, and how to get started with it in [CLI Tool](#cli-tool) below.
+
+## Guidelines
+
+This project is only as useful as it is understandable. So chief amongst our goals is ensuring that ideas are cleanly explained and that expectations and clearly set. The [guidelines/](/guidelines/) directory is our attempt at bringing this goal to life.
+
+This folder includes direction and explications on a range of topics, with the goal of being more in-depth than this README. From how assessments are designed, to how changes are to be made for this repository. And if you can't make sure to open up an Issue requesting clarification.  
 
 # CLI Tool
 
@@ -16,9 +52,11 @@ Once your venv is setup, [activate it](https://docs.python.org/3/library/venv.ht
 
 The most useful commands to use with `finopspp` will be related to generate some aspect of the framework. Either markdown documentation or Excel files.
 
-### Framework Markdown
+### Framework Markdown & Assessment Worksheet
 
-These markdown files are designed to give a one-stop shop for getting an overview, in tabular format, of how a framework (generated from a profile) is logically grouped together. To generate the markdown for the framework overview. First make sure to include a new profile under `[specifications/profiles](/specifications/profiles/) or use one of the existing ones. 
+The most useful (or powerful) of the most useful commands offered by `finopspp` is the command used to generate the framework markdown and assessment worksheet files for a profile. The framework markdown files are designed to give a one-stop shop for getting an overview, in tabular format, of how a framework (generated from a profile) is logically grouped together. While the assessment worksheet is used for scoring the priority weighted maturity of an organization against action completeness for a profile. 
+
+To generate the markdown for the framework overview and assessment excel file, make sure that the profile you desire to use is included under `[specifications/profiles](/specifications/profiles/) or, if need be, create a new profile. 
 
 > **_NOTE_**: If you are using a new profile, make sure to select an ID, title, and serialization number for file name that has not already been used.
 
@@ -30,7 +68,7 @@ Then run the follow
 finopspp generate assessment --profile="<desired-profile-name>"
 ```
 
-you can run `finopspp generate assessment --help` to see the list of profile options. The files generated by this command can be found in [assessments](/assessments/). Simple search in this directory for `<desired-profile-name>`. Which will include your framework markdown and assessment.
+you can run `finopspp generate assessment --help` to see the list of profile options. The files generated by this command can be found in [assessments](/assessments/). Simply search in this directory for a `<desired-profile-name>` subdirectory. This subdirectory will include your framework markdown and assessment.
 
 ### Components Markdown
 
