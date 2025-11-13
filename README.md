@@ -8,15 +8,19 @@ This assessment is an expansion of the existing FinOps Framework Assessment as o
 
 # Project Structure
 
-This repository is broken down into encapsulated directories, where the function of a directory reflects a core aspect or design goal of the project.
-
-## Specifications
-
-The heart of this project is located in the [specifications/](/specifications/) directory. The project is broken down into a few key parts that are represented in the folder structure of this folder. 
+This repository is broken down into encapsulated directories, where the function of a directory reflects a core design aspect or goal of the project.
 
 ## Assessments
 
 ## Components
+
+At the very beginning of this project, there was a desire to establish way to define the building blocks that would go into creating a framework and/or assessment. We quickly decided that since the project was inspired by the [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework), that we should also try to mirror the that frame by organizing the blocks into logical groupings, but with a FinOps flavor.
+
+In this way, the heart of this project is located in the [components/](/components/) directory. The formalism that was selected is directly represented in the folder structure of this directory. Each subdirectory being a key piece (or component if I may) of the FinOps++ scaffolding used to create frameworks and assessments.
+
+## Specifications
+
+At the very beginning of this project, there was a desire to establish way to define the components that went into an assessment in such a way that ensured that each component was verifiable correct and that the information used for that component was as reusable as possible. To meet this goal, we choose to use [yaml](https://yaml.org/) to create strict specification files that could be used to generate the components of a framework.
 
 ## Tools
 
