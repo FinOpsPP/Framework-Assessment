@@ -14,13 +14,19 @@ This repository is broken down into encapsulated directories, where the function
 
 ## Components
 
-At the very beginning of this project, there was a desire to establish way to define the building blocks that would go into creating a framework and/or assessment. We quickly decided that since the project was inspired by the [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework), that we should also try to mirror the that frame by organizing the blocks into logical groupings, but with a FinOps flavor.
+At the very beginning of this project, there was a desire to establish way to define the building blocks that would go into creating a framework and/or assessment. We quickly decided that since the project was inspired by the [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) (CSF), that we should also try to mirror the that frame by organizing the blocks into logical groupings, but with a FinOps flavor. 
+
+The groups that were selected were all based on the what we call *actions*, which map to the *sub-categories* in CSF. These actions are organized into *capabilities* from the FinOps framework, now made to correspond to *categories* from CSF. And as the FinOps framework does, these are placed into *domains* that we correlate with *functions* from CSF. To further fashion these building blocks into something useful, we place the domains into *profiles*, which closely parallel the function of the *profiles* from CSF.
 
 In this way, the heart of this project is located in the [components/](/components/) directory. The formalism that was selected is directly represented in the folder structure of this directory. Each subdirectory being a key piece (or component if I may) of the FinOps++ scaffolding used to create frameworks and assessments.
+
+The Markdown files found in these subdirectories are navigable, allowing you to traverse the logical grouping going from `Profile -> Domain -> Capability -> Action` for the pre-defined profiles, domains, capabilities, and actions. 
 
 ## Specifications
 
 At the very beginning of this project, there was a desire to establish way to define the components that went into an assessment in such a way that ensured that each component was verifiable correct and that the information used for that component was as reusable as possible. To meet this goal, we choose to use [yaml](https://yaml.org/) to create strict specification files that could be used to generate the components of a framework.
+
+These specifications can be found in the [specifications/](/specifications/) directory, in subdirectories that exactly echo those in [components/](/components/). If fact, these specifications are directly used to generate the files found in the different components subdirectories (as well as the assessments found in [assessments/](/assessments/)). More of the generating process can be read about below in [Generating commands](#generating-commands) below.
 
 ## Tools
 
