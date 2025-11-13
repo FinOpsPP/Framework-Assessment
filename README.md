@@ -30,6 +30,8 @@ These specifications can be found in the [specifications/](/specifications/) dir
 
 ## Tools
 
+Assisting in the goals that motivated the creation of the specifications, the [tools/](/tools/) directory was setup to house all the custom programming scripts and tools used on the specifications. The main "product" of this directory being the `finopspp` CLI tools. You can read more about this tool, and how to get started with it in [CLI Tool](#cli-tool) below.
+
 ## Guidelines
 
 This project is only as useful as it is understandable. So chief amongst our goals is ensuring that ideas are cleanly explained and that expectations and clearly set. The [guidelines/](/guidelines/) directory is our attempt at bringing this goal to life.
