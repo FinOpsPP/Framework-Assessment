@@ -27,4 +27,10 @@ jobs:
     - name: Analyzing specifications with yamllint
       run: |
         yamllint specifications
+    - name: Validate all specification with finopspp tools
+      run: |
+        finopspp specifications validate --specification-type="profiles" all
+        finopspp specifications validate --specification-type="domains" all
+        finopspp specifications validate --specification-type="capabilities" all
+        finopspp specifications validate --specification-type="actions" all
 
