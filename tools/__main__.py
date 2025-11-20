@@ -1,3 +1,4 @@
+"""primary code for the finopspp CLI"""
 import json
 import os
 import sys
@@ -15,7 +16,7 @@ from finopspp import models
 from finopspp import defaults
 
 # presenters based on answers from
-# https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data 
+# https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
 def str_presenter(dumper, data):
     # for multi-line strings
     if len(data.splitlines()) > 1:
@@ -27,26 +28,25 @@ def str_presenter(dumper, data):
 yaml.add_representer(str, str_presenter)
 
 
-PROFILES_MAP = {}
+ProfilesMap = {}
 def profiles():
     """Return all profiles. Including proposed one"""
-    global PROFILES_MAP
-    if PROFILES_MAP:
-        return PROFILES_MAP
+    if ProfilesMap:
+        return ProfilesMap
 
-    profiles = files('finopspp.specifications.profiles')
-    for file in profiles.iterdir():
-        path = profiles.joinpath(file.name)
-        with open(path, 'r') as yaml_file:
+    profile_specs = files('finopspp.specifications.profiles')
+    for file in profile_specs.iterdir():
+        path = profile_specs.joinpath(file.name)
+        with open(path, 'r', encoding='utf-8') as yaml_file:
             title = yaml.safe_load(yaml_file).get('Specification').get('Title')
             if not title:
                 continue
 
-            PROFILES_MAP[title] = path
-    
-    return PROFILES_MAP
+            ProfilesMap[title] = path
 
-SPEC_SUBSPEC_MAP = {
+    return ProfilesMap
+
+SpecSubspecMap = {
     'profiles': 'domains',
     'domains': 'capabilities',
     'capabilities': 'actions',
@@ -57,13 +57,11 @@ SPEC_SUBSPEC_MAP = {
 @click.group()
 def cli():
     """FinOps++ administration tool"""
-    pass
 
 
 @cli.group()
 def generate():
     """Generate files from YAML specifications"""
-    pass
 
 
 def sub_specification_helper(spec, spec_file):
@@ -76,7 +74,7 @@ def sub_specification_helper(spec, spec_file):
     # else look up sub-specification file ID
     spec_id = str(spec_id)
     file = '0'*(3-len(spec_id)) + spec_id
-    with open(spec_file.joinpath(f'{file}.yaml'), 'r') as yaml_file:
+    with open(spec_file.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
         return yaml.safe_load(yaml_file).get('Specification')
 
 def overrides_helper(spec, profile, override_type='std'):
@@ -90,7 +88,7 @@ def overrides_helper(spec, profile, override_type='std'):
         overrides = []
 
     # pull correct override model based on override type
-    model = models.OVERRIDE_MAP[override_type]
+    model = models.OverrideMap[override_type]
 
     validated_override = model(Profile=profile)
     for override in overrides:
@@ -120,7 +118,7 @@ def overrides_helper(spec, profile, override_type='std'):
     type=click.Choice(list(profiles().keys())),
     help='Which assessment profile to generate. Defaults to "FinOps++"',
 )
-def assessment(profile):
+def assessment(profile): # pylint: disable=too-many-branches,too-many-statements,too-many-locals
     """Generate assessment files from their specifications"""
     click.echo(f'Attempting to create assessment for profile={profile}:')
     # pull in template and specification files for given specification type
@@ -130,7 +128,7 @@ def assessment(profile):
     domain_files = files('finopspp.specifications.domains')
     cap_files = files('finopspp.specifications.capabilities')
     action_files = files('finopspp.specifications.actions')
-    with open(PROFILES_MAP[profile], 'r') as yaml_file:
+    with open(ProfilesMap[profile], 'r', encoding='utf-8') as yaml_file:
         spec = yaml.safe_load(
             yaml_file
         ).get('Specification')
@@ -274,7 +272,7 @@ def assessment(profile):
         base_path,
         'framework.md'
     )
-    with open(out_path, 'w') as outfile:
+    with open(out_path, 'w', encoding='utf-8') as outfile:
         outfile.write(output)
 
     click.secho(f'Attempt to generate framework markdown "{out_path}" succeeded', fg='green')
@@ -283,7 +281,7 @@ def assessment(profile):
     # the normalization that is done will remove domains and capabilities that
     # do not have actions. That means, there can be divergences between the
     # framework markdown, which does include these, and the assessment doc that
-    # does not. They are not included because without actions, nothing can be scored.  
+    # does not. They are not included because without actions, nothing can be scored.
     click.echo(f'Attempting to generate assessment.xlsx for profile={profile}:')
     dataframe = pandas.json_normalize(
         domains,
@@ -322,7 +320,7 @@ def assessment(profile):
         overview_sheet.write_formula('A2', f'=SUM(Scoring!E2:E{dataframe.shape[0]+1})')
         overview_sheet.write_number('B2', 10)
         overview_sheet.write_formula('C2', f'=SUM(Scoring!H2:H{dataframe.shape[0]+1})/A2')
-        overview_sheet.write_formula('D2', f'=B2-C2')
+        overview_sheet.write_formula('D2', '=B2-C2')
 
         # overview sheet charts
         domain_size = dataframe.groupby(level=0).size()
@@ -414,7 +412,7 @@ def assessment(profile):
 @click.option(
     '--specification-type',
     default='profiles',
-    type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
+    type=click.Choice(list(SpecSubspecMap.keys())),
     help='Which specification type to generate. Defaults to "profiles"'
 )
 def components(specification_type):
@@ -423,10 +421,10 @@ def components(specification_type):
     env = Environment(loader=PackageLoader('finopspp', 'templates'))
     template = env.get_template(f'{specification_type}.md.j2')
     spec_files = files(f'finopspp.specifications.{specification_type}')
-    
+
     # get subspec to help fill in names and other important pieces of
     # information from the sub specification.
-    subspec_type = SPEC_SUBSPEC_MAP[specification_type]
+    subspec_type = SpecSubspecMap[specification_type]
     subspec_files = None
     if subspec_type:
         subspec_files = files(f'finopspp.specifications.{subspec_type}')
@@ -439,7 +437,7 @@ def components(specification_type):
             continue
 
         path = spec_files.joinpath(spec.name)
-        with open(path, 'r') as yaml_file:
+        with open(path, 'r', encoding='utf-8') as yaml_file:
             spec = yaml.safe_load(yaml_file).get('Specification')
 
         for subspec in spec.get(subspec_type.capitalize(), []):
@@ -466,7 +464,7 @@ def components(specification_type):
             f'Attempting to generate component "{out_path}" for specification-type={specification_type}:'
         )
 
-        with open(out_path, 'w') as outfile:
+        with open(out_path, 'w', encoding='utf-8') as outfile:
             outfile.write(output)
 
         click.secho(f'Attempt to generate "{out_path}" succeeded', fg='green')
@@ -475,27 +473,26 @@ def components(specification_type):
 @cli.group()
 def specifications():
     """Informational command on Specifications"""
-    pass
 
 
 @specifications.command()
 @click.option(
     '--specification-type',
-    type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
+    type=click.Choice(list(SpecSubspecMap.keys())),
     default='profiles',
     help='Which specification type to use. Defaults to "profiles"'
 )
-@click.argument('id', type=click.IntRange(1, 999))
-def new(id, specification_type):
+@click.argument('id_', metavar='<spec ID>', type=click.IntRange(1, 999))
+def new(id_, specification_type):
     """Create a new specification for a new ID
 
     It is required that the ID be new itself for a given specification.
     The command will fail otherwise.
     """
-    spec_id = str(id)
+    spec_id = str(id_)
     file = '0'*(3-len(spec_id)) + spec_id
     path = files(
-        f'finopspp.specifications.{path}'
+        f'finopspp.specifications.{specification_type}'
     ).joinpath(f'{file}.yaml')
     click.echo(f'Attempting to create "{path}" for specification-type={specification_type}:')
 
@@ -514,8 +511,8 @@ def new(id, specification_type):
         case 'profiles':
             data = json.loads(defaults.Profile.model_dump_json())
 
-    data['Specification']['ID'] = id
-    with open(path, 'w') as file:
+    data['Specification']['ID'] = id_
+    with open(path, 'w', encoding='utf-8') as file:
         yaml.dump(
             data,
             file,
@@ -538,7 +535,7 @@ def list_specs(profile):
     """List all Specifications by fully qualified ID per profile
     
     Fully qualified ID is of the format Domain.Capability-Action"""
-    with open(PROFILES_MAP[profile], 'r') as yaml_file:
+    with open(ProfilesMap[profile], 'r', encoding='utf-8') as yaml_file:
         spec = yaml.safe_load(
             yaml_file
         ).get('Specification')
@@ -555,7 +552,7 @@ def list_specs(profile):
 
         domain_id = str(domain_id)
         file = '0'*(3-len(domain_id)) + domain_id
-        with open(domain_files.joinpath(f'{file}.yaml'), 'r') as yaml_file:
+        with open(domain_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
             capabilities = yaml.safe_load(
                 yaml_file
             ).get('Specification').get('Capabilities')
@@ -567,7 +564,7 @@ def list_specs(profile):
 
             capability_id = str(capability_id)
             file = '0'*(3-len(capability_id)) + capability_id
-            with open(cap_files.joinpath(f'{file}.yaml'), 'r') as yaml_file:
+            with open(cap_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
                 actions = yaml.safe_load(
                     yaml_file
                 ).get('Specification').get('Actions')
@@ -586,24 +583,28 @@ def list_specs(profile):
 )
 @click.option(
     '--specification-type',
-    type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
+    type=click.Choice(list(SpecSubspecMap.keys())),
     default='profiles',
     help='Which specification type to show. Defaults to "profiles"'
 )
-@click.argument('id', type=click.IntRange(1, 999))
-def show(id, metadata, specification_type):
+@click.argument('id_', metavar='<spec ID>', type=click.IntRange(1, 999))
+def show(id_, metadata, specification_type):
     """Show information on a given specification by ID by type"""
     data_type = 'Specification'
     if metadata:
         data_type = 'Metadata'
 
-    spec_id = str(id)
+    spec_id = str(id_)
     file = '0'*(3-len(spec_id)) + spec_id
-    specification_file = files(
+    path = files(
         f'finopspp.specifications.{specification_type}'
     ).joinpath(f'{file}.yaml')
 
-    with open(specification_file, 'r') as file:
+    if not os.path.exists(path):
+        click.secho(f'Specification "{path}" does not exists. Existing', err=True, fg='red')
+        sys.exit(1)
+
+    with open(path, 'r', encoding='utf-8') as file:
         specification_data = yaml.safe_load(file)
         click.echo(
             yaml.dump(
@@ -618,7 +619,7 @@ def show(id, metadata, specification_type):
 @specifications.command()
 @click.option(
     '--specification-type',
-    type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
+    type=click.Choice(list(SpecSubspecMap.keys())),
     default='profiles',
     help='Which schema specification type to show. Defaults to "profiles"'
 )
@@ -629,20 +630,21 @@ def schema(specification_type):
     Schemas. For more info on this type of schema specification, please view:
     https://docs.pydantic.dev/latest/concepts/json_schema/
     """
-    schema = None
+    spec_schema = None
     click.echo(f'Schema definition for specification-type={specification_type}:\n')
     match specification_type:
         case 'actions':
-            schema = TypeAdapter(models.Action).json_schema(mode='serialization')
+            spec_schema = TypeAdapter(models.Action).json_schema(mode='serialization')
         case 'capabilities':
-            schema = TypeAdapter(models.Capability).json_schema(mode='serialization')
+            spec_schema = TypeAdapter(models.Capability).json_schema(mode='serialization')
         case 'domains':
-            schema = TypeAdapter(models.Domain).json_schema(mode='serialization')
+            spec_schema = TypeAdapter(models.Domain).json_schema(mode='serialization')
         case 'profiles':
-            schema = TypeAdapter(models.Profile).json_schema(mode='serialization')
-    click.echo(            
+            spec_schema = TypeAdapter(models.Profile).json_schema(mode='serialization')
+
+    click.echo(
         yaml.dump(
-            schema,
+            spec_schema,
             default_flow_style=False,
             sort_keys=False,
             indent=2
@@ -651,6 +653,7 @@ def schema(specification_type):
 
 
 class AllOrIntRangeParamType(click.ParamType):
+    """Class to deal with selection valid specification IDs"""
     name = 'All or ID'
 
     def get_metavar(self, param, ctx):
@@ -660,15 +663,15 @@ class AllOrIntRangeParamType(click.ParamType):
         try:
             if value == 'all':
                 return value
-            else:
-                return str(click.IntRange(1, 999).convert(value, param, ctx))
-        except:
+
+            return str(click.IntRange(1, 999).convert(value, param, ctx))
+        except click.BadParameter:
             self.fail(f"'{value}' must be \"all\" or an int between 1-999")
 
 @specifications.command()
 @click.option(
     '--specification-type',
-    type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
+    type=click.Choice(list(SpecSubspecMap.keys())),
     default='profiles',
     help='Which specification type to show. Defaults to "profiles"'
 )
@@ -703,7 +706,7 @@ def validate(selection, specification_type):
 
         path = specs_files.joinpath(spec.name)
         click.echo(f'Validating "{path}" for specification-type={specification_type}:')
-        with open(path, 'r') as yaml_file:
+        with open(path, 'r', encoding='utf-8') as yaml_file:
             specification_data = yaml.safe_load(yaml_file)
 
         try:
@@ -726,7 +729,7 @@ def validate(selection, specification_type):
 @specifications.command()
 @click.option(
     '--specification-type',
-    type=click.Choice(list(SPEC_SUBSPEC_MAP.keys())),
+    type=click.Choice(list(SpecSubspecMap.keys())),
     help='Which specification type to show. Defaults to "profiles"'
 )
 @click.option(
@@ -766,9 +769,9 @@ def update(selection, specification_type, major):
 
         path = specs_files.joinpath(spec.name)
         click.echo(f'Updating "{path}" for specification-type={specification_type}:')
-        with open(path, 'r') as yaml_file:
+        with open(path, 'r', encoding='utf-8') as yaml_file:
             specification_data = yaml.safe_load(yaml_file)
-        
+
         passthrough_data = None
         try:
             passthrough_data = json.loads(
@@ -784,7 +787,7 @@ def update(selection, specification_type, major):
             passthrough_data['Metadata']['Version'] = str(version)
 
             # write out modified data back to spec file
-            with open(path, 'w') as yaml_file:
+            with open(path, 'w', encoding='utf-8') as yaml_file:
                 yaml.dump(
                     passthrough_data,
                     yaml_file,
@@ -792,7 +795,7 @@ def update(selection, specification_type, major):
                     sort_keys=False,
                     indent=2
                 )
-        except Exception as error:
+        except Exception as error: # pylint: disable=broad-exception-caught
             failed = True
             click.secho(
                 f'Update for "{path}" failed with --\n', fg='yellow'

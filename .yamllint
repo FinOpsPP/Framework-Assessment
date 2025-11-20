@@ -1,0 +1,21 @@
+extends: default
+
+rules:
+  # set up rules for comments, main one here is we allow one space before a comment
+  comments:
+    require-starting-space: true
+    ignore-shebangs: true
+    min-spaces-from-content: 1
+
+  # 120 chars should be enough, but don't fail if a line is longer
+  line-length:
+    max: 120
+
+  # indent uses 2 to help with readability, and don't require extra indents on sequences
+  indentation:
+    spaces: 2
+    indent-sequences: false
+
+  # FinOps++ doesn't use document start statements and we don't care about new line characters
+  document-start: disable
+  new-lines: disable

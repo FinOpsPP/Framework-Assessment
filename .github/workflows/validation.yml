@@ -1,0 +1,42 @@
+name: Validation
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.13"]
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install lint and testing dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -e ".[dev]"
+    - name: Analyzing tools with pylint
+      run: |
+        pylint tools
+    - name: Analyzing specifications with yamllint
+      run: |
+        yamllint specifications
+    - name: Validate all profile specification with finopspp tools
+      run: |
+        finopspp specifications validate --specification-type="profiles" all
+    - name: Validate all domain specification with finopspp tools
+      run: |
+        finopspp specifications validate --specification-type="domains" all
+    - name: Validate all capability specification with finopspp tools
+      run: |
+        finopspp specifications validate --specification-type="capabilities" all
+    - name: Validate all action specification with finopspp tools
+      run: |
+        finopspp specifications validate --specification-type="actions" all
+
