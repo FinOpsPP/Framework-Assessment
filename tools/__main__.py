@@ -133,6 +133,7 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
         click.secho('Profile includes no domains. Exiting', err=True, fg='red')
         sys.exit(1)
 
+    profile_id = spec.get('ID')
     for domain in spec.get('Domains'):
         capabilities = []
 
@@ -253,7 +254,7 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
         os.mkdir(base_path)
 
     # create assessment framework overview markdown
-    markdown.assessment_generate(spec.get('ID'), profile, base_path, domains)
+    markdown.assessment_generate(profile_id, profile, base_path, domains)
 
     # next try and create the workbook for this profile.
     excel.assessment_generate(profile, base_path, domains)
