@@ -1,4 +1,4 @@
-# <a href="/components/profiles/002.md">002</a>: FinOps++ Maturity Assessment Framework
+# <a href="/components/profiles/None.md">None</a>: FinOps++ Maturity Assessment Framework
 
 <table>
     <tr>
@@ -584,7 +584,7 @@
                 <table>
                     <tr>
                         <td>
-                        <a href="/components/actions/016.md">016</a>: Gather persona‑specific requirements; define KPIs/OKRs and glossary.
+                        <a href="/components/actions/016.md">016</a>: Gather personaâ€‘specific requirements; define KPIs/OKRs and glossary.
                         </td>
                     </tr>
                     <tr>
