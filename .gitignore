@@ -1,7 +1,12 @@
+# env setups and configurations to ignore
 .vscode
 .DS_Store
-~$FinOps++ Framework.xlsx
 .venv/
+
+# output extensions to ignore
+*.ods
+
+# Python related things to ignore
 build/
 finopspp.egg-info/
 __pycache__/
