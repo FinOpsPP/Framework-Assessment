@@ -7,7 +7,7 @@
     </tr>
 {%- for domain in domains %}
     <tr>
-        <td>
+        <td style="width: 100px; overflow-wrap: break-word; white-space: normal;">
         <b>{% if domain.serial_number -%}
         <a href="/components/domains/{{ domain.serial_number }}.md">{{ domain.serial_number }}</a>: {% endif -%}
         {{ domain.domain }}</b>
@@ -16,7 +16,7 @@
         <table>
         {%- for capability in domain.capabilities %}
             <tr>
-                <td>
+                <td style="width: 100px; overflow-wrap: break-word; white-space: normal;">
                 {% if capability.serial_number -%}
                 <a href="/components/capabilities/{{ capability.serial_number }}.md">{{ capability.serial_number }}</a>: {% endif -%}
                 {{ capability.capability }}
@@ -25,7 +25,7 @@
                 <table>
                 {%- for action in capability.actions %}
                     <tr>
-                        <td>
+                        <td style="width: 200px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/{{ action.serial_number }}.md">{{ action.serial_number }}</a>: {{ action.action }}
                         </td>
                     </tr>
