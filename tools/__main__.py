@@ -124,17 +124,16 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
     cap_files = files('finopspp.specifications.capabilities')
     action_files = files('finopspp.specifications.actions')
     with open(ProfilesMap[profile], 'r', encoding='utf-8') as yaml_file:
-        spec = yaml.safe_load(
+        profile_spec = yaml.safe_load(
             yaml_file
         ).get('Specification')
 
     domains = []
-    if not spec.get('Domains'):
+    if not profile_spec.get('Domains'):
         click.secho('Profile includes no domains. Exiting', err=True, fg='red')
         sys.exit(1)
 
-    profile_id = spec.get('ID')
-    for domain in spec.get('Domains'):
+    for domain in profile_spec.get('Domains'):
         capabilities = []
 
         spec = sub_specification_helper(domain, domain_files)
@@ -254,7 +253,7 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
         os.mkdir(base_path)
 
     # create assessment framework overview markdown
-    markdown.assessment_generate(profile_id, profile, base_path, domains)
+    markdown.assessment_generate(profile, profile_spec, base_path, domains)
 
     # next try and create the workbook for this profile.
     excel.assessment_generate(profile, base_path, domains)

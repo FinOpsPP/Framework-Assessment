@@ -1,4 +1,8 @@
-# <a href="/components/profiles/001.md">001</a>: FinOps Foundation Maturity Assessment Framework
+# <A Href="/components/profiles/001.md">001</a>: Finops Foundation Maturity Assessment Framework
+
+Classic profile featuring controls provided by the finops foundation
+
+## Overview
 
 <table style="table-layout: fixed;">
     <tr>
@@ -915,3 +919,10 @@
         </td>
     </tr>
 </table>
+
+## Assessment
+
+The link the the assessment for this framework can be found below. This is for the default scope
+of this profile.
+
+<a href="/assessments/FinOps Foundation/assessment.xlsx">assessment.xlsx</a>

@@ -6,19 +6,30 @@ from jinja2 import Environment, PackageLoader
 
 Templates = PackageLoader('finopspp', 'templates')
 
-def assessment_generate(profile_id, profile, base_path, domains):
+def assessment_generate(profile, profile_spec, base_path, domains):
     """Generate Assessment markdown files"""
     # pull in template and specification files for given specification type
     env = Environment(loader=Templates)
     template = env.get_template('framework.md.j2')
 
-    # render file before writing it
+    # get profile id from spec
+    profile_id = str(profile_spec.get('ID'))
+
     # include profile title with linkable ID.
     click.echo(f'Attempting to generate framework for profile={profile}:')
-    spec_id = str(profile_id)
-    file = '0'*(3-len(spec_id)) + spec_id
+    file = '0'*(3-len(profile_id)) + profile_id
     profile_title = f'<a href="/components/profiles/{file}.md">{file}</a>: {profile}'
-    output = template.render(profile=profile_title, domains=domains)
+    profile_spec['profile_link_title'] = profile_title
+
+    # assessment link
+    assessment_link = f'<a href="/assessments/{profile}/assessment.xlsx">assessment.xlsx</a>'
+
+    # render file before writing it
+    output = template.render(
+        profile=profile_spec,
+        domains=domains,
+        assessment=assessment_link
+    )
 
     # finally, create framework markdown for this profile
     # from the rendered output
