@@ -1,25 +1,25 @@
 """Includes smart defaults for the different specifications"""
 import datetime
 
-from finopspp import models
+from finopspp.models import definitions
 
 
-Action = models.Action(
-    Metadata=models.MetadataSpec(
+Action = definitions.Action(
+    Metadata=definitions.MetadataSpec(
         Proposed=datetime.date.today(),
         Adopted=None,
         Modified=None,
         Version='0.0.1',
-        Status=models.StatusEnum.proposed.value,
+        Status=definitions.StatusEnum.proposed.value,
         Approvers=[
-            models.Approver(
+            definitions.Approver(
                 Name=None,
                 Email=None,
                 Date=None
             )
         ]
     ),
-    Specification=models.ActionSpec(
+    Specification=definitions.ActionSpec(
         ID=None,
         Title=None,
         Description=None,
@@ -29,13 +29,13 @@ Action = models.Action(
         Weight=0,
         Formula=None,
         Scoring=[
-            models.ScoringDetail(
+            definitions.ScoringDetail(
                 Score=0,
                 Condition=None
             )
         ],
         References=[
-            models.Reference(
+            definitions.Reference(
                 Name=None,
                 Link=None,
                 Comment=None
@@ -48,27 +48,27 @@ Action = models.Action(
 )
 
 
-Capability = models.Capability(
-    Metadata=models.MetadataSpec(
+Capability = definitions.Capability(
+    Metadata=definitions.MetadataSpec(
         Proposed=datetime.date.today(),
         Adopted=None,
         Modified=None,
         Version='0.0.1',
-        Status=models.StatusEnum.proposed.value,
+        Status=definitions.StatusEnum.proposed.value,
         Approvers=[
-            models.Approver(
+            definitions.Approver(
                 Name=None,
                 Email=None,
                 Date=None
             )
         ]
     ),
-    Specification=models.CapabilitySpec(
+    Specification=definitions.CapabilitySpec(
         ID=None,
         Title=None,
         Description=None,
         Actions=[
-            models.SpecID(
+            definitions.SpecID(
                 ID=None
             )
         ],
@@ -77,27 +77,27 @@ Capability = models.Capability(
 )
 
 
-Domain = models.Domain(
-    Metadata=models.MetadataSpec(
+Domain = definitions.Domain(
+    Metadata=definitions.MetadataSpec(
         Proposed=datetime.date.today(),
         Adopted=None,
         Modified=None,
         Version='0.0.1',
-        Status=models.StatusEnum.proposed.value,
+        Status=definitions.StatusEnum.proposed.value,
         Approvers=[
-            models.Approver(
+            definitions.Approver(
                 Name=None,
                 Email=None,
                 Date=None
             )
         ]
     ),
-    Specification=models.DomainSpec(
+    Specification=definitions.DomainSpec(
         ID=None,
         Title=None,
         Description=None,
         Capabilities=[
-            models.SpecID(
+            definitions.SpecID(
                 ID=None
             )
         ],
@@ -106,41 +106,41 @@ Domain = models.Domain(
 )
 
 
-Profile = models.Profile(
-    Metadata=models.MetadataSpec(
+Profile = definitions.Profile(
+    Metadata=definitions.MetadataSpec(
         Proposed=datetime.date.today(),
         Adopted=None,
         Modified=None,
         Version='0.0.1',
-        Status=models.StatusEnum.proposed.value,
+        Status=definitions.StatusEnum.proposed.value,
         Approvers=[
-            models.Approver(
+            definitions.Approver(
                 Name=None,
                 Email=None,
                 Date=None
             )
         ]
     ),
-    Specification=models.ProfileSpec(
+    Specification=definitions.ProfileSpec(
         ID=None,
         Title=None,
         Description=None,
         Domains=[
-            models.SpecID(
+            definitions.SpecID(
                 ID=None
             ),
-            models.DomainItem(
+            definitions.DomainItem(
                 Title=None,
                 Description=None,
                 Capabilities=[
-                    models.SpecID(
+                    definitions.SpecID(
                         ID=None
                     ),
-                    models.CapabilityItem(
+                    definitions.CapabilityItem(
                         Title=None,
                         Description=None,
                         Actions=[
-                            models.ActionItem(
+                            definitions.ActionItem(
                                 ID=None,
                                 Overrides=None
                             )

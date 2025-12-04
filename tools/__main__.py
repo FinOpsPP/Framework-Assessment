@@ -6,14 +6,12 @@ from collections import namedtuple
 from importlib.resources import files
 
 import click
-import pandas
 import yaml
 import semver
-from jinja2 import Environment, PackageLoader
 from pydantic import TypeAdapter, ValidationError
 
-from finopspp import models
-from finopspp import defaults
+from finopspp.models import definitions, defaults
+from finopspp.composers import excel, markdown
 
 # presenters based on answers from
 # https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
@@ -88,7 +86,7 @@ def overrides_helper(spec, profile, override_type='std'):
         overrides = []
 
     # pull correct override model based on override type
-    model = models.OverrideMap[override_type]
+    model = definitions.OverrideMap[override_type]
 
     validated_override = model(Profile=profile)
     for override in overrides:
@@ -121,25 +119,21 @@ def overrides_helper(spec, profile, override_type='std'):
 def assessment(profile): # pylint: disable=too-many-branches,too-many-statements,too-many-locals
     """Generate assessment files from their specifications"""
     click.echo(f'Attempting to create assessment for profile={profile}:')
-    # pull in template and specification files for given specification type
-    env = Environment(loader=PackageLoader('finopspp', 'templates'))
-    template = env.get_template('framework.md.j2')
 
     domain_files = files('finopspp.specifications.domains')
     cap_files = files('finopspp.specifications.capabilities')
     action_files = files('finopspp.specifications.actions')
     with open(ProfilesMap[profile], 'r', encoding='utf-8') as yaml_file:
-        spec = yaml.safe_load(
+        profile_spec = yaml.safe_load(
             yaml_file
         ).get('Specification')
 
     domains = []
-    if not spec.get('Domains'):
+    if not profile_spec.get('Domains'):
         click.secho('Profile includes no domains. Exiting', err=True, fg='red')
         sys.exit(1)
 
-    profile_id = spec.get('ID')
-    for domain in spec.get('Domains'):
+    for domain in profile_spec.get('Domains'):
         capabilities = []
 
         spec = sub_specification_helper(domain, domain_files)
@@ -258,154 +252,11 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
     if not os.path.exists(base_path):
         os.mkdir(base_path)
 
-    # render file before writing it
-    # include profile title with linkable ID.
-    click.echo(f'Attempting to generate framework for profile={profile}:')
-    spec_id = str(profile_id)
-    file = '0'*(3-len(spec_id)) + spec_id
-    profile_title = f'<a href="/components/profiles/{file}.md">{file}</a>: {profile}'
-    output = template.render(profile=profile_title, domains=domains)
+    # create assessment framework overview markdown
+    markdown.assessment_generate(profile, profile_spec, base_path, domains)
 
-    # finally, create framework markdown for this profile
-    # from the rendered output
-    out_path = os.path.join(
-        base_path,
-        'framework.md'
-    )
-    with open(out_path, 'w', encoding='utf-8') as outfile:
-        outfile.write(output)
-
-    click.secho(f'Attempt to generate framework markdown "{out_path}" succeeded', fg='green')
-
-    # next try and create the excel workbook for this profile.
-    # the normalization that is done will remove domains and capabilities that
-    # do not have actions. That means, there can be divergences between the
-    # framework markdown, which does include these, and the assessment doc that
-    # does not. They are not included because without actions, nothing can be scored.
-    click.echo(f'Attempting to generate assessment.xlsx for profile={profile}:')
-    dataframe = pandas.json_normalize(
-        domains,
-        record_path=['capabilities', 'actions'], # path to actions
-        meta=['domain', ['capabilities', 'capability']]
-    )
-    dataframe.rename(
-        columns={
-            'capabilities.capability': 'capability',
-            'serial_number': 'serial number'
-        },
-        inplace=True
-    )
-    dataframe.set_index(['domain', 'capability', 'action'], inplace=True)
-
-    out_path = os.path.join(
-        base_path,
-        'assessment.xlsx'
-    )
-    with pandas.ExcelWriter(out_path, engine='xlsxwriter') as writer:
-        workbook = writer.book
-
-        # write Overview sheet first
-        overview_sheet = workbook.add_worksheet('Overview')
-        overview_sheet.add_table('A1:D2', {
-            'style': 'Table Style Light 11',
-            'autofilter': False,
-            'columns': [
-                {'header': 'Sum of Weights'},
-                {'header': 'Maximum Possible Score'},
-                {'header': 'Calculated Weighted Average Score'},
-                {'header': 'Difference from Maximum Score'}
-            ]
-        })
-
-        overview_sheet.write_formula('A2', f'=SUM(Scoring!E2:E{dataframe.shape[0]+1})')
-        overview_sheet.write_number('B2', 10)
-        overview_sheet.write_formula('C2', f'=SUM(Scoring!H2:H{dataframe.shape[0]+1})/A2')
-        overview_sheet.write_formula('D2', '=B2-C2')
-
-        # overview sheet charts
-        domain_size = dataframe.groupby(level=0).size()
-
-        overview_sheet.write_column('AA1', domain_size.index)
-        overview_sheet.write_column('BB1', domain_size)
-
-        domain_chart = workbook.add_chart({'type': 'doughnut'})
-        domain_chart.add_series({
-            'name': f'Domains for {profile} by Action count',
-            'categories': f'=Overview!$AA$1:$AA${len(domain_size)}',
-            'values': f'=Overview!$BB$1:$BB${len(domain_size)}',
-            'data_labels': {
-                'value': True
-            }
-        })
-        domain_chart.set_style(37)
-
-        overview_sheet.insert_chart('A4', domain_chart)
-
-        overview_sheet.autofit()
-        overview_sheet.activate()
-
-        # add chart sheet with percentage difference between max
-        # score and the calculated score
-        score_diff_chart = workbook.add_chart({'type': 'pie'})
-        score_diff_chart.add_series({
-            'categories': '=Overview!$C$1:$D$1',
-            'values':     '=Overview!$C$2:$D$2',
-            'data_labels': {
-                'percentage': True
-            }
-        })
-        score_diff_chart.set_title({
-            'name': 'Attained Percentage of Maximum Possible Score'
-        })
-        score_diff_chart.set_style(37)
-
-        scoring_chart_sheet = workbook.add_chartsheet('Attained Percentage')
-        scoring_chart_sheet.set_chart(score_diff_chart)
-
-        # pandas uses an incredible opinionated format for indices and headers
-        # which for this project is sufficient to meet the needs of the assessments.
-        # as such, will not try to update the index or header formatting given by pandas
-        dataframe.to_excel(
-            writer, sheet_name='Scoring'
-        )
-
-        # format cells for scoring sheet
-        scoring_sheet = writer.sheets['Scoring']
-        text_wrap_format = workbook.add_format({'text_wrap': True})
-        scoring_sheet.set_column('F:F', 20, text_wrap_format)
-
-        link_format = workbook.add_format({
-            'align': 'center',
-            'bold': True,
-            'underline': True,
-            'font_color': 'blue'
-        })
-
-        for counter, (_, row) in enumerate(dataframe.iterrows(), start=2):
-            scores = [f'{scoring['Score']}: {scoring["Condition"]}' for scoring in row.scoring]
-            scoring_sheet.write(f'G{counter}', scores[0]) # overwrite with correct default scores
-            scoring_sheet.data_validation(f'G{counter}', {
-                'validate' : 'list',
-                'source': scores
-            })
-            scoring_sheet.write_formula(
-                f'H{counter}', f'=E{counter}*VALUE(LEFT(G{counter}, FIND(":", G{counter})-1))'
-            )
-
-            # overwrite serial numbers with links to github markdown pages for the numbers
-            serial_number = row['serial number']
-            scoring_sheet.write_url(
-                f'D{counter}',
-                f'https://github.com/FinOpsPP/Framework-Assessment/tree/main/components/actions/{serial_number}.md',
-                link_format,
-                string=serial_number
-            )
-
-        # Autofit the scoring sheet and fix warning.
-        scoring_sheet.autofit()
-        scoring_sheet.ignore_errors({'number_stored_as_text': 'D:D'})
-
-    click.secho(f'Attempt to generate assessment.xlsx "{out_path}" succeeded', fg='green')
+    # next try and create the workbook for this profile.
+    excel.assessment_generate(profile, base_path, domains)
 
 
 @generate.command()
@@ -417,9 +268,6 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
 )
 def components(specification_type):
     """Generate component markdown files from their specifications"""
-    # pull in template and specification files for given specification type
-    env = Environment(loader=PackageLoader('finopspp', 'templates'))
-    template = env.get_template(f'{specification_type}.md.j2')
     spec_files = files(f'finopspp.specifications.{specification_type}')
 
     # get subspec to help fill in names and other important pieces of
@@ -446,28 +294,7 @@ def components(specification_type):
             subspec['File'] = f'/components/{subspec_type}/{"0"*(3-len(subspec_id))}{subspec_id}.md'
             subspec['Title'] = subspec_doc.get('Title')
 
-        output = template.render(spec=spec)
-
-        # finally, write out rendered output to file
-        # make sure serialized ID is the same as the one
-        # used in the specification files.
-        spec_id = spec.get('ID')
-        spec_id = str(spec_id)
-        file_prefix = '0'*(3-len(spec_id)) + spec_id
-        out_path = os.path.join(
-            os.getcwd(),
-            'components',
-            specification_type,
-            f'{file_prefix}.md'
-        )
-        click.echo(
-            f'Attempting to generate component "{out_path}" for specification-type={specification_type}:'
-        )
-
-        with open(out_path, 'w', encoding='utf-8') as outfile:
-            outfile.write(output)
-
-        click.secho(f'Attempt to generate "{out_path}" succeeded', fg='green')
+        markdown.components_generate(specification_type, spec)
 
 
 @cli.group()
@@ -634,13 +461,13 @@ def schema(specification_type):
     click.echo(f'Schema definition for specification-type={specification_type}:\n')
     match specification_type:
         case 'actions':
-            spec_schema = TypeAdapter(models.Action).json_schema(mode='serialization')
+            spec_schema = TypeAdapter(definitions.Action).json_schema(mode='serialization')
         case 'capabilities':
-            spec_schema = TypeAdapter(models.Capability).json_schema(mode='serialization')
+            spec_schema = TypeAdapter(definitions.Capability).json_schema(mode='serialization')
         case 'domains':
-            spec_schema = TypeAdapter(models.Domain).json_schema(mode='serialization')
+            spec_schema = TypeAdapter(definitions.Domain).json_schema(mode='serialization')
         case 'profiles':
-            spec_schema = TypeAdapter(models.Profile).json_schema(mode='serialization')
+            spec_schema = TypeAdapter(definitions.Profile).json_schema(mode='serialization')
 
     click.echo(
         yaml.dump(
@@ -681,13 +508,13 @@ def validate(selection, specification_type):
     model = None
     match specification_type:
         case 'actions':
-            model = models.Action
+            model = definitions.Action
         case 'capabilities':
-            model = models.Capability
+            model = definitions.Capability
         case 'domains':
-            model = models.Domain
+            model = definitions.Domain
         case 'profiles':
-            model = models.Profile
+            model = definitions.Profile
 
     specs_files = files(f'finopspp.specifications.{specification_type}')
     if selection == 'all':
@@ -744,13 +571,13 @@ def update(selection, specification_type, major):
     model = None
     match specification_type:
         case 'actions':
-            model = models.Action
+            model = definitions.Action
         case 'capabilities':
-            model = models.Capability
+            model = definitions.Capability
         case 'domains':
-            model = models.Domain
+            model = definitions.Domain
         case 'profiles':
-            model = models.Profile
+            model = definitions.Profile
 
     specs_files = files(f'finopspp.specifications.{specification_type}')
     if selection == 'all':

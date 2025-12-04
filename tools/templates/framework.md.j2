@@ -1,31 +1,35 @@
-# {{ profile }} Maturity Assessment Framework
+# {{ profile.profile_link_title }} Maturity Assessment Framework
 
-<table>
+{{ profile.Description | capitalize}}
+
+## Overview
+
+<table style="table-layout: fixed;">
     <tr>
-        <th>Domain</th>
-        <th>Capability &rarr; Clear, Actionable Steps</th>
+        <th style="width: 200px;">Domain</th>
+        <th style="width: 600px;">Capability &rarr; Clear, Actionable Steps</th>
     </tr>
 {%- for domain in domains %}
     <tr>
-        <td>
+        <td style="width: 200px; overflow-wrap: break-word; white-space: normal;">
         <b>{% if domain.serial_number -%}
         <a href="/components/domains/{{ domain.serial_number }}.md">{{ domain.serial_number }}</a>: {% endif -%}
         {{ domain.domain }}</b>
         </td>
         <td>
-        <table>
+        <table style="table-layout: fixed;">
         {%- for capability in domain.capabilities %}
             <tr>
-                <td>
+                <td style="width: 200px; overflow-wrap: break-word; white-space: normal;">
                 {% if capability.serial_number -%}
                 <a href="/components/capabilities/{{ capability.serial_number }}.md">{{ capability.serial_number }}</a>: {% endif -%}
                 {{ capability.capability }}
                 </td>
                 <td>
-                <table>
+                <table style="table-layout: fixed;">
                 {%- for action in capability.actions %}
                     <tr>
-                        <td>
+                        <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/{{ action.serial_number }}.md">{{ action.serial_number }}</a>: {{ action.action }}
                         </td>
                     </tr>
@@ -39,3 +43,10 @@
     </tr>
 {%- endfor %}
 </table>
+
+## Assessment
+
+The link the the assessment for this framework can be found below. This is for the default scope
+of this profile.
+
+{{ assessment }}
