@@ -520,6 +520,9 @@ def validate(selection, specification_type):
     if selection == 'all':
         specs = specs_files.iterdir()
     else:
+        # we need a light-weight object here to enable spec.name
+        # to be a valid attribute blow to match was is yielded
+        # by specs_files.iterdir above. So using a named tuple
         file = '0'*(3-len(selection)) + selection
         Spec = namedtuple('Spec', ['name'])
         specs = [Spec(name=f'{file}.yaml')]
