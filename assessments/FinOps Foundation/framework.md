@@ -1,6 +1,6 @@
 # <a href="/components/profiles/001.md">001</a>: FinOps Foundation Maturity Assessment Framework
 
-Classic profile featuring controls provided by the finops foundation
+Classic profile featuring controls provided by the FinOps Foundation
 
 ## Overview
 

@@ -1,6 +1,6 @@
 # <a href="/components/profiles/002.md">002</a>: FinOps++ Maturity Assessment Framework
 
-Finops++ profile that is an extension and reorganization of the finops foundation profile
+Finops++ profile that is an extension and reorganization of the FinOps Foundation profile
 
 ## Overview
 

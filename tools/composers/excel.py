@@ -143,10 +143,7 @@ def create_capabilities_chart(dataframe, workbook):
 
 def format_scoring_sheet(scoring_sheet, dataframe, workbook):
     """Setup main sheet of assessment, includes all score formatting"""
-    # format cells for scoring sheet
-    text_wrap_format = workbook.add_format({'text_wrap': True})
-    scoring_sheet.set_column('F:F', None, text_wrap_format)
-
+    # format for all links
     link_format = workbook.add_format({
         'align': 'center',
         'bold': True,
@@ -180,6 +177,10 @@ def format_scoring_sheet(scoring_sheet, dataframe, workbook):
     # Autofit the scoring sheet and fix warning.
     scoring_sheet.autofit()
     scoring_sheet.ignore_errors({'number_stored_as_text': 'D:D'})
+
+    # format cells for scoring sheet
+    text_wrap_format = workbook.add_format({'text_wrap': True})
+    scoring_sheet.set_column('F:G', 40, text_wrap_format)
 
 
 def assessment_generate(profile, base_path, domains):
