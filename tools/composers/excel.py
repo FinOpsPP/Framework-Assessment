@@ -20,10 +20,11 @@ def create_overview_sheet(profile, dataframe, workbook):
         ]
     })
 
-    overview_sheet.write_formula('A2', f'=SUM(Scoring!E2:E{dataframe.shape[0]+1})')
-    overview_sheet.write_number('B2', 10)
-    overview_sheet.write_formula('C2', f'=SUM(Scoring!H2:H{dataframe.shape[0]+1})/A2')
-    overview_sheet.write_formula('D2', '=B2-C2')
+    shape = dataframe.shape[0]
+    overview_sheet.write_formula('A2', f'=SUM(Scoring!E2:E{shape + 1})') # sum of weights
+    overview_sheet.write_number('B2', 10) # max score
+    overview_sheet.write_formula('C2', f'=SUM(Scoring!H2:H{shape + 1})/A2') # average score
+    overview_sheet.write_formula('D2', '=B2-C2') # score diff (max - average)
 
     # overview domain table
     domains_size = dataframe.groupby(level=0).size()
@@ -42,10 +43,14 @@ def create_overview_sheet(profile, dataframe, workbook):
         f'B{domain_shift + 1}',
         f'=SUM(Overview!$B$5:$B${domain_shift})'
     )
+
+    weight_col = f'Scoring!E2:E{shape + 1}'
+    index_col = f'Scoring!I2:I{shape + 1}'
+    score_col = f'Scoring!H2:H{shape + 1}'
     for index in range(5, domain_shift + 1):
         overview_sheet.write_formula(
             f'U{index}',
-            f'=SUMIF(Scoring!I2:I{dataframe.shape[0]+1},A{index},Scoring!H2:H{dataframe.shape[0]+1})/SUMIF(Scoring!I2:I{dataframe.shape[0]+1},A{index},Scoring!E2:E{dataframe.shape[0]+1})'
+            f'=SUMIF({index_col},A{index},{score_col})/SUMIF({index_col},A{index},{weight_col})'
         )
 
     # overview capabilities table
@@ -66,10 +71,12 @@ def create_overview_sheet(profile, dataframe, workbook):
         f'B{capabilities_shift + 1}',
         f'=SUM(Overview!$B${extended_shift + 1}:$B${capabilities_shift})'
     )
+
+    index_col = f'Scoring!J2:J{shape + 1}'
     for index in range(extended_shift + 1, capabilities_shift + 1):
         overview_sheet.write_formula(
             f'U{index}',
-            f'=SUMIF(Scoring!J2:J{dataframe.shape[0]+1},A{index},Scoring!H2:H{dataframe.shape[0]+1})/SUMIF(Scoring!J2:J{dataframe.shape[0]+1},A{index},Scoring!E2:E{dataframe.shape[0]+1})'
+            f'=SUMIF({index_col},A{index},{score_col})/SUMIF({index_col},A{index},{weight_col})'
         )
 
     # set charts
@@ -206,7 +213,7 @@ def assessment_generate(profile, base_path, domains):
             writer, sheet_name='Scoring'
         )
         scoring_sheet = writer.sheets['Scoring']
-        
+
         # now format the scoring sheet
         format_scoring_sheet(scoring_sheet, dataframe, workbook)
 
