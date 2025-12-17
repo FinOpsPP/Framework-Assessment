@@ -1,8 +1,9 @@
 # {{ spec.ID }}: {{ spec.Title | title }}
 
 **Implementation Types:**
+
 {% for implementation in spec['Implementation Types'] -%}
-- {{ implementation | title }}
+* {{ implementation | title }}
 {%- endfor %}
 
 ## Descriptive Statement
@@ -20,7 +21,7 @@
 
 ### Formula
 
-{{ spec.Formula | default('Formula is not defined') }}
+{{ spec.Formula | default('Formula is not defined') | trim }}
 
 ### Scoring Details
 
@@ -33,12 +34,13 @@
 ## References
 
 {% for reference in spec.References -%}
-- [{{ reference.Name | title }}]({{ reference.Link }}): {{ reference.Comment }}
-{% endfor %}
-{% if spec.Overrides %}## Overrides
+* [{{ reference.Name | title }}]({{ reference.Link }}): {{ reference.Comment }}
+{% endfor %}{% if spec.Overrides %}
+## Overrides
 
 | Profile | Weight Update | Title Update | Description Update |
 | ------- | ------------- | ------------ | ------------------ |
 {%- for override in spec.Overrides %}
 | {{ override.Profile }} | {{ override.WeightUpdate|default('None') }} | {{ override.TitleUpdate|default('None') }} | {{ override.DescriptionUpdate|default('None') }} |
-{%- endfor %}{% endif %}
+{%- endfor %}
+{% endif %}

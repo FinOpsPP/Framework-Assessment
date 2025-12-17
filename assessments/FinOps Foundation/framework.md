@@ -1,9 +1,10 @@
 # <a href="/components/profiles/001.md">001</a>: FinOps Foundation Maturity Assessment Framework
 
-Classic profile featuring controls provided by the FinOps Foundation
+Classic profile featuring controls provided by the finops foundation
 
 ## Overview
 
+<!-- pyml disable line-length-->
 <table style="table-layout: fixed;">
     <tr>
         <th style="width: 200px;">Domain</th>

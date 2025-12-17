@@ -27,6 +27,9 @@ jobs:
     - name: Analyzing specifications with yamllint
       run: |
         yamllint specifications
+    - name: Analyzing assessment & components with pymarkdownlnt
+      run: |
+        pymarkdownlnt scan -r components assessments
     - name: Validate all profile specification with finopspp tools
       run: |
         finopspp specifications validate --specification-type="profiles" all

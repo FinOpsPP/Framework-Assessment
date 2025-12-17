@@ -7,12 +7,13 @@
 ## Actions
 
 {% for action in spec.Actions -%}
-- [{{ action.ID }}]({{ action.File }}): {{ action.Title }}
-{% endfor %}
-{% if spec.Overrides %}## Overrides
+* [{{ action.ID }}]({{ action.File }}): {{ action.Title }}
+{% endfor %}{% if spec.Overrides -%}
+## Overrides
 
 | Profile | Add IDs | Drop IDs | Title Update | Description Update |
 | ------- | ------- | -------- | ------------ | ------------------ |
 {%- for override in spec.Overrides %}
 | {{ override.Profile }} | {{ override.AddIDs|map(attribute='ID')|list }} | {{ override.DropIDs|map(attribute='ID')|list }} | {{ override.TitleUpdate|default('None') }} | {{ override.DescriptionUpdate|default('None') }} |
-{%- endfor %}{% endif %}
+{%- endfor %}
+{% endif %}
