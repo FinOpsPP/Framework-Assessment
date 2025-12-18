@@ -6,13 +6,13 @@ As organizations move their FinOps practices to shift-left, more of the FinOps o
 
 This assessment is an expansion of the existing FinOps Framework Assessment as of 7/3/25. By combining FinOps capabilities with controls found in the NIST Cybersecurity Framework, FinOps practitioners can provide a structured and proven foundation for strengthening governance for cost accountability. Additionally, treating financial risk with the same rigor as cybersecurity empowers FinOps teams to better define their policies, processes, and enforcement of best practices for the organization.
 
-# Project Structure
+## Project Structure
 
 This repository is broken down into encapsulated directories, where the function of a directory reflects a core design aspect or goal of the project.
 
-## Components
+### Components
 
-At the very beginning of this project, there was a desire to establish way to define the building blocks that would go into creating a framework and/or assessment. We quickly decided that since the project was inspired by the [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) (CSF), that we should also try to mirror the that frame by organizing the blocks into logical groupings, but with a FinOps flavor. 
+At the very beginning of this project, there was a desire to establish way to define the building blocks that would go into creating a framework and/or assessment. We quickly decided that since the project was inspired by the [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) (CSF), that we should also try to mirror the that frame by organizing the blocks into logical groupings, but with a FinOps flavor.
 
 The groups that were selected were all based on the what we call *actions*, which map to the *sub-categories* in CSF. These actions are organized into *capabilities* from the FinOps framework, now made to correspond to *categories* from CSF. And as the FinOps framework does, these are placed into *domains* that we correlate with *functions* from CSF. To further fashion these building blocks into something useful, we place the domains into *profiles*, which closely parallel the function of the *profiles* from CSF.
 
@@ -20,47 +20,46 @@ In this way, the heart of this project is located in the [components/](/componen
 
 The Markdown files found in these subdirectories are navigable, allowing you to traverse the logical grouping going from `Profile -> Domain -> Capability -> Action` for the pre-defined profiles, domains, capabilities, and actions. 
 
-## Assessments
+### Assessments
 
 The [assessments/](/assessments/) directory is where you can find subdirectories (based on the profile names) containing both the markdown file detailing how a framework is put together, and the the assessment worksheet used for scoring against that framework. The worksheet is current an excel doc that can be easily downloaded from this repository and potentially convert to other cell-based, excel-like products (such as google sheets).
 
 These subdirectories will be the primary entry point for most people using the FinOps++ project as the assessment is the primary product for it. The framework markdown and worksheet link to the different components used to create it as needed. With the hope of making it easy to trace out how a framework is designed to work (i.e what concerns a framework is trying to address).
 
-## Specifications
+### Specifications
 
 At the very beginning of this project, there was a desire to establish a way to define the components that went into an assessment in such a way that ensured that each component was verifiable correct and that the information used for that component was as reusable as possible. To meet this goal, we choose to use [yaml](https://yaml.org/) to create strict specification files that could be used to generate the components of a framework.
 
 These specifications can be found in the [specifications/](/specifications/) directory, in subdirectories that exactly echo those in [components/](/components/). If fact, these specifications are directly used to generate the files found in the different components subdirectories (as well as the assessments found in [assessments/](/assessments/)). More of the generating process can be read about below in [Generating commands](#generating-commands) below.
 
-## Tools
+### Tools
 
 Assisting in the goals that motivated the creation of the specifications, the [tools/](/tools/) directory was setup to house all the custom programming scripts and tools used on the specifications. The main "product" of this directory being the `finopspp` CLI tools. You can read more about this tool, and how to get started with it in [CLI Tool](#cli-tool) below.
 
-## Guidelines
+### Guidelines
 
 This project is only as useful as it is understandable. So chief amongst our goals is ensuring that ideas are cleanly explained and that expectations and clearly set. The [guidelines/](/guidelines/) directory is our attempt at bringing this goal to life.
 
 This folder includes direction and explications on a range of topics, with the goal of being more in-depth than this README. From how assessments are designed, to how changes are to be made for this repository. And if you can't make sure to open up an Issue requesting clarification.  
 
-# CLI Tool
+## CLI Tool
 
 To aid with formatting, transforming, and using the yaml specification, we built the `finopspp` CLI tool. This is a Python based tool that works for `Python >= 3.13`. Currently to use it, you have to build it from source from this repository. To do this, it is recommended that you start off by creating a virtual environment (venv) as is discussed in https://docs.python.org/3/library/venv.html. 
 
 Once your venv is setup, [activate it](https://docs.python.org/3/library/venv.html#how-venvs-work) and run `python -m pip install -e .` from the same directory as this README. This command will pull in all required dependencies into the venv and then installs the script for you to use in your venv. It will also do this in what is called "[editable](https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-e)" mode. Which will allow you to change packages and files (including yaml specifications) used by `finopspp`, and to directly see those changes reflected in the invocation of the tool. Be careful when doing this, so as not to break the core functionality needed to generate the assessment.
 
-## Generating commands
+### Generating commands
 
 The most useful commands to use with `finopspp` will be related to generate some aspect of the framework. Either markdown documentation or Excel files.
 
-### Framework Markdown & Assessment Worksheet
+#### Framework Markdown & Assessment Worksheet
 
-The most useful (or powerful) of the most useful commands offered by `finopspp` is the command used to generate the framework markdown and assessment worksheet files for a profile. The framework markdown files are designed to give a one-stop shop for getting an overview, in tabular format, of how a framework (generated from a profile) is logically grouped together. While the assessment worksheet is used for scoring the priority weighted maturity of an organization against action completeness for a profile. 
+The most useful (or powerful) of the most useful commands offered by `finopspp` is the command used to generate the framework markdown and assessment worksheet files for a profile. The framework markdown files are designed to give a one-stop shop for getting an overview, in tabular format, of how a framework (generated from a profile) is logically grouped together. While the assessment worksheet is used for scoring the priority weighted maturity of an organization against action completeness for a profile.
 
-To generate the markdown for the framework overview and assessment excel file, make sure that the profile you desire to use is included under `[specifications/profiles](/specifications/profiles/) or, if need be, create a new profile. 
+To generate the markdown for the framework overview and assessment excel file, make sure that the profile you desire to use is included under `[specifications/profiles](/specifications/profiles/) or, if need be, create a new profile.
 
-> **_NOTE_**: If you are using a new profile, make sure to select an ID, title, and serialization number for file name that has not already been used.
-
-> **_NOTE_**: Serialization numbers for the file should be the ID with enough `0`s before it to pad out the length of the file name to 3 digits.
+> **NOTE**: If you are using a new profile, make sure to select an ID, title, and serialization number for file name that has not already been used.
+> **NOTE**: Serialization numbers for the file should be the ID with enough `0`s before it to pad out the length of the file name to 3 digits.
 
 Then run the follow
 
@@ -70,7 +69,7 @@ finopspp generate assessment --profile="<desired-profile-name>"
 
 you can run `finopspp generate assessment --help` to see the list of profile options. The files generated by this command can be found in [assessments](/assessments/). Simply search in this directory for a `<desired-profile-name>` subdirectory. This subdirectory will include your framework markdown and assessment.
 
-### Components Markdown
+#### Components Markdown
 
 These files are designed to be generally more human readable and easier to navigate than the yaml specifications. The four components supported directly correlate with the four specification types used currently by `finopspp`. Which are `profiles`, `domains`, `capabilities`, and `actions`; and can be found in subdirectories of the same names under 
 
@@ -79,7 +78,7 @@ These files are designed to be generally more human readable and easier to navig
 - [components/capabilities](/components/capabilities/)
 - [components/actions](/components/actions/)
 
-> **_NOTE_**: `profiles` markdown files are generated and offered on an as-best-as-possible bases. This is because of the customization allowed for these type. Generally it is recommended to use the Framework markdown to get an overview of the profiles. But we include them for the sake of compilation.
+> **NOTE**: `profiles` markdown files are generated and offered on an as-best-as-possible bases. This is because of the customization allowed for these type. Generally it is recommended to use the Framework markdown to get an overview of the profiles. But we include them for the sake of compilation.
 
 To generate the files in these folder fresh from the yaml files, you can call the following command
 
@@ -87,11 +86,11 @@ To generate the files in these folder fresh from the yaml files, you can call th
 finopspp generate components --specification-type=<desired-spec-type>
 ```
 
-## Specification commands
+### Specification commands
 
 A set of utility commands that can do a number of different actions relevant to the yaml specifications. This range from showing the [OpenAPI schema](https://www.openapis.org/what-is-openapi) for the different specifications types, to basic updates of the specification from [custom Pydantic models][/tools/models.py].
 
-### Validation
+#### Validation
 
 One of the most useful command is the validation command
 
@@ -101,7 +100,7 @@ finopspp specifications validate --specification-type=<desired-spec-type> <spec-
 
 With this, you can validate a specific specification by ID and type. Or, by passing in `all`, you can validate all specification for a specific type. Validation is relatively strict, and makes uses of [pydantic validator](https://docs.pydantic.dev/latest/concepts/validators/). Validation failures are logged to stderr for the user, and results in a failure return code on the command if any specifications fail to validate during a run.
 
-### Update
+#### Update
 
 Another really useful command is update, which can be called with the following
 
@@ -111,7 +110,7 @@ finopspp specifications update --specification-type=<desired-spec-type> <spec-id
 
 Based on the specification type, and corresponding [pydantic derived model](https://docs.pydantic.dev/latest/concepts/models/), you can update a specific specification by ID or all at once. The updates that work out-of-the-box are adding/removing fields. While other more complex updates, such as renaming a field or changing the order of fields in the schema, are allowed by creating custom alias for fields or by using pydantic [model_serializer](https://docs.pydantic.dev/latest/api/functional_serializers/#pydantic.functional_serializers.model_serializer).
 
-### New
+#### New
 
 The new command will allow you to create new specification from smart defaults, which can be found, in code, under [/tools/defaults.py](/tools/defaults.py). The new specification, created for a desired specification type, can be used as template to fill-in until the specification is in a state that is ready to be publish. 
 
@@ -123,8 +122,10 @@ finopspp specifications new --specification-type=<desired-spec-type> <desired-id
 
 The only requirement is that the desired ID be unique. If it has been used previously, an error will be returned and the specification will not be created.
 
-## Developing the tool
+### Developing the tool
 
-If you use VSCode, or would like to, you can follow the tutorial from https://code.visualstudio.com/docs/python/python-tutorial to get started with setting up this python project environment. It is also recommended to read through https://realpython.com/python-pyproject-toml/ to get an overview of `pyproject.toml` based python projects. And to get a feel for the setup of this project in [pyproject.toml](/pyproject.toml) used for `finopspp`.
+If you use VSCode, or would like to, you can follow the tutorial from https://code.visualstudio.com/docs/python/python-tutorial to get started with setting up this python project environment.
 
+> **NOTE**: The parts related to installing python and activating an existing venv should also work with pretty much any other IDE or text editor. So you are under no obligation to us VSCode if you have another coding tool like Vim, Emacs, PyCharm, Cursor, etc.
 
+It is also recommended to read through https://realpython.com/python-pyproject-toml/ to get an overview of `pyproject.toml` based python projects. And to get a feel for the setup of this project in [pyproject.toml](/pyproject.toml) used for `finopspp`.

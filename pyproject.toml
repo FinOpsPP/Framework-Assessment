@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "finopspp"
-version = "0.0.0"
+version = "0.0.2-alpha"
 description = "CLI tool used for the FinOps++ Assessment."
 readme = "README.md"
 requires-python = ">=3.13"
@@ -22,7 +22,8 @@ dependencies = [
 [project.optional-dependencies]
 validation = [
     "pylint == 4.0.3",
-    "yamllint == 1.37.1"
+    "yamllint == 1.37.1",
+    "pymarkdownlnt == 0.9.33"
 ]
 testing = [
     "pytest == 9.0.1"

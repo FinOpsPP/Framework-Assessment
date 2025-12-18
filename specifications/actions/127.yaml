@@ -19,7 +19,7 @@ Specification:
   - null
   Weight: 1.0
   Formula: |-
-    * Define communication pathways between finops and the business
+    * Define communication pathways between FinOps and the business
     * Conduct trainings or create videos
     * Send out period newsletters
     * CI/CD governance

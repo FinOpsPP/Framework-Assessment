@@ -4,6 +4,7 @@ Classic profile featuring controls provided by the finops foundation
 
 ## Overview
 
+<!-- pyml disable line-length-->
 <table style="table-layout: fixed;">
     <tr>
         <th style="width: 200px;">Domain</th>

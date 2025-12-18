@@ -18,8 +18,11 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: Total Effective Costs Associated with Unallocated CSP Cloud Resources During
-    a Period of Time / Total CSP Cloud Costs During a Period of Time
+  Formula: |
+    x = Total Effective Costs Associated with Unallocated CSP Cloud Resources During
+    y = Total CSP Cloud Costs During a Period of Time
+
+    x / y
   Scoring:
   - Score: 0
     Condition: 0%

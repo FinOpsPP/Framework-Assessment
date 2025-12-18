@@ -9,7 +9,7 @@ Templates = PackageLoader('finopspp', 'templates')
 def assessment_generate(profile, profile_spec, base_path, domains):
     """Generate Assessment markdown files"""
     # pull in template and specification files for given specification type
-    env = Environment(loader=Templates)
+    env = Environment(loader=Templates, keep_trailing_newline=True)
     template = env.get_template('framework.md.j2')
 
     # get profile id from spec
