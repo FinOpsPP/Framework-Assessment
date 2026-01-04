@@ -2,8 +2,10 @@
 import json
 import os
 import sys
+import platform
 from collections import namedtuple
 from importlib.resources import files
+from importlib.metadata import metadata
 
 import click
 import yaml
@@ -56,6 +58,14 @@ SpecSubspecMap = {
 def cli():
     """FinOps++ administration tool"""
 
+@cli.command()
+def version():
+    """Version and runtime information about the finopspp tool"""
+    tool_version = metadata('finopspp').get('Version', '0.0.0')
+    click.echo(f'Version: {tool_version}')
+    python_version = sys.version.split(' ', maxsplit=1).pop(0)
+    click.echo(f'Python Version: {python_version}')
+    click.echo(f'System: {platform.system()} ({platform.release()})')
 
 @cli.group()
 def generate():
