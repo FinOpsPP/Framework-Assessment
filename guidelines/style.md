@@ -10,7 +10,7 @@ It is strongly recommended to use [pylint](https://www.pylint.org/) for linting 
 
 There are built-in configuration files for these in the top-level directory of this project that will help make sure your code is compliant with the project's standards. These packages can be pretty easily installed in [CLI Tool](../README.md#cli-tool) with the following modification to the pip install command `python -m pip install -e ".[validation]"`.
 
-> [!CRITICAL]
+> [!CAUTION]
 > There is an older and unaffiliated (and unmaintained) package called `pymarkdown`. For security reasons, make sure to not download this version by installing specifically `pymarkdownlnt` if you choose to install the dependencies separately into your environment.
 
 ## YAML
