@@ -34,6 +34,9 @@ At the very beginning of this project, there was a desire to establish a way to 
 
 These specifications can be found in the [specifications/](/specifications/) directory, in subdirectories that exactly echo those in [components/](/components/). If fact, these specifications are directly used to generate the files found in the different components subdirectories (as well as the assessments found in [assessments/](/assessments/)). More of the generating process can be read about below in [Generating commands](#generating-commands) below.
 
+> [!NOTE]
+> The serialization number for a file uses the schema `xxx.yaml` with enough `0`s before the ID to pad out the length of the file name to 3 digits.
+
 ### Tools
 
 Assisting in the goals that motivated the creation of the specifications, the [tools/](/tools/) directory was setup to house all the custom programming scripts and tools used on the specifications. The main "product" of this directory being the `finopspp` CLI tools. You can read more about this tool, and how to get started with it in [CLI Tool](#cli-tool) below.
@@ -60,9 +63,6 @@ The most useful (or powerful) of the most useful commands offered by `finopspp` 
 
 To generate the markdown for the framework overview and assessment excel file, make sure that the profile you desire to use is included under `[specifications/profiles](/specifications/profiles/) or, if need be, create a new profile.
 
-> [!NOTE]
-> The serialization number for a file uses the schema "xxx.[md|yaml]" with enough `0`s before the ID to pad out the length of the file name to 3 digits.
-
 Then run the follow
 
 ```{sh}
@@ -88,6 +88,9 @@ To generate the files in these folder fresh from the yaml files, you can call th
 ```{sh}
 finopspp generate components --specification-type=<desired-spec-type>
 ```
+
+> [!NOTE]
+> The serialization number for a markdown file uses the schema `xxx.md`, where `xxx` will match the serialization number of the yaml specification for the profile or component.
 
 ### Specification commands
 
