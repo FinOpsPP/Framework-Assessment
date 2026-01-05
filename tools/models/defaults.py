@@ -1,4 +1,4 @@
-"""Includes smart defaults for the different specifications"""
+"""Includes smart defaults for the different specification models"""
 import datetime
 
 from finopspp.models import definitions

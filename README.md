@@ -12,17 +12,19 @@ This repository is broken down into encapsulated directories, where the function
 
 ### Components
 
-At the very beginning of this project, there was a desire to establish way to define the building blocks that would go into creating a framework and/or assessment. We quickly decided that since the project was inspired by the [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) (CSF), that we should also try to mirror the that frame by organizing the blocks into logical groupings, but with a FinOps flavor.
+At the very beginning of this project, there was a desire to establish way to define the building blocks that would go into creating a framework and its' assessment. We quickly decided that since the project was inspired by the [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) (CSF), that we should also try to mirror the CSF by architecting the blocks into a logical grouping. But with a distinctly FinOps flavor.
 
-The groups that were selected were all based on the what we call *actions*, which map to the *sub-categories* in CSF. These actions are organized into *capabilities* from the FinOps framework, now made to correspond to *categories* from CSF. And as the FinOps framework does, these are placed into *domains* that we correlate with *functions* from CSF. To further fashion these building blocks into something useful, we place the domains into *profiles*, which closely parallel the function of the *profiles* from CSF.
+The grouping that was selected is based on the fundamental units that we call *actions*, which map to the *sub-categories* found in the CSF. These `actions` are organized into *capabilities* from the FinOps framework, now made to correspond to *categories* from the CSF. And as the FinOps framework does, these are placed into *domains* that we correlate with *functions* from the CSF.
 
-In this way, the heart of this project is located in the [components/](/components/) directory. The formalism that was selected is directly represented in the folder structure of this directory. Each subdirectory being a key piece (or component if I may) of the FinOps++ scaffolding used to create frameworks and assessments.
+In this way, the heart of this project is located in the [components/](/components/) directory. The formalism that was selected is directly represented in the folder structure of this directory. Each subdirectory being a key piece (or component) of the FinOps++ scaffolding used to construct frameworks and their assessments.
 
-The Markdown files found in these subdirectories are navigable, allowing you to traverse the logical grouping going from `Profile -> Domain -> Capability -> Action` for the pre-defined profiles, domains, capabilities, and actions. 
+The Markdown files found in these subdirectories are navigable, allowing you to traverse the logical grouping going from `Domain -> Capability -> Action` for the pre-defined `domains`, `capabilities`, and `actions` components.
+
+To further fashion out building blocks into something useful, we place the `domains` into *profiles*, which closely parallel the function of the *profiles* from CSF. While the `profiles` are not directly considered a component themselves, they are integral to organizing this project into usable, extensible, and reproducible schemas. With their primary use-case being to define a framework.
 
 ### Assessments
 
-The [assessments/](/assessments/) directory is where you can find subdirectories (based on the profile names) containing both the markdown file detailing how a framework is put together, and the the assessment worksheet used for scoring against that framework. The worksheet is current an excel doc that can be easily downloaded from this repository and potentially convert to other cell-based, excel-like products (such as google sheets).
+The [assessments/](/assessments/) directory is where you can find subdirectories (based on the profile names) representing different frameworks supported by FinOps++. Each subdirectory containing both the markdown file detailing how a framework is put together, and the assessment worksheet used for scoring against that framework. The worksheet is current an excel doc that can be easily downloaded from this repository and potentially convert to other cell-based, excel-like products (such as google sheets).
 
 These subdirectories will be the primary entry point for most people using the FinOps++ project as the assessment is the primary product for it. The framework markdown and worksheet link to the different components used to create it as needed. With the hope of making it easy to trace out how a framework is designed to work (i.e what concerns a framework is trying to address).
 
@@ -44,7 +46,7 @@ This folder includes direction and explications on a range of topics, with the g
 
 ## CLI Tool
 
-To aid with formatting, transforming, and using the yaml specification, we built the `finopspp` CLI tool. This is a Python based tool that works for `Python >= 3.13`. Currently to use it, you have to build it from source from this repository. To do this, it is recommended that you start off by creating a virtual environment (venv) as is discussed in https://docs.python.org/3/library/venv.html. 
+To aid with formatting, transforming, and using the yaml specification, we built the `finopspp` CLI tool. This is a Python based tool that works for `Python >= 3.13`. Currently to use it, you have to build it from source from this repository. To do this, it is recommended that you start off by creating a virtual environment (venv) as is discussed in [https://docs.python.org/3/library/venv.html](https://docs.python.org/3/library/venv.html).
 
 Once your venv is setup, [activate it](https://docs.python.org/3/library/venv.html#how-venvs-work) and run `python -m pip install -e .` from the same directory as this README. This command will pull in all required dependencies into the venv and then installs the script for you to use in your venv. It will also do this in what is called "[editable](https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-e)" mode. Which will allow you to change packages and files (including yaml specifications) used by `finopspp`, and to directly see those changes reflected in the invocation of the tool. Be careful when doing this, so as not to break the core functionality needed to generate the assessment.
 
@@ -71,7 +73,7 @@ you can run `finopspp generate assessment --help` to see the list of profile opt
 
 #### Components Markdown
 
-These files are designed to be generally more human readable and easier to navigate than the yaml specifications. The four components supported directly correlate with the four specification types used currently by `finopspp`. Which are `profiles`, `domains`, `capabilities`, and `actions`; and can be found in subdirectories of the same names under 
+These files are designed to be generally more human readable and easier to navigate than the yaml specifications. The four components supported directly correlate with the four specification types used currently by `finopspp`. Which are `profiles`, `domains`, `capabilities`, and `actions`; and can be found in subdirectories of the same names under.
 
 - [components/profiles](/components/profiles/)
 - [components/domains](/components/domains/)
@@ -88,7 +90,7 @@ finopspp generate components --specification-type=<desired-spec-type>
 
 ### Specification commands
 
-A set of utility commands that can do a number of different actions relevant to the yaml specifications. This range from showing the [OpenAPI schema](https://www.openapis.org/what-is-openapi) for the different specifications types, to basic updates of the specification from [custom Pydantic models][/tools/models.py].
+A set of utility commands that can do a number of different actions relevant to the yaml specifications. This range from showing the [OpenAPI schema](https://www.openapis.org/what-is-openapi) for the different specifications types, to basic updates of the specification from [custom Pydantic models](/tools/models.py).
 
 #### Validation
 
@@ -112,7 +114,7 @@ Based on the specification type, and corresponding [pydantic derived model](http
 
 #### New
 
-The new command will allow you to create new specification from smart defaults, which can be found, in code, under [/tools/defaults.py](/tools/defaults.py). The new specification, created for a desired specification type, can be used as template to fill-in until the specification is in a state that is ready to be publish. 
+The new command will allow you to create new specification from smart defaults, which can be found, in code, under [/tools/defaults.py](/tools/defaults.py). The new specification, created for a desired specification type, can be used as template to fill-in until the specification is in a state that is ready to be publish.
 
 The command to create these new specification is simply
 

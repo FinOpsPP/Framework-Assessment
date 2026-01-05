@@ -9,12 +9,12 @@ body:
     attributes:
       label: What part of the Framework-Assessment did not work as expected?
       options:
-        - label: "finopspp tool"
-          required: true
-        - label: "assessment workbook"
-          required: true
+        - label: "tool"
+        - label: "assessment"
         - label: "markdown file"
-          required: true
+        - label: "other"
+    validations:
+      required: true
   - type: textarea
     id: version
     attributes:
