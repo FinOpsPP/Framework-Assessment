@@ -51,6 +51,8 @@ This folder includes direction and explications on a range of topics, with the g
 
 To aid with formatting, transforming, and using the yaml specification, we built the `finopspp` CLI tool. Currently, to use it you have to build it from source from this repository. To do this, please read through [Developing the finopspp CLI tool](/guidelines/development.md#developing-the-finopspp-cli-tool) in the [development](/guidelines/development.md) guide.
 
+Below we will go through a few of the key commands this CLI tools provides. If you have the tool installed, we encourage you to play around with the tools and look at commands not discussed below, such as the `finopspp version` command.
+
 ### Generating commands
 
 The most useful commands to use with `finopspp` will be related to generate some aspect of the framework. Either markdown documentation or Excel files.
