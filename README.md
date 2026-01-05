@@ -49,9 +49,7 @@ This folder includes direction and explications on a range of topics, with the g
 
 ## CLI Tool
 
-To aid with formatting, transforming, and using the yaml specification, we built the `finopspp` CLI tool. This is a Python based tool that works for `Python >= 3.13`. Currently to use it, you have to build it from source from this repository. To do this, it is recommended that you start off by creating a virtual environment (venv) as is discussed in [https://docs.python.org/3/library/venv.html](https://docs.python.org/3/library/venv.html).
-
-Once your venv is setup, [activate it](https://docs.python.org/3/library/venv.html#how-venvs-work) and run `python -m pip install -e .` from the same directory as this README. This command will pull in all required dependencies into the venv and then installs the script for you to use in your venv. It will also do this in what is called "[editable](https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-e)" mode. Which will allow you to change packages and files (including yaml specifications) used by `finopspp`, and to directly see those changes reflected in the invocation of the tool. Be careful when doing this, so as not to break the core functionality needed to generate the assessment.
+To aid with formatting, transforming, and using the yaml specification, we built the `finopspp` CLI tool. Currently, to use it you have to build it from source from this repository. To do this, please read through [Developing the finopspp CLI tool](/guidelines/development.md#developing-the-finopspp-cli-tool) in the [development](/guidelines/development.md) guide.
 
 ### Generating commands
 
