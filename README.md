@@ -60,8 +60,8 @@ The most useful (or powerful) of the most useful commands offered by `finopspp` 
 
 To generate the markdown for the framework overview and assessment excel file, make sure that the profile you desire to use is included under `[specifications/profiles](/specifications/profiles/) or, if need be, create a new profile.
 
-> **NOTE**: If you are using a new profile, make sure to select an ID, title, and serialization number for file name that has not already been used.
-> **NOTE**: Serialization numbers for the file should be the ID with enough `0`s before it to pad out the length of the file name to 3 digits.
+> [!NOTE]
+> The serialization number for a file uses the schema "xxx.[md|yaml]" with enough `0`s before the ID to pad out the length of the file name to 3 digits.
 
 Then run the follow
 
@@ -80,7 +80,8 @@ These files are designed to be generally more human readable and easier to navig
 - [components/capabilities](/components/capabilities/)
 - [components/actions](/components/actions/)
 
-> **NOTE**: `profiles` markdown files are generated and offered on an as-best-as-possible bases. This is because of the customization allowed for these type. Generally it is recommended to use the Framework markdown to get an overview of the profiles. But we include them for the sake of compilation.
+> [!NOTE]
+> `profiles` markdown files are generated and offered on an as-best-as-possible bases. This is because of the customization allowed for this type. Generally it is recommended to use the Framework markdown to get a true overview of the profiles. But we include them for the sake of compilation.
 
 To generate the files in these folder fresh from the yaml files, you can call the following command
 
@@ -121,5 +122,8 @@ The command to create these new specification is simply
 ```{sh}
 finopspp specifications new --specification-type=<desired-spec-type> <desired-id>
 ```
+
+> [!IMPORTANT]
+> If you are creating a new profile, make sure to select a Title for the specification that has not already been used. Otherwise this will cause a collision issues with the generate assessment command.
 
 The only requirement is that the desired ID be unique. If it has been used previously, an error will be returned and the specification will not be created.
