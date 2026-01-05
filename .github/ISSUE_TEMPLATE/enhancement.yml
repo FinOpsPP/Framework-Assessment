@@ -9,9 +9,10 @@ body:
     attributes:
       label: What aspect of the Framework-Assessment would you like to enhance?
       options:
-        - label: "assessments"
-        - label: "specifications"
-        - label: "tools"
+        - label: "specification"
+        - label: "assessment"
+        - label: "tool"
+        - label: "documentation"
         - label: "other"
     validations:
       required: true
@@ -20,14 +21,12 @@ body:
     attributes:
       label: What type of enhancement is this?
       options:
-        - label: "new feature"
-        - label: "update feature"
-        - label: "new documentations"
-        - label: "update documentation"
-        - label: "new profile"
-        - label: "update profile"
-        - label: "new components"
-        - label: "update components"
+        - label: "create instance of an aspect"
+        - label: "create new aspect"
+        - label: "update instance of an aspect"
+        - label: "update whole aspect"
+        - label: "depreciate instance of an aspect"
+        - label: "remove entire aspect"
     validations:
       required: true
   - type: textarea
