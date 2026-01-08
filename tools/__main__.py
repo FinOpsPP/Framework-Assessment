@@ -2,8 +2,10 @@
 import json
 import os
 import sys
+import platform
 from collections import namedtuple
 from importlib.resources import files
+from importlib.metadata import metadata as meta
 
 import click
 import yaml
@@ -56,6 +58,14 @@ SpecSubspecMap = {
 def cli():
     """FinOps++ administration tool"""
 
+@cli.command()
+def version():
+    """Version and runtime information about the finopspp tool"""
+    tool_version = meta('finopspp').get('Version', '0.0.0')
+    click.echo(f'Version: {tool_version}')
+    python_version = sys.version.split(' ', maxsplit=1).pop(0)
+    click.echo(f'Python Version: {python_version}')
+    click.echo(f'System: {platform.system()} ({platform.release()})')
 
 @cli.group()
 def generate():
@@ -609,12 +619,12 @@ def update(selection, specification_type, major):
             )
 
             # update version
-            version = semver.Version.parse(passthrough_data['Metadata']['Version'])
+            spec_version = semver.Version.parse(passthrough_data['Metadata']['Version'])
             if major:
-                version = version.bump_major()
+                spec_version = spec_version.bump_major()
             else:
-                version = version.bump_minor()
-            passthrough_data['Metadata']['Version'] = str(version)
+                spec_version = spec_version.bump_minor()
+            passthrough_data['Metadata']['Version'] = str(spec_version)
 
             # write out modified data back to spec file
             with open(path, 'w', encoding='utf-8') as yaml_file:

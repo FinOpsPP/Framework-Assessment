@@ -1,0 +1,39 @@
+name: Enhancement
+description: Request an enhancement on the project. Please open one issue per enhancement.
+title: "[Enhancement]: "
+labels: ["enhancement"]
+type: enhancement
+body:
+  - type: checkboxes
+    id: type-check
+    attributes:
+      label: What aspect of the Framework-Assessment would you like to enhance?
+      options:
+        - label: "specification"
+        - label: "assessment"
+        - label: "tool"
+        - label: "documentation"
+        - label: "other"
+    validations:
+      required: true
+  - type: checkboxes
+    id: enhancement-check
+    attributes:
+      label: What type of enhancement is this?
+      options:
+        - label: "create instance of an aspect"
+        - label: "create new aspect"
+        - label: "update instance of an aspect"
+        - label: "update whole aspect"
+        - label: "depreciate instance of an aspect"
+        - label: "remove entire aspect"
+    validations:
+      required: true
+  - type: textarea
+    id: enhancement-description
+    attributes:
+      label: Enhancement Description
+      description: Please let us know what you would like enhanced, and any proposals you have to produce the enhancement.
+      placeholder: Feel free to go "overboard" on the details. For us, the more details the better!
+    validations:
+      required: true

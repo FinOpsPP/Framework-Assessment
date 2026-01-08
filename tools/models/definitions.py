@@ -1,4 +1,4 @@
-"""Defines the YAML specifications"""
+"""Defines the YAML specification models for profiles and components"""
 import datetime
 from enum import Enum
 from typing import Any, Optional, Callable
@@ -244,7 +244,7 @@ class ActionSpec(ActionItem, SpecBase, SpecID, Config):
         return model
 
 class Action(Config):
-    """Top-level Action model"""
+    """Top-level Action Component model"""
     Metadata: MetadataSpec = Field(description='Metadata for an Action specification')
     Specification: ActionSpec = Field(description='An action specification')
 
@@ -258,9 +258,9 @@ class CapabilitySpec(CapabilityItem, SpecBase, SpecID, Config):
     Overrides: list[StdOverride] | None = Field(description='List of overrides by profile')
 
 class Capability(Config):
-    """Top-level Capability model"""
+    """Top-level Capability Component model"""
     Metadata: MetadataSpec = Field(description='Metadata for a capability specification')
-    Specification: CapabilitySpec = Field(description='Capability specification')
+    Specification: CapabilitySpec = Field(description='A capability specification')
 
 
 class DomainItem(SpecBase, Config):
@@ -274,7 +274,7 @@ class DomainSpec(DomainItem, SpecBase, SpecID, Config):
     Overrides: list[StdOverride] | None = Field(description='List of overrides by profile')
 
 class Domain(Config):
-    """Top-level Domain model"""
+    """Top-level Domain Component model"""
     Metadata: MetadataSpec = Field(description='Metadata for a domain specification')
     Specification: DomainSpec = Field(description='A domain specification')
 
