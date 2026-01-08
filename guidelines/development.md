@@ -4,7 +4,7 @@ The Framework-Assessment project has many moving parts, lots of auto-generated c
 
 It is written from the prospective that a potential contributor has zero (or next to zero) experience with one or more of the core software elements used to build the project. It links out to several sources that are more authoritative for those that desire to read more on the subject. Hopefully, with that point of view in mind, this document will be useful for people with all levels of skills in the development space to contribute to this project
 
-## Getting up & running with Git
+## Getting up & running with GitHub
 
 For GitHub newbies, the first step you will probably need to start with is [installing git](https://git-scm.com/install/) itself. Git is a source control command line tool from the Linus Torvalds (the creator of Linux), and forms the base of GitHub's features. It will allow you to clone the Framework-Assessment repository to your local machine and make changes that can be eventually merged back into the project.
 
