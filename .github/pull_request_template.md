@@ -17,7 +17,7 @@ This change includes the following change types
 * [ ] Enhancement to documentation(s)
 * [ ] Other
 
-# Checklist
+# Quality Assurance
 
 <!-- Before submitting please affirm the following -->
 
