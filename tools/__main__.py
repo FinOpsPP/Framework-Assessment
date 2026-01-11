@@ -243,8 +243,10 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
                 spec_id = str(spec_id)
                 serial_number = '0'*(3-len(spec_id)) + spec_id
 
+                # since not every action has a title yet, fall back to
+                # description when it does not exist.
                 actions.append({
-                    'action': spec.get('Title'),
+                    'action': spec.get('Title', spec.get('Description')),
                     'serial_number': serial_number,
                     'weights': spec.get('Weight'),
                     'formula': spec.get('Formula'),
