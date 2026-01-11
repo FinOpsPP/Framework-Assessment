@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: null
-  Version: 0.0.1
+  Modified: '2026-01-10'
+  Version: 0.1.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -10,7 +10,7 @@ Metadata:
     Date: null
 Specification:
   ID: 1
-  Title: null
+  Title: Inventory All Data Sources
   Description: Inventory all data sources (CSP cost/usage, performance, on-prem, internal).
   Implementation Types:
   - null

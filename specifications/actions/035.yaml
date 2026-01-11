@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: null
-  Version: 1.0.0
+  Modified: '2026-01-10'
+  Version: 1.1.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -13,7 +13,7 @@ Metadata:
     Date: '2025-11-01'
 Specification:
   ID: 35
-  Title: null
+  Title: Report Estimate Accuracy
   Description: Report estimate accuracy; enforce variance thresholds by maturity.
   Implementation Types:
   - null

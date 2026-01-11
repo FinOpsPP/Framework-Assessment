@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: null
-  Version: 0.0.1
+  Modified: '2026-01-10'
+  Version: 0.1.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -10,7 +10,7 @@ Metadata:
     Date: null
 Specification:
   ID: 128
-  Title: null
+  Title: Monitor Adoption & Iterate Tools
   Description: Monitor adoption, data quality, ROI; iterate or replace when needed.
   Implementation Types:
   - null

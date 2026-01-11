@@ -244,7 +244,7 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
                 serial_number = '0'*(3-len(spec_id)) + spec_id
 
                 actions.append({
-                    'action': spec.get('Description'),
+                    'action': spec.get('Title'),
                     'serial_number': serial_number,
                     'weights': spec.get('Weight'),
                     'formula': spec.get('Formula'),
