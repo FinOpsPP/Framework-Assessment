@@ -2,7 +2,7 @@ name: Enhancement
 description: Request an enhancement on the project. Please open one issue per enhancement.
 title: "[Enhancement]: "
 labels: ["enhancement"]
-type: enhancement
+type: feature
 body:
   - type: checkboxes
     id: type-check
