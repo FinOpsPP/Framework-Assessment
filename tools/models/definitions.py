@@ -1,7 +1,7 @@
 """Defines the YAML specification models for profiles and components"""
 import datetime
 from enum import Enum
-from typing import Any, Optional, Callable
+from typing import Optional
 
 import semver
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_serializer
