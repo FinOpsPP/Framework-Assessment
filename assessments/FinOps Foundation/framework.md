@@ -364,32 +364,32 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/085.md">085</a>: None
+                        <a href="/components/actions/085.md">085</a>: Aggregate emissions data by region/service/account with lineage.
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/086.md">086</a>: None
+                        <a href="/components/actions/086.md">086</a>: Define sustainability metrics/targets.
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/087.md">087</a>: None
+                        <a href="/components/actions/087.md">087</a>: Include carbon impact in migration/optimization decisions and PRDs.
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/088.md">088</a>: None
+                        <a href="/components/actions/088.md">088</a>: Enable engineering with carbon-aware data and scheduling guidance.
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/089.md">089</a>: None
+                        <a href="/components/actions/089.md">089</a>: Continuously improve data quality and report progress on dashboards.
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/090.md">090</a>: None
+                        <a href="/components/actions/090.md">090</a>: Tie sustainability wins to cost efficiency where possible.
                         </td>
                     </tr>
                 </table>
@@ -866,7 +866,7 @@ Classic profile featuring controls provided by the finops foundation
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/135.md">135</a>: None
+                        <a href="/components/actions/135.md">135</a>: Define ingestion frequency; include mandatory metadata.
                         </td>
                     </tr>
                 </table>
