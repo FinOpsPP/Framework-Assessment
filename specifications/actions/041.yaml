@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-01-10'
-  Version: 1.3.0
+  Modified: '2026-01-12'
+  Version: 1.4.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -15,7 +15,7 @@ Specification:
   ID: 41
   Title: Automate Variance Alerts
   Description: Automate variance alerts for budget owners and product leaders.
-  Slug: null
+  Slug: 41-automate-variance
   Implementation Types:
   - null
   Weight: 1.0

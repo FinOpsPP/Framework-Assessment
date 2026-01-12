@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-01-10'
-  Version: 0.3.0
+  Modified: '2026-01-12'
+  Version: 0.4.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -12,7 +12,7 @@ Specification:
   ID: 123
   Title: Review Outcomes & Adjust Patterns
   Description: Review post-onboard outcomes vs estimates and KPIs; adjust patterns.
-  Slug: null
+  Slug: 123-review-outcomes
   Implementation Types:
   - null
   Weight: 0.0

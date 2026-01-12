@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-01-10'
-  Version: 0.3.0
+  Modified: '2026-01-12'
+  Version: 0.4.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -12,7 +12,7 @@ Specification:
   ID: 122
   Title: Start with Lower Environments
   Description: Start with lower envs; have a rollback plan before production cutover.
-  Slug: null
+  Slug: 122-start-lower
   Implementation Types:
   - null
   Weight: 0.0

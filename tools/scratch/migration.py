@@ -146,6 +146,9 @@ def process_row_local(row, specification_files, today):
     # set new titles
     data['Specification']['Title'] = spec_name.strip()
 
+    # set new slug
+    data['Specification']['Slug'] = row['Action Slug'].strip()
+
     # finally write back out
     with open(specification_file, 'w', encoding='utf-8') as yaml_file:
         yaml.dump(
