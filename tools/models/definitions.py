@@ -196,7 +196,7 @@ class ScoringDetail(Config):
 class ActionSpec(ActionItem, SpecBase, SpecID, Config):
     """Action specification core model"""
     Slug: str | None = Field(
-        description='Machine parsable and human readable super short key label for action',
+        description='Machine parsable and human readable(ish) super short key label for action',
         max_length=20
     )
     ImplementationTypes: list[str | None] = Field(

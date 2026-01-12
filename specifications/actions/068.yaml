@@ -15,7 +15,7 @@ Specification:
   ID: 68
   Title: Inventory & Classify Workloads
   Description: Inventory workloads; classify variable vs consistent.
-  Slug: 68-inventory-classify
+  Slug: 68-inventory-classif
   Implementation Types:
   - null
   Weight: 1.0
