@@ -12,7 +12,7 @@ Specification:
   ID: 47
   Title: Automate Budget Threshold Alerts
   Description: Automate threshold alerts; surface in the tools budget owners use.
-  Slug: 47-automate-threshold
+  Slug: 47-automate-threshol
   Implementation Types:
   - null
   Weight: 0.0

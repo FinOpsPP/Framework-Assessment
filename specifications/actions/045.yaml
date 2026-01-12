@@ -12,7 +12,7 @@ Specification:
   ID: 45
   Title: Increase Shared Cost Coverage
   Description: Increase allocation coverage of shared costs; automate where possible.
-  Slug: 45-increase-allocation
+  Slug: 45-increase-allocati
   Implementation Types:
   - null
   Weight: 0.0
