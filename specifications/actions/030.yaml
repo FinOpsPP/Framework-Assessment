@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: null
   Modified: '2026-01-10'
-  Version: 0.1.0
+  Version: 0.3.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -12,6 +12,7 @@ Specification:
   ID: 30
   Title: Define Estimating Scope & Policy
   Description: Define estimating scope, inputs, assumptions, and policy constraints.
+  Slug: null
   Implementation Types:
   - null
   Weight: 0.0

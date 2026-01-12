@@ -16,8 +16,9 @@ Metadata:
     Date: '2025-09-04' # ISO 8601 date format
 Specification:
   ID: 0
-  Title: Title of specification
-  Description: Short, text based description of what the specification attempts to address
+  Title: Title of specification # max 100 characters
+  Description: Short-ish, text based description of what the specification attempts to address # max 1000 characters
+  Slug: 0-title # very short machine parsable and human readable label; max 20 characters
   Implementation Types: # List of how the specification is implemented
   - Operational # Example
   - Management

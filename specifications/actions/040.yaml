@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
   Modified: '2026-01-10'
-  Version: 1.1.0
+  Version: 1.3.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -15,6 +15,7 @@ Specification:
   ID: 40
   Title: Compare Forecast vs Actuals
   Description: Compare forecast vs actual; produce variance narratives and actions.
+  Slug: null
   Implementation Types:
   - null
   Weight: 1.0
