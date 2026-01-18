@@ -365,12 +365,23 @@ def new(id_, specification_type):
 
 @specifications.command(name='list')
 @click.option(
+    '--status-action',
+    is_flag=True,
+    help='Show status of action'
+)
+@click.option(
+    '--status-by',
+    default=None,
+    type=click.Choice([enum.value for enum in definitions.StatusEnum] + [None]),
+    help='Filter by status. Defaults to "None"'
+)
+@click.option(
     '--profile',
     default='FinOps++',
     type=click.Choice(list(profiles().keys())),
     help='Which assessment profile to list. Defaults to "FinOps++"'
 )
-def list_specs(profile):
+def list_specs(status_action, status_by, profile):
     """List all Specifications by fully qualified ID per profile
     
     Fully qualified ID is of the format Domain.Capability-Action"""
@@ -382,7 +393,8 @@ def list_specs(profile):
         profile_id = spec.get('ID')
 
     domain_files = files('finopspp.specifications.domains')
-    cap_files = files('finopspp.specifications.capabilities')
+    capability_files = files('finopspp.specifications.capabilities')
+    action_files = files('finopspp.specifications.actions')
     click.echo(f'Fully qualified IDs for {profile}. Profile ID: {profile_id}')
     for domain in domains:
         domain_id = domain.get('ID')
@@ -403,14 +415,31 @@ def list_specs(profile):
 
             capability_id = str(capability_id)
             file = '0'*(3-len(capability_id)) + capability_id
-            with open(cap_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
+            with open(capability_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
                 actions = yaml.safe_load(
                     yaml_file
                 ).get('Specification').get('Actions')
 
             for action in actions:
                 action_id = action.get('ID')
-                unique_id = f'{domain_id}.{capability_id}-{action_id}'
+                if not action_id:
+                    continue
+
+                action_id = str(action_id)
+                file = '0'*(3-len(action_id)) + action_id
+                with open(action_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
+                    raw_action = yaml.safe_load(
+                        yaml_file
+                    )
+
+                action_status = raw_action['Metadata']['Status']
+                if status_by and status_by != action_status:
+                    continue
+
+                action_id = raw_action['Specification'].get('Slug') or action_id
+                unique_id = f'{domain_id}.{capability_id}.{action_id}'
+                if status_action:
+                    unique_id += f': (Action {action_status})'
                 click.echo(unique_id)
 
 
