@@ -365,7 +365,7 @@ def new(id_, specification_type):
 
 @specifications.command(name='list')
 @click.option(
-    '--status-action',
+    '--show-action-status',
     is_flag=True,
     help='Show status of action'
 )
@@ -381,7 +381,7 @@ def new(id_, specification_type):
     type=click.Choice(list(profiles().keys())),
     help='Which assessment profile to list. Defaults to "FinOps++"'
 )
-def list_specs(status_action, status_by, profile):
+def list_specs(show_action_status, status_by, profile):
     """List all Specifications by fully qualified ID per profile
     
     Fully qualified ID is of the format Domain.Capability-Action"""
@@ -438,7 +438,7 @@ def list_specs(status_action, status_by, profile):
 
                 action_id = raw_action['Specification'].get('Slug') or action_id
                 unique_id = f'{domain_id}.{capability_id}.{action_id}'
-                if status_action:
+                if show_action_status:
                     unique_id += f': (Action {action_status})'
                 click.echo(unique_id)
 
