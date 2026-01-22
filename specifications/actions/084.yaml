@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: null
-  Version: 1.0.0
+  Modified: '2026-01-12'
+  Version: 1.4.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -13,9 +13,10 @@ Metadata:
     Date: '2025-11-01'
 Specification:
   ID: 84
-  Title: null
+  Title: Leverage Spot & Negotiated Discounts
   Description: Leverage spot/negotiated discounts where safe; reassess after architecture
     shifts.
+  Slug: 84-leverage-spot
   Implementation Types:
   - null
   Weight: 1.0

@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: null
-  Version: 1.0.0
+  Modified: '2026-01-12'
+  Version: 1.4.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -13,8 +13,9 @@ Metadata:
     Date: '2025-11-01'
 Specification:
   ID: 80
-  Title: null
+  Title: Build Commitment Analysis Process
   Description: Build repeatable analysis for coverage, utilization, and breakeven.
+  Slug: 80-build-commitment
   Implementation Types:
   - null
   Weight: 1.0

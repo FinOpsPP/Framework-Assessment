@@ -24,27 +24,27 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/102.md">102</a>: Draft clear, goal-aligned cloud financial policies (what "good" looks like).
+                        <a href="/components/actions/102.md">102</a>: Draft Cloud Financial Policies
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/103.md">103</a>: Publish guidelines, guardrails, and automation controls.
+                        <a href="/components/actions/103.md">103</a>: Publish Guidelines & Guardrails
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/104.md">104</a>: Enable/educate stakeholders on policy expectations and exceptions.
+                        <a href="/components/actions/104.md">104</a>: Educate Stakeholders on Policy
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/105.md">105</a>: Monitor compliance; report breaches with remediation paths.
+                        <a href="/components/actions/105.md">105</a>: Monitor Compliance & Report Breaches
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/106.md">106</a>: Iterate policies based on outcomes and stakeholder feedback.
+                        <a href="/components/actions/106.md">106</a>: Iterate Policies Based on Feedback
                         </td>
                     </tr>
                 </table>
@@ -58,27 +58,27 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/113.md">113</a>: Define goals/scope; pick capabilities to measure this cycle.
+                        <a href="/components/actions/113.md">113</a>: Define Assessment Scope & Goals
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/114.md">114</a>: Collect evidence-based inputs; reduce bias with standardized questions.
+                        <a href="/components/actions/114.md">114</a>: Collect Standardized Assessment Inputs
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/115.md">115</a>: Establish baselines; identify outliers, patterns, and trends.
+                        <a href="/components/actions/115.md">115</a>: Establish Baselines & Identify Trends
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/116.md">116</a>: Prioritize actions; publish an improvement roadmap with owners/dates.
+                        <a href="/components/actions/116.md">116</a>: Prioritize Actions & Publish Roadmap
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/117.md">117</a>: Re-assess on a set cadence; show progress and re-prioritize.
+                        <a href="/components/actions/117.md">117</a>: Reassess Progress & Update Priorities
                         </td>
                     </tr>
                 </table>
@@ -92,27 +92,27 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/097.md">097</a>: Run needs/skills gap assessment across personas and teams.
+                        <a href="/components/actions/097.md">097</a>: Assess Skills & Training Needs
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/098.md">098</a>: Develop role-based curricula, playbooks, and onboarding content.
+                        <a href="/components/actions/098.md">098</a>: Develop Role-Based Learning Content
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/099.md">099</a>: Offer certifications and informal learning (office hours, lunch-and-learns).
+                        <a href="/components/actions/099.md">099</a>: Offer Certifications & Informal Learning
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/100.md">100</a>: Leverage CSP/vendor training; contextualize to your environment.
+                        <a href="/components/actions/100.md">100</a>: Leverage Vendor Training Resources
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/101.md">101</a>: Track participation and effect on KPIs; refresh content on cadence.
+                        <a href="/components/actions/101.md">101</a>: Track Training Impact & Refresh Content
                         </td>
                     </tr>
                 </table>
@@ -126,32 +126,32 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/091.md">091</a>: Define org model, staffing/skills, and operating budget for FinOps.
+                        <a href="/components/actions/091.md">091</a>: Define Org Model & Budget
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/092.md">092</a>: Create an implementation roadmap and prioritized backlog.
+                        <a href="/components/actions/092.md">092</a>: Create Implementation Roadmap
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/093.md">093</a>: Integrate cost data into forecasting, budgeting, procurement workflows.
+                        <a href="/components/actions/093.md">093</a>: Integrate Cost Data in Workflows
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/094.md">094</a>: Publish KPIs (adoption, tagging compliance, anomaly response, savings rate).
+                        <a href="/components/actions/094.md">094</a>: Publish FinOps KPIs
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/095.md">095</a>: Drive stakeholder engagement; make wins and misses visible.
+                        <a href="/components/actions/095.md">095</a>: Drive Stakeholder Engagement
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/096.md">096</a>: Automate repetitive tasks; review practice maturity quarterly.
+                        <a href="/components/actions/096.md">096</a>: Automate Tasks & Review Maturity
                         </td>
                     </tr>
                 </table>
@@ -165,27 +165,27 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/124.md">124</a>: Run a needs-based assessment; define success criteria and constraints.
+                        <a href="/components/actions/124.md">124</a>: Assess Tooling Needs & Criteria
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/125.md">125</a>: Evaluate build vs buy; map requirements to vendor capabilities.
+                        <a href="/components/actions/125.md">125</a>: Evaluate Build vs Buy Options
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/126.md">126</a>: Implement/configure; tailor access/permissions and integrations.
+                        <a href="/components/actions/126.md">126</a>: Implement & Configure Tools
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/127.md">127</a>: Train users; "put data in the path" of existing workflows and tools.
+                        <a href="/components/actions/127.md">127</a>: Train Users & Integrate Data
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/128.md">128</a>: Monitor adoption, data quality, ROI; iterate or replace when needed.
+                        <a href="/components/actions/128.md">128</a>: Monitor Adoption & Iterate Tools
                         </td>
                     </tr>
                 </table>
@@ -199,32 +199,32 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/129.md">129</a>: Establish collaboration with TBM, ITAM, Security, SRE, and PMO.
+                        <a href="/components/actions/129.md">129</a>: Establish Cross-Team Collab
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/130.md">130</a>: Align goals, data models, taxonomies, and decision workflows.
+                        <a href="/components/actions/130.md">130</a>: Align Goals & Data Models
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/131.md">131</a>: Share reporting infrastructure and common definitions; avoid duplication.
+                        <a href="/components/actions/131.md">131</a>: Share Reporting & Definitions
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/132.md">132</a>: Provide allied teams the cloud metrics they need.
+                        <a href="/components/actions/132.md">132</a>: Provide Cloud Metrics to Teams
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/133.md">133</a>: Coordinate policy/gov changes cross-functionally; communicate broadly.
+                        <a href="/components/actions/133.md">133</a>: Coordinate Policy Changes Broadly
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/134.md">134</a>: Use shared influence to drive adoption and resolve conflicts quickly.
+                        <a href="/components/actions/134.md">134</a>: Drive Adoption & Resolve Conflicts
                         </td>
                     </tr>
                 </table>
@@ -238,32 +238,32 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/107.md">107</a>: Map CSP invoices to allocation model and financial systems (GL, ERP).
+                        <a href="/components/actions/107.md">107</a>: Map Invoices to Allocation Model
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/108.md">108</a>: Reconcile rates/discounts/credits quickly; track completion SLA.
+                        <a href="/components/actions/108.md">108</a>: Reconcile Rates & Track Completion
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/109.md">109</a>: Co-design chargeback/showback with Finance; document rules and cadence.
+                        <a href="/components/actions/109.md">109</a>: Design Chargeback with Finance
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/110.md">110</a>: Automate data flows and chargeback runs; minimize manual effort.
+                        <a href="/components/actions/110.md">110</a>: Automate Chargeback Data Flows
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/111.md">111</a>: Distribute chargeback reports; track accuracy, cycle time, and disputes.
+                        <a href="/components/actions/111.md">111</a>: Distribute Reports & Track Accuracy
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/112.md">112</a>: Resolve variances; increase shared-cost coverage over time.
+                        <a href="/components/actions/112.md">112</a>: Resolve Variances & Increase Coverage
                         </td>
                     </tr>
                 </table>
@@ -277,32 +277,32 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/118.md">118</a>: Create selection criteria and a value-vs-effort matrix.
+                        <a href="/components/actions/118.md">118</a>: Create Workload Selection Criteria
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/119.md">119</a>: Define success criteria, in/out of scope, constraints, timelines.
+                        <a href="/components/actions/119.md">119</a>: Define Success Criteria & Scope
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/120.md">120</a>: Enforce tagging, compliance, and automation standards at onboarding.
+                        <a href="/components/actions/120.md">120</a>: Enforce Tagging at Onboarding
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/121.md">121</a>: Align project timelines with budgets, dependencies, and releases.
+                        <a href="/components/actions/121.md">121</a>: Align Timelines with Budgets
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/122.md">122</a>: Start with lower envs; have a rollback plan before production cutover.
+                        <a href="/components/actions/122.md">122</a>: Start with Lower Environments
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/123.md">123</a>: Review post-onboard outcomes vs estimates and KPIs; adjust patterns.
+                        <a href="/components/actions/123.md">123</a>: Review Outcomes & Adjust Patterns
                         </td>
                     </tr>
                 </table>
@@ -325,32 +325,32 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/061.md">061</a>: Establish intake/review process for new and existing architectures.
+                        <a href="/components/actions/061.md">061</a>: Establish Architecture Review Process
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/062.md">062</a>: Assess workloads for modernization (managed services, serverless, data tiers).
+                        <a href="/components/actions/062.md">062</a>: Assess Workloads for Modernization
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/063.md">063</a>: Estimate cost/performance/resiliency/security trade-offs; document cases.
+                        <a href="/components/actions/063.md">063</a>: Estimate Trade-Offs & Document Cases
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/064.md">064</a>: Implement iteratively; test, measure, and capture before/after results.
+                        <a href="/components/actions/064.md">064</a>: Implement Iteratively & Measure Results
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/065.md">065</a>: Publish realized benefits and lessons; update reference architectures.
+                        <a href="/components/actions/065.md">065</a>: Publish Benefits & Update References
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/066.md">066</a>: Strengthen app/security/infra architect collaboration and approvals.
+                        <a href="/components/actions/066.md">066</a>: Strengthen Architecture Collaboration
                         </td>
                     </tr>
                 </table>
@@ -403,32 +403,32 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/073.md">073</a>: Inventory licenses/SaaS (marketplace, BYOL); map to cloud resources.
+                        <a href="/components/actions/073.md">073</a>: Inventory Licenses & Map Resources
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/074.md">074</a>: Document licensing models and constraints; tag for allocation/chargeback.
+                        <a href="/components/actions/074.md">074</a>: Document Licensing Models
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/075.md">075</a>: Integrate billing + entitlement data with Procurement/ITAM/SAM.
+                        <a href="/components/actions/075.md">075</a>: Integrate Billing with Procurement
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/076.md">076</a>: Validate utilization/compliance; remediate idle/over-provisioned licenses.
+                        <a href="/components/actions/076.md">076</a>: Validate Utilization & Remediate
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/077.md">077</a>: Influence workload design (IaaS vs PaaS vs SaaS) with cost/compliance input.
+                        <a href="/components/actions/077.md">077</a>: Influence Workload Design Choices
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/078.md">078</a>: Publish license/SaaS spend and utilization to stakeholders regularly.
+                        <a href="/components/actions/078.md">078</a>: Publish License Spend & Utilization
                         </td>
                     </tr>
                 </table>
@@ -442,32 +442,32 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/079.md">079</a>: Document commitment strategy (RIs/Savings Plans/CUDs) and guardrails.
+                        <a href="/components/actions/079.md">079</a>: Document Commitment Strategy
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/080.md">080</a>: Build repeatable analysis for coverage, utilization, and breakeven.
+                        <a href="/components/actions/080.md">080</a>: Build Commitment Analysis Process
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/081.md">081</a>: Purchase commitments frequently; target healthy utilization.
+                        <a href="/components/actions/081.md">081</a>: Purchase Commitments Regularly
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/082.md">082</a>: Track ROI, coverage gaps, expirations; notify owners early.
+                        <a href="/components/actions/082.md">082</a>: Track ROI & Notify Owners
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/083.md">083</a>: Allocate upfront costs appropriately and transparently.
+                        <a href="/components/actions/083.md">083</a>: Allocate Upfront Costs Transparently
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/084.md">084</a>: Leverage spot/negotiated discounts where safe; reassess after architecture shifts.
+                        <a href="/components/actions/084.md">084</a>: Leverage Spot & Negotiated Discounts
                         </td>
                     </tr>
                 </table>
@@ -481,32 +481,32 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/067.md">067</a>: Define strategy (value vs risk thresholds, target utilization/efficiency).
+                        <a href="/components/actions/067.md">067</a>: Define Optimization Strategy
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/068.md">068</a>: Inventory workloads; classify variable vs consistent.
+                        <a href="/components/actions/068.md">068</a>: Inventory & Classify Workloads
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/069.md">069</a>: Collect usage/perf metrics; identify rightsizing/scheduling candidates.
+                        <a href="/components/actions/069.md">069</a>: Collect Metrics & Identify Candidates
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/070.md">070</a>: Partner with engineers on schedules (stop/scale/resize/storage tiers).
+                        <a href="/components/actions/070.md">070</a>: Partner on Scheduling Actions
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/071.md">071</a>: Gamify adoption (leaderboards, goals) and celebrate wins.
+                        <a href="/components/actions/071.md">071</a>: Gamify Adoption & Celebrate Wins
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/072.md">072</a>: Track KPI deltas (CPU/GB-hrs, idle %, savings rate); document playbooks.
+                        <a href="/components/actions/072.md">072</a>: Track KPIs & Document Playbooks
                         </td>
                     </tr>
                 </table>
@@ -529,32 +529,32 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/049.md">049</a>: Select meaningful KPIs and unit metrics; define measurement scope.
+                        <a href="/components/actions/049.md">049</a>: Select KPIs & Measurement Scope
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/050.md">050</a>: Validate tagging/allocation health to ensure comparable data.
+                        <a href="/components/actions/050.md">050</a>: Validate Tagging for Comparability
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/051.md">051</a>: Choose internal vs external benchmarks; align apples-to-apples units.
+                        <a href="/components/actions/051.md">051</a>: Choose Internal vs External Benchmarks
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/052.md">052</a>: Stand up internal benchmarking across teams/products; share league tables.
+                        <a href="/components/actions/052.md">052</a>: Stand Up Internal Benchmarking
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/053.md">053</a>: Track trends; compare like-for-like and measure unique items against self over time.
+                        <a href="/components/actions/053.md">053</a>: Track Trends & Compare Over Time
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/054.md">054</a>: Translate benchmark gaps into specific optimization initiatives.
+                        <a href="/components/actions/054.md">054</a>: Translate Gaps to Initiatives
                         </td>
                     </tr>
                 </table>
@@ -568,32 +568,32 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/043.md">043</a>: Define budgeting strategy (granularity, owners, holdbacks, thresholds).
+                        <a href="/components/actions/043.md">043</a>: Define Budgeting Strategy
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/044.md">044</a>: Integrate rolling forecasts to adjust budgets as drivers change.
+                        <a href="/components/actions/044.md">044</a>: Integrate Rolling Forecasts
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/045.md">045</a>: Increase allocation coverage of shared costs; automate where possible.
+                        <a href="/components/actions/045.md">045</a>: Increase Shared Cost Coverage
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/046.md">046</a>: Publish "budget vs actual vs forecast" by business dimensions.
+                        <a href="/components/actions/046.md">046</a>: Publish Budget vs Actual Reports
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/047.md">047</a>: Automate threshold alerts; surface in the tools budget owners use.
+                        <a href="/components/actions/047.md">047</a>: Automate Budget Threshold Alerts
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/048.md">048</a>: Review/adapt strategy when KPIs stagnate or org factors change (M&A, regs).
+                        <a href="/components/actions/048.md">048</a>: Review & Adapt Budget Strategy
                         </td>
                     </tr>
                 </table>
@@ -607,32 +607,32 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/037.md">037</a>: Establish "why," approach (simple/trend/driver-based), cadence, and horizon.
+                        <a href="/components/actions/037.md">037</a>: Establish Forecasting Approach
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/038.md">038</a>: Collect business drivers (launches, promos, growth) on a set schedule.
+                        <a href="/components/actions/038.md">038</a>: Collect Business Drivers Regularly
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/039.md">039</a>: Run rolling forecasts; refresh weekly/biweekly for accuracy.
+                        <a href="/components/actions/039.md">039</a>: Run & Refresh Rolling Forecasts
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/040.md">040</a>: Compare forecast vs actual; produce variance narratives and actions.
+                        <a href="/components/actions/040.md">040</a>: Compare Forecast vs Actuals
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/041.md">041</a>: Automate variance alerts for budget owners and product leaders.
+                        <a href="/components/actions/041.md">041</a>: Automate Variance Alerts
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/042.md">042</a>: Feed learnings into budgeting, commitments, and optimization backlogs.
+                        <a href="/components/actions/042.md">042</a>: Feed Learnings into Budgeting & Commitments
                         </td>
                     </tr>
                 </table>
@@ -646,37 +646,37 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/030.md">030</a>: Define estimating scope, inputs, assumptions, and policy constraints.
+                        <a href="/components/actions/030.md">030</a>: Define Estimating Scope & Policy
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/031.md">031</a>: Agree pricing assumptions (on-demand vs commitments), shared/platform costs.
+                        <a href="/components/actions/031.md">031</a>: Agree on Pricing Assumptions
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/032.md">032</a>: Select methods (calculator, similar apps, extrapolation, trial runs).
+                        <a href="/components/actions/032.md">032</a>: Select Estimation Methods
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/033.md">033</a>: Include sustainability/operational impacts when relevant.
+                        <a href="/components/actions/033.md">033</a>: Include Sustainability Impacts
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/034.md">034</a>: Establish decision process for which scenarios feed the forecast.
+                        <a href="/components/actions/034.md">034</a>: Establish Scenario Decision Process
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/035.md">035</a>: Report estimate accuracy; enforce variance thresholds by maturity.
+                        <a href="/components/actions/035.md">035</a>: Report Estimate Accuracy
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/036.md">036</a>: Coach engineering to own estimates; compare isolated components first.
+                        <a href="/components/actions/036.md">036</a>: Coach Engineering on Estimates
                         </td>
                     </tr>
                 </table>
@@ -690,32 +690,32 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/055.md">055</a>: Define business-relevant unit(s) (e.g., cost per order/user/GB-item).
+                        <a href="/components/actions/055.md">055</a>: Define Business-Relevant Units
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/056.md">056</a>: Document included financial inputs and exact formulas; version control.
+                        <a href="/components/actions/056.md">056</a>: Document Inputs & Formulas
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/057.md">057</a>: Build dashboards to expose unit costs by product/segment/region.
+                        <a href="/components/actions/057.md">057</a>: Build Unit Cost Dashboards
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/058.md">058</a>: Set review cadence; align targets with product and finance goals.
+                        <a href="/components/actions/058.md">058</a>: Set Review Cadence & Targets
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/059.md">059</a>: Use unit metrics to prioritize engineering/architecture investments.
+                        <a href="/components/actions/059.md">059</a>: Use Metrics to Prioritize Investments
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/060.md">060</a>: Communicate wins (unit cost reductions) to drive cultural adoption.
+                        <a href="/components/actions/060.md">060</a>: Communicate Unit Cost Wins
                         </td>
                     </tr>
                 </table>
@@ -738,37 +738,37 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/009.md">009</a>: Define metadata & hierarchy strategy; map to business units/products.
+                        <a href="/components/actions/009.md">009</a>: Define Metadata & Hierarchy Strategy
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/010.md">010</a>: Identify shared costs; agree apportionment rules and document them.
+                        <a href="/components/actions/010.md">010</a>: Identify Shared Costs & Rules
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/011.md">011</a>: Publish allocation taxonomy; include overlays (project, app ID, cost center).
+                        <a href="/components/actions/011.md">011</a>: Publish Allocation Taxonomy
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/012.md">012</a>: Implement tagging/labeling standards; educate and enforce.
+                        <a href="/components/actions/012.md">012</a>: Implement Tagging Standards
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/013.md">013</a>: Validate allocation compliance; report gaps and financial impact.
+                        <a href="/components/actions/013.md">013</a>: Validate Compliance & Report Gaps
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/014.md">014</a>: Automate parsing/enforcement (policies, CI/CD checks, tag bots).
+                        <a href="/components/actions/014.md">014</a>: Automate Tagging & Enforcement
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/015.md">015</a>: Iterate strategies and communicate changes broadly.
+                        <a href="/components/actions/015.md">015</a>: Iterate Strategies & Communicate
                         </td>
                     </tr>
                 </table>
@@ -782,37 +782,37 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/023.md">023</a>: Configure detection for total cost spikes, cost/usage rate shifts, unit drops.
+                        <a href="/components/actions/023.md">023</a>: Configure Cost Spike Detection
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/024.md">024</a>: Define severity tiers, thresholds, and response SLAs; publish runbooks.
+                        <a href="/components/actions/024.md">024</a>: Define Severity & Response SLAs
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/025.md">025</a>: Automate alert routing to owners via existing channels (email/Slack/Teams).
+                        <a href="/components/actions/025.md">025</a>: Automate Alert Routing
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/026.md">026</a>: Record each anomaly with context, scope, impact, and timeline.
+                        <a href="/components/actions/026.md">026</a>: Record Anomaly Context & Timeline
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/027.md">027</a>: Analyze root causes; fix tags, allocation rules, or usage issues.
+                        <a href="/components/actions/027.md">027</a>: Analyze Root Causes & Fix Issues
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/028.md">028</a>: Track metrics (detection/notification/resolution time, false positives, avoidance).
+                        <a href="/components/actions/028.md">028</a>: Track Metrics & Avoidance Rates
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/029.md">029</a>: Tune thresholds regularly to reduce noise, increase trust.
+                        <a href="/components/actions/029.md">029</a>: Tune Thresholds to Reduce Noise
                         </td>
                     </tr>
                 </table>
@@ -826,42 +826,42 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/001.md">001</a>: Inventory all data sources (CSP cost/usage, performance, on-prem, internal).
+                        <a href="/components/actions/001.md">001</a>: Inventory All Data Sources
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/002.md">002</a>: Choose tooling to land/validate datasets.
+                        <a href="/components/actions/002.md">002</a>: Choose Data Landing Tooling
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/003.md">003</a>: Create landing zones with access controls, retention, and permissions.
+                        <a href="/components/actions/003.md">003</a>: Create Landing Zones & Controls
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/004.md">004</a>: Define data granularity; include mandatory metadata.
+                        <a href="/components/actions/004.md">004</a>: Define Data Granularity & Frequency
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/005.md">005</a>: Document normalization/augmentation rules and owners; version them.
+                        <a href="/components/actions/005.md">005</a>: Document Normalization Rules
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/006.md">006</a>: Implement data quality checks, SLAs, and runbooks; monitor failures.
+                        <a href="/components/actions/006.md">006</a>: Implement Data Quality Checks
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/007.md">007</a>: Build dashboards/alerts for ingestion anomalies; triage and resolve.
+                        <a href="/components/actions/007.md">007</a>: Build Ingestion Anomaly Dashboards
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/008.md">008</a>: Continuously optimize pipelines for timeliness and cost.
+                        <a href="/components/actions/008.md">008</a>: Optimize Pipelines for Timeliness
                         </td>
                     </tr>
                     <tr>
@@ -880,37 +880,37 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/016.md">016</a>: Gather persona–specific requirements; define KPIs/OKRs and glossary.
+                        <a href="/components/actions/016.md">016</a>: Gather Requirements & Define KPIs
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/017.md">017</a>: Enrich billing with business logic (amortization, discounts, mappings).
+                        <a href="/components/actions/017.md">017</a>: Enrich Billing with Business Logic
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/018.md">018</a>: Build dashboards for routine, showback, investigative, and ad hoc views.
+                        <a href="/components/actions/018.md">018</a>: Build Dashboards for All Views
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/019.md">019</a>: Publish documentation, data sensitivity rules, and support channels.
+                        <a href="/components/actions/019.md">019</a>: Publish Documentation & Support
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/020.md">020</a>: Embed reports into workflows (Slack/Jira/Teams) and set alerting.
+                        <a href="/components/actions/020.md">020</a>: Embed Reports in Workflows
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/021.md">021</a>: Track adoption/usage; run A/B revisions; manage changes via staging.
+                        <a href="/components/actions/021.md">021</a>: Track Adoption & Manage Changes
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/022.md">022</a>: Iterate based on feedback and outcome metrics, not just views.
+                        <a href="/components/actions/022.md">022</a>: Iterate Based on Feedback
                         </td>
                     </tr>
                 </table>

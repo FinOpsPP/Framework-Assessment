@@ -10,4 +10,5 @@
 build/
 finopspp.egg-info/
 __pycache__/
-tools/scratch/credentials.json
+tools/scratch/*.json
+tools/scratch/*.xlsx

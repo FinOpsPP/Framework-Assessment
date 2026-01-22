@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: null
-  Version: 0.0.1
+  Modified: '2026-01-12'
+  Version: 0.4.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -10,8 +10,9 @@ Metadata:
     Date: null
 Specification:
   ID: 50
-  Title: null
+  Title: Validate Tagging for Comparability
   Description: Validate tagging/allocation health to ensure comparable data.
+  Slug: 50-validate-tagging
   Implementation Types:
   - null
   Weight: 0.0

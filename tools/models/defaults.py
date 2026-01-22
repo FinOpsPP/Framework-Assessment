@@ -23,6 +23,7 @@ Action = definitions.Action(
         ID=None,
         Title=None,
         Description=None,
+        Slug=None,
         ImplementationTypes=[
             None
         ],

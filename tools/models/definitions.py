@@ -1,11 +1,10 @@
 """Defines the YAML specification models for profiles and components"""
 import datetime
 from enum import Enum
-from typing import Any, Optional, Callable
+from typing import Optional
 
 import semver
-from pydantic import BaseModel, ConfigDict, Field, GetJsonSchemaHandler, field_validator, model_serializer
-from pydantic.json_schema import JsonSchemaValue
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_serializer
 from pydantic_core import core_schema
 
 # For the configuration used here we ignore extra values that
@@ -23,15 +22,12 @@ class Config(BaseModel):
         extra='ignore'
     )
 
-# from https://python-semver.readthedocs.io/en/latest/advanced/combine-pydantic-and-semver.html
+# modified from:
+# https://python-semver.readthedocs.io/en/latest/advanced/combine-pydantic-and-semver.html
 class _Version: # pylint: disable=too-few-public-methods
     @classmethod
-    def __get_pydantic_core_schema__(
-        cls,
-        _source_type: Any,
-        _handler: Callable[[Any], core_schema.CoreSchema],
-    ) -> core_schema.CoreSchema:
-        def validate_from_str(value: str) -> semver.Version:
+    def __get_pydantic_core_schema__(cls, _source_type, _handler):
+        def validate_from_str(value: str):
             return semver.Version.parse(value)
 
         from_str_schema = core_schema.chain_schema(
@@ -53,9 +49,7 @@ class _Version: # pylint: disable=too-few-public-methods
         )
 
     @classmethod
-    def __get_pydantic_json_schema__(
-        cls, _core_schema: core_schema.CoreSchema, handler: GetJsonSchemaHandler
-    ) -> JsonSchemaValue:
+    def __get_pydantic_json_schema__(cls, _core_schema, handler):
         return handler(core_schema.str_schema())
 
 
@@ -116,7 +110,8 @@ class SpecBase(Config):
         max_length=100
     )
     Description: str | None = Field(
-        description='Longer form description of a specification is attempting to address'
+        description='Longer form description of a specification is attempting to address',
+        max_length=1000
     )
 
 
@@ -200,6 +195,10 @@ class ScoringDetail(Config):
 
 class ActionSpec(ActionItem, SpecBase, SpecID, Config):
     """Action specification core model"""
+    Slug: str | None = Field(
+        description='Machine parsable and human readable(ish) super short key label for action',
+        max_length=20
+    )
     ImplementationTypes: list[str | None] = Field(
         description='List of how the specification is implemented',
         alias='Implementation Types'

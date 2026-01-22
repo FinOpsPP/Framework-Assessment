@@ -1,3 +1,8 @@
+# Description
+
+<!-- Tell us about what you are proposing as a change. Feel free to copy from your commit message. -->
+<!-- Note, for all the check boxes below, you can fill them in by replacing the [ ] with [X] or wait until the PR is opened to click on the subsequently rendered checkbox. -->
+
 # Change Metadata
 
 <!-- Feel free to erase the "Resolves" line below if no issue currently exists for your change -->
@@ -12,7 +17,7 @@ This change includes the following change types
 * [ ] Enhancement to documentation(s)
 * [ ] Other
 
-# Checklist
+# Quality Assurance
 
 <!-- Before submitting please affirm the following -->
 

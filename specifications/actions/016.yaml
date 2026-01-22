@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: null
-  Version: 0.0.1
+  Modified: '2026-01-12'
+  Version: 0.4.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -10,9 +10,9 @@ Metadata:
     Date: null
 Specification:
   ID: 16
-  Title: null
-  Description: "Gather persona–specific requirements; define KPIs/OKRs\
-    \ and glossary."
+  Title: Gather Requirements & Define KPIs
+  Description: "Gather persona\u2013specific requirements; define KPIs/OKRs and glossary."
+  Slug: 16-gather-requiremen
   Implementation Types:
   - null
   Weight: 0.0

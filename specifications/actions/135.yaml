@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
   Modified: null
-  Version: 1.0.0
+  Version: 1.2.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -15,6 +15,7 @@ Specification:
   ID: 135
   Title: null
   Description: Define ingestion frequency; include mandatory metadata.
+  Slug: null
   Implementation Types:
   - null
   Weight: 1.0

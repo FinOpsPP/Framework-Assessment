@@ -1,9 +1,16 @@
-"""Migration of info from g-sheets"""
+"""Migration of info from different spreadsheets.
+
+This should not be used as it will change frequently to meet the needs
+of the project of migrating data from every changing spreadsheets to
+the specifications for mass migrations of data.
+"""
+import argparse
 import datetime
 import re
 from importlib.resources import files
 
 import pandas
+import semver
 import gspread
 import yaml
 
@@ -19,8 +26,8 @@ def str_presenter(dumper, data):
 
 yaml.add_representer(str, str_presenter)
 
-def get_data():
-    """Return data used to update sheets"""
+def get_data_gsheet():
+    """Return gsheet data used to update sheets"""
     # Authenticate and create the client
     client = gspread.oauth(
         credentials_filename='credentials.json'
@@ -32,12 +39,25 @@ def get_data():
     )
     mappings = sheet.worksheet('Mapping')
 
-    # Load data and print
+    # Load data and return
     data = mappings.get_all_records()
     return pandas.DataFrame(data)
 
-def process_row(row, specification_files, today):
-    """Process the row and update the data in the yaml files"""
+
+def get_data_local():
+    """Pull in data from a specific file in scratch"""
+    # Configure the spreadsheet location
+    # make sure the file is renamed to updates.xlsx before running
+    scratch_files = files('finopspp.scratch')
+    updates = scratch_files.joinpath('updates.xlsx')
+
+    # Load data and return
+    # make sure to check the index before running local
+    return pandas.read_excel(updates, index_col=[0, 1, 2])
+
+
+def process_row_gsheet(row, specification_files, today):
+    """Process gsheet the row and update the data in the yaml files"""
     # only work on rows that have scoring
     if not row['Scoring']:
         return False
@@ -47,7 +67,7 @@ def process_row(row, specification_files, today):
     specification_file = specification_files.joinpath(f'{serial_number}.yaml')
 
     data = None
-    with open(specification_file, 'r') as file:
+    with open(specification_file, 'r', encoding='utf-8') as file:
         data = yaml.safe_load(file)
 
     # set metadata for updated actions
@@ -65,7 +85,7 @@ def process_row(row, specification_files, today):
 
     # set status
     data['Metadata']['Status'] = 'Adopted'
-    
+
     # Now set the specification data
     # set default weight
     data['Specification']['Weight'] = 1.0
@@ -83,11 +103,13 @@ def process_row(row, specification_files, today):
     # set formula
     if row['Measurement']:
         formula = row['Measurement']
+        # this might change based on how the sheet specified the formula
+        # be careful.
         formula = re.sub(r'\d -', '*', formula)
         data['Specification']['Formula'] = formula
 
-    # finally write backout
-    with open(specification_file, 'w') as yaml_file:
+    # finally write back out
+    with open(specification_file, 'w', encoding='utf-8') as yaml_file:
         yaml.dump(
             data,
             yaml_file,
@@ -99,13 +121,74 @@ def process_row(row, specification_files, today):
     return True
 
 
+def process_row_local(row, specification_files, today):
+    """Process local the row and update the data in the yaml files"""
+    # only work on rows that have an Action Name
+    if not isinstance(row['Action Name'], str):
+        return False
 
-def main():
+    spec_id, spec_name = row['Action Name'].split(':', maxsplit=1)
+    serial_number = '0'*(3-len(spec_id)) + spec_id
+    specification_file = specification_files.joinpath(f'{serial_number}.yaml')
+
+    data = None
+    with open(specification_file, 'r', encoding='utf-8') as file:
+        data = yaml.safe_load(file)
+
+    # set metadata for updated actions
+    # set version
+    spec_version = semver.Version.parse(data['Metadata']['Version'])
+    data['Metadata']['Version'] = str(spec_version.bump_minor())
+
+    # set approval date
+    data['Metadata']['Modified'] = today
+
+    # set new titles
+    data['Specification']['Title'] = spec_name.strip()
+
+    # set new slug
+    data['Specification']['Slug'] = row['Action Slug'].strip()
+
+    # finally write back out
+    with open(specification_file, 'w', encoding='utf-8') as yaml_file:
+        yaml.dump(
+            data,
+            yaml_file,
+            default_flow_style=False,
+            sort_keys=False,
+            indent=2
+        )
+
+    return True
+
+
+def main(local=False):
     """Main function"""
     today = str(datetime.date.today())
     specification_files = files('finopspp.specifications.actions')
-    dataframe = get_data()
+
+    # pull data based on if we are pulling data from gsheet or locally
+    # and configure how that will be processed
+    dataframe = None
+    process_row = None
+    if not local:
+        dataframe = get_data_gsheet()
+        process_row = process_row_gsheet
+    else:
+        dataframe = get_data_local()
+        process_row = process_row_local
+
+    # process data
     for _, row in dataframe.iterrows():
         process_row(row, specification_files, today)
 
-main()
+
+# set args and run main
+parser = argparse.ArgumentParser(description ='Migrate Specification Data')
+parser.add_argument(
+    '--local',
+    action='store_true',
+    help='Using GSheets or a Local Excel doc. Local should be stored in scratch'
+)
+args = parser.parse_args()
+main(local=args.local)
