@@ -272,6 +272,21 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
 
 
 @generate.command()
+def documents():
+    """Generate schema documents markdown files from code"""
+    schemas = {}
+    for definition in [definitions.Action, definitions.Capability, definitions.Domain, definitions.Profile]:
+        schemas[definition.__name__.lower()] = yaml.dump(
+            TypeAdapter(definition).json_schema(mode='serialization'),
+            default_flow_style=False,
+            sort_keys=False,
+            indent=2
+        )
+    markdown.schemas_generate(schemas)
+
+
+
+@generate.command()
 @click.option(
     '--specification-type',
     default='profiles',
