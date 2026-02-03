@@ -1,6 +1,13 @@
 # Component Specifications
 
+This document includes the schemas for all the main specifications used by FinOps++. The schemas
+are all produced via the [Pydantic JSON Schema](https://docs.pydantic.dev/latest/concepts/json_schema/) and follow both the [OpenAPI Specification](https://spec.openapis.org/oas/latest.html). Importantly,
+the outputs are in [YAML format](https://yaml.org/). This choice was made in order to follow the use of YAML in the specifications used by FinOps++. It also
+matches the format that is exported by the `finopspp specifications schemas` command.
+
 ## Action
+
+Base component used by FinOps++. Can be composed into groups of Capabilities
 
 ```yaml
 $defs:
@@ -300,6 +307,8 @@ type: object
 
 ## Capability
 
+Component attempts to create a first-order logical grouping of Actions. Can be composed into groups of Domains
+
 ```yaml
 $defs:
   ActionItem:
@@ -575,6 +584,9 @@ type: object
 ```
 
 ## Domain
+
+Components attempts to create a second-order logical grouping of Actions, by categorizing Capabilities.
+Can be composed into Profiles.
 
 ```yaml
 $defs:
@@ -883,6 +895,10 @@ type: object
 ```
 
 ## Profile
+
+The top-level logical grouping of Actions. While not really a component itself, a Profile defines a
+complete "menu" of Actions grouped by Domains, and then Capabilities. These menus can then be scoped
+down for specific use cases.
 
 ```yaml
 $defs:
