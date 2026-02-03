@@ -7,7 +7,7 @@ matches the format that is exported by the `finopspp specifications schemas` com
 
 ## Action
 
-Base component used by FinOps++. Can be composed into groups of Capabilities
+Base component used by FinOps++. Can be composed into groups of Capabilities. Example: [Action - 000.yaml](./actions/000.yaml)
 
 ```yaml
 $defs:
@@ -307,7 +307,8 @@ type: object
 
 ## Capability
 
-Component attempts to create a first-order logical grouping of Actions. Can be composed into groups of Domains
+Component attempts to create a first-order logical grouping of Actions. Can be composed into groups of Domains.
+Example: [Capability - 000.yaml](./capabilities/000.yaml)
 
 ```yaml
 $defs:
@@ -586,7 +587,7 @@ type: object
 ## Domain
 
 Components attempts to create a second-order logical grouping of Actions, by categorizing Capabilities.
-Can be composed into Profiles.
+Can be composed into Profiles. Example: [Domain - 000.yaml](./domains/000.yaml)
 
 ```yaml
 $defs:
@@ -898,7 +899,7 @@ type: object
 
 The top-level logical grouping of Actions. While not really a component itself, a Profile defines a
 complete "menu" of Actions grouped by Domains, and then Capabilities. These menus can then be scoped
-down for specific use cases.
+down for specific use cases. Example: [Profile - 000.yaml](./profiles/000.yaml)
 
 ```yaml
 $defs:
