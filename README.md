@@ -30,7 +30,7 @@ These subdirectories will be the primary entry point for most people using the F
 
 ### Specifications
 
-At the very beginning of this project, there was a desire to establish a way to define the components that went into an assessment in such a way that ensured that each component was verifiable correct and that the information used for that component was as reusable as possible. To meet this goal, we choose to use [yaml](https://yaml.org/) to create strict specification files that could be used to generate the components of a framework.
+At the very beginning of this project, there was a desire to establish a way to define the components that went into an assessment in such a way that ensured that each component was verifiable correct and that the information used for that component was as reusable as possible. To meet this goal, we choose to use [YAML](https://yaml.org/) to create strict specification files that could be used to generate the components of a framework.
 
 These specifications can be found in the [specifications/](/specifications/) directory, divided into subdirectories that exactly echo those in [components/](/components/). If fact, these specification files are directly used to generate the component files found in the different components subdirectories (as well as the assessments found in [assessments/](/assessments/)). More of the generating process can be read about below in [Generating commands](#generating-commands) below.
 
