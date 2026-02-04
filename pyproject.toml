@@ -11,6 +11,8 @@ requires-python = ">=3.13"
 authors = [{ name = "Victoria Levy" }]
 dependencies = [
     "click == 8.2.1",
+    "click-didyoumean == 0.3.1",
+    "click-help-colors == 0.9.4",
     "pandas == 2.3.2",
     "pyyaml == 6.0.2",
     "xlsxwriter == 3.2.5",

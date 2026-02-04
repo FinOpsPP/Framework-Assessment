@@ -10,6 +10,8 @@ from importlib.metadata import metadata as meta
 import click
 import yaml
 import semver
+from click_didyoumean import DYMGroup
+from click_help_colors import HelpColorsGroup
 from pydantic import TypeAdapter, ValidationError
 
 from finopspp.models import definitions, defaults
@@ -53,10 +55,22 @@ SpecSubspecMap = {
     'actions': '' # empty string just to help with functionality below
 }
 
+class ClickGroup(DYMGroup, HelpColorsGroup):
+    """Class to bring together the different Group extensions"""
 
-@click.group()
+    def __init__(self, name=None, **kwargs):
+        kwargs['help_headers_color'] = 'magenta'
+        kwargs['help_options_color'] = 'green'
+        super().__init__(
+            name=name,
+            **kwargs
+        )
+
+
+@click.group(cls=ClickGroup)
 def cli():
     """FinOps++ administration tool"""
+
 
 @cli.command()
 def version():
@@ -67,7 +81,8 @@ def version():
     click.echo(f'Python Version: {python_version}')
     click.echo(f'System: {platform.system()} ({platform.release()})')
 
-@cli.group()
+
+@cli.group(cls=ClickGroup)
 def generate():
     """Generate files from YAML specifications"""
 
@@ -324,7 +339,7 @@ def components(specification_type):
         markdown.components_generate(specification_type, spec)
 
 
-@cli.group()
+@cli.group(cls=ClickGroup)
 def specifications():
     """Informational command on Specifications"""
 
