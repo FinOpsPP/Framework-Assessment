@@ -10,6 +10,8 @@ from importlib.metadata import metadata as meta
 import click
 import yaml
 import semver
+from rich.console import Console
+from rich.syntax import Syntax
 from click_didyoumean import DYMGroup
 from click_help_colors import HelpColorsGroup
 from pydantic import TypeAdapter, ValidationError
@@ -505,16 +507,22 @@ def show(id_, metadata, specification_type):
         click.secho(f'Specification "{path}" does not exists. Existing', err=True, fg='red')
         sys.exit(1)
 
+    specification_data = None
     with open(path, 'r', encoding='utf-8') as file:
         specification_data = yaml.safe_load(file)
-        click.echo_via_pager(
-            yaml.dump(
-                specification_data[data_type],
-                default_flow_style=False,
-                sort_keys=False,
-                indent=2
-            )
-        )
+
+    console = Console()
+    syntax = Syntax(
+        yaml.dump(
+            specification_data[data_type],
+            default_flow_style=False,
+            sort_keys=False,
+            indent=2
+        ),
+        'yaml'
+    )
+    with console.pager(styles=True):
+        console.print(syntax)
 
 
 @specifications.command()
@@ -544,14 +552,18 @@ def schema(specification_type):
         case 'profiles':
             spec_schema = TypeAdapter(definitions.Profile).json_schema(mode='serialization')
 
-    click.echo_via_pager(
+    console = Console()
+    syntax = Syntax(
         yaml.dump(
             spec_schema,
             default_flow_style=False,
             sort_keys=False,
             indent=2
-        )
+        ),
+        'yaml'
     )
+    with console.pager(styles=True):
+        console.print(syntax)
 
 
 class AllOrIntRangeParamType(click.ParamType):
