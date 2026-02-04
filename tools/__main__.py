@@ -535,8 +535,7 @@ def schema(specification_type):
             default_flow_style=False,
             sort_keys=False,
             indent=2
-        ),
-        color=True
+        )
     )
 
 
