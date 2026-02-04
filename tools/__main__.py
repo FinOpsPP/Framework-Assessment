@@ -472,7 +472,10 @@ def list_specs(show_action_status, status_by, profile):
 )
 @click.argument('id_', metavar='<spec ID>', type=click.IntRange(1, 999))
 def show(id_, metadata, specification_type):
-    """Show information on a given specification by ID by type"""
+    """Show information on a given specification by ID by type
+    
+    Information is shown in a Pager, if one is available
+    """
     data_type = 'Specification'
     if metadata:
         data_type = 'Metadata'
@@ -512,6 +515,8 @@ def schema(specification_type):
     The schema is based on the pydantic version of the JSON and OpenAPI
     Schemas. For more info on this type of schema specification, please view:
     https://docs.pydantic.dev/latest/concepts/json_schema/
+
+    Schemas are shown in a Pager, if one is available.
     """
     spec_schema = None
     match specification_type:
