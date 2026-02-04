@@ -489,7 +489,7 @@ def show(id_, metadata, specification_type):
 
     with open(path, 'r', encoding='utf-8') as file:
         specification_data = yaml.safe_load(file)
-        click.echo(
+        click.echo_via_pager(
             yaml.dump(
                 specification_data[data_type],
                 default_flow_style=False,
@@ -514,7 +514,6 @@ def schema(specification_type):
     https://docs.pydantic.dev/latest/concepts/json_schema/
     """
     spec_schema = None
-    click.echo(f'Schema definition for specification-type={specification_type}:\n')
     match specification_type:
         case 'actions':
             spec_schema = TypeAdapter(definitions.Action).json_schema(mode='serialization')
@@ -525,13 +524,14 @@ def schema(specification_type):
         case 'profiles':
             spec_schema = TypeAdapter(definitions.Profile).json_schema(mode='serialization')
 
-    click.echo(
+    click.echo_via_pager(
         yaml.dump(
             spec_schema,
             default_flow_style=False,
             sort_keys=False,
             indent=2
-        )
+        ),
+        color=True
     )
 
 
