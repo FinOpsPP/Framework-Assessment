@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-01-12'
-  Version: 0.4.0
+  Modified: '2026-02-03'
+  Version: 0.5.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -11,16 +11,30 @@ Metadata:
 Specification:
   ID: 31
   Title: Agree on Pricing Assumptions
-  Description: Agree pricing assumptions (on-demand vs commitments), shared/platform
+  Description: Agree on pricing assumptions (on-demand vs commitments), shared/private
     costs.
   Slug: 31-agree-pricing
   Implementation Types:
   - null
   Weight: 0.0
-  Formula: null
+  Formula: |-
+    * Determine if any RIs, Savings Plans, CUDs, etc. are available for planned resources
+    * Set resource type standards to make the most use of chosen spend commitments
+    * Scenario plan commitment options versus potential changes in resources
+    * Reference commit allocation strategy to calculate cost impact of shared vs private scope commitments
+
+    10*Ceil(x/4)
   Scoring:
   - Score: 0
     Condition: null
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 item completed
+  - Score: 8
+    Condition: 3 items completed
+  - Score: 10
+    Condition: 4 items completed
   References:
   - Name: null
     Link: null
