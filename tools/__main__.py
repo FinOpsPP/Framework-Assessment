@@ -31,6 +31,42 @@ def str_presenter(dumper, data):
 
 yaml.add_representer(str, str_presenter)
 
+def patched_show(self, file = None): # pylint: disable=unused-argument
+    """Patched version of UsageError Show"""
+    # pull these imports in here rather than at the top level to keep this
+    # patch self contained
+    from gettext import gettext as _ # pylint: disable=import-outside-toplevel
+    from click_help_colors import _colorize # pylint: disable=import-outside-toplevel
+
+    hint = ""
+    if (
+        self.ctx is not None
+        and self.ctx.command.get_help_option(self.ctx) is not None
+    ):
+        hint = _('{color_try}').format(
+            color_try=_colorize(
+                f"Try '{self.ctx.command_path} {self.ctx.help_option_names[0]}' for help",
+                'yellow'
+            )
+        )
+        hint = f"{hint}\n"
+
+    if self.ctx is not None:
+        click.echo(
+            f"{_colorize('Usage', 'magenta')}: {self.ctx.get_usage().split(': ', maxsplit=1).pop()}\n{hint}",
+            color=True
+        )
+
+    click.echo(
+        _("{color_error}: {message}").format(
+            color_error=_colorize('Error', 'red'),
+            message=self.format_message()
+        ),
+        color=True,
+    )
+
+click.UsageError.show = patched_show
+
 
 ProfilesMap = {}
 def profiles():
