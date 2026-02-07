@@ -71,3 +71,26 @@ def components_generate(specification_type, spec):
         outfile.write(output)
 
     click.secho(f'Attempt to generate "{out_path}" succeeded', fg='green')
+
+
+def schemas_generate(schemas):
+    """Generate Document markdown files"""
+    # pull in template and specification files for given specification type
+    env = Environment(loader=Templates)
+    template = env.get_template('schemas.md.j2')
+
+    output = template.render(schemas=schemas)
+
+    out_path = os.path.join(
+        os.getcwd(),
+        'specifications',
+        'schemas.md'
+    )
+    click.echo(
+        f'Attempting to generate schemas document "{out_path}":'
+    )
+
+    with open(out_path, 'w', encoding='utf-8') as outfile:
+        outfile.write(output)
+
+    click.secho(f'Attempt to generate "{out_path}" succeeded', fg='green')
