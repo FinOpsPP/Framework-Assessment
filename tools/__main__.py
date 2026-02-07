@@ -12,6 +12,7 @@ import yaml
 import semver
 from rich.console import Console
 from rich.syntax import Syntax
+from rich.progress import track
 from click_didyoumean import DYMGroup
 from click_help_colors import HelpColorsGroup
 from pydantic import TypeAdapter, ValidationError
@@ -196,7 +197,7 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
         click.secho('Profile includes no domains. Exiting', err=True, fg='red')
         sys.exit(1)
 
-    for domain in profile_spec.get('Domains'):
+    for domain in track(profile_spec.get('Domains'), 'Loading profile'):
         capabilities = []
 
         spec = sub_specification_helper(domain, domain_files)
@@ -335,6 +336,7 @@ def documents():
             sort_keys=False,
             indent=2
         )
+
     markdown.schemas_generate(schemas)
 
 
