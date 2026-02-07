@@ -19,22 +19,25 @@ Specification:
   Weight: 0.0
   Formula: |-
     * Determine if any RIs, Savings Plans, CUDs, etc. are available for planned resources
+    * Consider any private negotiated line item discounts vs public RI/CUD discounts
     * Set resource type standards to make the most use of chosen spend commitments
     * Scenario plan commitment options versus potential changes in resources
-    * Reference commit allocation strategy to calculate cost impact of shared vs private scope commitments
-
-    10*Ceil(x/4)
+    * Reference commit allocation strategy to calculate cost impact of shared scope vs private account commitments
+    
+    10*Ceil(x/5)
   Scoring:
   - Score: 0
     Condition: null
-  - Score: 3
+  - Score: 2
     Condition: 1 item completed
-  - Score: 5
+  - Score: 4
     Condition: 2 item completed
-  - Score: 8
+  - Score: 6
     Condition: 3 items completed
-  - Score: 10
+  - Score: 8
     Condition: 4 items completed
+  - Score: 10
+    Condition: 5 items completed
   References:
   - Name: null
     Link: null
