@@ -10,6 +10,11 @@ from importlib.metadata import metadata as meta
 import click
 import yaml
 import semver
+from rich.console import Console
+from rich.syntax import Syntax
+from rich.progress import track
+from click_didyoumean import DYMGroup
+from click_help_colors import HelpColorsGroup
 from pydantic import TypeAdapter, ValidationError
 
 from finopspp.models import definitions, defaults
@@ -26,6 +31,42 @@ def str_presenter(dumper, data):
     return dumper.represent_scalar('tag:yaml.org,2002:str', data)
 
 yaml.add_representer(str, str_presenter)
+
+def patched_show(self, file = None): # pylint: disable=unused-argument
+    """Patched version of UsageError Show"""
+    # pull these imports in here rather than at the top level to keep this
+    # patch self contained
+    from gettext import gettext as _ # pylint: disable=import-outside-toplevel
+    from click_help_colors import _colorize # pylint: disable=import-outside-toplevel
+
+    hint = ""
+    if (
+        self.ctx is not None
+        and self.ctx.command.get_help_option(self.ctx) is not None
+    ):
+        hint = _('{color_try}').format(
+            color_try=_colorize(
+                f"Try '{self.ctx.command_path} {self.ctx.help_option_names[0]}' for help",
+                'yellow'
+            )
+        )
+        hint = f"{hint}\n"
+
+    if self.ctx is not None:
+        click.echo(
+            f"{_colorize('Usage', 'magenta')}: {self.ctx.get_usage().split(': ', maxsplit=1).pop()}\n{hint}",
+            color=True
+        )
+
+    click.echo(
+        _("{color_error}: {message}").format(
+            color_error=_colorize('Error', 'red'),
+            message=self.format_message()
+        ),
+        color=True,
+    )
+
+click.UsageError.show = patched_show
 
 
 ProfilesMap = {}
@@ -53,10 +94,22 @@ SpecSubspecMap = {
     'actions': '' # empty string just to help with functionality below
 }
 
+class ClickGroup(DYMGroup, HelpColorsGroup):
+    """Class to bring together the different Group extensions"""
 
-@click.group()
+    def __init__(self, name=None, **kwargs):
+        kwargs['help_headers_color'] = 'magenta'
+        kwargs['help_options_color'] = 'green'
+        super().__init__(
+            name=name,
+            **kwargs
+        )
+
+
+@click.group(cls=ClickGroup)
 def cli():
     """FinOps++ administration tool"""
+
 
 @cli.command()
 def version():
@@ -67,7 +120,8 @@ def version():
     click.echo(f'Python Version: {python_version}')
     click.echo(f'System: {platform.system()} ({platform.release()})')
 
-@cli.group()
+
+@cli.group(cls=ClickGroup)
 def generate():
     """Generate files from YAML specifications"""
 
@@ -143,7 +197,7 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
         click.secho('Profile includes no domains. Exiting', err=True, fg='red')
         sys.exit(1)
 
-    for domain in profile_spec.get('Domains'):
+    for domain in track(profile_spec.get('Domains'), 'Loading profile'):
         capabilities = []
 
         spec = sub_specification_helper(domain, domain_files)
@@ -272,6 +326,22 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
 
 
 @generate.command()
+def documents():
+    """Generate schema documents markdown files from code"""
+    schemas = {}
+    for definition in [definitions.Action, definitions.Capability, definitions.Domain, definitions.Profile]:
+        schemas[definition.__name__.lower()] = yaml.dump(
+            TypeAdapter(definition).json_schema(mode='serialization'),
+            default_flow_style=False,
+            sort_keys=False,
+            indent=2
+        )
+
+    markdown.schemas_generate(schemas)
+
+
+
+@generate.command()
 @click.option(
     '--specification-type',
     default='profiles',
@@ -309,7 +379,7 @@ def components(specification_type):
         markdown.components_generate(specification_type, spec)
 
 
-@cli.group()
+@cli.group(cls=ClickGroup)
 def specifications():
     """Informational command on Specifications"""
 
@@ -457,7 +527,10 @@ def list_specs(show_action_status, status_by, profile):
 )
 @click.argument('id_', metavar='<spec ID>', type=click.IntRange(1, 999))
 def show(id_, metadata, specification_type):
-    """Show information on a given specification by ID by type"""
+    """Show information on a given specification by ID by type
+    
+    Information is shown in a Pager, if one is available
+    """
     data_type = 'Specification'
     if metadata:
         data_type = 'Metadata'
@@ -472,16 +545,22 @@ def show(id_, metadata, specification_type):
         click.secho(f'Specification "{path}" does not exists. Existing', err=True, fg='red')
         sys.exit(1)
 
+    specification_data = None
     with open(path, 'r', encoding='utf-8') as file:
         specification_data = yaml.safe_load(file)
-        click.echo(
-            yaml.dump(
-                specification_data[data_type],
-                default_flow_style=False,
-                sort_keys=False,
-                indent=2
-            )
-        )
+
+    console = Console()
+    syntax = Syntax(
+        yaml.dump(
+            specification_data[data_type],
+            default_flow_style=False,
+            sort_keys=False,
+            indent=2
+        ),
+        'yaml'
+    )
+    with console.pager(styles=True):
+        console.print(syntax)
 
 
 @specifications.command()
@@ -497,9 +576,10 @@ def schema(specification_type):
     The schema is based on the pydantic version of the JSON and OpenAPI
     Schemas. For more info on this type of schema specification, please view:
     https://docs.pydantic.dev/latest/concepts/json_schema/
+
+    Schemas are shown in a Pager, if one is available.
     """
     spec_schema = None
-    click.echo(f'Schema definition for specification-type={specification_type}:\n')
     match specification_type:
         case 'actions':
             spec_schema = TypeAdapter(definitions.Action).json_schema(mode='serialization')
@@ -510,14 +590,18 @@ def schema(specification_type):
         case 'profiles':
             spec_schema = TypeAdapter(definitions.Profile).json_schema(mode='serialization')
 
-    click.echo(
+    console = Console()
+    syntax = Syntax(
         yaml.dump(
             spec_schema,
             default_flow_style=False,
             sort_keys=False,
             indent=2
-        )
+        ),
+        'yaml'
     )
+    with console.pager(styles=True):
+        console.print(syntax)
 
 
 class AllOrIntRangeParamType(click.ParamType):
