@@ -15,10 +15,13 @@ Your GitHub issue (regardless of type) will be reviewed, and discussed as a comm
 
 Change for the Framework-Assessment project largely into two categories Specifications changes and Tools changes. While a contribution to the project can be make up from both types of changes, we do find this breakdown useful for providing guidance on *how* to contribute. Before getting started on a change, first make sure that an issue exists in the current milestone for your desired change. To help the maintainers with organization, we will unfortunately not merge a proposed contribution that does not resolve a milestone issue.
 
+> [!NOTE]
+> For those new tO GitHub, please follow [Getting up & running with GitHub](/guidelines/development.md#getting-up--running-with-github).
+
 Once all your changes are ready, you can submit a PR request using the provided PR template in the repository. We don't require your PRs to be a single commit, but do please try to keep the commits down to a minimum need to complete an issue. Your PR will be reviewed, discussed, and if approved merged in. Again cheers! You are now a contributor.
 
 > [!NOTE]
-> For those new tO GitHub, please follow [Getting up & running with GitHub](/guidelines/development.md#getting-up--running-with-github).
+> If you would like to open up a PR before it is ready, you may do this. But make sure to open it in [draft mode](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/changing-the-stage-of-a-pull-request). A PR will not be reviewed until it is ready.
 
 ### Submitting specification changes
 
