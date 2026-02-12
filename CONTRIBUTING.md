@@ -15,8 +15,8 @@ Your GitHub issue (regardless of type) will be reviewed, and discussed as a comm
 
 Change for the Framework-Assessment project largely into two categories Specifications changes and Tools changes. While a contribution to the project can be make up from both types of changes, we do find this breakdown useful for providing guidance on *how* to contribute. Before getting started on a change, first make sure that an issue exists in the current milestone for your desired change. To help the maintainers with organization, we will unfortunately not merge a proposed contribution that does not resolve a milestone issue.
 
-> [!NOTE]
-> For those new tO GitHub, please follow [Getting up & running with GitHub](/guidelines/development.md#getting-up--running-with-github).
+> [!TIP]
+> For those new to GitHub, please read [Getting up & running with GitHub](/guidelines/development.md#getting-up--running-with-github) for some help setting up an account and setting up [Git](https://git-scm.com/).
 
 Once all your changes are ready, you can submit a PR request using the provided PR template in the repository. We don't require your PRs to be a single commit, but do please try to keep the commits down to a minimum need to complete an issue. Your PR will be reviewed, discussed, and if approved merged in. Again cheers! You are now a contributor.
 
@@ -41,7 +41,7 @@ Once you have updated your specification(s), this is the minimum we require for 
 > [!IMPORTANT]
 > Make sure to follow the [Developing the finopspp CLI tool](/guidelines/development.md#developing-the-finopspp-cli-tool)
 
-> [!CRITICAL]
-> Please make sure your tools changes are tested locally before submitting a PR
+> [!CAUTION]
+> Please make sure your tools changes are tested locally before submitting a PR. Changes submitted for approval that appear to have not been tested will be closed!
 
 There are some times, when you might also want to suggest an update to the whole structure of the Components. We allow these, but to achieve them, you will need to update the structure of these files by updating their [jinja2 templates](https://jinja.palletsprojects.com/en/stable/) that can be found under [tools/templates](/tools/templates/). Once the structure updates are completed, we will require you to run the [generate](README.md#generating-commands) commands to test locally that the structural changes have been represented in any relevant files.
