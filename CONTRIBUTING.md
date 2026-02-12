@@ -40,6 +40,7 @@ Once you have updated your specification(s), this is the minimum we require for 
 
 > [!IMPORTANT]
 > Make sure to follow the [Developing the finopspp CLI tool](/guidelines/development.md#developing-the-finopspp-cli-tool)
+
 > [!CRITICAL]
 > Please make sure your tools changes are tested locally before submitting a PR
 
