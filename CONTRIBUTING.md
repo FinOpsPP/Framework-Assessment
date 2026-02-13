@@ -39,9 +39,9 @@ Once you have updated your specification(s), this is the minimum we require for 
 ### Submitting tools changes
 
 > [!IMPORTANT]
-> Make sure to follow the [Developing the finopspp CLI tool](/guidelines/development.md#developing-the-finopspp-cli-tool)
-
-> [!CAUTION]
-> Please make sure your tools changes are tested locally before submitting a PR. Changes submitted for approval that appear to have not been tested will be closed!
+> Please! Before attempting to update any code in cools, make sure to read and follow the [Developing the finopspp CLI tool](/guidelines/development.md#developing-the-finopspp-cli-tool).
 
 There are some times, when you might also want to suggest an update to the whole structure of the Components. We allow these, but to achieve them, you will need to update the structure of these files by updating their [jinja2 templates](https://jinja.palletsprojects.com/en/stable/) that can be found under [tools/templates](/tools/templates/). Once the structure updates are completed, we will require you to run the [generate](README.md#generating-commands) commands to test locally that the structural changes have been represented in any relevant files.
+
+> [!CAUTION]
+> Please make sure your tools changes are tested locally before submitting a PR. Changes submitted for approval that appear to have not been tested will be closed!!!
