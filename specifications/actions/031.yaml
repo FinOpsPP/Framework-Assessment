@@ -16,7 +16,7 @@ Specification:
   Slug: 31-agree-pricing
   Implementation Types:
   - null
-  Weight: 0.0
+  Weight: 1.0
   Formula: |-
     * Inventory possible RIs, Savings Plans, CUDs, etc. available for deployed resources
     * Consider any private negotiated line item discounts vs public RI/CUD discounts
