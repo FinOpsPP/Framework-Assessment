@@ -18,7 +18,7 @@ Change for the Framework-Assessment project largely into two categories Specific
 > [!TIP]
 > For those new to GitHub, please read [Getting up & running with GitHub](/guidelines/development.md#getting-up--running-with-github) for some help setting up an account and setting up [Git](https://git-scm.com/).
 
-Once all your changes are ready, you can submit a PR request using the provided PR template in the repository. We don't require your PRs to be a single commit, but do please try to keep the commits down to a minimum need to complete an issue. Your PR will be reviewed, discussed, and if approved merged in. Again cheers! You are now a contributor.
+Once all your changes are ready, you can submit a PR request using the provided PR template in the repository. We don't require your PRs to be a single commit, but do please try to keep the commits down to a minimum need to complete an issue. Your PR will be reviewed, discussed, and if approved, merged in. Again cheers! You are now a contributor.
 
 > [!NOTE]
 > If you would like to open up a PR before it is ready, you may do this. But make sure to open it in [draft mode](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/changing-the-stage-of-a-pull-request). A PR will not be reviewed until it is ready.
@@ -38,10 +38,11 @@ Once you have updated your specification(s), this is the minimum we require for 
 
 ### Submitting tools changes
 
-> [!IMPORTANT]
-> Please! Before attempting to update any code in cools, make sure to read and follow the [Developing the finopspp CLI tool](/guidelines/development.md#developing-the-finopspp-cli-tool).
+Please! Before attempting to update any code in cools, be sure to first read over and follow the [Developing the finopspp CLI tool](/guidelines/development.md#developing-the-finopspp-cli-tool) and [Python Style Guide](/guidelines/style.md#python). New/tweaked features and bug fixes for the CLI commands are what we generally expect to make of the bulk of tools changes. And they will generally follow the standard procedures for PR reviews.
 
-There are some times, when you might also want to suggest an update to the whole structure of the Components. We allow these, but to achieve them, you will need to update the structure of these files by updating their [jinja2 templates](https://jinja.palletsprojects.com/en/stable/) that can be found under [tools/templates](/tools/templates/). Once the structure updates are completed, we will require you to run the [generate](README.md#generating-commands) commands to test locally that the structural changes have been represented in any relevant files.
+There are some times though, when you might also want to suggest an update to the whole composition of the Components or the Assessment excel files themselves. We allow these, but to achieve them, you will need to update the structure of these files by updating their [Jinja templates](/guidelines/development.md#jinja2-templates) or the [excel composer](/guidelines/development.md#composers) files respectively.
+
+These wholesale, major changes will require a bit more deliberation than your run-of-the-mill PR, where you might be requested to come to one the bi-weekly FinOps++ working group sessions in order to explain your proposal in-depth. But, we hope, this will not deter you from attempting this types of development if you feel that it will resolve nicely some accepted milestone issue against the project. Of course, we cannot guarantee that your pull request will be merged in this situation, but if the discussion over the PR is constructive, we will still consider you a contributor in our book. Which we will make note of in the changelogs for releases.
 
 > [!CAUTION]
 > Please make sure your tools changes are tested locally before submitting a PR. Changes submitted for approval that appear to have not been tested will be closed!!!
