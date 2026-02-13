@@ -23,6 +23,7 @@ Specification:
     * Set resource type standards to make the most use of chosen spend commitments
     * Scenario plan commitment options versus potential changes in resources
     * Reference commit allocation strategy to calculate cost impact of shared scope vs private account commitments
+
     10*Ceil(x/5)
   Scoring:
   - Score: 0
