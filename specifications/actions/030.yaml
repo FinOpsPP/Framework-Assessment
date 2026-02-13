@@ -15,7 +15,7 @@ Specification:
   Slug: 30-define-estimating
   Implementation Types:
   - null
-  Weight: 0.0
+  Weight: 1.0
   Formula: |-
     * Defined scope of each project to be estimated
     * Developed list of known inputs to the project
