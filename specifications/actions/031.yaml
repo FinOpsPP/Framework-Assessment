@@ -20,7 +20,8 @@ Specification:
   Formula: |-
     * Inventory possible RIs, Savings Plans, CUDs, etc. available for deployed resources
     * Consider any private negotiated line item discounts vs public RI/CUD discounts
-    * Set resource type standards to make the most use of chosen spend commitments while still maintaining needs of the business
+    * Set resource type standards to make the most use of chosen spend commitments 
+    while still maintaining needs of the business
     * Scenario plan commitment options versus potential changes in resources
     * Reference commit allocation strategy to calculate cost impact of shared scope vs private account commitments
 
