@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: null
   Modified: '2026-01-12'
-  Version: 0.4.0
+  Version: 0.4.1
   Status: Proposed
   Approvers:
   - Name: null
@@ -12,7 +12,7 @@ Specification:
   ID: 64
   Title: Implement Iteratively & Measure Results
   Description: Implement iteratively; test, measure, and capture before/after results.
-  Slug: 64-implement-iterati
+  Slug: 64-iteratively-measure
   Implementation Types:
   - null
   Weight: 0.0

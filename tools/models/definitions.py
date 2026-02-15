@@ -197,7 +197,7 @@ class ActionSpec(ActionItem, SpecBase, SpecID, Config):
     """Action specification core model"""
     Slug: str | None = Field(
         description='Machine parsable and human readable(ish) super short key label for action',
-        max_length=20
+        max_length=25
     )
     ImplementationTypes: list[str | None] = Field(
         description='List of how the specification is implemented',

@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
   Modified: '2026-01-12'
-  Version: 1.4.0
+  Version: 1.4.1
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -14,8 +14,8 @@ Metadata:
 Specification:
   ID: 105
   Title: Monitor Compliance & Report Breaches
-  Description: Monitor compliance; report breaches with remediation paths.
-  Slug: 105-monitor-complian
+  Description: Monitor compliance and report breaches, along with remediation paths.
+  Slug: 105-compliance-report
   Implementation Types:
   - null
   Weight: 1.0
