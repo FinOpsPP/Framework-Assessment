@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
   Modified: '2026-01-12'
-  Version: 1.4.0
+  Version: 1.4.1
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -15,7 +15,7 @@ Specification:
   ID: 76
   Title: Validate Utilization & Remediate
   Description: Validate utilization/compliance; remediate idle/over-provisioned licenses.
-  Slug: 76-validate-utilizat
+  Slug: 76-validate-utilization
   Implementation Types:
   - null
   Weight: 1.0

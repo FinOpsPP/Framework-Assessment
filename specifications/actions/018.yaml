@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
   Modified: '2026-01-12'
-  Version: 1.4.0
+  Version: 1.4.1
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -22,7 +22,7 @@ Specification:
   Formula: |-
     * Dashboard for showback
     * Dashboard where teams can dive in to investigate costs
-    * Ad-hoc dashboards avaialble to teams
+    * Ad-hoc dashboards available to teams
     * Dashboards for key metrics tracking (tagging, waste, etc.)
 
     10*Ceil(x/4)

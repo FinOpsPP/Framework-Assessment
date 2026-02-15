@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
   Modified: '2026-01-12'
-  Version: 1.4.0
+  Version: 1.4.1
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -15,7 +15,7 @@ Specification:
   ID: 34
   Title: Establish Scenario Decision Process
   Description: Establish decision process for which scenarios feed the forecast.
-  Slug: 34-establish-scenari
+  Slug: 34-scenario-process
   Implementation Types:
   - null
   Weight: 1.0
