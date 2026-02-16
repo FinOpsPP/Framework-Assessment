@@ -11,35 +11,44 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.13"]
+        node-version: ["24"]
     steps:
     - uses: actions/checkout@v4
+    - name: Set up Node ${{ matrix.node-version }}
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ matrix.node-version }}
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install lint and testing dependencies
       run: |
+        npm install -g cspell-cli@9.6.0
         python -m pip install --upgrade pip
         python -m pip install -e ".[validation]"
-    - name: Analyzing tools with pylint
+    - name: Analyzing & lint project spelling with cspell
+      run: |
+        cspell-cli lint .
+    - name: Analyzing & lint tools directory with pylint
       run: |
         pylint tools
-    - name: Analyzing specifications with yamllint
+    - name: Analyzing & lint specifications directory with yamllint
       run: |
         yamllint specifications
-    - name: Analyzing assessment & components with pymarkdownlnt
+    - name: Analyzing & lint assessments and components directories with pymarkdownlnt
       run: |
-        pymarkdownlnt scan -r components assessments
-    - name: Validate all profile specification with finopspp tools
+        pymarkdownlnt scan -r assessments components
+    - name: Validate all profile specifications with finopspp tool
       run: |
         finopspp specifications validate --specification-type="profiles" all
-    - name: Validate all domain specification with finopspp tools
+    - name: Validate all domain specifications with finopspp tool
       run: |
         finopspp specifications validate --specification-type="domains" all
-    - name: Validate all capability specification with finopspp tools
+    - name: Validate all capability specifications with finopspp tool
       run: |
         finopspp specifications validate --specification-type="capabilities" all
-    - name: Validate all action specification with finopspp tools
+    - name: Validate all action specifications with finopspp tool
       run: |
         finopspp specifications validate --specification-type="actions" all
 
