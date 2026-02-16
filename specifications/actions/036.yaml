@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-01-12'
-  Version: 0.4.0
+  Modified: '2026-02-16'
+  Version: 0.5.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -15,11 +15,25 @@ Specification:
   Slug: 36-coach-engineering
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
+  Weight: 1.0
+  Formula: |-
+    * Refer teams to Documented Estimating Scope & Policy and include these methods in trainings
+    * Teams track baseline spend for resources they own, and share changes to baseline with leadership
+    * Teams will share updates about their change in usage of shared resources and dependencies
+    * Track team adoption of better estimates via KPIs around baseline or plan vs actuals
+
+    10*Ceil(x/4)
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: 0 items completed
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 item completed
+  - Score: 8
+    Condition: 3 items completed
+  - Score: 10
+    Condition: 4 items completed
   References:
   - Name: null
     Link: null
