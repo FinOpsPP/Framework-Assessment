@@ -16,7 +16,7 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula:  |-
+  Formula: |-
     * Calculate kg of carbon dioxide equivalents (kgCO2e), or similar, for new and ongoing workloads
     * Compare carbon calculations with targets for new projects and overall consumption
 
