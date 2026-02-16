@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-01-12'
-  Version: 0.4.0
+  Modified: '2026-02-16'
+  Version: 0.5.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -15,14 +15,22 @@ Specification:
   Slug: 33-include-sustainab
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
+  Weight: 1.0
+  Formula:  |-
+    * Calculate kg of carbon dioxide equivalents (kgCO2e), or similar, for new and ongoing workloads
+    * Compare carbon calculations with targets for new projects and overall consumption
+
+    10*Ceil(x/5)
   Scoring:
   - Score: 0
     Condition: null
+  - Score: 5
+    Condition: 1 item completed
+  - Score: 10
+    Condition: 2 items completed
   References:
-  - Name: null
-    Link: null
+  - Name: FinOps Sustainability Metrics
+    Link: https://www.finops.org/wg/sustainability/#:~:text=Units%20%26%20Measures
     Comment: null
   Notes:
   - null
