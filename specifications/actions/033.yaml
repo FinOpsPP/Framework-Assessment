@@ -20,7 +20,7 @@ Specification:
     * Calculate kg of carbon dioxide equivalents (kgCO2e), or similar, for new and ongoing workloads
     * Compare carbon calculations with targets for new projects and overall consumption
 
-    10*Ceil(x/5)
+    10*Ceil(x/2)
   Scoring:
   - Score: 0
     Condition: null
