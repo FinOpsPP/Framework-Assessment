@@ -6,7 +6,6 @@ ignorePaths:
   - "finopspp.egg-info/**"
   - "tools/scratch/**"
   - "pyproject.toml"
-  - "cspell.config.yaml"
 words:
   - "finopspp"
   - "quigley"

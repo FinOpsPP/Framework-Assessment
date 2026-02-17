@@ -13,6 +13,13 @@ There are built-in configuration files for these in the top-level directory of t
 > [!CAUTION]
 > There is an older and unaffiliated (and unmaintained) package called `pymarkdown`. For security reasons, make sure to not download this version by installing specifically `pymarkdownlnt` if you choose to install the dependencies separately into your environment.
 
+### CSpell (optional)
+
+One other Linter that we run against your code on pull-requests is [cspell](https://cspell.org/). This is actually a [Node.js](https://nodejs.org/en) based CLI tool that provides a basic means to spell check the project. As configured in [.cspell.config.yaml](../.cspell.config.yaml), this is used as a glorified typo finder. So, between this and the fact that CSpell doesn't use Python, we won't require users to download an run this. But any failures found during the analysis of the pull request will need to be fixed.
+
+> [!TIP]
+> For those that do want to go above and beyond, feel free to follow along with the [CSpell Installation](https://cspell.org/docs/installation) instructions from cspell to get the tool up-and-running.
+
 ## YAML
 
 This project makes use of the [YAML specification v1.2.2](https://yaml.org/spec/1.2.2/) for all files with the `.yaml` extension. That largely includes the `action`, `capability`, `domain`, and `profile` component specifications that are used generate other core pieces of FinOps++ such as the Markdown components.
