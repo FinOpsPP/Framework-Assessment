@@ -23,7 +23,7 @@ Specification:
     10*Ceil(x/2)
   Scoring:
   - Score: 0
-    Condition: 0 items completed
+    Condition: No items completed
   - Score: 5
     Condition: 1 item completed
   - Score: 10
