@@ -25,11 +25,11 @@ Specification:
     10*Ceil(x/4)
   Scoring:
   - Score: 0
-    Condition: 0 items completed
+    Condition: No items completed
   - Score: 3
     Condition: 1 item completed
   - Score: 5
-    Condition: 2 item completed
+    Condition: 2 items completed
   - Score: 8
     Condition: 3 items completed
   - Score: 10
