@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-01-12'
-  Version: 0.4.0
+  Modified: '2026-02-17'
+  Version: 0.5.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -15,11 +15,22 @@ Specification:
   Slug: 115-establish-baseli
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
+  Weight: 1.0
+  Formula: |-
+    * Complete an initial assessment for different scopes of the business to establish a baseline
+    * Plot scores over time to track maturity progress for priority scopes
+    * Complete analysis on what contributed to or hindered progress across scopes or different areas of the assessment
+
+    10*Ceil(x/3)
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No items completed
+  - Score: 4
+    Condition: 1 item completed
+  - Score: 7
+    Condition: 2 items completed
+  - Score: 10
+    Condition: 3 items completed
   References:
   - Name: null
     Link: null
