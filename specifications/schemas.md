@@ -86,7 +86,7 @@ $defs:
         title: Overrides
       Slug:
         anyOf:
-        - maxLength: 20
+        - maxLength: 25
           type: string
         - type: 'null'
         description: Machine parsable and human readable(ish) super short key label

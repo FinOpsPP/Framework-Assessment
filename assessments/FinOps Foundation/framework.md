@@ -622,7 +622,7 @@ Classic profile featuring controls provided by the finops foundation
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/040.md">040</a>: Compare Forecast vs Actuals
+                        <a href="/components/actions/040.md">040</a>: Compare Forecast to Actual
                         </td>
                     </tr>
                     <tr>
