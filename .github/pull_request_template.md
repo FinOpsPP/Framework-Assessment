@@ -22,5 +22,5 @@ This change includes the following change types
 <!-- Before submitting please affirm the following -->
 
 * [ ] I have checked to ensure there are no other open PRs for the same change.
-* [ ] I have read and am following to the best of my abilities what is in [CONTRIBUTING.md](../CONTRIBUTING.md)
-* [ ] I have read and am following to the best of my abilities the relevant [design](../guidelines/assessment_design.md), [development](../guidelines/development.md), and [style](../guidelines/style.md) guidelines
+* [ ] I have read and am following to the best of my abilities what is in [CONTRIBUTING.md](https://github.com/FinOpsPP/Framework-Assessment/blob/main/CONTRIBUTING.md)
+* [ ] I have read and am following to the best of my abilities the relevant [design](https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/assessment_design.md), [development](https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/development.md), and [style](https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/style.md) guidelines
