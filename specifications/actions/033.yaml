@@ -12,7 +12,7 @@ Specification:
   ID: 33
   Title: Include Sustainability Impacts
   Description: Include sustainability/operational impacts when relevant.
-  Slug: 33-include-sustainab
+  Slug: 33-sustainability-impact
   Implementation Types:
   - null
   Weight: 1.0

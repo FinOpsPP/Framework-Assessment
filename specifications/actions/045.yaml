@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: null
   Modified: '2026-01-12'
-  Version: 0.4.0
+  Version: 0.4.1
   Status: Proposed
   Approvers:
   - Name: null
@@ -12,7 +12,7 @@ Specification:
   ID: 45
   Title: Increase Shared Cost Coverage
   Description: Increase allocation coverage of shared costs; automate where possible.
-  Slug: 45-increase-allocati
+  Slug: 45-allocation-coverage
   Implementation Types:
   - null
   Weight: 0.0

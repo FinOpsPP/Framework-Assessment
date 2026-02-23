@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
   Modified: '2026-01-12'
-  Version: 1.4.0
+  Version: 1.4.1
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -15,7 +15,7 @@ Specification:
   ID: 109
   Title: Design Chargeback with Finance
   Description: Co-design chargeback/showback with Finance; document rules and cadence.
-  Slug: 109-design-chargebac
+  Slug: 109-design-chargeback
   Implementation Types:
   - null
   Weight: 1.0
@@ -24,7 +24,7 @@ Specification:
   - Score: 0
     Condition: Not done
   - Score: 10
-    Condition: Done and clealy defined
+    Condition: Done and clearly defined
   References:
   - Name: null
     Link: null

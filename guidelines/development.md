@@ -24,3 +24,16 @@ If you use VSCode, or would like to, you can follow the tutorial from <https://c
 > The parts related to installing python and activating an existing venv should also work with pretty much any other IDE or text editor. So you are under no obligation to us VSCode if you have another coding tool like Vim, Emacs, PyCharm, Cursor, etc.
 
 It is also recommended to read through <https://realpython.com/python-pyproject-toml/> to get an overview of `pyproject.toml` based python projects. And to get a feel for the setup of this project in [pyproject.toml](/pyproject.toml) used for `finopspp`.
+
+### Jinja2 Templates
+
+The markdown files [generated](README.md#generating-commands) by the `finopspp` tool structured off of specialized [Jinja2 templates](https://jinja.palletsprojects.com/en/stable/) that can be found under [tools/templates](/tools/templates/). It is suggested that whatever text editor you use for development include support for the `.j2` extension and jinja template syntax in general.
+
+### Composers
+
+There are several composers used to aid in creating the different content provided by the Framework-Assessment project. It is quite possible, it could be argued, that of those, the most import is the one used to create the excel files used for the assessments. These live under [tools/composers/excel](/tools/composers/excel.py) and make use of the python version of `xlsxwriter`.
+
+To fully develop for this, you will need to either have a properly licensed [Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel) installed, or be on a Linux or Unix-like system that packages the free & opened sourced [LibreOffice Calc](https://en.wikipedia.org/wiki/LibreOffice_Calc). In this latter situation, you specifically will need to make sure that the `libreoffice` and `make` commands are installed. If they are, you can use the provided [Makefile target](/Makefile) `make ods` to convert existing excel files in the project to a natively supported LibreOffice format.
+
+> [!NOTE]
+> You can directly open a `.xlsx` file in LibreOffice Calc, but some elements might be broken. It is strongly encouraged that you covert before using.
