@@ -7,7 +7,7 @@ ignorePaths:
   - "tools/scratch/**"
   - "pyproject.toml"
 words:
-  - "actions"
+  - "actuals"
   - "finopspp"
   - "quigley"
   - "prasshant"
