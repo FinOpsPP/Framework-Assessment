@@ -84,7 +84,7 @@ def schemas_generate(schemas):
     out_path = os.path.join(
         os.getcwd(),
         'specifications',
-        'schemas.md'
+        'README.md'
     )
     click.echo(
         f'Attempting to generate schemas document "{out_path}":'

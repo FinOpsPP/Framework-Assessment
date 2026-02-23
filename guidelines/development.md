@@ -14,7 +14,7 @@ GitHub Flow largely revolves around [creating feature branches](https://docs.git
 
 ## Developing the finopspp CLI tool
 
-The CLI tools is a Python based tool that works for `Python >= 3.13`, it is recommended that you start off by creating a virtual environment (venv) as is discussed in <https://docs.python.org/3/library/venv.html>.
+The `finopspp` [CLI tool](/tools/README.md) is a Python based tool that works for `Python >= 3.13`, it is recommended that you start off by creating a virtual environment (venv) as is discussed in <https://docs.python.org/3/library/venv.html>.
 
 Once your venv is setup, [activate it](https://docs.python.org/3/library/venv.html#how-venvs-work) and run `python -m pip install -e .` from the same directory as this README. This command will pull in all required dependencies into the venv and then installs the script for you to use in your venv. It will also do this in what is called "[editable](https://pip.pypa.io/en/stable/cli/pip_install/#cmdoption-e)" mode. Which will allow you to change packages and files (including yaml specifications) used by `finopspp`, and to directly see those changes reflected in the invocation of the tool. Be careful when doing this, so as not to break the core functionality needed to generate the assessment.
 
@@ -27,7 +27,7 @@ It is also recommended to read through <https://realpython.com/python-pyproject-
 
 ### Jinja2 Templates
 
-The markdown files [generated](README.md#generating-commands) by the `finopspp` tool structured off of specialized [Jinja2 templates](https://jinja.palletsprojects.com/en/stable/) that can be found under [tools/templates](/tools/templates/). It is suggested that whatever text editor you use for development include support for the `.j2` extension and jinja template syntax in general.
+The markdown files [generated](/README.md#generating-commands) by the `finopspp` tool structured off of specialized [Jinja2 templates](https://jinja.palletsprojects.com/en/stable/) that can be found under [tools/templates](/tools/templates/). It is suggested that whatever text editor you use for development include support for the `.j2` extension and jinja template syntax in general.
 
 ### Composers
 

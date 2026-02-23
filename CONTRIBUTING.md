@@ -34,7 +34,7 @@ The Framework-Assessment project uses an [As-Code](https://arxiv.org/pdf/2507.05
 * Creating a completely new a community Framework Profile.
 * Removing any complete Component or Framework Profile
 
-Once you have updated your specification(s), this is the minimum we require for a change to be submitted for consideration. But, if your want or would like to go one step further, you can consider using the commands from the [finopspp cli](README.md#cli-tool) to [generate](README.md#generating-commands) updates to the Components and Frameworks. If not, that is fine too. At some point soon after merging, these command will be run by the maintainers before the next release to make sure your changes are represented in the next milestone release.
+Once you have updated your specification(s), this is the minimum we require for a change to be submitted for consideration. But, if your want or would like to go one step further, you can consider using the commands from the [finopspp cli](/tools/README.md#cli-tool) to [generate](/tools/README.md#generating-commands) updates to the Components and Frameworks. If not, that is fine too. At some point soon after merging, these command will be run by the maintainers before the next release to make sure your changes are represented in the next milestone release.
 
 ### Submitting tools changes
 
