@@ -23,8 +23,8 @@ We welcome submissions of any scores that have a mathematical formula similar or
 
 ## 4. Multiple Weighted Buckets
 This method is similar to the Bucket of Accomplishments. Instead of one large bucket with tasks to choose from, there are multiple lists.
-Thse multiple lists could be weighted amongst eachother, or ranked in order if some tasks must happen first, etc. 
-This also presents a way to account for multiple soltuions to the same problem. Teams will be able to gain maturity points by completing tasks from both groups. 
+These multiple lists could be weighted amongst eachother, or ranked in order if some tasks must happen first, etc. 
+This also presents a way to account for multiple solutions to the same problem. Teams will be able to gain maturity points by completing tasks from both groups. 
 For example, you could earn one point for doing task A or B in one bucket, this must be done before moving to the next bucket within the scoring method. 
 
 ## 5. Sequential Process
