@@ -18,7 +18,7 @@ Specification:
   - null
   Weight: 1.0
   Formula: |-
-    * Inventory possible commitment based discounts (RIs, Savings Plans, CUDs, etc.) that are available for deployed resources
+    * Inventory possible commitment based discounts (RIs, Savings Plans, CUDs, etc.) available for deployed resources
     * Consider any private negotiated line item discounts vs public RI/CUD discounts
     * Set resource type standards to make use of spend commitments while maintaining needs of the business
     * Scenario plan commitment options versus potential changes in resources
