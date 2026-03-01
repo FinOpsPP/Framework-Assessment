@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-01-12'
-  Version: 0.4.0
+  Modified: '2026-02-03'
+  Version: 0.5.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -15,11 +15,28 @@ Specification:
   Slug: 30-define-estimating
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
+  Weight: 1.0
+  Formula: |-
+    * Defined scope of each project to be estimated
+    * Developed list of known inputs to the project
+    * Have a process to determine what may be missing from the inputs or scope
+    * Have a policy review to determine additional needs for inputs or scope
+    * For each component of the estimate, list all assumptions
+
+    10*Ceil(x/5)
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
+  - Score: 10
+    Condition: 5 items completed
   References:
   - Name: null
     Link: null
