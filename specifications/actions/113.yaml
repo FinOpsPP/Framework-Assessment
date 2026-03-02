@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-01-12'
-  Version: 0.4.0
+  Modified: '2026-02-16'
+  Version: 0.5.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -15,15 +15,29 @@ Specification:
   Slug: 113-define-assess
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
+  Weight: 1.0
+  Formula: |-
+    * Select which teams or groups are in scope for the planned assessments
+    * Select which capabilities/actions are in scope for each group's assessment
+    * Select weights for each included action based on goals of the assessment and importance to the business
+    * Set a preliminary target score for each included action to use for comparison
+
+    10*Ceil(x/4)
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: 0 items completed
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 items completed
+  - Score: 8
+    Condition: 3 items completed
+  - Score: 10
+    Condition: 4 items completed
   References:
-  - Name: null
-    Link: null
-    Comment: null
+  - Name: FinOps Foundation Assessment Stage 1
+    Link: https://www.finops.org/wg/finops-assessment/#assessment-stage-1-introduction
+    Comment: Target groups and testing parameters needed before starting any assessment
   Notes:
   - null
   Overrides: null
