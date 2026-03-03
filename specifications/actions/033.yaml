@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-01-12'
-  Version: 0.4.1
+  Modified: '2026-02-16'
+  Version: 0.5.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -15,15 +15,21 @@ Specification:
   Slug: 33-sustainability-impact
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
+  Weight: 1.0
+  Formula: |-
+    1. Calculate kg of carbon dioxide equivalents (kgCO2e), or similar, for new and ongoing workloads
+    2. Compare carbon calculations with targets for new projects and overall consumption
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No items completed
+  - Score: 5
+    Condition: item 1 completed
+  - Score: 10
+    Condition: item 2 completed
   References:
-  - Name: null
-    Link: null
-    Comment: null
+  - Name: FinOps Sustainability Metrics
+    Link: https://www.finops.org/wg/sustainability/#:~:text=Units%20%26%20Measures
+    Comment: Types of metrics used in measuring sustainability output and efficiency
   Notes:
   - null
   Overrides: null
