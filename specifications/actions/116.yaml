@@ -16,10 +16,12 @@ Specification:
   Implementation Types:
   - null
   Weight: 0.0
-  Formula: null
+  Formula: example formula
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: does not meet formula
+  - Score: 10
+    Condition: does meet formula
   References:
   - Name: null
     Link: null
