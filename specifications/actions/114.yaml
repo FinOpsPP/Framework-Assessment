@@ -39,5 +39,8 @@ Specification:
     Link: null
     Comment: null
   Notes:
-  - null
+  - As an example of consistent assumptions, let's look at action 010. 
+  - Here, an assumption could be what is considered a shared cost. 
+  - One scoped team may include networking and data transfer, while another may include security infrastructure.
+  - Thus, these assumptions should be defined for all teams before evaluating separately scoped assessments.
   Overrides: null
