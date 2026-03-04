@@ -39,5 +39,6 @@ Specification:
     Link: https://www.finops.org/wg/finops-assessment/#assessment-stage-1-introduction
     Comment: Target groups and testing parameters needed before starting any assessment
   Notes:
-  - For the last item in the formula list, references for what targets include can be found here https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md
+  - For the last item in the formula list, references for what targets include can be
+  - found here https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md
   Overrides: null
