@@ -172,7 +172,7 @@ Those more granular allocations can only come after initial broader allocations 
 
 **Example**:
 
-It is unlikely that you will complete an item further down the list effectively without first completing the preceeding items on the list.
+It is unlikely that you will complete an item further down the list effectively without first completing the preceding items on the list.
 Therefore, you only get points for completing the items in order to reach the next level.
 The scoring values are still based on the Ceil function mentioned in the bucket method, where you round up to the next integer based on percent completion of all the tasks in order.
 
