@@ -111,6 +111,7 @@ There are no restrictions as of yet for what the formula could consist of, as lo
 We welcome submissions of any scores that have a mathematical formula similar or different from any currently listed in the assessment. 
 
 **Example**:
+
 Since this method is left open to ideas, we don't have examples in use yet.
 But it could be something similar to log returns of ROI Unit Economics KPIs which would have the formula `log(1 + r)` where r is your percent return.
 Feel free to find creative solutions that can quantify progress in any of the action areas.
@@ -128,6 +129,7 @@ This also presents a way to account for multiple solutions to the same problem. 
 For example, you could earn one point for doing task A or B in one bucket, this must be done before moving to the next bucket within the scoring method. 
 
 **Example**:
+
 While we don't have this scoring method in use as of yet, we expect that this will be a common method to employ for various action scoring.
 The example yml format shows that different tasks do have different weights (different from the overall weight of the action score).
 Here, items 1 and 2 get you more points than the items in bucket 3. Therefore, the initial steps are weighted more heavily than the subsequent ones.
