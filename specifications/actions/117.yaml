@@ -16,10 +16,22 @@ Specification:
   Implementation Types:
   - null
   Weight: 0.0
-  Formula: null
+  Formula: |-
+    * Schedule a cadence to report progress outcomes to key stakeholders.
+    * Create reporting to show progress on key outcomes across all maturity initiatives.
+    * After successful outcomes are achieved, move on to the next prioritized item in the roadmap.
+    * Periodically reevaluate the gap analysis and priority list based on lessons learned and new business goals.
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No items completed
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 items completed
+  - Score: 8
+    Condition: 3 items completed
+  - Score: 10
+    Condition: 4 items completed
   References:
   - Name: null
     Link: null
