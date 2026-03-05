@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: null
   Modified: '2026-02-16'
-  Version: 0.5.0
+  Version: 0.6.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -38,7 +38,8 @@ Specification:
   - Name: FinOps Foundation Assessment Stage 1
     Link: https://www.finops.org/wg/finops-assessment/#assessment-stage-1-introduction
     Comment: Target groups and testing parameters needed before starting any assessment
-  Notes:
-  - For the last item in the formula list, references for what targets include can be
+  Supplemental Guidance:
+  - For the last item in the formula list, references for what targets include can
+    be
   - found here https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md
   Overrides: null
