@@ -126,13 +126,14 @@ $defs:
           $ref: '#/$defs/Reference'
         title: References
         type: array
-      Notes:
-        description: List of notes related to a specific action
+      Supplemental Guidance:
+        description: List of notes that provide additional insights for a specific
+          action
         items:
           anyOf:
           - type: string
           - type: 'null'
-        title: Notes
+        title: Supplemental Guidance
         type: array
     required:
     - ID
@@ -145,7 +146,7 @@ $defs:
     - Formula
     - Scoring
     - References
-    - Notes
+    - Supplemental Guidance
     title: ActionSpec
     type: object
   Approver:
