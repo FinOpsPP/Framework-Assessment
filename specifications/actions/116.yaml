@@ -34,6 +34,7 @@ Formula: |-
     Condition: items 1, 2, 3, and 4 completed
   References:
   - Name: NIST Gap Analysis Example Implementation
+    # cSpell:ignore pbgc
     Link: csrc.nist.gov/CSRC/media/Projects/Forum/documents/aug-2016/tues1230_pbgc_tier2-program.pdf
     Comment: A real-world example of the gap analysis process from start to end in cybersecurity.
   - Name: Free Project Management Course from PMI
