@@ -34,7 +34,7 @@
 {%- endfor %}
 
 ## References
-
+<!-- pyml disable line-length-->
 {% for reference in spec.References -%}
 * [{{ reference.Name | title }}]({{ reference.Link }}): {{ reference.Comment }}
 {% endfor %}{% if spec.Overrides %}
