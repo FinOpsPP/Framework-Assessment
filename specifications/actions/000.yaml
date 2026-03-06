@@ -41,7 +41,7 @@ Specification:
   - Name: Example reference number 2
     Link: https://another.example.com
     Comment: Comment on second reference and why it is relevant
-  Notes:
+  Supplemental Guidance:
   - |-
     Example of a note directly relating to the specification. Could be over implementation or
     related to discussion over tweaks to the maturity model. These notes could come from

@@ -42,7 +42,7 @@ Action = definitions.Action(
                 Comment=None
             )
         ],
-        Notes=[
+        SupplementalGuidance=[
             None
         ]
     )

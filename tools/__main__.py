@@ -685,6 +685,7 @@ def validate(selection, specification_type):
 @click.option(
     '--specification-type',
     type=click.Choice(list(SpecSubspecMap.keys())),
+    default='profiles',
     help='Which specification type to show. Defaults to "profiles"'
 )
 @click.option(
