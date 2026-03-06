@@ -1,11 +1,11 @@
-# Component Specifications
+# Component Specification Schemas
 
 This document includes the schemas for all the main specifications used by FinOps++. The schemas
 are all produced via the [Pydantic JSON Schema](https://docs.pydantic.dev/latest/concepts/json_schema/) and follow both the [OpenAPI Specification](https://spec.openapis.org/oas/latest.html). Importantly,
 the outputs are in [YAML format](https://yaml.org/). This choice was made in order to follow the usage of yaml in the specifications used by FinOps++. It also
 matches exactly the output that comes from running the `finopspp specifications schema` command. These schemas are created As-Code under
 [definitions](../tools/models/definitions.py). All component specifications are validated against these definitions, and new component specifications
-can be created from them. Commands for these can be found in [CLI Tool](../README.md#cli-tool) of the README.
+can be created from them. Commands for these can be found in [CLI Tool](../tools/README.md#cli-tool) of the README.
 
 ## Action
 
