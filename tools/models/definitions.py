@@ -219,8 +219,9 @@ class ActionSpec(ActionItem, SpecBase, SpecID, Config):
     References: list[Reference] = Field(
         description='List of reference objects'
     )
-    Notes: list[str | None] = Field(
-        description='List of notes related to a specific action'
+    SupplementalGuidance: list[str | None] = Field(
+        description='List of notes that provide additional insights for a specific action',
+        alias='Supplemental Guidance'
     )
 
     # Custom function to help make sure the overrides

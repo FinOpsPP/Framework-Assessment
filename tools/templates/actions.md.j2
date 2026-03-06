@@ -14,7 +14,7 @@
 
 ## Supplemental Guidance
 
-{% for note in spec.Notes -%}
+{% for note in spec['Supplemental Guidance'] -%}
 {{ note }}
 {% endfor %}
 ## Scoring Guide
@@ -35,6 +35,7 @@
 
 ## References
 
+<!-- pyml disable line-length-->
 {% for reference in spec.References -%}
 * [{{ reference.Name | title }}]({{ reference.Link }}): {{ reference.Comment }}
 {% endfor %}{% if spec.Overrides %}
