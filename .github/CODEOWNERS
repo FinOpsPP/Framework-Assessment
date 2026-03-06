@@ -1,0 +1,7 @@
+# FinOps++ Framework Reviews team owns all the Specification, Guidelines, and Tools reviews
+# This also includes all project root-level individual files
+# Other folders like Assessments or Components should never be added to a PR by themselves
+# so leaving those out to avoid spam PRs
+* @FinOpsPP/framework-reviewers
+/assessments
+/components
