@@ -6,6 +6,8 @@ As organizations move their FinOps practices to shift-left, more of the FinOps o
 
 This assessment is an expansion of the existing FinOps Framework Assessment as of 7/3/25. By combining FinOps capabilities with controls found in the NIST Cybersecurity Framework, FinOps practitioners can provide a structured and proven foundation for strengthening governance for cost accountability. Additionally, treating financial risk with the same rigor as cybersecurity empowers FinOps teams to better define their policies, processes, and enforcement of best practices for the organization.
 
+[![FinOpsX 2025](https://img.youtube.com/vi/mAaZKNXXas8/0.jpg)](https://www.youtube.com/watch?v=mAaZKNXXas8)
+
 ## Project Structure
 
 This repository is broken down into encapsulated directories, where the function of a directory reflects a core design aspect or goal of the project.
