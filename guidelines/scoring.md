@@ -116,6 +116,8 @@ We want to use this type sparingly because we would rather give more details on 
 This action states to "Communicate wins (unit cost reductions) to drive cultural adoption."
 There are so many ways to achieve this, so we choose to let teams define how to do so for themselves.
 Thus, we have a binary choice for if this action is implemented in an org or not.
+However, even this can be broken out even further into specific items.
+So, if an action can be expanded to include multiple items, that would take priority over a binary scoring method.
 
 **YAML Format**:
 ```
