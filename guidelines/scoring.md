@@ -13,8 +13,8 @@ Below we list each of the approved scoring methods and detail how to construct n
 
 ## Score Types:
 1. [Bucket of Accomplishments](#bucket-of-accomplishments) - `bucket`
-2. [Percentage Calculation](#percentage-calculation) - `percent`
-3. [Binary](#binary) - `binary`
+2. [Binary](#binary) - `binary`
+3. [Percentage Calculation](#percentage-calculation) - `percent`
 4. [Other Mathematical Formulae](#other-mathematical-formulae) - `calculation`
 5. [Multiple Weighted Buckets](#multiple-weighted-buckets) - `multi_bucket`
 6. [Sequential Process](#sequential-process) - `sequential`
@@ -55,6 +55,35 @@ The bucket score relies on the fact that the formula items are independent, and 
     Condition: 2 items completed
   - Score: 10
     Condition: 3 items completed
+```
+
+---
+### Binary
+**Score Type**: `binary`
+
+**Description**:
+This can be viewed as a special case of the Bucket of Accomplishments in which there is only one item.
+In some instances, an action is sufficiently descriptive enough to warrant a binary score.
+This includes a choice between either a yes or no, has or has not, defined or undefined, etc.
+We want to use this type sparingly because we would rather give more details on how to achiecve competency.
+But it is a good first step if you are looking to contribute to the assessment.
+
+**Example**: From action [079](https://github.com/FinOpsPP/Framework-Assessment/blob/main/components/actions/079.md)
+
+This action states to "Document commitment strategy (RIs/Savings Plans/CUDs) and guardrails."
+While the documentation would look different for every organization, the existance of a document is objective.
+Thus, we have a binary choice for if this action is implemented in an organization or not.
+However, even this can be broken out even further into specific items if we wanted to create those.
+So, if an action can be expanded to include multiple items, that would take priority over a binary scoring method.
+
+**YAML Format**:
+```
+  Formula: null
+  Scoring:
+  - Score: 0
+    Condition: None
+  - Score: 10
+    Condition: Policy in place and published
 ```
 
 ---
@@ -100,33 +129,6 @@ If your allocation is at 49%, you will receive a score of 4. It is only when it 
     Condition: 90%
   - Score: 10
     Condition: Near 100%
-```
-
----
-### Binary
-**Score Type**: `binary`
-
-**Description**:
-In some instances, an action is sufficiently descriptive enough to warrant a binary score.
-This includes a choice between either a yes or no, has or has not, defined or undefined, etc.
-We want to use this type sparingly because we would rather give more details on how to achiecve competency.
-
-**Example**: From action [060](https://github.com/FinOpsPP/Framework-Assessment/blob/main/components/actions/060.md)
-
-This action states to "Communicate wins (unit cost reductions) to drive cultural adoption."
-There are so many ways to achieve this, so we choose to let teams define how to do so for themselves.
-Thus, we have a binary choice for if this action is implemented in an org or not.
-However, even this can be broken out even further into specific items.
-So, if an action can be expanded to include multiple items, that would take priority over a binary scoring method.
-
-**YAML Format**:
-```
-  Formula: null
-  Scoring:
-  - Score: 0
-    Condition: None
-  - Score: 10
-    Condition: communicates wins in KPI thresholds and unit costs
 ```
 
 ---
