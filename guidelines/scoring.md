@@ -14,9 +14,10 @@ Below we list each of the approved scoring methods and detail how to construct n
 ## Score Types:
 1. [Bucket of Accomplishments](#bucket-of-accomplishments) - `bucket`
 2. [Percentage Calculation](#percentage-calculation) - `percent`
-3. [Other Mathematical Formulae](#other-mathematical-formulae) - `calculation`
-4. [Multiple Weighted Buckets](#multiple-weighted-buckets) - `multi_bucket`
-5. [Sequential Process](#sequential-process) - `sequential`
+3. [Binary](#binary) - `binary`
+4. [Other Mathematical Formulae](#other-mathematical-formulae) - `calculation`
+5. [Multiple Weighted Buckets](#multiple-weighted-buckets) - `multi_bucket`
+6. [Sequential Process](#sequential-process) - `sequential`
 
 ---
 ### Bucket of Accomplishments
@@ -74,7 +75,7 @@ If your allocation is at 49%, you will receive a score of 4. It is only when it 
 
 **YAML Format**:
 ```
-Formula: Unallocated Shared CSP Effective Cloud Cost/ Total CSP Effective Cloud
+  Formula: Unallocated Shared CSP Effective Cloud Cost/ Total CSP Effective Cloud
     Cost
   Scoring:
   - Score: 0
@@ -99,6 +100,31 @@ Formula: Unallocated Shared CSP Effective Cloud Cost/ Total CSP Effective Cloud
     Condition: 90%
   - Score: 10
     Condition: Near 100%
+```
+
+---
+### Binary
+**Score Type**: `binary`
+
+**Description**:
+In some instances, an action is sufficiently descriptive enough to warrant a binary score.
+This includes a choice between either a yes or no, has or has not, defined or undefined, etc.
+We want to use this type sparingly because we would rather give more details on how to achiecve competency.
+
+**Example**: From action [060](https://github.com/FinOpsPP/Framework-Assessment/blob/main/components/actions/060.md)
+
+This action states to "Communicate wins (unit cost reductions) to drive cultural adoption."
+There are so many ways to achieve this, so we choose to let teams define how to do so for themselves.
+Thus, we have a binary choice for if this action is implemented in an org or not.
+
+**YAML Format**:
+```
+  Formula: null
+  Scoring:
+  - Score: 0
+    Condition: None
+  - Score: 10
+    Condition: communicates wins in KPI thresholds and unit costs
 ```
 
 ---
