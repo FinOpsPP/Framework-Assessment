@@ -31,6 +31,8 @@ Specification:
   Scoring:
   - Score: 0
     Condition: null
+  - Score: 0
+    Condition: null
   References:
   - Name: null
     Link: null
