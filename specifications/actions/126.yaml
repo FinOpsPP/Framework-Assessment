@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-01-12'
-  Version: 0.5.0
+  Modified: '2026-03-14'
+  Version: 0.6.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -15,11 +15,28 @@ Specification:
   Slug: 126-implement-config
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
+  Weight: 1.0
+  Formula: |-
+    * Weighted sum
+    	Env coverage (score ×4),
+    	Data Integration (score ×4),
+    	Tag Config (score ×2),
+    	Config Doc (score ×2).
+    	Max raw = 80. Normalised to 0–10.
+    * Env_Coverage - % of cloud environments covered by deployed tools (0=0%, 1<50%, 2=50-79%, 3=80-94%, 4=95-99%, 5=100%)
+    * Data_Integr - Data sources integrated (billing, usage, tags, business context) (0=None, 1=Billing Only, 2=+Usage, 3=+Tags, 4=+Business context, 5=All+Automated)
+    * Tag_Config - Tag/allocation rules configured and enforced tool (0=No, 1=Partial manual, 2=Full manual, 3=Automated enforcement)
+    * Config_Doc - Tool configuration documented and version-controlled (0=No rules, 1=Informal, 2=Documented, 3=Version-controlled+Reviewed)
+    * Output Range (0-10)
   Scoring:
-  - Score: 0
-    Condition: null
+  - Score: 0.0-3.9
+    Condition: Crawl
+  - Score: 4.0-6.9
+    Condition: Walk
+  - Score: 7.0-8.9
+    Condition: Run
+  - Score: 9.0-10.0
+    Condition: Fly
   References:
   - Name: null
     Link: null
