@@ -28,7 +28,7 @@ Specification:
     * Combine with architecture analysis for SP & RIs
 
     10*Ceil(x/5)
-  Score Type: calculation
+  Score Type: bucket
   Scoring:
   - Score: 0
     Condition: No items completed
