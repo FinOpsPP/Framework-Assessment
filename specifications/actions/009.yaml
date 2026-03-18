@@ -26,7 +26,7 @@ Specification:
     * Create the hierarchy for each category of metadata (ex teams per dept, cost centers in an org)
 
     10*Ceil(x/2)
-  Score Type: calculation
+  Score Type: bucket
   Scoring:
   - Score: 0
     Condition: No items completed

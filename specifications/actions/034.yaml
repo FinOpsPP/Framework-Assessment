@@ -25,7 +25,7 @@ Specification:
     * Determine how optimizations and lower run rate will impact the forecast on a rolling basis
 
     10*Ceil(x/3)
-  Score Type: calculation
+  Score Type: bucket
   Scoring:
   - Score: 0
     Condition: No items completed

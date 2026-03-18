@@ -177,6 +177,7 @@ class ScoreTypeEnum(str, Enum):
     multiBucket = 'multi_bucket'
     percent = 'percent'
     sequential = 'sequential'
+    binary = 'binary'
 # pylint: enable=invalid-name
 
 class Reference(Config):
@@ -221,7 +222,7 @@ class ActionSpec(ActionItem, SpecBase, SpecID, Config):
         default=None,
         description='Formula used to compute the score condition'
     )
-    ScoreType: str = Field(
+    ScoreType: ScoreTypeEnum = Field(
         default=ScoreTypeEnum.calculation,
         description='Type of scoring used for action',
         alias='Score Type'

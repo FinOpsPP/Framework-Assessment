@@ -20,7 +20,7 @@ Specification:
   - null
   Weight: 1.0
   Formula: null
-  Score Type: calculation
+  Score Type: sequential
   Scoring:
   - Score: 0
     Condition: Never
@@ -43,5 +43,8 @@ Specification:
     Link: null
     Comment: null
   Supplemental Guidance:
-  - null
+  - |-
+    Scoring on this action is treated as sequential. If you have granularity
+    of say 2 days, for example, you have implicitly achieved all previous levels
+    of granularity.
   Overrides: null

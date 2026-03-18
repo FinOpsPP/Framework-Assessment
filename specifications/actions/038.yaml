@@ -26,7 +26,7 @@ Specification:
     * 100% catch rate of spikes before they happen
 
     10*Ceil(x/4)
-  Score Type: calculation
+  Score Type: bucket
   Scoring:
   - Score: 0
     Condition: No items completed

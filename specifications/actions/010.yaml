@@ -21,7 +21,7 @@ Specification:
   Weight: 1.0
   Formula: Unallocated Shared CSP Effective Cloud Cost/ Total CSP Effective Cloud
     Cost
-  Score Type: calculation
+  Score Type: percent
   Scoring:
   - Score: 0
     Condition: 0%

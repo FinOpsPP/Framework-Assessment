@@ -20,7 +20,7 @@ Specification:
   - null
   Weight: 1.0
   Formula: null
-  Score Type: calculation
+  Score Type: percent
   Scoring:
   - Score: 0
     Condition: 0%

@@ -20,16 +20,16 @@ Specification:
   - null
   Weight: 1.0
   Formula: null
-  Score Type: calculation
+  Score Type: sequential
   Scoring:
   - Score: 0
     Condition: No alerting in workflow tools
   - Score: 1
     Condition: Alerting in at least one tool
   - Score: 3
-    Condition: Alerting in some tooling [20%]
+    Condition: Alerting in some tooling [>20%]
   - Score: 6
-    Condition: Alerting in most tooling [60%]
+    Condition: Alerting in most tooling [>60%]
   - Score: 10
     Condition: Alerting in all workflow tools [100%]
   References:
@@ -37,5 +37,8 @@ Specification:
     Link: null
     Comment: null
   Supplemental Guidance:
-  - null
+  - |-
+    Scoring for this actions is treated as sequential. That means that if you have
+    alerting in most tooling, for example, you have implicitly achieved it is some
+    toolings already.
   Overrides: null

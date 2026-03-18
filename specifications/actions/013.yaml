@@ -24,7 +24,7 @@ Specification:
     y = Total CSP Cloud Costs During a Period of Time
 
     x / y
-  Score Type: calculation
+  Score Type: percent
   Scoring:
   - Score: 0
     Condition: 0%

@@ -22,7 +22,7 @@ Specification:
   Weight: 1.0
   Formula: "((Forecasted Public Cloud Spend \u2013 Actual Public Cloud Spend) / Forecasted\
     \ Public Cloud Spend)"
-  Score Type: calculation
+  Score Type: percent
   Scoring:
   - Score: 0
     Condition: 0%

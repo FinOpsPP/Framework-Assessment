@@ -23,7 +23,7 @@ Specification:
     * Track team adoption of better estimates via KPIs around baseline or plan vs actuals
 
     10*Ceil(x/4)
-  Score Type: calculation
+  Score Type: bucket
   Scoring:
   - Score: 0
     Condition: No items completed

@@ -25,7 +25,7 @@ Specification:
     * Reference commit allocation strategy to calculate cost impact of shared scope vs private account commitments
 
     10*Ceil(x/5)
-  Score Type: calculation
+  Score Type: bucket
   Scoring:
   - Score: 0
     Condition: No items completed

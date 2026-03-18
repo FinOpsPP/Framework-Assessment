@@ -27,7 +27,7 @@ Specification:
     * Teams have visibility into where their resources fit into the hierarchy
 
     10*Ceil(x/2)
-  Score Type: calculation
+  Score Type: bucket
   Scoring:
   - Score: 0
     Condition: No items completed
