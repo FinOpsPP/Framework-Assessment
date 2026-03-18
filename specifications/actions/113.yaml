@@ -23,7 +23,7 @@ Specification:
     * Set a preliminary target score for each included action to use for comparison
 
     10*Ceil(x/4)
-  Score Type: calculation
+  Score Type: bucket
   Scoring:
   - Score: 0
     Condition: 0 items completed

@@ -21,7 +21,7 @@ Specification:
     * Create reporting to show progress on key outcomes across all maturity initiatives.
     * After successful outcomes are achieved, move on to the next prioritized item in the roadmap.
     * Periodically reevaluate the gap analysis and priority list based on lessons learned and new business goals.
-  Score Type: calculation
+  Score Type: bucket
   Scoring:
   - Score: 0
     Condition: No items completed

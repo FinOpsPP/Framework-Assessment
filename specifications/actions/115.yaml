@@ -22,7 +22,7 @@ Specification:
     * Complete analysis on what contributed to or hindered progress across scopes or different areas of the assessment
 
     10*Ceil(x/3)
-  Score Type: calculation
+  Score Type: bucket
   Scoring:
   - Score: 0
     Condition: No items completed

@@ -21,7 +21,7 @@ Specification:
     2. Determine owners for addressing each of the prioritized gaps
     3. Owners will work with relevant teams to scope out how to meet the target score for each gap
     4. Work is then scheduled in a roadmap with deadlines that can be tracked at the leadership level
-  Score Type: calculation
+  Score Type: sequential
   Scoring:
   - Score: 0
     Condition: No items completed

@@ -23,7 +23,7 @@ Specification:
     * List relevant documentation of process and policy as evidentiary support for each score
 
     10*Ceil(x/4)
-  Score Type: calculation
+  Score Type: bucket
   Scoring:
   - Score: 0
     Condition: No items completed
