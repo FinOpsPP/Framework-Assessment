@@ -22,11 +22,12 @@ Specification:
     	KPI alignment (score ×3),
     	Stakeholder count capped at 5 (score ×2),
     	Refresh cadence (score ×2).
+      Max Raw Score (31)
     * Criteria formally documented (0=None, 1=Draft, 2=Approved, 3=Versioned+Reviewed)
     * Criteria explicitly mapped to FinOps KPIs (0=None, 1=Partial, 2=Full)
     * of FinOps personas involved in criteria definition (0–5)
     * Criteria review frequency (0=Never, 1=Ad-hoc, 2=Annual, 3=Quarterly+)
-    * Max Raw Score (31)
+    * Output Range (0 - Max Raw)
   Scoring:
   - Score: 9
     Condition: Low Maturity
