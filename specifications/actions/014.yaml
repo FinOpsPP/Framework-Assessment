@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
   Modified: '2026-01-12'
-  Version: 1.5.0
+  Version: 1.6.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -28,6 +28,7 @@ Specification:
     * Automatically tag based on CI/CD creator and team
 
     10*Ceil(x/4)
+  Score Type: calculation
   Scoring:
   - Score: 0
     Condition: No items completed

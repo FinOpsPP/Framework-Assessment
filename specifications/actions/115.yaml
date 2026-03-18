@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: null
   Modified: '2026-02-17'
-  Version: 0.6.0
+  Version: 0.7.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -22,6 +22,7 @@ Specification:
     * Complete analysis on what contributed to or hindered progress across scopes or different areas of the assessment
 
     10*Ceil(x/3)
+  Score Type: calculation
   Scoring:
   - Score: 0
     Condition: No items completed
