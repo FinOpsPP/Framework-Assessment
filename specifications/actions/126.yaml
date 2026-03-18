@@ -1,7 +1,7 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-03-14'
+  Modified: '2026-03-17'
   Version: 0.6.0
   Status: Proposed
   Approvers:
@@ -22,25 +22,28 @@ Specification:
     	Data Integration (score ×4),
     	Tag Config (score ×2),
     	Config Doc (score ×2).
-    	Max raw = 80. Normalised to 0–10.
+    	Max raw (52)
     * Env_Coverage - % of cloud environments covered by deployed tools (0=0%, 1<50%, 2=50-79%, 3=80-94%, 4=95-99%, 5=100%)
     * Data_Integr - Data sources integrated (billing, usage, tags, business context) (0=None, 1=Billing Only, 2=+Usage, 3=+Tags, 4=+Business context, 5=All+Automated)
     * Tag_Config - Tag/allocation rules configured and enforced tool (0=No, 1=Partial manual, 2=Full manual, 3=Automated enforcement)
     * Config_Doc - Tool configuration documented and version-controlled (0=No rules, 1=Informal, 2=Documented, 3=Version-controlled+Reviewed)
-    * Output Range (0-10)
+    * Output Range (0-52)
   Scoring:
-  - Score: 0.0-3.9
-    Condition: Crawl
-  - Score: 4.0-6.9
-    Condition: Walk
-  - Score: 7.0-8.9
-    Condition: Run
-  - Score: 9.0-10.0
-    Condition: Fly
+  - Score: 15
+    Condition: Low Maturity
+  - Score: 31
+    Condition: Developing
+  - Score: 44
+    Condition: Established
+  - Score: 52
+    Condition: Optimizing
   References:
   - Name: null
     Link: null
     Comment: null
-  Supplemental Guidance:
-  - null
+  Notes:
+  - CRAWL Partial environment coverage, billing data only, no tag configuration.
+  - WALK 50–79% coverage, usage and billing data, partial tagging, informal config documentation.
+  - RUN 80–94% coverage, tags integrated, full manual tag rules, documented configuration.
+  - FLY 100% coverage, all data sources automated, automated tag enforcement, version-controlled configuration.
   Overrides: null
