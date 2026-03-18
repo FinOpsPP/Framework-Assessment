@@ -1,4 +1,5 @@
 """primary code for the finopspp CLI"""
+import datetime
 import json
 import os
 import sys
@@ -741,6 +742,9 @@ def update(selection, specification_type, major):
             else:
                 spec_version = spec_version.bump_minor()
             passthrough_data['Metadata']['Version'] = str(spec_version)
+
+            # update date
+            passthrough_data['Metadata']['Modified'] = str(datetime.date.today())
 
             # write out modified data back to spec file
             with open(path, 'w', encoding='utf-8') as yaml_file:
