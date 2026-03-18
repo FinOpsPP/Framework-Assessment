@@ -42,9 +42,9 @@ Specification:
     Link: https://www.finops.org/framework/maturity-model/
     Comment: null
   Notes:
-  - CRAWL (0–9) Tooling criteria are absent or informal, with no KPI mapping, no cross-functional input, and no review cadence. Decisions are ad-hoc or relationship-driven.
-  - WALK (10–18) Criteria are documented and approved, with partial FinOps KPI alignment. A few personas are involved, and reviews are triggered by procurement needs rather than a set schedule.
-  - RUN (19-26) Criteria are fully documented, approved, and mapped to FinOps KPIs across all dimensions. Four or more personas contribute, and reviews occur at least annually, making decisions auditable and repeatable.
-  - FLY (27-31) Criteria are versioned under formal change control, fully traceable to KPIs, and shaped by all five FinOps personas. Quarterly reviews are often auto-triggered, and the criteria drive ongoing tool governance and continuous improvement.
+  - CRAWL Criteria absent or informal. No KPI mapping, no cross-functional input, no review cadence. Decisions are ad-hoc.
+  - WALK  Criteria documented and approved. Partial KPI alignment, few personas involved, reviews triggered by procurement.
+  - RUN Criteria fully documented and mapped to FinOps KPIs. 4+ personas contribute, reviewed annually, decisions auditable.
+  - FLY Criteria versioned under change control. Full KPI traceability, all 5 personas involved, quarterly reviews, drives governance
   Overrides: null
   
