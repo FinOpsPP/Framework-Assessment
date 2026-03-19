@@ -12,7 +12,7 @@ Specification:
   ID: 103
   Title: Publish Guidelines & Guardrails
   Description: Publish guidelines, guardrails, and automation controls.
-  Slug: 103-publish-guidelin
+  Slug: 103-publish-guideline
   Implementation Types:
   - null
   Weight: 0.0

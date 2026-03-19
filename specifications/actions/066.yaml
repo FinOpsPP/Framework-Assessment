@@ -12,7 +12,7 @@ Specification:
   ID: 66
   Title: Strengthen Architecture Collaboration
   Description: Strengthen app/security/infra architect collaboration and approvals.
-  Slug: 66-strengthen-archit
+  Slug: 66-strengthen-arch
   Implementation Types:
   - null
   Weight: 0.0

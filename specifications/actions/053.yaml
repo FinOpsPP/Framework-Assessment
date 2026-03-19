@@ -21,7 +21,7 @@ Specification:
   - null
   Weight: 1.0
   Formula: null
-  Score Type: calculation
+  Score Type: threshold
   Scoring:
   - Score: 0
     Condition: No review of trends

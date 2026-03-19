@@ -178,6 +178,7 @@ class ScoreTypeEnum(str, Enum):
     percent = 'percent'
     sequential = 'sequential'
     binary = 'binary'
+    threshold = 'threshold'
 # pylint: enable=invalid-name
 
 class Reference(Config):
