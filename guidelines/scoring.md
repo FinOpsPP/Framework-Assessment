@@ -14,12 +14,45 @@ Below we list each of the approved scoring methods and detail how to construct n
 
 ## Score Types
 
-1. [Bucket of Accomplishments](#bucket-of-accomplishments) - `bucket`
-2. [Binary](#binary) - `binary`
+1. [Binary](#binary) - `binary` '(good first action)'
+2. [Bucket of Accomplishments](#bucket-of-accomplishments) - `bucket`
 3. [Multiple Weighted Buckets](#multiple-weighted-buckets) - `multi_bucket`
 4. [Sequential Process](#sequential-process) - `sequential`
-5. [Percentage Calculation](#percentage-calculation) - `percent`
-6. [Other Mathematical Formulae](#other-mathematical-formulae) - `calculation`
+5. [Threshold Process](#threshold-process) - `threshold`
+6. [Percentage Calculation](#percentage-calculation) - `percent`
+7. [Other Mathematical Formulae](#other-mathematical-formulae) - `calculation`
+
+### Binary
+
+**Score Type**: `binary`
+
+**Description**:
+
+This can be viewed as a special case of the Bucket of Accomplishments in which there is only one item.
+In some instances, an action is sufficiently descriptive enough to warrant a binary score.
+This includes a choice between either a yes or no, has or has not, defined or undefined, etc.
+We want to use this type sparingly because we would rather give more details on how to achieve competency.
+But it is a good first step if you are looking to contribute to the assessment. And typically an explicit formula would not be required.
+
+**Example**: From action [079](https://github.com/FinOpsPP/Framework-Assessment/blob/main/components/actions/079.md)
+
+This action states to "Document commitment strategy (RIs/Savings Plans/CUDs) and guardrails."
+While the documentation would look different for every organization, the existence of a document is objective.
+Thus, we have a binary choice for if this action is implemented in an organization or not.
+However, even this can be broken out even further into specific items if we wanted to create those.
+So, if an action can be expanded to include multiple items, that would take priority over a binary scoring method.
+
+**YAML Format**:
+
+```{yaml}
+  Formula: null
+  Score Type: binary
+  Scoring:
+  - Score: 0
+    Condition: None
+  - Score: 10
+    Condition: Policy in place and published
+```
 
 ### Bucket of Accomplishments
 
@@ -50,6 +83,7 @@ The bucket score relies on the fact that the formula items are independent, and 
     * Determine how optimizations and lower run rate will impact the forecast on a rolling basis
 
     10*Ceil(x/3)
+  Score Type: bucket
   Scoring:
   - Score: 0
     Condition: No items completed
@@ -59,37 +93,6 @@ The bucket score relies on the fact that the formula items are independent, and 
     Condition: 2 items completed
   - Score: 10
     Condition: 3 items completed
-```
-
-### Binary
-
-**Score Type**: `binary`
-
-**Description**:
-
-This can be viewed as a special case of the Bucket of Accomplishments in which there is only one item.
-In some instances, an action is sufficiently descriptive enough to warrant a binary score.
-This includes a choice between either a yes or no, has or has not, defined or undefined, etc.
-We want to use this type sparingly because we would rather give more details on how to achieve competency.
-But it is a good first step if you are looking to contribute to the assessment.
-
-**Example**: From action [079](https://github.com/FinOpsPP/Framework-Assessment/blob/main/components/actions/079.md)
-
-This action states to "Document commitment strategy (RIs/Savings Plans/CUDs) and guardrails."
-While the documentation would look different for every organization, the existence of a document is objective.
-Thus, we have a binary choice for if this action is implemented in an organization or not.
-However, even this can be broken out even further into specific items if we wanted to create those.
-So, if an action can be expanded to include multiple items, that would take priority over a binary scoring method.
-
-**YAML Format**:
-
-```{yaml}
-  Formula: null
-  Scoring:
-  - Score: 0
-    Condition: None
-  - Score: 10
-    Condition: Policy in place and published
 ```
 
 ### Multiple Weighted Buckets
@@ -121,7 +124,7 @@ Other combinations of formula items can be created as well that fit this method.
     3. Bucket
         * item 1
         * item 2
-  
+  Score Type: multi_bucket
   Scoring:
   - Score: 0
     Condition: no items completed
@@ -159,6 +162,7 @@ The scoring values are still based on the Ceil function mentioned in the bucket 
     1. item 1
     2. item 2
     3. etc...
+  Score Type: sequential
   Scoring:
   - Score: 0
     Condition: No items completed
@@ -170,6 +174,40 @@ The scoring values are still based on the Ceil function mentioned in the bucket 
     Condition: items 1, 2, and 3 completed
 ```
 
+### Threshold Process
+
+**Score Type**: `threshold`
+
+**Description**:
+
+This is a sequential process that does not require one to meet all previous sequencies to achieve a higher maturity score.
+
+**Example**: From action [039](https://github.com/FinOpsPP/Framework-Assessment/blob/main/components/actions/039.md)
+
+This action lists a series of time resolutions. It would not make sense to require one to make remake a forcast bi-weekly if they already were retraining the forcast model instantaneously when new data was available. So this one becomes a series of threshold that an organization can meet in order to earn a higher score.
+
+**YAML Format**:
+
+```{yaml}
+  Formula: null
+  Score Type: threshold
+  Scoring:
+  - Score: 0
+    Condition: None
+  - Score: 1
+    Condition: Annual
+  - Score: 2
+    Condition: Quarterly
+  - Score: 5
+    Condition: Monthly
+  - Score: 7
+    Condition: Bi-Weekly
+  - Score: 8
+    Condition: Weekly
+  - Score: 10
+    Condition: Daily
+```
+
 ### Percentage Calculation
 
 **Score Type**: `percent`
@@ -178,6 +216,7 @@ The scoring values are still based on the Ceil function mentioned in the bucket 
 
 This scoring method is straightforward. This score applies when there is a clear path to completion by iterating on the same task until all iterations are exhausted.
 For example, percent of resources that are deployed with a mandatory tag, or percent of teams complying with a policy, etc.
+It can be thought of as a sub-type of the threshold process since, very similarly to that score type, you are able achieve a higher score without having to first go through all previous scores in the sequence. The real difference is that this scoring types works well with pure mathematical formulas, whereas the threshold process typically requires no formula at all.
 
 **Example**: From action [010](https://github.com/FinOpsPP/Framework-Assessment/blob/main/components/actions/010.md)
 
@@ -192,6 +231,7 @@ If your allocation is at 49%, you will receive a score of 4. It is only when it 
 ```{yaml}
   Formula: Unallocated Shared CSP Effective Cloud Cost/ Total CSP Effective Cloud
     Cost
+  Score Type: percent
   Scoring:
   - Score: 0
     Condition: 0%
