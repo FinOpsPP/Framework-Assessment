@@ -12,8 +12,8 @@ Below we list each of the approved scoring methods and detail how to construct n
 * [Targets](#targets)
 
 ## Score Types:
-1. [Bucket of Accomplishments](#bucket-of-accomplishments) - `bucket`
-2. [Binary](#binary) - `binary`
+1. [Binary](#binary) - `binary` '(good first issue)'
+2. [Bucket of Accomplishments](#bucket-of-accomplishments) - `bucket`
 3. [Percentage Calculation](#percentage-calculation) - `percent`
 4. [Other Mathematical Formulae](#other-mathematical-formulae) - `calculation`
 5. [Multiple Weighted Buckets](#multiple-weighted-buckets) - `multi_bucket`
