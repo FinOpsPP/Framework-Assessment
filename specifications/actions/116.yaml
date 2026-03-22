@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-03-04'
-  Version: 0.5.1
+  Modified: '2026-03-17'
+  Version: 0.7.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -21,6 +21,7 @@ Specification:
     2. Determine owners for addressing each of the prioritized gaps
     3. Owners will work with relevant teams to scope out how to meet the target score for each gap
     4. Work is then scheduled in a roadmap with deadlines that can be tracked at the leadership level
+  Score Type: sequential
   Scoring:
   - Score: 0
     Condition: No items completed
@@ -34,9 +35,9 @@ Specification:
     Condition: items 1, 2, 3, and 4 completed
   References:
   - Name: NIST Gap Analysis Example Implementation
-    # cSpell:ignore pbgc
     Link: csrc.nist.gov/CSRC/media/Projects/Forum/documents/aug-2016/tues1230_pbgc_tier2-program.pdf
-    Comment: A real-world example of the gap analysis process from start to end in cybersecurity.
+    Comment: A real-world example of the gap analysis process from start to end in
+      cybersecurity.
   - Name: Free Project Management Course from PMI
     Link: https://www.pmi.org/kickoff
     Comment: |-
@@ -46,6 +47,6 @@ Specification:
   - |-
     Weights are about maturity priority and which actions are important to the business' goals.
     Here, priority is about what to work on first to get the most ROI from work to close the maturity gaps.
-  - |-
-    Ensure that planned work reflects the realities of team development lifecycles, such as agile, waterfall, etc.
+  - Ensure that planned work reflects the realities of team development lifecycles,
+    such as agile, waterfall, etc.
   Overrides: null

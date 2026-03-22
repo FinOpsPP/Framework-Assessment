@@ -169,6 +169,18 @@ class ActionItem(SpecID, Config):
         description='List of action overrides by profile'
     )
 
+# pylint: disable=invalid-name
+class ScoreTypeEnum(str, Enum):
+    """Enumeration of options for valid score types for an Action"""
+    calculation = 'calculation'
+    bucket = 'bucket'
+    multiBucket = 'multi_bucket'
+    percent = 'percent'
+    sequential = 'sequential'
+    binary = 'binary'
+    threshold = 'threshold'
+# pylint: enable=invalid-name
+
 class Reference(Config):
     """Common model for references used in Action models"""
     Name: str | None = Field(
@@ -210,6 +222,11 @@ class ActionSpec(ActionItem, SpecBase, SpecID, Config):
     Formula: Optional[str] = Field(
         default=None,
         description='Formula used to compute the score condition'
+    )
+    ScoreType: ScoreTypeEnum = Field(
+        default=ScoreTypeEnum.calculation,
+        description='Type of scoring used for action',
+        alias='Score Type'
     )
     Scoring: list[ScoringDetail] = Field(
         description='Scoring details used to determine the maturity of an action',

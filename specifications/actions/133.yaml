@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-01-12'
-  Version: 0.5.0
+  Modified: '2026-03-17'
+  Version: 0.7.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -12,11 +12,12 @@ Specification:
   ID: 133
   Title: Coordinate Policy Changes Broadly
   Description: Coordinate policy/gov changes cross-functionally; communicate broadly.
-  Slug: 133-coordinate-polic # cspell:disable-line
+  Slug: 133-coordinate-policy
   Implementation Types:
   - null
   Weight: 0.0
   Formula: null
+  Score Type: calculation
   Scoring:
   - Score: 0
     Condition: null

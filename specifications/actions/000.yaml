@@ -29,6 +29,7 @@ Specification:
 
     Can be an equation or series of equations that feed into a final value
     or range of values
+  Score Type: calculation # basic, catch-all scoring type.
   Scoring: # scoring is a set of treatments for meeting a certain score value. Max value is 10, min is 0
   - Score: 0 # Scores and conditions must be unique to an action.
     Condition: Condition required for min score value of 0
