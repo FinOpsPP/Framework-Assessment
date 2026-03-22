@@ -20,7 +20,7 @@ Specification:
   - null
   Weight: 1.0
   Formula: null
-  Score Type: sequential
+  Score Type: percent
   Scoring:
   - Score: 0
     Condition: No alerting to any owners
@@ -38,7 +38,7 @@ Specification:
     Comment: null
   Supplemental Guidance:
   - |-
-    Scoring for this actions is treated as sequential. That means that if you have
-    alerting to most owners, for example, you have implicitly achieved it is some
+    Scoring for this actions is treated as percent. That means that if you have
+    alerting to most owners, for example, you have implicitly achieved it in some
     owners already.
   Overrides: null

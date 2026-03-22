@@ -21,7 +21,7 @@ Specification:
   - null
   Weight: 1.0
   Formula: null
-  Score Type: threshold
+  Score Type: sequential
   Scoring:
   - Score: 0
     Condition: No review of trends
@@ -36,5 +36,7 @@ Specification:
     Link: null
     Comment: null
   Supplemental Guidance:
-  - null
+  - |-
+    While technically this could be scored as a threshold, here we choose to use sequential.
+    This is because the order of these evens would be to the benifit of a FinOps precessional.
   Overrides: null

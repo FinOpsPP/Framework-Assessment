@@ -20,7 +20,7 @@ Specification:
   - null
   Weight: 1.0
   Formula: null
-  Score Type: sequential
+  Score Type: threshold
   Scoring:
   - Score: 0
     Condition: Never
