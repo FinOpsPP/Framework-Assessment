@@ -16,7 +16,7 @@ Specification:
   Slug: 137-decision-rights
   Implementation Types:
   - null
-  Weight: 1.0
+  Weight: 0.0
   Formula: |-
     * Document decision rights and approval authority for technology spend
     * Define and publish spend guardrails with named owners

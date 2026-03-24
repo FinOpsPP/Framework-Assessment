@@ -16,7 +16,7 @@ Specification:
   Slug: 138-multiyear-invest
   Implementation Types:
   - null
-  Weight: 1.0
+  Weight: 0.0
   Formula: |-
     * Inventory vendor commitments across technology categories (cloud, SaaS, data center, AI)
     * Create a multi-year forecast incorporating renewal timelines and growth projections

@@ -15,7 +15,7 @@ Specification:
   Slug: 139-decision-cadence
   Implementation Types:
   - null
-  Weight: 1.0
+  Weight: 0.0
   Formula: |-
     * Define a regular review cadence for technology investment decisions
     * Deliver cost and outcome comparisons for competing initiatives at reviews
