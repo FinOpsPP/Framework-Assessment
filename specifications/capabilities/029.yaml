@@ -12,5 +12,9 @@ Specification:
   ID: 29
   Title: Executive Strategy Alignment
   Description: null
-  Actions: null
+  Actions:
+  - ID: 136
+  - ID: 137
+  - ID: 138
+  - ID: 139
   Overrides: null
