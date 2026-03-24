@@ -1,0 +1,25 @@
+Metadata:
+  Proposed: '2026-03-24'
+  Adopted: null
+  Modified: null
+  Version: 0.0.1
+  Status: Proposed
+  Approvers:
+  - Name: null
+    Email: null
+    Date: null
+Specification:
+  ID: 8
+  Title: Manage the FinOps Practice
+  Description: Enabling continuous advancement by aligning people, processes, and technology
+    throughout the organization
+  Capabilities:
+  - ID: 29
+  - ID: 11
+  - ID: 24
+  - ID: 10
+  - ID: 15
+  - ID: 9
+  - ID: 25
+  - ID: 14
+  Overrides: null

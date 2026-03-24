@@ -1,0 +1,21 @@
+Metadata:
+  Proposed: '2026-03-24'
+  Adopted: null
+  Modified: null
+  Version: 0.0.1
+  Status: Proposed
+  Approvers:
+  - Name: null
+    Email: null
+    Date: null
+Specification:
+  ID: 25
+  Title: Automation, Tools & Services
+  Description: null
+  Actions:
+  - ID: 124
+  - ID: 125
+  - ID: 126
+  - ID: 127
+  - ID: 128
+  Overrides: null

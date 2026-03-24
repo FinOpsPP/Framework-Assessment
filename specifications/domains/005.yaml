@@ -1,0 +1,20 @@
+Metadata:
+  Proposed: '2026-03-24'
+  Adopted: null
+  Modified: null
+  Version: 0.0.1
+  Status: Proposed
+  Approvers:
+  - Name: null
+    Email: null
+    Date: null
+Specification:
+  ID: 5
+  Title: Understand Usage & Cost
+  Description: Gathering comprehensive data about technology utilization and expenses
+  Capabilities:
+  - ID: 8
+  - ID: 1
+  - ID: 20
+  - ID: 2
+  Overrides: null

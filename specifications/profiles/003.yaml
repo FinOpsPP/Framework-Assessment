@@ -1,0 +1,19 @@
+Metadata:
+  Proposed: '2026-03-24'
+  Adopted: null
+  Modified: null
+  Version: 0.0.1
+  Status: Proposed
+  Approvers:
+  - Name: null
+    Email: null
+    Date: null
+Specification:
+  ID: 3
+  Title: FinOps Foundation 2026
+  Description: Profile featuring controls aligned to the 2026 FinOps Foundation framework
+  Domains:
+  - ID: 5
+  - ID: 6
+  - ID: 7
+  - ID: 8

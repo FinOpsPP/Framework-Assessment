@@ -1,0 +1,28 @@
+Metadata:
+  Proposed: '2026-03-24'
+  Adopted: null
+  Modified: null
+  Version: 0.0.1
+  Status: Proposed
+  Approvers:
+  - Name: null
+    Email: null
+    Date: null
+Specification:
+  ID: 26
+  Title: Architecting & Workload Placement
+  Description: null
+  Actions:
+  - ID: 61
+  - ID: 62
+  - ID: 63
+  - ID: 64
+  - ID: 65
+  - ID: 66
+  - ID: 118
+  - ID: 119
+  - ID: 120
+  - ID: 121
+  - ID: 122
+  - ID: 123
+  Overrides: null

@@ -1,0 +1,22 @@
+Metadata:
+  Proposed: '2026-03-24'
+  Adopted: null
+  Modified: null
+  Version: 0.0.1
+  Status: Proposed
+  Approvers:
+  - Name: null
+    Email: null
+    Date: null
+Specification:
+  ID: 28
+  Title: Usage Optimization
+  Description: null
+  Actions:
+  - ID: 67
+  - ID: 68
+  - ID: 69
+  - ID: 70
+  - ID: 71
+  - ID: 72
+  Overrides: null

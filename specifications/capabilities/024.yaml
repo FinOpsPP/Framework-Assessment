@@ -1,0 +1,21 @@
+Metadata:
+  Proposed: '2026-03-24'
+  Adopted: null
+  Modified: null
+  Version: 0.0.1
+  Status: Proposed
+  Approvers:
+  - Name: null
+    Email: null
+    Date: null
+Specification:
+  ID: 24
+  Title: Governance, Policy & Risk
+  Description: null
+  Actions:
+  - ID: 102
+  - ID: 103
+  - ID: 104
+  - ID: 105
+  - ID: 106
+  Overrides: null

@@ -1,0 +1,22 @@
+Metadata:
+  Proposed: '2026-03-24'
+  Adopted: null
+  Modified: null
+  Version: 0.0.1
+  Status: Proposed
+  Approvers:
+  - Name: null
+    Email: null
+    Date: null
+Specification:
+  ID: 7
+  Title: Optimize Usage & Cost
+  Description: Ensuring resources deliver value through efficient consumption and favorable
+    pricing arrangements
+  Capabilities:
+  - ID: 26
+  - ID: 28
+  - ID: 19
+  - ID: 16
+  - ID: 27
+  Overrides: null

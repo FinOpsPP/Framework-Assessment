@@ -1,0 +1,22 @@
+Metadata:
+  Proposed: '2026-03-24'
+  Adopted: null
+  Modified: null
+  Version: 0.0.1
+  Status: Proposed
+  Approvers:
+  - Name: null
+    Email: null
+    Date: null
+Specification:
+  ID: 6
+  Title: Quantify Business Value
+  Description: Connecting usage and cost information with organizational value, ensuring
+    transparency around technology investments
+  Capabilities:
+  - ID: 18
+  - ID: 13
+  - ID: 5
+  - ID: 23
+  - ID: 21
+  Overrides: null
