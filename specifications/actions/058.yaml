@@ -21,7 +21,7 @@ Specification:
     * Review data with stakeholders when metrics exceed acceptable thresholds in either direction
     * Incorporate metric reviews into the decision making processes of stakeholder departments
     * The FinOps team should periodically publish an analysis of major changes in the metrics dashboards
-    as well as facilitate revies of metrics, adoption data, modifications, and KPI refreshes
+    as well as facilitate reviews of metrics, adoption data, modifications, and KPI refreshes
 
     10*Ceil(x/4)
   Score Type: bucket
