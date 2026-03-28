@@ -24,17 +24,27 @@ from finopspp.composers import excel, markdown
 # presenters based on answers from
 # https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
 def str_presenter(dumper, data):
+    """Custom presenter for yaml dumper
+    
+    Returns:
+        dumper (obj) - scalar formatter matching specific string use case (multi-line vs single-line)
+    """
     # for multi-line strings
     if len(data.splitlines()) > 1:
         return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')
 
-    # for standard strings
+    # for standard, single-line strings
     return dumper.represent_scalar('tag:yaml.org,2002:str', data)
 
 yaml.add_representer(str, str_presenter)
 
+
 def patched_show(self, file = None): # pylint: disable=unused-argument
-    """Patched version of UsageError Show"""
+    """Patched version of UsageError Show
+    
+    will show UsageError types in nice colors rather than the boring
+    default ones
+    """
     # pull these imports in here rather than at the top level to keep this
     # patch self contained
     from gettext import gettext as _ # pylint: disable=import-outside-toplevel
@@ -159,6 +169,9 @@ def overrides_helper(spec, profile, override_type='std'):
     
     Also ensure that if an override exists, it conforms to the specification of an
     override
+
+    Returns:
+        Override (dict) - valid dictionary for the first override for a profile
     """
     # if there are no overrides, which should be a list type or None,
     # set an empty list
