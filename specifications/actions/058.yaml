@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-03-17'
-  Version: 0.7.0
+  Modified: '2026-03-28'
+  Version: 0.8.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -15,16 +15,32 @@ Specification:
   Slug: 58-set-cadence
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
-  Score Type: calculation
+  Weight: 1.0
+  Formula: |-
+    * Collaborate with stakeholders on desired acceptable thresholds or goals for each unit ecnomic value
+    * Review data with stakeholders when metrics exceed acceptable thresholds in either direction
+    * Incorporate metric reviews into the decision making processes of stakeholder departments
+    * The FinOps team should periodically publish an analysis of major changes in the metrics dashboards
+    as well as facilitate revies of metrics, adoption data, modifications, and KPI refreshes
+
+    10*Ceil(x/4)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No items completed
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 items completed
+  - Score: 8
+    Condition: 3 items completed
+  - Score: 10
+    Condition: 4 items completed
   References:
   - Name: null
     Link: null
     Comment: null
   Supplemental Guidance:
-  - null
+  - Metric changes could be due to changes in usage, rates, or even input definitions or data integrity issues.
+  - Reviews are important to capture changes in the business, but also mistakes in the data ingestion process.
   Overrides: null
