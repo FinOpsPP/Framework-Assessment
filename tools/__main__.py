@@ -128,17 +128,31 @@ def generate():
 
 
 def sub_specification_helper(spec, spec_file):
-    """Helps find and pull Specification subsection from a specification"""
+    """Helps find and pull Specification subsection from a specification
+
+    Note: metadata is only expected to be returned if it is defined. It might not
+    be if the component is stubbed out without complete usage of the component
+    specification blocks. In this case, only an empty dict is returned along
+    with the spec that was passed in
+    
+    Returns:
+        Metadata (dict) - dictionary for a sub-specifications metadata
+        Specification (dict) - the actual specification for a component
+    """
     spec_id = spec.get('ID')
     # if no ID, or it is ID 0, assume the full sub-specification is given and return
     if not spec_id:
-        return spec
+        return {}, spec
 
     # else look up sub-specification file ID
     spec_id = str(spec_id)
     file = '0'*(3-len(spec_id)) + spec_id
-    with open(spec_file.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
-        return yaml.safe_load(yaml_file).get('Specification')
+    complete_path = spec_file.joinpath(f'{file}.yaml')
+    with open(complete_path, 'r', encoding='utf-8') as yaml_file:
+        full_sub = yaml.safe_load(yaml_file)
+        sub_metadata = full_sub.get('Metadata') or {}
+        sub_spec = full_sub.get('Specification') or {}
+        return sub_metadata, sub_spec
 
 def overrides_helper(spec, profile, override_type='std'):
     """Helper for receiving the overrides for a profile if they exist
@@ -146,6 +160,8 @@ def overrides_helper(spec, profile, override_type='std'):
     Also ensure that if an override exists, it conforms to the specification of an
     override
     """
+    # if there are no overrides, which should be a list type or None,
+    # set an empty list
     overrides = spec.get('Overrides')
     if not overrides:
         overrides = []
@@ -189,19 +205,25 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
     cap_files = files('finopspp.specifications.capabilities')
     action_files = files('finopspp.specifications.actions')
     with open(ProfilesMap[profile], 'r', encoding='utf-8') as yaml_file:
-        profile_spec = yaml.safe_load(
+        profile_yaml = yaml.safe_load(
             yaml_file
-        ).get('Specification')
+        )
+        profile_spec = profile_yaml.get('Specification') or {}
+        profile_metadata = profile_yaml.get('Metadata') or {}
+        # edits to a specification in code should always be lowercase!
+        # to help show that it is a transformation from the uppercase
+        # version used in the actual yaml specification.
+        profile_spec['version'] = profile_metadata.get('Version')
 
-    domains = []
     if not profile_spec.get('Domains'):
         click.secho('Profile includes no domains. Exiting', err=True, fg='red')
         sys.exit(1)
 
+    domains = []
     for domain in track(profile_spec.get('Domains'), 'Loading profile'):
         capabilities = []
 
-        spec = sub_specification_helper(domain, domain_files)
+        metadata, spec = sub_specification_helper(domain, domain_files)
         domain_override = overrides_helper(spec, profile)
         domain_drops = [drop['ID'] for drop in domain_override.get('DropIDs')]
 
@@ -230,6 +252,7 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
 
         domains.append({
             'serial_number': serial_number,
+            'version': metadata.get('Version'),
             'domain': title,
             'capabilities': capabilities
         })
@@ -237,7 +260,7 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
         for capability in spec.get('Capabilities'):
             actions = []
 
-            spec = sub_specification_helper(capability, cap_files)
+            metadata, spec = sub_specification_helper(capability, cap_files)
 
             # continue early if the Capability ID is one to be dropped
             spec_id = spec.get('ID')
@@ -271,12 +294,13 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
 
             capabilities.append({
                 'serial_number': serial_number,
+                'version': metadata.get('Version'),
                 'capability': title,
                 'actions': actions
             })
             spec.get('Actions').extend(cap_override.get('AddIDs'))
             for action in spec.get('Actions'):
-                spec = sub_specification_helper(action, action_files)
+                metadata, spec = sub_specification_helper(action, action_files)
 
                 # continue early if the Action ID is one to be dropped
                 spec_id = spec.get('ID')
@@ -303,6 +327,7 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
                 actions.append({
                     'action': spec.get('Title') or spec.get('Description'),
                     'serial_number': serial_number,
+                    'version': metadata.get('Version'),
                     'weights': spec.get('Weight'),
                     'formula': spec.get('Formula'),
                     'scoring': spec.get('Scoring'),
