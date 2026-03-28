@@ -18,9 +18,9 @@ Specification:
   Weight: 1.0
   Formula: |-
     * Continuously collect data over time for all inputs to unit economic equations
-    * Automate unit ecnomic calculations for each corresponding point in time for cost and business data
-    * Create plots of unit ecnomic metrics over time to easily report on and track trends
-    * Show disagregated data to compare unit metrics with standalone usage or rate changes
+    * Automate unit economic calculations for each corresponding point in time for cost and business data
+    * Create plots of unit economic metrics over time to easily report on and track trends
+    * Show disaggregated data to compare unit metrics with standalone usage or rate changes
     * Include filters to show data by each relevant operational area of the business (product/segment/region/etc.)
     * Plots and dashboards are easily accessible by key stakeholders across the business
 
