@@ -392,15 +392,22 @@ def components(specification_type):
         if not int(number):
             continue
 
+        # all added fields to a specification should be in lowercase!
+        # to help differentiate them against the uppercase fields in
+        # the specifications itself.
         path = spec_files.joinpath(spec.name)
         with open(path, 'r', encoding='utf-8') as yaml_file:
-            spec = yaml.safe_load(yaml_file).get('Specification')
+            full_yaml = yaml.safe_load(yaml_file)
+            spec = full_yaml.get('Specification')
+            metadata = full_yaml.get('Metadata') or {}
+            spec['version'] = metadata.get('Version')
 
+        # update all the immediate subspecs listed on the spec in places
         for subspec in spec.get(subspec_type.capitalize(), []):
-            subspec_doc = sub_specification_helper(subspec, subspec_files)
+            _, subspec_doc = sub_specification_helper(subspec, subspec_files)
             subspec_id = str(subspec_doc.get('ID'))
-            subspec['File'] = f'/components/{subspec_type}/{"0"*(3-len(subspec_id))}{subspec_id}.md'
-            subspec['Title'] = subspec_doc.get('Title')
+            subspec['file'] = f'/components/{subspec_type}/{"0"*(3-len(subspec_id))}{subspec_id}.md'
+            subspec['title'] = subspec_doc.get('Title')
 
         markdown.components_generate(specification_type, spec)
 
