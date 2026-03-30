@@ -1,0 +1,42 @@
+Metadata:
+  Proposed: '2026-03-25'
+  Adopted: null
+  Modified: null
+  Version: 0.0.1
+  Status: Proposed
+  Approvers:
+  - Name: null
+    Email: null
+    Date: null
+Specification:
+  ID: 138
+  Title: Build Multi-Year Investment Forecast
+  Description: Forecast technology vendor commitments across categories over multiple
+    years.
+  Slug: 138-multiyear-invest
+  Implementation Types:
+  - null
+  Weight: 0.0
+  Formula: |-
+    * Inventory vendor commitments across technology categories (cloud, SaaS, data center, AI)
+    * Create a multi-year forecast incorporating renewal timelines and growth projections
+    * Incorporate transition and modernization costs into the investment plan
+
+    10*Ceil(x/3)
+  Score Type: bucket
+  Scoring:
+  - Score: 0
+    Condition: No items completed
+  - Score: 4
+    Condition: 1 item completed
+  - Score: 7
+    Condition: 2 items completed
+  - Score: 10
+    Condition: 3 items completed
+  References:
+  - Name: null
+    Link: null
+    Comment: null
+  Supplemental Guidance:
+  - null
+  Overrides: null

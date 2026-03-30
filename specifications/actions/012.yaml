@@ -1,12 +1,12 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-01-12'
-  Version: 1.4.0
+  Modified: '2026-03-17'
+  Version: 1.7.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
-    Email: victoria.levy@alteryx.com
+    Email: vlevy573@gmail.com
     Date: '2025-11-01'
   - Name: Andrew Quigley
     Email: andrewquigley@northwesternmutual.com
@@ -20,6 +20,7 @@ Specification:
   - null
   Weight: 1.0
   Formula: Percentage of total costs that are tagged for Each Required Tag
+  Score Type: percent
   Scoring:
   - Score: 0
     Condition: 0%
@@ -47,6 +48,6 @@ Specification:
   - Name: null
     Link: null
     Comment: null
-  Notes:
+  Supplemental Guidance:
   - null
   Overrides: null

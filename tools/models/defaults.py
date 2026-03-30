@@ -29,6 +29,7 @@ Action = definitions.Action(
         ],
         Weight=0,
         Formula=None,
+        ScoreType=definitions.ScoreTypeEnum.calculation.value,
         Scoring=[
             definitions.ScoringDetail(
                 Score=0,
@@ -42,7 +43,7 @@ Action = definitions.Action(
                 Comment=None
             )
         ],
-        Notes=[
+        SupplementalGuidance=[
             None
         ]
     )

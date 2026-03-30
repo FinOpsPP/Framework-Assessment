@@ -1,0 +1,32 @@
+Metadata:
+  Proposed: '2026-03-25'
+  Adopted: null
+  Modified: null
+  Version: 0.0.1
+  Status: Proposed
+  Approvers:
+  - Name: null
+    Email: null
+    Date: null
+Specification:
+  ID: 136
+  Title: Establish Executive Sponsorship
+  Description: Identify and formalize an executive sponsor for the FinOps practice.
+  Slug: 136-exec-sponsor
+  Implementation Types:
+  - null
+  Weight: 1.0
+  Formula: null
+  Score Type: binary
+  Scoring:
+  - Score: 0
+    Condition: No executive sponsor identified
+  - Score: 10
+    Condition: Executive sponsor formally identified and actively engaged
+  References:
+  - Name: null
+    Link: null
+    Comment: null
+  Supplemental Guidance:
+  - null
+  Overrides: null

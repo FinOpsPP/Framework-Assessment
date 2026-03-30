@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-02-16'
-  Version: 0.5.0
+  Modified: '2026-03-17'
+  Version: 0.8.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -23,6 +23,7 @@ Specification:
     * Set a preliminary target score for each included action to use for comparison
 
     10*Ceil(x/4)
+  Score Type: bucket
   Scoring:
   - Score: 0
     Condition: 0 items completed
@@ -38,7 +39,11 @@ Specification:
   - Name: FinOps Foundation Assessment Stage 1
     Link: https://www.finops.org/wg/finops-assessment/#assessment-stage-1-introduction
     Comment: Target groups and testing parameters needed before starting any assessment
-  Notes:
-  - For the last item in the formula list, references for what targets include can be
-  - found here https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md
+  - Name: FinOps++ Scoring
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md
+    Comment: Scoring guidance used by the FinOps++ Project for all actions.
+  Supplemental Guidance:
+  - |-
+    For the last item in the formula list, references for what targets include can
+    be found in scoring guideline document linked in references.
   Overrides: null
