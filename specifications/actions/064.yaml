@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-03-17'
-  Version: 0.7.0
+  Modified: '2026-03-31'
+  Version: 0.8.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -15,12 +15,29 @@ Specification:
   Slug: 64-iteratively-measure
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
-  Score Type: calculation
+  Weight: 1.0
+  Formula: |-
+    * Implement architecture changes in time boxed iterations rather than big migrations
+    * Track actual cost outcomes vs estimated savings documented in prior trade off analysis
+    * Define and monitor success metrics (cost delta, performance, reliability) for each iteration
+    * Hold structured retrospectives after each iteration to capture lessons learned
+    * Feed iteration outcomes back into the modernisation backlog to reprioritise remaining work
+
+10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
+  - Score: 10
+    Condition: 5 items completed
   References:
   - Name: null
     Link: null
