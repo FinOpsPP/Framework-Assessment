@@ -21,7 +21,7 @@ Specification:
     * Determine what data is shared across teams to establish a single source of truth
     * Identify and agree on tasks that will lead to accomplishing shared goals
     * Determine which teams have capacity to work on goal tasks periodically
-    * Incorporate tasks into team capacity planning and dependency workflows 
+    * Incorporate tasks into team capacity planning and dependency workflows
 
     10*Ceil(x/5)
   Score Type: bucket
@@ -43,5 +43,5 @@ Specification:
     Link: null
     Comment: null
   Supplemental Guidance:
-  - Teams can more efficiently accomplish goals by splitting the work with another team working towards the same outcome.
+  - Teams can more efficiently accomplish goals by splitting the work with another team working on the same outcome.
   Overrides: null
