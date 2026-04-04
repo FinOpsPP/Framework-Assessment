@@ -1,7 +1,7 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-03-30'
+  Modified: '2026-04-04'
   Version: 2.0.0
   Status: Accepted
   Approvers:
@@ -32,14 +32,14 @@ Specification:
     * Rules_Est - Guiding rules / policy established for future decsions (0=No rules, 1=Draft, 2=Published+Enforced)
     * Output Range (0 - Max Raw)
   Scoring:
-  - Score: 8
-    Condition: Low Maturity
-  - Score: 17
-    Condition: Developing
-  - Score: 24
-    Condition: Established
-  - Score: 29
-    Condition: Optimizing
+  - Score: 0
+    Condition: Low Maturity, Score Range (0-8)
+  - Score: 4
+    Condition: Developing, Score Range (9-17)
+  - Score: 7
+    Condition: Established, Score Range (18-24)
+  - Score: 10
+    Condition: Optimizing, Score Range (25-29)
     
   References:
   - Name: Maturity Definition
