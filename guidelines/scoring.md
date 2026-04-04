@@ -169,9 +169,9 @@ The scoring values are still based on the Ceil function mentioned in the bucket 
   - Score: 4
     Condition: item 1 completed
   - Score: 7
-    Condition: items 1 and 2 completed
+    Condition: items 1-2 completed
   - Score: 10
-    Condition: items 1, 2, and 3 completed
+    Condition: items 1-3 completed
 ```
 
 ### Threshold Process
