@@ -1,7 +1,7 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-03-17'
+  Modified: '2026-04-04'
   Version: 0.6.0
   Status: Proposed
   Approvers:
@@ -24,19 +24,19 @@ Specification:
     	Config Doc (score ×2).
     	Max raw (52)
     * Env_Coverage - % of cloud environments covered by deployed tools (0=0%, 1<50%, 2=50-79%, 3=80-94%, 4=95-99%, 5=100%)
-    * Data_Integr - Data sources integrated (billing, usage, tags, business context) (0=None, 1=Billing Only, 2=+Usage, 3=+Tags, 4=+Business context, 5=All+Automated)
+    * Data_Integration - Data sources integrated (billing, usage, tags, business context) (0=None, 1=Billing Only, 2=+Usage, 3=+Tags, 4=+Business context, 5=All+Automated)
     * Tag_Config - Tag/allocation rules configured and enforced tool (0=No, 1=Partial manual, 2=Full manual, 3=Automated enforcement)
     * Config_Doc - Tool configuration documented and version-controlled (0=No rules, 1=Informal, 2=Documented, 3=Version-controlled+Reviewed)
     * Output Range (0-52)
   Scoring:
-  - Score: 15
-    Condition: Low Maturity
-  - Score: 31
-    Condition: Developing
-  - Score: 44
-    Condition: Established
-  - Score: 52
-    Condition: Optimizing
+  - Score: 0
+    Condition: Low Maturity, Score Range (0-15)
+  - Score: 4
+    Condition: Developing, Score Range (16-31)
+  - Score: 7
+    Condition: Established, Score Range (32-44)
+  - Score: 10
+    Condition: Optimizing, Score Range (45-52)
   References:
   - Name: null
     Link: null
