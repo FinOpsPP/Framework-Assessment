@@ -17,7 +17,7 @@ Specification:
   - null
   Weight: 1.0
   Formula: |-
-    1. Identify key stakeholder teams and key contacts for each (ITAM, ITFM, etc.)
+    1. Identify key stakeholder teams and key contacts for each (ITAM, SRE, etc.)
     2. Document initial thoughts on how this other team may help FinOps goals
     3. Document initial thoughts on how the FinOps team may help the other team's goals
     4. Reach out to the other team with the initial summary of goals

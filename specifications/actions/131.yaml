@@ -18,7 +18,7 @@ Specification:
   Weight: 1.0
   Formula: |-
     * Agree on definitions of shared concepts across teams to reduce confusion
-    * Adjust reporting so shared metrics are consistent and from the same source, even if multiple dashbaords exist
+    * Adjust reporting so shared metrics are consistent and from the same source, even if multiple dashboards exist
     * Regularly align on interpretation of shared metrics to plan next steps and report those to leadership
 
     10*Ceil(x/3)
