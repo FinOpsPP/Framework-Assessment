@@ -9,8 +9,8 @@ from importlib.resources import files
 from importlib.metadata import metadata as meta
 
 import click
-import yaml
 import semver
+import yaml
 from rich.console import Console
 from rich.syntax import Syntax
 from rich.progress import track
@@ -19,7 +19,7 @@ from click_help_colors import HelpColorsGroup
 from pydantic import TypeAdapter, ValidationError
 
 from finopspp.models import definitions, defaults
-from finopspp.composers import excel, markdown
+from finopspp.composers import archive, excel, markdown
 
 # presenters based on answers from
 # https://stackoverflow.com/questions/8640959/how-can-i-control-what-scalar-form-pyyaml-uses-for-my-data
@@ -362,6 +362,9 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
 
     # next try and create the workbook for this profile.
     excel.assessment_generate(profile, base_path, domains)
+
+    # finally, create the assessment archive file for the current version
+    archive.assessment_generate(profile, profile_spec, base_path, domains)
 
 
 @generate.command()

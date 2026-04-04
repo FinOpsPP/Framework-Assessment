@@ -21,9 +21,9 @@ def create_overview_sheet(profile, dataframe, workbook):
     })
 
     shape = dataframe.shape[0]
-    overview_sheet.write_formula('A2', f'=SUM(Scoring!E2:E{shape + 1})') # sum of weights
+    overview_sheet.write_formula('A2', f'=SUM(Scoring!F2:F{shape + 1})') # sum of weights
     overview_sheet.write_number('B2', 10) # max score
-    overview_sheet.write_formula('C2', f'=SUM(Scoring!H2:H{shape + 1})/A2') # average score
+    overview_sheet.write_formula('C2', f'=SUM(Scoring!I2:I{shape + 1})/A2') # average score
     overview_sheet.write_formula('D2', '=B2-C2') # score diff (max - average)
 
     # overview domain table
@@ -44,9 +44,9 @@ def create_overview_sheet(profile, dataframe, workbook):
         f'=SUM(Overview!$B$5:$B${domain_shift})'
     )
 
-    weight_col = f'Scoring!E2:E{shape + 1}'
-    index_col = f'Scoring!I2:I{shape + 1}'
-    score_col = f'Scoring!H2:H{shape + 1}'
+    weight_col = f'Scoring!F2:F{shape + 1}'
+    index_col = f'Scoring!J2:J{shape + 1}'
+    score_col = f'Scoring!I2:I{shape + 1}'
     for index in range(5, domain_shift + 1):
         overview_sheet.write_formula(
             f'U{index}',
@@ -72,7 +72,7 @@ def create_overview_sheet(profile, dataframe, workbook):
         f'=SUM(Overview!$B${extended_shift + 1}:$B${capabilities_shift})'
     )
 
-    index_col = f'Scoring!J2:J{shape + 1}'
+    index_col = f'Scoring!K2:K{shape + 1}'
     for index in range(extended_shift + 1, capabilities_shift + 1):
         overview_sheet.write_formula(
             f'U{index}',
@@ -152,14 +152,14 @@ def format_scoring_sheet(scoring_sheet, dataframe, workbook):
     })
 
     for counter, (_, row) in enumerate(dataframe.iterrows(), start=2):
-        scores = [f'{scoring['Score']}: {scoring["Condition"]}' for scoring in row.scoring]
-        scoring_sheet.write(f'G{counter}', scores[0]) # overwrite with correct default scores
-        scoring_sheet.data_validation(f'G{counter}', {
+        scores = [f'{scoring["Score"]}: {scoring["Condition"]}'.replace(',', '.') for scoring in row.scoring]
+        scoring_sheet.write(f'H{counter}', scores[0]) # overwrite with correct default scores
+        scoring_sheet.data_validation(f'H{counter}', {
             'validate' : 'list',
             'source': scores
         })
         scoring_sheet.write_formula(
-            f'H{counter}', f'=E{counter}*VALUE(LEFT(G{counter}, FIND(":", G{counter})-1))'
+            f'I{counter}', f'=F{counter}*VALUE(LEFT(H{counter}, FIND(":", H{counter})-1))'
         )
 
         # overwrite serial numbers with links to github markdown pages for the numbers
@@ -172,7 +172,7 @@ def format_scoring_sheet(scoring_sheet, dataframe, workbook):
         )
 
     # hide columns that should be hidden
-    scoring_sheet.set_column('I:XFD', None, None, {'hidden': True})
+    scoring_sheet.set_column('J:XFD', None, None, {'hidden': True})
 
     # Autofit the scoring sheet and fix warning.
     scoring_sheet.autofit()
@@ -180,7 +180,7 @@ def format_scoring_sheet(scoring_sheet, dataframe, workbook):
 
     # format cells for scoring sheet
     text_wrap_format = workbook.add_format({'text_wrap': True})
-    scoring_sheet.set_column('F:G', 40, text_wrap_format)
+    scoring_sheet.set_column('G:H', 40, text_wrap_format)
 
 
 def assessment_generate(profile, base_path, domains):

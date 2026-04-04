@@ -1,5 +1,7 @@
 # <a href="/components/profiles/002.md">002</a>: FinOps++ Maturity Assessment Framework
 
+**Creation Date:** 2026-04-03
+
 **Specification Version:** 0.0.1
 
 Finops++ profile that is an extension and reorganization of the finops foundation profile
@@ -621,7 +623,7 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/001.md">001</a>: Inventory All Data Sources
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.7.1</p>
                         </td>
                     </tr>
                     <tr>

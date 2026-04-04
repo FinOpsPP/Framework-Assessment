@@ -1,4 +1,5 @@
 """Markdown excel files used for FinOps++"""
+import datetime
 import os
 
 import click
@@ -8,15 +9,16 @@ Templates = PackageLoader('finopspp', 'templates')
 
 def assessment_generate(profile, profile_spec, base_path, domains):
     """Generate Assessment markdown files"""
+    click.echo(f'Attempting to generate framework for profile={profile}:')
+
     # pull in template and specification files for given specification type
     env = Environment(loader=Templates, keep_trailing_newline=True)
     template = env.get_template('framework.md.j2')
 
     # get profile id from spec
-    profile_id = str(profile_spec.get('ID'))
+    profile_id = str(profile_spec['ID'])
 
     # include profile title with linkable ID.
-    click.echo(f'Attempting to generate framework for profile={profile}:')
     file = '0'*(3-len(profile_id)) + profile_id
     profile_title = f'<a href="/components/profiles/{file}.md">{file}</a>: {profile}'
     profile_spec['profile_link_title'] = profile_title
@@ -26,6 +28,7 @@ def assessment_generate(profile, profile_spec, base_path, domains):
 
     # render file before writing it
     output = template.render(
+        today=datetime.date.today(),
         profile=profile_spec,
         domains=domains,
         assessment=assessment_link
@@ -45,17 +48,10 @@ def assessment_generate(profile, profile_spec, base_path, domains):
 
 def components_generate(specification_type, spec):
     """Generate Components markdown files"""
-    # pull in template and specification files for given specification type
-    env = Environment(loader=Templates)
-    template = env.get_template(f'{specification_type}.md.j2')
-
-    output = template.render(spec=spec)
-
-    # finally, write out rendered output to file
+    # write out rendered output to file
     # make sure serialized ID is the same as the one
     # used in the specification files.
-    spec_id = spec.get('ID')
-    spec_id = str(spec_id)
+    spec_id = str(spec['ID'])
     file_prefix = '0'*(3-len(spec_id)) + spec_id
     out_path = os.path.join(
         os.getcwd(),
@@ -67,6 +63,15 @@ def components_generate(specification_type, spec):
         f'Attempting to generate component "{out_path}" for specification-type={specification_type}:'
     )
 
+    # pull in template and specification files for given specification type
+    env = Environment(loader=Templates)
+    template = env.get_template(f'{specification_type}.md.j2')
+
+    # render file before writing it
+    output = template.render(spec=spec)
+
+    # finally, write specific component markdown
+    # from the rendered output
     with open(out_path, 'w', encoding='utf-8') as outfile:
         outfile.write(output)
 
@@ -75,12 +80,6 @@ def components_generate(specification_type, spec):
 
 def schemas_generate(schemas):
     """Generate Document markdown files"""
-    # pull in template and specification files for given specification type
-    env = Environment(loader=Templates)
-    template = env.get_template('schemas.md.j2')
-
-    output = template.render(schemas=schemas)
-
     out_path = os.path.join(
         os.getcwd(),
         'specifications',
@@ -90,6 +89,15 @@ def schemas_generate(schemas):
         f'Attempting to generate schemas document "{out_path}":'
     )
 
+    # pull in template and specification files for given specification type
+    env = Environment(loader=Templates)
+    template = env.get_template('schemas.md.j2')
+
+    # render file before writing it
+    output = template.render(schemas=schemas)
+
+    # finally, write README.md for the schemas
+    # from the rendered output
     with open(out_path, 'w', encoding='utf-8') as outfile:
         outfile.write(output)
 
