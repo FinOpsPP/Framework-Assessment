@@ -1,6 +1,6 @@
 # <a href="/components/profiles/001.md">001</a>: FinOps Foundation Maturity Assessment Framework
 
-**Creation Date:** 2026-04-03
+**Creation Date:** 2026-04-04
 
 **Specification Version:** 1.0.0
 
@@ -89,7 +89,7 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/116.md">116</a>: Prioritize Actions & Publish Roadmap
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.7.1</p>
                         </td>
                     </tr>
                     <tr>
@@ -237,37 +237,37 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/129.md">129</a>: Establish Cross-Team Collab
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/130.md">130</a>: Align Goals & Data Models
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/131.md">131</a>: Share Reporting & Definitions
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/132.md">132</a>: Provide Cloud Metrics to Teams
-                        <p>Specification Version: 0.7.0</p>
+                        <a href="/components/actions/132.md">132</a>: Provide Technology Metrics to Teams
+                        <p>Specification Version: 0.9.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/133.md">133</a>: Coordinate Policy Changes Broadly
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/134.md">134</a>: Drive Adoption & Resolve Conflicts
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.1</p>
                         </td>
                     </tr>
                 </table>
@@ -314,6 +314,40 @@ Classic profile featuring controls provided by the finops foundation
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/112.md">112</a>: Resolve Variances & Increase Coverage
                         <p>Specification Version: 1.7.0</p>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 200px; overflow-wrap: break-word; white-space: normal;">
+                <a href="/components/capabilities/023.md">023</a>: Executive Strategy Alignment
+                <p>Specification Version: 0.0.1</p>
+                </td>
+                <td>
+                <table style="table-layout: fixed;">
+                    <tr>
+                        <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
+                        <a href="/components/actions/136.md">136</a>: Establish Executive Sponsorship
+                        <p>Specification Version: 0.0.1</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
+                        <a href="/components/actions/137.md">137</a>: Define Decision Rights & Guardrails
+                        <p>Specification Version: 0.0.1</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
+                        <a href="/components/actions/138.md">138</a>: Build Multi-Year Investment Forecast
+                        <p>Specification Version: 0.0.1</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
+                        <a href="/components/actions/139.md">139</a>: Establish Decision Support Cadence
+                        <p>Specification Version: 0.0.1</p>
                         </td>
                     </tr>
                 </table>
@@ -811,25 +845,25 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/056.md">056</a>: Document Inputs & Formulas
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/057.md">057</a>: Build Unit Cost Dashboards
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/058.md">058</a>: Set Review Cadence & Targets
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/059.md">059</a>: Use Metrics to Prioritize Investments
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
