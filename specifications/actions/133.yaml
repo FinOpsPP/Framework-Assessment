@@ -34,12 +34,12 @@ Specification:
   - Score: 8
     Condition: items 1-3 completed
   - Score: 10
-    Condition: items 1-4 completedd
+    Condition: items 1-4 completed
   References:
   - Name: null
     Link: null
     Comment: null
   Supplemental Guidance: |-
   - Policies in this case could include changing existing workflows to include both teams, etc.
-  - There may not always be new policies created as a result of intersecting discilines.
+  - There may not always be new policies created as a result of intersecting disciplines.
   Overrides: null
