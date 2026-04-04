@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-03-17'
-  Version: 0.7.0
+  Modified: '2026-04-04'
+  Version: 0.7.1
   Status: Proposed
   Approvers:
   - Name: null
@@ -28,11 +28,11 @@ Specification:
   - Score: 3
     Condition: item 1 completed
   - Score: 5
-    Condition: items 1, and 2 completed
+    Condition: items 1-2 completed
   - Score: 8
-    Condition: items 1, 2, and 3 completed
+    Condition: items 1-3 completed
   - Score: 10
-    Condition: items 1, 2, 3, and 4 completed
+    Condition: items 1-4 completed
   References:
   - Name: NIST Gap Analysis Example Implementation
     Link: csrc.nist.gov/CSRC/media/Projects/Forum/documents/aug-2016/tues1230_pbgc_tier2-program.pdf
