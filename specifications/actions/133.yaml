@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-03-17'
-  Version: 0.7.0
+  Modified: '2026-04-03'
+  Version: 0.8.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -15,16 +15,30 @@ Specification:
   Slug: 133-coordinate-policy
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
-  Score Type: calculation
+  Weight: 1.0
+  Formula: |-
+    * Document new policies as a result of cross-functional collaboration goals
+    * Broad policy changes are accepted by governing and stakeholder teams
+    * Communication is distributed by all governing teams using shared language
+    * Change management procedures are followed for updated policy implementation
+
+    10*Ceil(x/4)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No items completed
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 items completed
+  - Score: 8
+    Condition: 3 items completed
+  - Score: 10
+    Condition: 4 items completed
   References:
   - Name: null
     Link: null
     Comment: null
   Supplemental Guidance:
-  - null
+  - Policies in this case could include changing existing workflows to include both teams, etc.
   Overrides: null
