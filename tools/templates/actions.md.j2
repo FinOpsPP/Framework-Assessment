@@ -1,5 +1,7 @@
 # {{ spec.ID }}: {{ spec.Title | title }}
 
+**Specification Version:** {{ spec.version | default('Not specified') }}
+
 **Slug:** {{ spec.Slug }}
 
 **Implementation Types:**
@@ -46,6 +48,6 @@
 | Profile | Weight Update | Title Update | Description Update |
 | ------- | ------------- | ------------ | ------------------ |
 {%- for override in spec.Overrides %}
-| {{ override.Profile }} | {{ override.WeightUpdate|default('None') }} | {{ override.TitleUpdate|default('None') }} | {{ override.DescriptionUpdate|default('None') }} |
+| {{ override.Profile }} | {{ override.WeightUpdate | default('None') }} | {{ override.TitleUpdate | default('None') }} | {{ override.DescriptionUpdate | default('None') }} |
 {%- endfor %}
 {% endif %}

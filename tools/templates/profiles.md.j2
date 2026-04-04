@@ -1,5 +1,7 @@
 # {{ spec.ID }}: {{ spec.Title | title }}
 
+**Specification Version:** {{ spec.version | default('Not specified') }}
+
 ## Descriptive Statement
 
 {{ spec.Description }}
@@ -7,5 +9,5 @@
 ## Domains
 
 {% for domain in spec.Domains -%}
-- {% if domain.ID %}[{{ domain.ID }}]({{ domain.File }}): {% else %}Custom Domain (lookup framework for accurate overview): {% endif %}{{ domain.Title }}
+- {% if domain.ID %}[{{ domain.ID }}]({{ domain.file }}): {% else %}Custom Domain (lookup framework for accurate overview): {% endif %}{{ domain.title }}
 {% endfor %}
