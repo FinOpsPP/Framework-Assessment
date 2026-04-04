@@ -39,7 +39,9 @@ Specification:
   - Name: null
     Link: null
     Comment: null
-  Supplemental Guidance: |-
-  - Policies in this case could include changing existing workflows to include both teams, etc.
-  - There may not always be new policies created as a result of intersecting disciplines.
+  Supplemental Guidance:
+  - |- 
+    Policies in this case could include changing existing workflows to include both teams, etc.
+  - |-
+    There may not always be new policies created as a result of intersecting disciplines.
   Overrides: null
