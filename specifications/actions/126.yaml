@@ -23,10 +23,10 @@ Specification:
     	Tag Config (score ×2),
     	Config Doc (score ×2).
     	Max raw (52)
-    * Env_Coverage - % of cloud environments covered by deployed tools (0=0%, 1<50%, 2=50-79%, 3=80-94%, 4=95-99%, 5=100%)
-    * Data_Integration - Data sources integrated (billing, usage, tags, business context) (0=None, 1=Billing Only, 2=+Usage, 3=+Tags, 4=+Business context, 5=All+Automated)
-    * Tag_Config - Tag/allocation rules configured and enforced tool (0=No, 1=Partial manual, 2=Full manual, 3=Automated enforcement)
-    * Config_Doc - Tool configuration documented and version-controlled (0=No rules, 1=Informal, 2=Documented, 3=Version-controlled+Reviewed)
+     - | * Env_Coverage - % of cloud environments covered by deployed tools (0=0%, 1<50%, 2=50-79%, 3=80-94%, 4=95-99%, 5=100%)
+     - | * Data_Integration - Data sources integrated (billing, usage, tags, business context) (0=None, 1=Billing Only, 2=+Usage, 3=+Tags, 4=+Business context, 5=All+Automated)
+     - | * Tag_Config - Tag/allocation rules configured and enforced tool (0=No, 1=Partial manual, 2=Full manual, 3=Automated enforcement)
+     - | * Config_Doc - Tool configuration documented and version-controlled (0=No rules, 1=Informal, 2=Documented, 3=Version-controlled+Reviewed)
     * Output Range (0-52)
   Scoring:
   - Score: 0
