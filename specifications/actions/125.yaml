@@ -6,7 +6,7 @@ Metadata:
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
-    Email: victoria.levy@alteryx.com
+    Email: vlevy573@gmail.com
     Date: '2025-11-01'
   - Name: Andrew Quigley
     Email: andrewquigley@northwesternmutual.com
@@ -31,6 +31,7 @@ Specification:
     * Decision_Doc - Build vs Buy decision formally documented and approved (0=No, 1=Informal note, 2=Formal doc, 3=Exec-approved+reviewed)
     * Rules_Est - Guiding rules / policy established for future decsions (0=No rules, 1=Draft, 2=Published+Enforced)
     * Output Range (0 - Max Raw)
+  Score Type: multi_bucket
   Scoring:
   - Score: 0
     Condition: Low Maturity, Score Range (0-8)
@@ -40,7 +41,6 @@ Specification:
     Condition: Established, Score Range (18-24)
   - Score: 10
     Condition: Optimizing, Score Range (25-29)
-    
   References:
   - Name: Maturity Definition
     Link: https://www.finops.org/framework/maturity-model/

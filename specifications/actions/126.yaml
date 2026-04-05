@@ -28,6 +28,7 @@ Specification:
      - | * Tag_Config - Tag/allocation rules configured and enforced tool (0=No, 1=Partial manual, 2=Full manual, 3=Automated enforcement)
      - | * Config_Doc - Tool configuration documented and version-controlled (0=No rules, 1=Informal, 2=Documented, 3=Version-controlled+Reviewed)
     * Output Range (0-52)
+  Score Type: multi_bucket
   Scoring:
   - Score: 0
     Condition: Low Maturity, Score Range (0-15)

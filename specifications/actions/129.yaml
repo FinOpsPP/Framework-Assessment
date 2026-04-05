@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-01-12'
-  Version: 0.5.0
+  Modified: '2026-04-03'
+  Version: 0.8.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -11,15 +11,31 @@ Metadata:
 Specification:
   ID: 129
   Title: Establish Cross-Team Collab
-  Description: Establish collaboration with TBM, ITAM, Security, SRE, and PMO.
+  Description: Establish collaboration with TBM, ITAM, Security, SRE, or PMO, etc.
   Slug: 129-establish-collab
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
+  Weight: 1.0
+  Formula: |-
+    1. Identify key stakeholder teams and key contacts for each (ITAM, SRE, etc.)
+    2. Document initial thoughts on how this other team may help FinOps goals
+    3. Document initial thoughts on how the FinOps team may help the other team's goals
+    4. Reach out to the other team with the initial summary of goals
+    5. Meet with the other team to better understand how they work
+  Score Type: sequential
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No items completed
+  - Score: 2
+    Condition: item 1 completed
+  - Score: 4
+    Condition: items 1-2 completed
+  - Score: 6
+    Condition: items 1-3 completed
+  - Score: 8
+    Condition: items 1-4 completed
+  - Score: 10
+    Condition: items 1-5 completed
   References:
   - Name: null
     Link: null

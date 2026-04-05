@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-01-12'
-  Version: 0.5.0
+  Modified: '2026-04-03'
+  Version: 0.9.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -10,20 +10,32 @@ Metadata:
     Date: null
 Specification:
   ID: 132
-  Title: Provide Cloud Metrics to Teams
-  Description: Provide allied teams the cloud metrics they need.
+  Title: Provide Technology Metrics to Teams
+  Description: Provide allied teams the technology metrics they need.
   Slug: 132-provide-metrics
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
+  Weight: 1.0
+  Formula: |-
+    * Share relevant data already maintained and tracked by FinOps
+    * Share metric reporting and the calculations behind FinOps created metrics
+    * Create new metrics from FinOps and other data based on needs of allied teams
+
+    10*Ceil(x/3)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: No items completed
+  - Score: 4
+    Condition: 1 item completed
+  - Score: 7
+    Condition: 2 items completed
+  - Score: 10
+    Condition: 3 items completed
   References:
   - Name: null
     Link: null
     Comment: null
   Supplemental Guidance:
-  - Example is license-impacted spend
+  - Example is license-impacted spend. While some data is shared, other data is siloed but would be useful to share.
   Overrides: null

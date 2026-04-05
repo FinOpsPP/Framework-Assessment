@@ -112,6 +112,10 @@ $defs:
         default: null
         description: Formula used to compute the score condition
         title: Formula
+      Score Type:
+        $ref: '#/$defs/ScoreTypeEnum'
+        default: calculation
+        description: Type of scoring used for action
       Scoring:
         description: Scoring details used to determine the maturity of an action
         items:
@@ -144,6 +148,7 @@ $defs:
     - Implementation Types
     - Weight
     - Formula
+    - Score Type
     - Scoring
     - References
     - Supplemental Guidance
@@ -248,6 +253,18 @@ $defs:
     - Comment
     title: Reference
     type: object
+  ScoreTypeEnum:
+    description: Enumeration of options for valid score types for an Action
+    enum:
+    - calculation
+    - bucket
+    - multi_bucket
+    - percent
+    - sequential
+    - binary
+    - threshold
+    title: ScoreTypeEnum
+    type: string
   ScoringDetail:
     description: Scoring model using in Action models
     properties:
