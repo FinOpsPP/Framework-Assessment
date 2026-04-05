@@ -340,9 +340,25 @@ def validate(selection, specification_type):
     default=False,
     help='Specifies that the update should increase the major version. By default the minor version increases'
 )
+@click.option(
+    '--force',
+    is_flag=True,
+    default=False,
+    help='For an update even when changes to specifications are not detected'
+)
 @click.argument('selection', type=AllOrIntRangeParamType())
-def update(selection, specification_type, major):
-    """Mass update the Specification format per type based on model"""
+def update(selection, specification_type, major, force):
+    """Mass update the Specification format per type based on model
+    
+    By default, all updates are treated as minor updates if the "--major" flag
+    is not specified.
+    
+    Updates are skipped if no changes are detected for a specification, unless
+    the "--force" flag is passed. When updating "all" specifications for a given
+    specification type, each specification is subject to this check individually,
+    but the flag only needs to be passed in once to disable the check for all
+    specifications.
+    """
     model = None
     match specification_type:
         case 'actions':
@@ -371,14 +387,28 @@ def update(selection, specification_type, major):
 
         path = specs_files.joinpath(spec.name)
         click.echo(f'Updating "{path}" for specification-type={specification_type}:')
+
+        # load up previous data first
         with open(path, 'r', encoding='utf-8') as yaml_file:
             specification_data = yaml.safe_load(yaml_file)
 
         passthrough_data = None
         try:
+            # pass data through the model to force the data
+            # to update to whatever changes have happened in the model
             passthrough_data = json.loads(
                 model(**specification_data).model_dump_json()
             )
+
+            # if force is not set, check if new passthrough_data is actually
+            # different from the original specification data, if it is not, then
+            # just skip any update
+            if not force and passthrough_data == specification_data:
+                click.secho(
+                    f'Update for "{path}" skipped. Update determined to be unnecessary',
+                    fg='yellow'
+                )
+                continue
 
             # update version
             spec_version = semver.Version.parse(passthrough_data['Metadata']['Version'])
@@ -413,3 +443,15 @@ def update(selection, specification_type, major):
 
     if failed:
         sys.exit(1)
+
+
+@specifications.command()
+def approvals():
+    """Command to help do mass approvals for each component type"""
+    # start with profiles
+    specs = files('finopspp.specifications.profiles').iterdir()
+    for spec in specs:
+        number, _ = os.path.splitext(spec.name)
+        # skip over example 0 specs
+        if not int(number):
+            continue
