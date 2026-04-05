@@ -26,10 +26,14 @@ Specification:
     	Decision document (score ×3),
     	Rules established (score ×1).
       Max Raw Score (29)
-    * TCO_Analysis - Total Cost of Ownership analysis performed (0=None, 1=High-level, 2=Detailed, 3=Validated with Finance)
-    * Vendor_Scored - Vendor options scored against criteria (0=None, 1=Informal, 2=Structured scorecard, 3=Multi-stakeholder RFP)
-    * Decision_Doc - Build vs Buy decision formally documented and approved (0=No, 1=Informal note, 2=Formal doc, 3=Exec-approved+reviewed)
-    * Rules_Est - Guiding rules / policy established for future decsions (0=No rules, 1=Draft, 2=Published+Enforced)
+    * TCO_Analysis - Total Cost of Ownership analysis performed
+      (0=None, 1=High-level, 2=Detailed, 3=Validated with Finance)
+    * Vendor_Scored - Vendor options scored against criteria
+      (0=None, 1=Informal, 2=Structured scorecard, 3=Multi-stakeholder RFP)
+    * Decision_Doc - Build vs Buy decision formally documented and approved
+      (0=No, 1=Informal note, 2=Formal doc, 3=Exec-approved+reviewed)
+    * Rules_Est - Guiding rules / policy established for future decsions
+      (0=No rules, 1=Draft, 2=Published+Enforced)
     * Output Range (0 - Max Raw)
   Score Type: multi_bucket
   Scoring:
@@ -46,9 +50,18 @@ Specification:
     Link: https://www.finops.org/framework/maturity-model/
     Comment: null
   Supplemental Guidance:
-  - CRAWL (0–8) No build-vs-buy process exists. TCO analysis is absent or undocumented, vendor comparisons are informal, and decisions default to familiarity, relationships, or cost alone.
-  - WALK (9–17) Basic TCO covers License costs and implementation effort. Vendors are scored against a structured scorecard, and decisions are loosely documented. Finance validation and exec sign-off are inconsistent.
-  - RUN (18–24) TCO is detailed, covering licensing, implementation, integration, training, support, and build opportunity cost. A multi-stakeholder evaluation process is used, decisions are formally approved, and a guiding policy is published and partially enforced.
-  - FLY (25–29) TCO is Finance-validated and accounts for multi-year trajectories, exit costs, and strategic optionality. A full RFP with documented rationale is used, decisions are exec-approved and periodically reviewed, and an enforced org-wide policy governs all future build-vs-buy choices.
-  
+  - |-
+    CRAWL (0–8) No build-vs-buy process exists. TCO analysis is absent or undocumented, vendor comparisons are
+    informal, and decisions default to familiarity, relationships, or cost alone.
+  - |
+    WALK (9–17) Basic TCO covers License costs and implementation effort. Vendors are scored against a structured
+    scorecard, and decisions are loosely documented. Finance validation and exec sign-off are inconsistent.
+  - |
+    RUN (18–24) TCO is detailed, covering licensing, implementation, integration, training, support, and build
+    opportunity cost. A multi-stakeholder evaluation process is used, decisions are formally approved, and a guiding
+    policy is published and partially enforced.
+  - |
+    FLY (25–29) TCO is Finance-validated and accounts for multi-year trajectories, exit costs, and strategic
+    optionality. A full RFP with documented rationale is used, decisions are exec-approved and periodically reviewed,
+    and an enforced org-wide policy governs all future build-vs-buy choices.
   Overrides: null
