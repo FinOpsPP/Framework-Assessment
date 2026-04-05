@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-03-17'
-  Version: 0.7.0
+  Modified: '2026-04-04'
+  Version: 0.6.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -15,16 +15,40 @@ Specification:
   Slug: 126-implement-config
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
-  Score Type: calculation
+  Weight: 1.0
+  Formula: |-
+    * Weighted sum
+    	Env coverage (score ×4),
+    	Data Integration (score ×4),
+    	Tag Config (score ×2),
+    	Config Doc (score ×2).
+    	Max raw (52)
+     * Env_Coverage - % of cloud environments covered by deployed tools
+      (0=0%, 1<50%, 2=50-79%, 3=80-94%, 4=95-99%, 5=100%)
+     * Data_Integration - Data sources integrated (billing, usage, tags, business context)
+      (0=None, 1=Billing Only, 2=+Usage, 3=+Tags, 4=+Business context, 5=All+Automated)
+     * Tag_Config - Tag/allocation rules configured and enforced tool
+      (0=No, 1=Partial manual, 2=Full manual, 3=Automated enforcement)
+     * Config_Doc - Tool configuration documented and version-controlled
+      (0=No rules, 1=Informal, 2=Documented, 3=Version-controlled+Reviewed)
+    * Output Range (0-52)
+  Score Type: multi_bucket
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: Low Maturity, Score Range (0-15)
+  - Score: 4
+    Condition: Developing, Score Range (16-31)
+  - Score: 7
+    Condition: Established, Score Range (32-44)
+  - Score: 10
+    Condition: Optimizing, Score Range (45-52)
   References:
   - Name: null
     Link: null
     Comment: null
   Supplemental Guidance:
-  - null
+  - CRAWL Partial environment coverage, billing data only, no tag configuration.
+  - WALK 50–79% coverage, usage and billing data, partial tagging, informal config documentation.
+  - RUN 80–94% coverage, tags integrated, full manual tag rules, documented configuration.
+  - FLY 100% coverage, all data sources automated, automated tag enforcement, version-controlled configuration.
   Overrides: null
