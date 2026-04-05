@@ -21,7 +21,8 @@ from finopspp.commands import utils
 # user by rich.console. So remove this if it is found and take
 # what ever the system default is to try and help. If the pager
 # is still broken at this point, the user might need to make
-# changes
+# changes.
+# largely from https://github.com/Textualize/rich/issues/1688#issuecomment-997479763
 os.environ.pop('MANPAGER', None)
 
 @click.group(cls=utils.ClickGroup)
