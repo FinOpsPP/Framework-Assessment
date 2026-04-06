@@ -12,6 +12,12 @@ import yaml
 from pydantic import TypeAdapter, ValidationError
 from rich.console import Console
 from rich.syntax import Syntax
+from textual import on
+from textual.app import App
+from textual.containers import Horizontal, Right, Vertical
+from textual.events import Mount
+from textual.widgets import Footer, Header, Label, Pretty, SelectionList, Switch
+from textual.widgets.selection_list import Selection
 
 from finopspp.models import definitions, defaults
 from finopspp.commands import utils
@@ -171,11 +177,21 @@ def list_specs(show_action_status, status_by, profile):
     default='profiles',
     help='Which specification type to show. Defaults to "profiles"'
 )
+@click.option(
+    '--no-numbers',
+    is_flag=True,
+    default=False,
+    help='Disable numbers on pager if one should exist'
+)
 @click.argument('id_', metavar='<spec ID>', type=click.IntRange(1, 999))
-def show(id_, metadata, specification_type):
+def show(id_, metadata, specification_type, no_numbers):
     """Show information on a given specification by ID by type
     
-    Information is shown in a Pager, if one is available
+    Information is shown in a Pager, if one is available.
+
+    NOTE: Line numbers are added by default, if your default pager
+    already uses this and you would like to disable it, pass in the
+    "--no-numbers" flag
     """
     data_type = 'Specification'
     if metadata:
@@ -203,7 +219,8 @@ def show(id_, metadata, specification_type):
             sort_keys=False,
             indent=2
         ),
-        'yaml'
+        'yaml',
+        line_numbers=(not no_numbers)
     )
     with console.pager(styles=True):
         console.print(syntax)
@@ -216,7 +233,13 @@ def show(id_, metadata, specification_type):
     default='profiles',
     help='Which schema specification type to show. Defaults to "profiles"'
 )
-def schema(specification_type):
+@click.option(
+    '--no-numbers',
+    is_flag=True,
+    default=False,
+    help='Disable numbers on pager if one should exist'
+)
+def schema(specification_type, no_numbers):
     """Give schema (in YAML format) for a given specification type
     
     The schema is based on the pydantic version of the JSON and OpenAPI
@@ -224,6 +247,10 @@ def schema(specification_type):
     https://docs.pydantic.dev/latest/concepts/json_schema/
 
     Schemas are shown in a Pager, if one is available.
+
+    NOTE: Line numbers are added by default, if your default pager
+    already uses this and you would like to disable it, pass in the
+    "--no-numbers" flag
     """
     spec_schema = None
     match specification_type:
@@ -244,7 +271,8 @@ def schema(specification_type):
             sort_keys=False,
             indent=2
         ),
-        'yaml'
+        'yaml',
+        line_numbers=(not no_numbers)
     )
     with console.pager(styles=True):
         console.print(syntax)
@@ -445,13 +473,106 @@ def update(selection, specification_type, major, force):
         sys.exit(1)
 
 
-@specifications.command()
-def approvals():
-    """Command to help do mass approvals for each component type"""
-    # start with profiles
-    specs = files('finopspp.specifications.profiles').iterdir()
-    for spec in specs:
+def approval_helper(specification_type):
+    """Helper to pull information on what should should be approved"""
+    spec_options = {}
+    specs = files(f'finopspp.specifications.{specification_type}')
+    for spec in specs.iterdir():
         number, _ = os.path.splitext(spec.name)
         # skip over example 0 specs
         if not int(number):
             continue
+
+        path = specs.joinpath(spec.name)
+
+        # load up previous data first
+        with open(path, 'r', encoding='utf-8') as yaml_file:
+            specification_data = yaml.safe_load(yaml_file)
+
+        # check if status is Proposed, and if it is, add as option to approve
+        if specification_data['Metadata']['Status'] == definitions.StatusEnum.proposed.value:
+            title = specification_data['Specification']['Title']
+            # only accept specifications with titles
+            if not title:
+                continue
+
+            spec_options[title] = number
+
+    return spec_options
+
+def approval_selector_helper(options, specification_type, approval_map):
+    """Helper for building the selector interface"""
+    selection_list = []
+    for title, serial_number in options.items():
+        selection_list.append(Selection(title, serial_number))
+
+    # now we create the terminal app that allows selections
+    class Approvals(App):
+        """Terminal application
+
+        that will provide an selection inferface for specifications to approve"""
+        CSS_PATH = "approvals.tcss"
+
+        def compose(self):
+            """Layout of app in terminal"""
+            yield Header()
+            with Vertical():
+                yield Label(
+                    'Please select from this list and press [b]ctrl-q[/] to save & exit'
+                )
+                with Horizontal():
+                    yield SelectionList(*selection_list)
+                    yield Pretty(approval_map[specification_type])
+                with Horizontal(id='horizontal-two'):
+                    yield Label('(De)Select All:')
+                    yield Switch()
+            yield Footer()
+
+        def on_mount(self):
+            """What to do when the app is loaded"""
+            self.query_one(
+                SelectionList
+            ).border_title = 'Which specifications should be approved?'
+            self.query_one(
+                Pretty
+            ).border_title = 'Selected specifications (by ID)'
+            self.title = f'Approvals for "{specification_type.title()}"'
+
+        @on(Mount)
+        @on(SelectionList.SelectedChanged)
+        def update_selected_view(self):
+            """How the view should update on selection changes"""
+            approval_map[specification_type] = self.query_one(SelectionList).selected
+            self.query_one(
+                Pretty
+            ).update(
+                approval_map[specification_type]
+            )
+
+        @on(Switch.Changed)
+        def update_switched_view(self):
+            """How the view should update on switch changes"""
+            self.query_one(SelectionList).toggle_all()
+
+
+    Approvals().run()
+
+@specifications.command()
+def approvals():
+    """Command to help do mass approvals for each component type"""
+    # start with profiles
+    approval_map = {
+        'profiles': [],
+        'domains': [],
+        'capabilities': [],
+        'actions': []
+    }
+    for spec_type, _ in approval_map.items():
+        spec_options = approval_helper(spec_type)
+
+        if not spec_options:
+            click.secho(f'No approvals needed for {spec_type}. Press enter to continue...')
+            click.pause()
+        else:
+            approval_selector_helper(spec_options, spec_type, approval_map)
+            click.echo(approval_map[spec_type])
