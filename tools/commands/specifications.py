@@ -571,7 +571,7 @@ def approvals():
         spec_options = approval_helper(spec_type)
 
         if not spec_options:
-            click.secho(f'No approvals needed for {spec_type}. Press enter to continue...')
+            click.secho(f'No approvals needed for {spec_type}.')
             click.pause()
         else:
             approval_selector_helper(spec_options, spec_type, approval_map)
