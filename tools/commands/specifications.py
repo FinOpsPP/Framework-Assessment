@@ -14,7 +14,7 @@ from rich.console import Console
 from rich.syntax import Syntax
 from textual import on
 from textual.app import App
-from textual.containers import Horizontal, Right, Vertical
+from textual.containers import Horizontal, Vertical
 from textual.events import Mount
 from textual.widgets import Footer, Header, Label, Pretty, SelectionList, Switch
 from textual.widgets.selection_list import Selection
@@ -479,6 +479,7 @@ def approval_helper(specification_type):
     specs = files(f'finopspp.specifications.{specification_type}')
     for spec in specs.iterdir():
         number, _ = os.path.splitext(spec.name)
+
         # skip over example 0 specs
         if not int(number):
             continue
@@ -490,13 +491,28 @@ def approval_helper(specification_type):
             specification_data = yaml.safe_load(yaml_file)
 
         # check if status is Proposed, and if it is, add as option to approve
-        if specification_data['Metadata']['Status'] == definitions.StatusEnum.proposed.value:
-            title = specification_data['Specification']['Title']
-            # only accept specifications with titles
-            if not title:
+        if specification_data['Metadata']['Status'] != definitions.StatusEnum.proposed.value:
+            continue
+
+        spec = specification_data['Specification']
+
+        # only accept specifications with titles
+        title = spec['Title']
+        if not title:
+            continue
+
+        # new a few additional filters for actions
+        if specification_type == 'actions':
+            # skip if weight is still 0 or does not exist.
+            if not spec['Weight']:
                 continue
 
-            spec_options[title] = number
+            # also skip if the last score is not 10
+            last_score = spec['Scoring'].pop()
+            if last_score['Score'] != 10:
+                continue
+
+        spec_options[title] = number
 
     return spec_options
 
@@ -567,7 +583,8 @@ def approvals():
         'capabilities': [],
         'actions': []
     }
-    for spec_type, _ in approval_map.items():
+    specification_types = list(approval_map.keys())
+    for spec_type in specification_types:
         spec_options = approval_helper(spec_type)
 
         if not spec_options:
