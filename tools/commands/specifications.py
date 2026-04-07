@@ -9,6 +9,7 @@ from importlib.resources import files
 import click
 import semver
 import yaml
+from click import UsageError
 from pydantic import TypeAdapter, ValidationError
 from rich.console import Console
 from rich.syntax import Syntax
@@ -22,6 +23,8 @@ from textual.widgets.selection_list import Selection
 from finopspp.models import definitions, defaults
 from finopspp.commands import utils
 
+
+yaml.add_representer(str, utils.str_presenter)
 
 # if MANPAGER is set to something odd, it will break the pager
 # user by rich.console. So remove this if it is found and take
@@ -473,7 +476,41 @@ def update(selection, specification_type, major, force):
         sys.exit(1)
 
 
-def approval_helper(specification_type):
+def approval_helper(approvers, number, today, specs):
+    """Helper to add approval to a specification by number"""
+    path = specs.joinpath(f'{number}.yaml')
+    with open(path, 'r', encoding='utf-8') as yaml_file:
+        specification_data = yaml.safe_load(yaml_file)
+
+    # update basic metadata
+    metadata = specification_data['Metadata']
+    metadata['Version'] = '1.0.0'
+    metadata['Adopted'] = today
+    metadata['Modified'] = today
+    metadata['Status'] = definitions.StatusEnum.accepted.value
+
+    # now update metadata approvers list with selected approvers
+    approval_list = []
+    for name, email in approvers:
+        approval_list.append(
+            {
+                'Name': name,
+                'Email': email,
+                'Date': today
+            }
+        )
+    metadata['Approvers'] = approval_list
+
+    with open(path, 'w', encoding='utf-8') as yaml_file:
+        yaml.dump(
+            specification_data,
+            yaml_file,
+            default_flow_style=False,
+            sort_keys=False,
+            indent=2
+        )
+
+def approval_options_helper(specification_type):
     """Helper to pull information on what should should be approved"""
     spec_options = {}
     specs = files(f'finopspp.specifications.{specification_type}')
@@ -575,7 +612,44 @@ def approval_selector_helper(options, specification_type, approval_map):
 
 @specifications.command()
 def approvals():
-    """Command to help do mass approvals for each component type"""
+    """Command to help do mass approvals for each component type
+    
+    NOTE: An approver should match up, in order, with an approver email
+    """
+    # prompt list of approvers and their associated emails
+    approvers = []
+    prompt = True
+    while prompt:
+        approver = click.prompt(
+            'Please add full name of approver or press enter to quit',
+            default='',
+            show_default=False,
+            type=str
+        )
+        if not approver:
+            prompt = False
+            continue
+
+        approver_email = click.prompt(
+            'Please add email for approver',
+            default='',
+            show_default=False,
+            type=str
+        )
+        if not approver_email:
+            raise UsageError(
+                'Every approver must have an approval email'
+            )
+
+        if not click.confirm(f'Include ({approver}, {approver_email}) pair?'):
+            click.secho('Dropping pair', fg='red')
+            continue
+
+        click.secho('Accepting pair', fg='green')
+        approvers.append((approver, approver_email))
+
+    click.confirm(f'Take full list of approvers {approvers}?', abort=True)
+
     # start with profiles
     approval_map = {
         'profiles': [],
@@ -585,11 +659,35 @@ def approvals():
     }
     specification_types = list(approval_map.keys())
     for spec_type in specification_types:
-        spec_options = approval_helper(spec_type)
+        spec_options = approval_options_helper(spec_type)
 
         if not spec_options:
             click.secho(f'No approvals needed for {spec_type}.')
             click.pause()
         else:
             approval_selector_helper(spec_options, spec_type, approval_map)
-            click.echo(approval_map[spec_type])
+
+    # get todays date
+    today = str(datetime.date.today())
+
+    # do approvals for profiles first
+    specs = files('finopspp.specifications.profiles')
+    for number in approval_map['profiles']:
+        approval_helper(approvers, number, today, specs)
+
+    # next do domains
+    specs = files('finopspp.specifications.domains')
+    for number in approval_map['domains']:
+        approval_helper(approvers, number, today, specs)
+
+    # next do capabilities
+    specs = files('finopspp.specifications.capabilities')
+    for number in approval_map['capabilities']:
+        approval_helper(approvers, number, today, specs)
+
+    # finally do actions
+    specs = files('finopspp.specifications.actions')
+    for number in approval_map['actions']:
+        approval_helper(approvers, number, today, specs)
+
+    click.secho('Approval completed', fg='green')

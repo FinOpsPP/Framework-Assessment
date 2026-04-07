@@ -9,7 +9,7 @@ import click
 def assessment_generate(profile, profile_spec, base_path, domains):
     """Generate Assessment archive files"""
     click.echo(f'Attempting to historical archive entry for profile={profile}:')
-    today = datetime.date.today()
+    today = str(datetime.date.today())
 
     # check if assessment history directory exists for this profile
     # and if it does not create it
