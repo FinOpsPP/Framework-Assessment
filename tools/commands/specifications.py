@@ -24,8 +24,6 @@ from finopspp.models import definitions, defaults
 from finopspp.commands import utils
 
 
-yaml.add_representer(str, utils.str_presenter)
-
 # if MANPAGER is set to something odd, it will break the pager
 # user by rich.console. So remove this if it is found and take
 # what ever the system default is to try and help. If the pager
@@ -82,7 +80,8 @@ def new(id_, specification_type):
             file,
             default_flow_style=False,
             sort_keys=False,
-            indent=2
+            indent=2,
+            width=120 # will always be longer that what is allowed by yamllint
         )
 
     click.secho(f'Specification "{path}" successfully created', fg='green')
@@ -220,7 +219,8 @@ def show(id_, metadata, specification_type, no_numbers):
             specification_data[data_type],
             default_flow_style=False,
             sort_keys=False,
-            indent=2
+            indent=2,
+            width=120 # will always be longer that what is allowed by yamllint
         ),
         'yaml',
         line_numbers=(not no_numbers)
@@ -272,7 +272,8 @@ def schema(specification_type, no_numbers):
             spec_schema,
             default_flow_style=False,
             sort_keys=False,
-            indent=2
+            indent=2,
+            width=120 # will always be longer that what is allowed by yamllint
         ),
         'yaml',
         line_numbers=(not no_numbers)
@@ -459,7 +460,8 @@ def update(selection, specification_type, major, force):
                     yaml_file,
                     default_flow_style=False,
                     sort_keys=False,
-                    indent=2
+                    indent=2,
+                    width=120 # will always be longer that what is allowed by yamllint
                 )
         except Exception as error: # pylint: disable=broad-exception-caught
             failed = True
@@ -507,7 +509,8 @@ def approval_helper(approvers, number, today, specs):
             yaml_file,
             default_flow_style=False,
             sort_keys=False,
-            indent=2
+            indent=2,
+            width=120 # will always be longer that what is allowed by yamllint
         )
 
 def approval_options_helper(specification_type):
@@ -642,10 +645,9 @@ def approvals():
             )
 
         if not click.confirm(f'Include ({approver}, {approver_email}) pair?'):
-            click.secho('Dropping pair', fg='red')
+            click.secho('Dropping pair...', fg='yellow')
             continue
 
-        click.secho('Accepting pair', fg='green')
         approvers.append((approver, approver_email))
 
     click.confirm(f'Take full list of approvers {approvers}?', abort=True)
@@ -659,6 +661,10 @@ def approvals():
     }
     specification_types = list(approval_map.keys())
     for spec_type in specification_types:
+        if not click.confirm(f'Include approvals for {spec_type}?'):
+            click.secho(f'Skipping {spec_type}...', fg='yellow')
+            continue
+
         spec_options = approval_options_helper(spec_type)
 
         if not spec_options:

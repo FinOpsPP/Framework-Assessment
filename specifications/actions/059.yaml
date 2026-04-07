@@ -1,13 +1,13 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adopted: null
-  Modified: '2026-03-28'
-  Version: 0.8.0
-  Status: Proposed
+  Adopted: '2026-04-06'
+  Modified: '2026-04-06'
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: vlevy573@gmail.com
+    Date: '2026-04-06'
 Specification:
   ID: 59
   Title: Use Metrics to Prioritize Investments
@@ -20,8 +20,8 @@ Specification:
     * Scenario plan for which metric values will drive the next decisions, behaviors, or outcomes needed
     * Investigate root causes for changes in metric values to determine next steps
     * Add to the backlog which actions are required to get unit metrics to a desired level
-    * Unit economics influence the decisions in build vs buy, architecture design,
-     workload placement, migration, sourcing, pricing, etc.
+    * Unit economics influence the decisions in build vs buy, architecture design, workload placement,
+      migration, sourcing, pricing, etc.
 
     10*Ceil(x/4)
   Score Type: bucket

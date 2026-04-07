@@ -1,13 +1,13 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adopted: null
-  Modified: '2026-04-03'
-  Version: 0.8.0
-  Status: Proposed
+  Adopted: '2026-04-06'
+  Modified: '2026-04-06'
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: vlevy573@gmail.com
+    Date: '2026-04-06'
 Specification:
   ID: 133
   Title: Coordinate Policy Changes Broadly
@@ -40,8 +40,6 @@ Specification:
     Link: null
     Comment: null
   Supplemental Guidance:
-  - |-
-    Policies in this case could include changing existing workflows to include both teams, etc.
-  - |-
-    There may not always be new policies created as a result of intersecting disciplines.
+  - Policies in this case could include changing existing workflows to include both teams, etc.
+  - There may not always be new policies created as a result of intersecting disciplines.
   Overrides: null
