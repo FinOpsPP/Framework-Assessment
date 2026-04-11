@@ -115,7 +115,8 @@ def process_row_gsheet(row, specification_files, today):
             yaml_file,
             default_flow_style=False,
             sort_keys=False,
-            indent=2
+            indent=2,
+            width=120 # will always be longer that what is allowed by yamllint
         )
 
     return True
@@ -156,7 +157,8 @@ def process_row_local(row, specification_files, today):
             yaml_file,
             default_flow_style=False,
             sort_keys=False,
-            indent=2
+            indent=2,
+            width=120 # will always be longer that what is allowed by yamllint
         )
 
     return True

@@ -1,13 +1,13 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adopted: null
-  Modified: '2026-04-04'
-  Version: 0.6.0
-  Status: Proposed
+  Adopted: '2026-04-06'
+  Modified: '2026-04-06'
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: vlevy573@gmail.com
+    Date: '2026-04-06'
 Specification:
   ID: 126
   Title: Implement & Configure Tools
@@ -18,19 +18,21 @@ Specification:
   Weight: 1.0
   Formula: |-
     * Weighted sum
-    	Env coverage (score ×4),
-    	Data Integration (score ×4),
-    	Tag Config (score ×2),
-    	Config Doc (score ×2).
-    	Max raw (52)
-     * Env_Coverage - % of cloud environments covered by deployed tools
+      Env coverage (score x4),
+      Data Integration (score x4),
+      Tag Config (score x2),
+      Config Doc (score x2).
+      Max raw (52)
+
+    * Env_Coverage - % of cloud environments covered by deployed tools
       (0=0%, 1<50%, 2=50-79%, 3=80-94%, 4=95-99%, 5=100%)
-     * Data_Integration - Data sources integrated (billing, usage, tags, business context)
+    * Data_Integration - Data sources integrated (billing, usage, tags, business context)
       (0=None, 1=Billing Only, 2=+Usage, 3=+Tags, 4=+Business context, 5=All+Automated)
-     * Tag_Config - Tag/allocation rules configured and enforced tool
+    * Tag_Config - Tag/allocation rules configured and enforced tool
       (0=No, 1=Partial manual, 2=Full manual, 3=Automated enforcement)
-     * Config_Doc - Tool configuration documented and version-controlled
+    * Config_Doc - Tool configuration documented and version-controlled
       (0=No rules, 1=Informal, 2=Documented, 3=Version-controlled+Reviewed)
+
     * Output Range (0-52)
   Score Type: multi_bucket
   Scoring:
@@ -48,7 +50,7 @@ Specification:
     Comment: null
   Supplemental Guidance:
   - CRAWL Partial environment coverage, billing data only, no tag configuration.
-  - WALK 50–79% coverage, usage and billing data, partial tagging, informal config documentation.
-  - RUN 80–94% coverage, tags integrated, full manual tag rules, documented configuration.
+  - WALK 50-79% coverage, usage and billing data, partial tagging, informal config documentation.
+  - RUN 80-94% coverage, tags integrated, full manual tag rules, documented configuration.
   - FLY 100% coverage, all data sources automated, automated tag enforcement, version-controlled configuration.
   Overrides: null

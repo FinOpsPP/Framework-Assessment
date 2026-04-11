@@ -1,13 +1,13 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adopted: null
-  Modified: '2026-04-04'
-  Version: 0.7.1
-  Status: Proposed
+  Adopted: '2026-04-06'
+  Modified: '2026-04-06'
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: vlevy573@gmail.com
+    Date: '2026-04-06'
 Specification:
   ID: 116
   Title: Prioritize Actions & Publish Roadmap
@@ -36,8 +36,7 @@ Specification:
   References:
   - Name: NIST Gap Analysis Example Implementation
     Link: csrc.nist.gov/CSRC/media/Projects/Forum/documents/aug-2016/tues1230_pbgc_tier2-program.pdf
-    Comment: A real-world example of the gap analysis process from start to end in
-      cybersecurity.
+    Comment: A real-world example of the gap analysis process from start to end in cybersecurity.
   - Name: Free Project Management Course from PMI
     Link: https://www.pmi.org/kickoff
     Comment: |-
@@ -47,6 +46,5 @@ Specification:
   - |-
     Weights are about maturity priority and which actions are important to the business' goals.
     Here, priority is about what to work on first to get the most ROI from work to close the maturity gaps.
-  - Ensure that planned work reflects the realities of team development lifecycles,
-    such as agile, waterfall, etc.
+  - Ensure that planned work reflects the realities of team development lifecycles, such as agile, waterfall, etc.
   Overrides: null

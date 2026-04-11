@@ -256,7 +256,8 @@ def documents():
             TypeAdapter(definition).json_schema(mode='serialization'),
             default_flow_style=False,
             sort_keys=False,
-            indent=2
+            indent=2,
+            width=120 # will always be longer that what is allowed by yamllint
         )
 
     markdown.schemas_generate(schemas)

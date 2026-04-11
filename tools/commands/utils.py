@@ -14,8 +14,8 @@ def str_presenter(dumper, data):
     Returns:
         dumper (obj) - scalar formatter matching specific string use case (multi-line vs single-line)
     """
-    # for multi-line strings
-    if len(data.splitlines()) > 1:
+    # for long-line or multi-line strings
+    if len(data) > 120 or len(data.splitlines()) > 1:
         return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')
 
     # for standard, single-line strings
