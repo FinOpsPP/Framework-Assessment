@@ -24,6 +24,3 @@ jobs:
     - name: Run unit tests for the finopspp tool
       run: |
         pytest tools
-
-
-
