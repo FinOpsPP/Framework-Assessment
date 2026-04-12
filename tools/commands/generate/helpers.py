@@ -1,23 +1,14 @@
-"""Command file for all Generate group commands"""
-import os
+"""Helpers file for generate command group"""
 import sys
-from importlib.resources import files
 
 import click
 import yaml
-from pydantic import TypeAdapter, ValidationError
+from pydantic import ValidationError
 from rich.progress import track
 
 from finopspp.models import definitions
-from finopspp.composers import archive, excel, markdown
-from finopspp.commands import utils
 
-@click.group(cls=utils.ClickGroup)
-def generate():
-    """Generate files from YAML specifications"""
-
-
-def sub_specification_helper(spec, spec_file):
+def sub_specification_collector(spec, spec_file):
     """Helps find and pull Specification subsection from a specification
 
     Note: metadata is only expected to be returned if it is defined. It might not
@@ -44,7 +35,7 @@ def sub_specification_helper(spec, spec_file):
         sub_spec = full_sub.get('Specification') or {}
         return sub_metadata, sub_spec
 
-def overrides_helper(spec, profile, override_type='std'):
+def overrides_collector(spec, profile, override_type='std'):
     """Helper for receiving the overrides for a profile if they exist
     
     Also ensure that if an override exists, it conforms to the specification of an
@@ -83,41 +74,22 @@ def overrides_helper(spec, profile, override_type='std'):
 
     return validated_override.model_dump()
 
-@generate.command()
-@click.option(
-    '--profile',
-    default='FinOps++',
-    type=click.Choice(list(utils.profiles().keys())),
-    help='Which assessment profile to generate. Defaults to "FinOps++"',
-)
-def assessment(profile): # pylint: disable=too-many-branches,too-many-statements,too-many-locals
-    """Generate assessment files from their specifications"""
-    click.echo(f'Attempting to create assessment for profile={profile}:')
+def domains_collector(profile, profile_spec, domain_files, cap_files, action_files):
+    """Helper designed to collect and return a specific format for a domains dict
+    
+    This format is required to work properly with the composers to
+    generate the different parts of an assessment.
 
-    domain_files = files('finopspp.specifications.domains')
-    cap_files = files('finopspp.specifications.capabilities')
-    action_files = files('finopspp.specifications.actions')
-    with open(utils.ProfilesMap[profile], 'r', encoding='utf-8') as yaml_file:
-        profile_yaml = yaml.safe_load(
-            yaml_file
-        )
-        profile_spec = profile_yaml.get('Specification') or {}
-        profile_metadata = profile_yaml.get('Metadata') or {}
-        # edits to a specification in code should always be lowercase!
-        # to help show that it is a transformation from the uppercase
-        # version used in the actual yaml specification.
-        profile_spec['version'] = profile_metadata.get('Version')
-
-    if not profile_spec.get('Domains'):
-        click.secho('Profile includes no domains. Exiting', err=True, fg='red')
-        sys.exit(1)
-
+    NOTE: there is a UI component to this in the form of the Rich Progress Tracker.
+    When testing, this will most likely show in your terminal, but can be safely
+    ignored.
+    """
     domains = []
     for domain in track(profile_spec.get('Domains'), 'Loading profile'):
         capabilities = []
 
-        metadata, spec = sub_specification_helper(domain, domain_files)
-        domain_override = overrides_helper(spec, profile)
+        metadata, spec = sub_specification_collector(domain, domain_files)
+        domain_override = overrides_collector(spec, profile)
         domain_drops = [drop['ID'] for drop in domain_override.get('DropIDs')]
 
         if domain_override.get('TitleUpdate'):
@@ -153,14 +125,14 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
         for capability in spec.get('Capabilities'):
             actions = []
 
-            metadata, spec = sub_specification_helper(capability, cap_files)
+            metadata, spec = sub_specification_collector(capability, cap_files)
 
             # continue early if the Capability ID is one to be dropped
             spec_id = spec.get('ID')
             if spec_id and spec_id in domain_drops:
                 continue
 
-            cap_override = overrides_helper(spec, profile)
+            cap_override = overrides_collector(spec, profile)
             cap_drops = [drop['ID'] for drop in cap_override.get('DropIDs')]
 
             if cap_override.get('TitleUpdate'):
@@ -193,14 +165,14 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
             })
             spec.get('Actions').extend(cap_override.get('AddIDs'))
             for action in spec.get('Actions'):
-                metadata, spec = sub_specification_helper(action, action_files)
+                metadata, spec = sub_specification_collector(action, action_files)
 
                 # continue early if the Action ID is one to be dropped
                 spec_id = spec.get('ID')
                 if spec_id and spec_id in cap_drops:
                     continue
 
-                act_override = overrides_helper(spec, profile, 'action')
+                act_override = overrides_collector(spec, profile, 'action')
 
                 if act_override.get('TitleUpdate'):
                     spec['Title'] = act_override.get('TitleUpdate')
@@ -227,83 +199,4 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
                     'weighted score': None
                 })
 
-    # check if assessment directory exists for this profile
-    # and if it does not create it
-    base_path = os.path.join(
-        os.getcwd(),
-        'assessments',
-        profile
-    )
-    if not os.path.exists(base_path):
-        os.mkdir(base_path)
-
-    # create assessment framework overview markdown
-    markdown.assessment_generate(profile, profile_spec, base_path, domains)
-
-    # next try and create the workbook for this profile.
-    excel.assessment_generate(profile, base_path, domains)
-
-    # finally, create the assessment archive file for the current version
-    archive.assessment_generate(profile, profile_spec, base_path, domains)
-
-
-@generate.command()
-def documents():
-    """Generate schema documents markdown files from code"""
-    schemas = {}
-    for definition in [definitions.Action, definitions.Capability, definitions.Domain, definitions.Profile]:
-        schemas[definition.__name__.lower()] = yaml.dump(
-            TypeAdapter(definition).json_schema(mode='serialization'),
-            default_flow_style=False,
-            sort_keys=False,
-            indent=2,
-            width=120 # will always be longer that what is allowed by yamllint
-        )
-
-    markdown.schemas_generate(schemas)
-
-
-
-@generate.command()
-@click.option(
-    '--specification-type',
-    default='profiles',
-    type=click.Choice(list(utils.SpecSubspecMap.keys())),
-    help='Which specification type to generate. Defaults to "profiles"'
-)
-def components(specification_type):
-    """Generate component markdown files from their specifications"""
-    spec_files = files(f'finopspp.specifications.{specification_type}')
-
-    # get subspec to help fill in names and other important pieces of
-    # information from the sub specification.
-    subspec_type = utils.SpecSubspecMap[specification_type]
-    subspec_files = None
-    if subspec_type:
-        subspec_files = files(f'finopspp.specifications.{subspec_type}')
-
-    # iterate over the specification files and generate markdown files
-    for spec in spec_files.iterdir():
-        number, _ = os.path.splitext(spec.name)
-        # skip over example 0 specs
-        if not int(number):
-            continue
-
-        # all added fields to a specification should be in lowercase!
-        # to help differentiate them against the uppercase fields in
-        # the specifications itself.
-        path = spec_files.joinpath(spec.name)
-        with open(path, 'r', encoding='utf-8') as yaml_file:
-            full_yaml = yaml.safe_load(yaml_file)
-            spec = full_yaml.get('Specification')
-            metadata = full_yaml.get('Metadata') or {}
-            spec['version'] = metadata.get('Version')
-
-        # update all the immediate subspecs listed on the spec in places
-        for subspec in spec.get(subspec_type.capitalize(), []):
-            _, subspec_doc = sub_specification_helper(subspec, subspec_files)
-            subspec_id = str(subspec_doc.get('ID'))
-            subspec['file'] = f'/components/{subspec_type}/{"0"*(3-len(subspec_id))}{subspec_id}.md'
-            subspec['title'] = subspec_doc.get('Title')
-
-        markdown.components_generate(specification_type, spec)
+        return domains

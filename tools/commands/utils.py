@@ -1,4 +1,4 @@
-"""Command utility file. Include no actual commands"""
+"""Common utilities used by the finopspp commands"""
 from importlib.resources import files
 
 import click
