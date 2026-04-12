@@ -28,7 +28,7 @@ def test_normalize():
     domains = domains_collector(
         profile, profile_spec, domain_files, cap_files, action_files
     )
-    assert domains is not []
+    assert domains
 
     data_path = os.path.join(os.getcwd(), 'tools/tests/data/expected_example_domains.json')
     with open(data_path, mode='r', encoding='utf-8') as in_file:

@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
   Modified: '2026-04-04'
-  Version: 2.0.0
+  Version: 2.0.1
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -19,12 +19,12 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: |-
+  Formula: |
     * Weighted sum
-    	TCO (score ×3),
-    	Vendor scoring (score ×3),
-    	Decision document (score ×3),
-    	Rules established (score ×1).
+      TCO (score ×3),
+      Vendor scoring (score ×3),
+      Decision document (score ×3),
+      Rules established (score ×1).
       Max Raw Score (29)
     * TCO_Analysis - Total Cost of Ownership analysis performed
       (0=None, 1=High-level, 2=Detailed, 3=Validated with Finance)
@@ -50,7 +50,7 @@ Specification:
     Link: https://www.finops.org/framework/maturity-model/
     Comment: null
   Supplemental Guidance:
-  - |-
+  - |
     CRAWL (0–8) No build-vs-buy process exists. TCO analysis is absent or undocumented, vendor comparisons are
     informal, and decisions default to familiarity, relationships, or cost alone.
   - |
@@ -60,7 +60,7 @@ Specification:
     RUN (18–24) TCO is detailed, covering licensing, implementation, integration, training, support, and build
     opportunity cost. A multi-stakeholder evaluation process is used, decisions are formally approved, and a guiding
     policy is published and partially enforced.
-  - |
+  - |-
     FLY (25–29) TCO is Finance-validated and accounts for multi-year trajectories, exit costs, and strategic
     optionality. A full RFP with documented rationale is used, decisions are exec-approved and periodically reviewed,
     and an enforced org-wide policy governs all future build-vs-buy choices.
