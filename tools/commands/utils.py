@@ -75,6 +75,7 @@ def profiles():
     for file in profile_specs.iterdir():
         path = profile_specs.joinpath(file.name)
         with open(path, 'r', encoding='utf-8') as yaml_file:
+            # we only include profiles in the map that include a title
             title = yaml.safe_load(yaml_file).get('Specification').get('Title')
             if not title:
                 continue

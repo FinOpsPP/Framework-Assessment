@@ -46,6 +46,10 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
         click.secho('Profile includes no domains. Exiting', err=True, fg='red')
         sys.exit(1)
 
+    if not isinstance(profile_spec['Domains'], list):
+        click.secho(f'Domains for profile={profile} must be a list', err=True, fg='red')
+        sys.exit(1)
+
     # pull in formatted domains data-dict
     domains = helpers.domains_collector(
         profile, profile_spec, domain_files, cap_files, action_files

@@ -22,7 +22,7 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install lint and testing dependencies
+    - name: Install lint and validation dependencies
       run: |
         npm install -g cspell-cli@9.6.0
         python -m pip install --upgrade pip

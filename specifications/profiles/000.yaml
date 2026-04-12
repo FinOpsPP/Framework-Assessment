@@ -10,16 +10,18 @@ Metadata:
     Date: null
 Specification:
   ID: 0
-  Title: null
-  Description: null
+  Title: Example Profile
+  Description: an example of a fully specified profile, with additional manual configurations
   Domains:
-  - ID: null
-  - Title: null
-    Description: null
+  - ID: 0 # a real domain (the example domain)
+  - Title: Manual Domain # from this line down, this is an example of a manual specification
+    Description: Example of a manually created domain # A manual specification is useful of Proof-of-Concepts
     Capabilities:
-    - ID: null
-    - Title: null
-      Description: null
+    - Title: Manual Capability 1
+      Description: An example manual capability where no actions have been set yet
+      Actions: null
+    - Title: Manual Capability 2
+      Description: A more filled in manual capability with actions
       Actions:
-      - ID: null
+      - ID: 0 # NOTE: a real ID is used here. This action will also be used in Domain 0
         Overrides: null

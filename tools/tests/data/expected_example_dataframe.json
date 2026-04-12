@@ -1,0 +1,44 @@
+{
+    "serial number": {
+        "('Example Domain', 'Example Capability', 'Title of specification')": "000",
+        "('Manual Domain', 'Manual Capability 2', 'Title of specification')": "000"
+    },
+    "version": {
+        "('Example Domain', 'Example Capability', 'Title of specification')": "1.0.0",
+        "('Manual Domain', 'Manual Capability 2', 'Title of specification')": "1.0.0"
+    },
+    "weights": {
+        "('Example Domain', 'Example Capability', 'Title of specification')": 2.4,
+        "('Manual Domain', 'Manual Capability 2', 'Title of specification')": 2.4
+    },
+    "formula": {
+        "('Example Domain', 'Example Capability', 'Title of specification')": "If given, this formula is used to calculate the condition for the score\n\nCan be an equation or series of equations that feed into a final value\nor range of values",
+        "('Manual Domain', 'Manual Capability 2', 'Title of specification')": "If given, this formula is used to calculate the condition for the score\n\nCan be an equation or series of equations that feed into a final value\nor range of values"
+    },
+    "scoring": {
+        "('Example Domain', 'Example Capability', 'Title of specification')": [
+            {
+                "Score": 0,
+                "Condition": "Condition required for min score value of 0"
+            },
+            {
+                "Score": 10,
+                "Condition": "Condition required for max score value of 10"
+            }
+        ],
+        "('Manual Domain', 'Manual Capability 2', 'Title of specification')": [
+            {
+                "Score": 0,
+                "Condition": "Condition required for min score value of 0"
+            },
+            {
+                "Score": 10,
+                "Condition": "Condition required for max score value of 10"
+            }
+        ]
+    },
+    "weighted score": {
+        "('Example Domain', 'Example Capability', 'Title of specification')": null,
+        "('Manual Domain', 'Manual Capability 2', 'Title of specification')": null
+    }
+}

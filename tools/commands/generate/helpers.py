@@ -21,8 +21,8 @@ def sub_specification_collector(spec, spec_file):
         Specification (dict) - the actual specification for a component
     """
     spec_id = spec.get('ID')
-    # if no ID, or it is ID 0, assume the full sub-specification is given and return
-    if not spec_id:
+    # if ID is not an int, assume the full sub-specification is given and return
+    if not isinstance(spec_id, int):
         return {}, spec
 
     # else look up sub-specification file ID
@@ -85,7 +85,10 @@ def domains_collector(profile, profile_spec, domain_files, cap_files, action_fil
     ignored.
     """
     domains = []
-    for domain in track(profile_spec.get('Domains'), 'Loading profile'):
+    # all profile specs should have a Domains field that is a list by this point.
+    # if it doesn't exist, just let it fail out on a python error
+    profile_domains = profile_spec['Domains']
+    for domain in track(profile_domains, 'Loading profile'):
         capabilities = []
 
         metadata, spec = sub_specification_collector(domain, domain_files)
@@ -101,7 +104,7 @@ def domains_collector(profile, profile_spec, domain_files, cap_files, action_fil
 
         if spec.get('Capabilities') is None:
             spec['Capabilities'] = []
-        if not isinstance(spec.get('Capabilities'), list):
+        if not isinstance(spec['Capabilities'], list):
             click.secho(
                 f'Capabilities for domain={title} must be null or a list. Exiting',
                 err=True,
@@ -111,8 +114,8 @@ def domains_collector(profile, profile_spec, domain_files, cap_files, action_fil
 
         spec_id = spec.get('ID')
         serial_number = None
-        if spec_id:
-            spec_id = str(spec.get('ID'))
+        if isinstance(spec_id, int): # will skip over None type IDs
+            spec_id = str(spec_id)
             serial_number = '0'*(3-len(spec_id)) + spec_id
 
         domains.append({
@@ -153,8 +156,9 @@ def domains_collector(profile, profile_spec, domain_files, cap_files, action_fil
                 sys.exit(1)
 
             serial_number = None
-            if spec_id:
-                spec_id = str(spec.get('ID'))
+            spec_id = spec.get('ID')
+            if isinstance(spec_id, int): # will skip over None type IDs
+                spec_id = str(spec_id)
                 serial_number = '0'*(3-len(spec_id)) + spec_id
 
             capabilities.append({
@@ -199,4 +203,4 @@ def domains_collector(profile, profile_spec, domain_files, cap_files, action_fil
                     'weighted score': None
                 })
 
-        return domains
+    return domains
