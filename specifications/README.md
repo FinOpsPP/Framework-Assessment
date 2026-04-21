@@ -89,8 +89,7 @@ $defs:
         - maxLength: 25
           type: string
         - type: 'null'
-        description: Machine parsable and human readable(ish) super short key label
-          for action
+        description: Machine parsable and human readable(ish) super short key label for action
         title: Slug
       Implementation Types:
         description: List of how the specification is implemented
@@ -131,8 +130,7 @@ $defs:
         title: References
         type: array
       Supplemental Guidance:
-        description: List of notes that provide additional insights for a specific
-          action
+        description: List of notes that provide additional insights for a specific action
         items:
           anyOf:
           - type: string
@@ -244,8 +242,7 @@ $defs:
         anyOf:
         - type: string
         - type: 'null'
-        description: Comments or longer form description of how a reference related
-          to a specification
+        description: Comments or longer form description of how a reference related to a specification
         title: Comment
     required:
     - Name
@@ -701,8 +698,7 @@ $defs:
     title: Approver
     type: object
   CapabilityItem:
-    description: Special capability item model used for listing capabilities in other
-      specifications
+    description: Special capability item model used for listing capabilities in other specifications
     properties:
       Title:
         anyOf:
@@ -1013,8 +1009,7 @@ $defs:
     title: Approver
     type: object
   CapabilityItem:
-    description: Special capability item model used for listing capabilities in other
-      specifications
+    description: Special capability item model used for listing capabilities in other specifications
     properties:
       Title:
         anyOf:

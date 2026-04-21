@@ -10,8 +10,8 @@ Metadata:
     Date: null
 Specification:
   ID: 0
-  Title: null
-  Description: null
+  Title: Example Capability
+  Description: An example of a fully specified capability
   Actions:
-  - ID: null
-  Overrides: null
+  - ID: 0 # the example action
+  Overrides: null # no overrides are needed for this

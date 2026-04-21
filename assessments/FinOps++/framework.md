@@ -1,6 +1,6 @@
 # <a href="/components/profiles/002.md">002</a>: FinOps++ Maturity Assessment Framework
 
-**Creation Date:** 2026-04-04
+**Creation Date:** 2026-04-12
 
 **Specification Version:** 0.0.1
 
@@ -31,25 +31,25 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/113.md">113</a>: Define Assessment Scope & Goals
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/114.md">114</a>: Collect Standardized Assessment Inputs
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/115.md">115</a>: Establish Baselines & Identify Trends
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/116.md">116</a>: Prioritize Actions & Publish Roadmap
-                        <p>Specification Version: 0.7.1</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -71,19 +71,19 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/097.md">097</a>: Assess Skills & Training Needs
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/098.md">098</a>: Develop Role-Based Learning Content
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/099.md">099</a>: Offer Certifications & Informal Learning
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -95,7 +95,7 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/101.md">101</a>: Track Training Impact & Refresh Content
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                 </table>
@@ -117,31 +117,31 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/092.md">092</a>: Create Implementation Roadmap
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/093.md">093</a>: Integrate Cost Data in Workflows
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/094.md">094</a>: Publish FinOps KPIs
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/095.md">095</a>: Drive Stakeholder Engagement
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/096.md">096</a>: Automate Tasks & Review Maturity
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                 </table>
@@ -163,13 +163,13 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/125.md">125</a>: Evaluate Build vs Buy Options
-                        <p>Specification Version: 1.7.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/126.md">126</a>: Implement & Configure Tools
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -197,37 +197,37 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/129.md">129</a>: Establish Cross-Team Collab
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/130.md">130</a>: Align Goals & Data Models
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/131.md">131</a>: Share Reporting & Definitions
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/132.md">132</a>: Provide Technology Metrics to Teams
-                        <p>Specification Version: 0.9.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/133.md">133</a>: Coordinate Policy Changes Broadly
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/134.md">134</a>: Drive Adoption & Resolve Conflicts
-                        <p>Specification Version: 0.8.1</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                 </table>
@@ -243,13 +243,13 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/107.md">107</a>: Map Invoices to Allocation Model
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/108.md">108</a>: Reconcile Rates & Track Completion
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -261,13 +261,13 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/110.md">110</a>: Automate Chargeback Data Flows
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/111.md">111</a>: Distribute Reports & Track Accuracy
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -282,14 +282,14 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
             <tr>
                 <td style="width: 200px; overflow-wrap: break-word; white-space: normal;">
                 <a href="/components/capabilities/023.md">023</a>: Executive Strategy Alignment
-                <p>Specification Version: 0.0.1</p>
+                <p>Specification Version: 1.0.0</p>
                 </td>
                 <td>
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/136.md">136</a>: Establish Executive Sponsorship
-                        <p>Specification Version: 0.0.1</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -369,13 +369,13 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/118.md">118</a>: Create Workload Selection Criteria
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/119.md">119</a>: Define Success Criteria & Scope
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -387,19 +387,19 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/121.md">121</a>: Align Timelines with Budgets
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/122.md">122</a>: Start with Lower Environments
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/123.md">123</a>: Review Outcomes & Adjust Patterns
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                 </table>
@@ -421,13 +421,13 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/074.md">074</a>: Document Licensing Models
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/075.md">075</a>: Integrate Billing with Procurement
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -439,13 +439,13 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/077.md">077</a>: Influence Workload Design Choices
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/078.md">078</a>: Publish License Spend & Utilization
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                 </table>
@@ -507,7 +507,7 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/067.md">067</a>: Define Optimization Strategy
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -525,19 +525,19 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/070.md">070</a>: Partner on Scheduling Actions
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/071.md">071</a>: Gamify Adoption & Celebrate Wins
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/072.md">072</a>: Track KPIs & Document Playbooks
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                 </table>
@@ -721,7 +721,7 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/016.md">016</a>: Gather Requirements & Define KPIs
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -739,7 +739,7 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/019.md">019</a>: Publish Documentation & Support
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -751,13 +751,13 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/021.md">021</a>: Track Adoption & Manage Changes
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/022.md">022</a>: Iterate Based on Feedback
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                 </table>
@@ -841,25 +841,25 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/045.md">045</a>: Increase Shared Cost Coverage
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/046.md">046</a>: Publish Budget vs Actual Reports
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/047.md">047</a>: Automate Budget Threshold Alerts
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/048.md">048</a>: Review & Adapt Budget Strategy
-                        <p>Specification Version: 0.7.0</p>
+                        <p>Specification Version: 0.8.0</p>
                         </td>
                     </tr>
                 </table>
@@ -921,25 +921,25 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/030.md">030</a>: Define Estimating Scope & Policy
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/031.md">031</a>: Agree on Pricing Assumptions
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/032.md">032</a>: Select Estimation Methods
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/033.md">033</a>: Include Sustainability Impacts
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -957,7 +957,7 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/036.md">036</a>: Coach Engineering on Estimates
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                 </table>
@@ -979,25 +979,25 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/056.md">056</a>: Document Inputs & Formulas
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/057.md">057</a>: Build Unit Cost Dashboards
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/058.md">058</a>: Set Review Cadence & Targets
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/059.md">059</a>: Use Metrics to Prioritize Investments
-                        <p>Specification Version: 0.8.0</p>
+                        <p>Specification Version: 1.0.0</p>
                         </td>
                     </tr>
                     <tr>
