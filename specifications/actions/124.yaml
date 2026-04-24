@@ -42,9 +42,13 @@ Specification:
     Link: https://www.finops.org/framework/maturity-model/
     Comment: null
   Notes:
-  - CRAWL Criteria absent or informal. No KPI mapping, no cross-functional input, no review cadence. Decisions are ad-hoc.
-  - WALK  Criteria documented and approved. Partial KPI alignment, few personas involved, reviews triggered by procurement.
-  - RUN Criteria fully documented and mapped to FinOps KPIs. 4+ personas contribute, reviewed annually, decisions auditable.
-  - FLY Criteria versioned under change control. Full KPI traceability, all 5 personas involved, quarterly reviews, drives governance
-  Overrides: null
+  - | 
+    CRAWL Criteria absent or informal. No KPI mapping, no cross-functional input, no review cadence. Decisions are ad-hoc.
+  - |
+    WALK  Criteria documented and approved. Partial KPI alignment, few personas involved, reviews triggered by procurement.
+  - |
+    RUN Criteria fully documented and mapped to FinOps KPIs. 4+ personas contribute, reviewed annually, decisions auditable.
+  - |
+    FLY Criteria versioned under change control. Full KPI traceability, all 5 personas involved, quarterly reviews, drives governance
+    Overrides: null
   
