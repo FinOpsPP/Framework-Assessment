@@ -2,7 +2,7 @@ Metadata:
   Proposed: '2025-09-16'
   Adopted: null
   Modified: '2026-03-17'
-  Version: 0.7.0
+  Version: 0.5.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -15,16 +15,40 @@ Specification:
   Slug: 124-assess-tooling
   Implementation Types:
   - null
-  Weight: 0.0
-  Formula: null
-  Score Type: calculation
+  Weight: 1.0
+  Formula: |-
+    * Weighted sum
+    	Criteria document (score ×3),
+    	KPI alignment (score ×3),
+    	Stakeholder count capped at 5 (score ×2),
+    	Refresh cadence (score ×2).
+      Max Raw Score (31)
+    * Criteria formally documented (0=None, 1=Draft, 2=Approved, 3=Versioned+Reviewed)
+    * Criteria explicitly mapped to FinOps KPIs (0=None, 1=Partial, 2=Full)
+    * of FinOps personas involved in criteria definition (0–5)
+    * Criteria review frequency (0=Never, 1=Ad-hoc, 2=Annual, 3=Quarterly+)
+    * Output Range (0 - Max Raw)
   Scoring:
-  - Score: 0
-    Condition: null
+  - Score: 9
+    Condition: Low Maturity
+  - Score: 18
+    Condition: Developing
+  - Score: 26
+    Condition: Established
+  - Score: 31
+    Condition: Optimizing
   References:
-  - Name: null
-    Link: null
+  - Name: Maturity Definition
+    Link: https://www.finops.org/framework/maturity-model/
     Comment: null
-  Supplemental Guidance:
-  - null
-  Overrides: null
+  Notes:
+  - | 
+    CRAWL Criteria absent or informal. No KPI mapping, no cross-functional input, no review cadence. Decisions are ad-hoc.
+  - |
+    WALK  Criteria documented and approved. Partial KPI alignment, few personas involved, reviews triggered by procurement.
+  - |
+    RUN Criteria fully documented and mapped to FinOps KPIs. 4+ personas contribute, reviewed annually, decisions auditable.
+  - |
+    FLY Criteria versioned under change control. Full KPI traceability, all 5 personas involved, quarterly reviews, drives governance
+    Overrides: null
+  
