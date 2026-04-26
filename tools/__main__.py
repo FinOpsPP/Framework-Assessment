@@ -18,3 +18,5 @@ cli.add_command(specifications_group.specifications)
 # as a python module.
 if __name__ == "__main__":
     cli()
+
+// Contributed via automated bounty system
