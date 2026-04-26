@@ -183,14 +183,14 @@ def format_scoring_sheet(scoring_sheet, dataframe, workbook):
     scoring_sheet.set_column('G:H', 40, text_wrap_format)
 
 
-def assessment_generate(profile, base_path, domains):
+def assessment_generate(profile, base_path, domains, suffix):
     """Generate Excel files"""
     click.echo(f'Attempting to generate assessment.xlsx for profile={profile}:')
     dataframe = helpers.normalize(domains)
 
     out_path = os.path.join(
         base_path,
-        'assessment.xlsx'
+        f'assessment{suffix}.xlsx'
     )
     with pandas.ExcelWriter(out_path, engine='xlsxwriter') as writer:
         workbook = writer.book
