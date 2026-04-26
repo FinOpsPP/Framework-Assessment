@@ -3,7 +3,7 @@ Metadata:
   Adopted: '2025-09-04' # ISO 8601 date format
   Modified: '2025-09-04' # ISO 8601 date format
   Version: 1.0.0 # Based on Semantic Versioning
-  Status: Accepted # Lifecycle status of the specification
+  Status: Proposed # Lifecycle status of the specification
   Approvers: # Record of the initial approvers for a specification
   - Name: Reviewer 1
     Email: review1@example.com
