@@ -25,8 +25,12 @@ def test_normalize():
         profile_spec['version'] = profile_yaml['Metadata']['Version']
 
     # pull in formatted domains data-dict
+    # example specifications should only ever be in the Proposed status
+    allowed_statuses = [
+        'Proposed'
+    ]
     domains = domains_collector(
-        profile, profile_spec, domain_files, cap_files, action_files
+        profile, profile_spec, domain_files, cap_files, action_files, allowed_statuses
     )
     assert domains
 

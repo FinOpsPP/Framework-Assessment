@@ -24,8 +24,34 @@ def generate():
     type=click.Choice(list(utils.profiles().keys())),
     help='Which assessment profile to generate. Defaults to "FinOps++"',
 )
-def assessment(profile): # pylint: disable=too-many-branches,too-many-statements,too-many-locals
-    """Generate assessment files from their specifications"""
+@click.option(
+    '--proposed',
+    is_flag=True,
+    default=False,
+    help='Include Proposed components'
+)
+@click.option(
+    '--deprecated',
+    is_flag=True,
+    default=False,
+    help='Include Deprecated components'
+)
+def assessment(profile, proposed, deprecated):
+    """Generate assessment files from their specifications
+    
+    By default, this will generate an assessment and its' corresponding files
+    for Accepted components. To include Proposed or Deprecated components that are
+    attached to a higher level component, include those flags. Each flag must be
+    passed in to include both.
+    
+    When these are included, a special assessment excel and framework markdown is
+    created in the Profile directory for that assessment. They will have the suffix
+    of '-proposed', '-deprecated' or '-proposed-deprecated' depending on which flags
+    are passed in. These special files cannot not be checked in.
+
+    Components that are manually specified, i.e not listed by ID, are included by
+    default to aid with prototypes of new specifications.
+    """
     click.echo(f'Attempting to create assessment for profile={profile}:')
 
     domain_files = files('finopspp.specifications.domains')
@@ -50,9 +76,22 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
         click.secho(f'Domains for profile={profile} must be a list', err=True, fg='red')
         sys.exit(1)
 
+    allowed_statuses = [definitions.StatusEnum.accepted.value]
+    suffix = ''
+    if proposed:
+        allowed_statuses.append(
+            definitions.StatusEnum.proposed.value
+        )
+        suffix += '-proposed'
+    if deprecated:
+        allowed_statuses.append(
+            definitions.StatusEnum.deprecated.value
+        )
+        suffix += '-deprecated'
+
     # pull in formatted domains data-dict
     domains = helpers.domains_collector(
-        profile, profile_spec, domain_files, cap_files, action_files
+        profile, profile_spec, domain_files, cap_files, action_files, allowed_statuses
     )
 
     # check if assessment directory exists for this profile
@@ -66,13 +105,13 @@ def assessment(profile): # pylint: disable=too-many-branches,too-many-statements
         os.mkdir(base_path)
 
     # create assessment framework overview markdown
-    markdown.assessment_generate(profile, profile_spec, base_path, domains)
+    markdown.assessment_generate(profile, profile_spec, base_path, domains, suffix)
 
     # next try and create the workbook for this profile.
-    excel.assessment_generate(profile, base_path, domains)
+    excel.assessment_generate(profile, base_path, domains, suffix)
 
     # finally, create the assessment archive file for the current version
-    archive.assessment_generate(profile, profile_spec, base_path, domains)
+    archive.assessment_generate(profile, profile_spec, base_path, domains, suffix)
 
 
 @generate.command()
@@ -126,6 +165,7 @@ def components(specification_type):
             spec = full_yaml.get('Specification')
             metadata = full_yaml.get('Metadata') or {}
             spec['version'] = metadata.get('Version')
+            spec['status'] = metadata.get('Status')
 
         # update all the immediate subspecs listed on the spec in places
         for subspec in spec.get(subspec_type.capitalize(), []):
