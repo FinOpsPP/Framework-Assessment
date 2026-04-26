@@ -53,10 +53,6 @@ def assessment(profile, proposed, deprecated):
     default to aid with prototypes of new specifications.
     """
     click.echo(f'Attempting to create assessment for profile={profile}:')
-
-    domain_files = files('finopspp.specifications.domains')
-    cap_files = files('finopspp.specifications.capabilities')
-    action_files = files('finopspp.specifications.actions')
     with open(utils.ProfilesMap[profile], 'r', encoding='utf-8') as yaml_file:
         profile_yaml = yaml.safe_load(
             yaml_file
@@ -91,7 +87,7 @@ def assessment(profile, proposed, deprecated):
 
     # pull in formatted domains data-dict
     domains = helpers.domains_collector(
-        profile, profile_spec, domain_files, cap_files, action_files, allowed_statuses
+        profile, profile_spec, allowed_statuses
     )
 
     # check if assessment directory exists for this profile

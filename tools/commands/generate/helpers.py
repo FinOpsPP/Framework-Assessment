@@ -1,5 +1,6 @@
 """Helpers file for generate command group"""
 import sys
+from importlib.resources import files
 
 import click
 import yaml
@@ -74,7 +75,7 @@ def overrides_collector(spec, profile, override_type='std'):
 
     return validated_override.model_dump()
 
-def domains_collector(profile, profile_spec, domain_files, cap_files, action_files, allowed_statuses):
+def domains_collector(profile, profile_spec, allowed_statuses):
     """Helper designed to collect and return a specific format for a domains dict
     
     This format is required to work properly with the composers to
@@ -84,6 +85,10 @@ def domains_collector(profile, profile_spec, domain_files, cap_files, action_fil
     When testing, this will most likely show in your terminal, but can be safely
     ignored.
     """
+    domain_files = files('finopspp.specifications.domains')
+    cap_files = files('finopspp.specifications.capabilities')
+    action_files = files('finopspp.specifications.actions')
+
     domains = []
     # all profile specs should have a Domains field that is a list by this point.
     # if it doesn't exist, just let it fail out on a python error

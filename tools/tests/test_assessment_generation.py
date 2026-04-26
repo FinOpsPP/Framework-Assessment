@@ -1,7 +1,6 @@
 """Test composers"""
 import json
 import os
-from importlib.resources import files
 
 import yaml
 
@@ -13,9 +12,6 @@ from finopspp.composers.helpers import normalize
 def test_normalize():
     """Test for the composer util 'normalize'"""
     profile = 'Example Profile'
-    domain_files = files('finopspp.specifications.domains')
-    cap_files = files('finopspp.specifications.capabilities')
-    action_files = files('finopspp.specifications.actions')
     profile_map = utils.profiles()
     with open(profile_map[profile], 'r', encoding='utf-8') as yaml_file:
         profile_yaml = yaml.safe_load(
@@ -30,7 +26,7 @@ def test_normalize():
         'Proposed'
     ]
     domains = domains_collector(
-        profile, profile_spec, domain_files, cap_files, action_files, allowed_statuses
+        profile, profile_spec, allowed_statuses
     )
     assert domains
 
