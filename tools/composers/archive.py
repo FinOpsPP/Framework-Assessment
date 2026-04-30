@@ -6,7 +6,7 @@ import os
 
 import click
 
-def assessment_generate(profile, profile_spec, base_path, domains):
+def assessment_generate(profile, profile_spec, base_path, domains, suffix):
     """Generate Assessment archive files"""
     click.echo(f'Attempting to historical archive entry for profile={profile}:')
     today = str(datetime.date.today())
@@ -41,7 +41,7 @@ def assessment_generate(profile, profile_spec, base_path, domains):
     # need be.
     archive_path = os.path.join(
         history_path,
-        f'{today}.json'
+        f'{today}{suffix}.json'
     )
     with open(archive_path, 'w', encoding='utf-8') as outfile:
         json.dump(profile_spec, outfile)

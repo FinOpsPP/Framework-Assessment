@@ -1,5 +1,6 @@
 """Helpers file for generate command group"""
 import sys
+from importlib.resources import files
 
 import click
 import yaml
@@ -74,7 +75,7 @@ def overrides_collector(spec, profile, override_type='std'):
 
     return validated_override.model_dump()
 
-def domains_collector(profile, profile_spec, domain_files, cap_files, action_files):
+def domains_collector(profile, profile_spec, allowed_statuses):
     """Helper designed to collect and return a specific format for a domains dict
     
     This format is required to work properly with the composers to
@@ -84,6 +85,10 @@ def domains_collector(profile, profile_spec, domain_files, cap_files, action_fil
     When testing, this will most likely show in your terminal, but can be safely
     ignored.
     """
+    domain_files = files('finopspp.specifications.domains')
+    cap_files = files('finopspp.specifications.capabilities')
+    action_files = files('finopspp.specifications.actions')
+
     domains = []
     # all profile specs should have a Domains field that is a list by this point.
     # if it doesn't exist, just let it fail out on a python error
@@ -92,6 +97,13 @@ def domains_collector(profile, profile_spec, domain_files, cap_files, action_fil
         capabilities = []
 
         metadata, spec = sub_specification_collector(domain, domain_files)
+
+        # continue early if the Domain Status exists and is not in the
+        # allowed statuses list
+        status = metadata.get('Status')
+        if status and status not in allowed_statuses:
+            continue
+
         domain_override = overrides_collector(spec, profile)
         domain_drops = [drop['ID'] for drop in domain_override.get('DropIDs')]
 
@@ -135,6 +147,12 @@ def domains_collector(profile, profile_spec, domain_files, cap_files, action_fil
             if spec_id and spec_id in domain_drops:
                 continue
 
+            # continue early if the Capability Status exists and is not in the
+            # allowed statuses list
+            status = metadata.get('Status')
+            if status and status not in allowed_statuses:
+                continue
+
             cap_override = overrides_collector(spec, profile)
             cap_drops = [drop['ID'] for drop in cap_override.get('DropIDs')]
 
@@ -174,6 +192,12 @@ def domains_collector(profile, profile_spec, domain_files, cap_files, action_fil
                 # continue early if the Action ID is one to be dropped
                 spec_id = spec.get('ID')
                 if spec_id and spec_id in cap_drops:
+                    continue
+
+                # continue early if the Action Status exists and is not in the
+                # allowed statuses list
+                status = metadata.get('Status')
+                if status and status not in allowed_statuses:
                     continue
 
                 act_override = overrides_collector(spec, profile, 'action')
