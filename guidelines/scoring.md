@@ -77,7 +77,7 @@ The bucket score relies on the fact that the formula items are independent, and 
 **YAML Format**:
 
   ```{yaml}
-  Formula: |-
+  Formula: |
     * Define and follow process for gathering deployment plans from teams
     * Determine timeline for each new project to adjust the forecast during that time
     * Determine how optimizations and lower run rate will impact the forecast on a rolling basis
@@ -116,7 +116,7 @@ Other combinations of formula items can be created as well that fit this method.
 **YAML Format**:
 
 ```{yaml}
-  Formula: |-
+  Formula: |
     1. Must do first
     2. Either or
         * choice 1
@@ -158,7 +158,7 @@ The scoring values are still based on the Ceil function mentioned in the bucket 
 **YAML Format**:
 
 ```{yaml}
-  Formula: |-
+  Formula: |
     1. item 1
     2. item 2
     3. etc...

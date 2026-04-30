@@ -151,7 +151,7 @@ Overrides:
 ## YAML Style
 
 - **2-space indentation** (not 4) per YAML v1.2.2
-- Multiline strings use `|-` block scalar
+- Multiline strings use `|` block scalar
 - Dates quoted: `'YYYY-MM-DD'`
 - Use `null` for empty values (not empty string)
 - Overrides block always appears last in the Specification section
