@@ -265,7 +265,7 @@ If your allocation is at 49%, you will receive a score of 4. It is only when it 
 
 If there is a way to get a consistent, reliable numerical value to measure progress on an action, we can use that number in a formula to measure maturity.
 There are no restrictions as of yet for what the formula could consist of, as long as the result is objective and repeatable.
-We welcome submissions of any scores that have a mathematical formula similar or different from any currently listed in the assessment. This is the default Score Type used when others are not clear applicable. As such, it acts as a sort of catch all score type.
+We welcome submissions of any scores that have a mathematical formula similar or different from any currently listed in the assessment. This is the default Score Type used when others are not clear applicable. As such, it acts as a sort of catch all score type and is used as the default score type when [creating new actions](/tools/README.md#new) with the `finopspp` tool.
 
 **Example**:
 
@@ -275,7 +275,7 @@ Feel free to find creative solutions that can quantify progress in any of the ac
 
 **YAML Format**:
 
-Any valid YAML scalar string can be accepted for this type. It is dealers choice on what to put and what they with to capture.
+Any valid YAML scalar string can be accepted for this type. It is dealers choice on what to put here based on what you want to capture with the action. So long as it is valid YAML.
 
 ## Weights
 

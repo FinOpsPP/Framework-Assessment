@@ -37,3 +37,15 @@ To fully develop for this, you will need to either have a properly licensed [Mic
 
 > [!NOTE]
 > You can directly open a `.xlsx` file in LibreOffice Calc, but some elements might be broken. It is strongly encouraged that you covert before using.
+
+## Versioning
+
+There are a few different versioning systems used for the Framework-Assessment project. And we know that that can lead to a little bit of confusion when trying to talk about exactly what "version" of the assessment you are using. So in this next section we hope to illuminate some of those version systems used to make it easier to understand your assessment.
+
+### Symantic Versioning
+
+Used for the project, component, and specification versions
+
+### Date Versioning
+
+Used for the assessment version

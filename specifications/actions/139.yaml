@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2026-03-25'
   Adopted: null
-  Modified: null
-  Version: 0.0.1
+  Modified: '2026-05-12'
+  Version: 0.1.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -33,9 +33,9 @@ Specification:
   - Score: 10
     Condition: 3 items completed
   References:
-  - Name: null
-    Link: null
-    Comment: null
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: bucket is an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
   - null
   Overrides: null

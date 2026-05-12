@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-03-17'
-  Version: 1.7.0
+  Modified: '2026-05-12'
+  Version: 1.8.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -33,9 +33,9 @@ Specification:
   - Score: 10
     Condition: Alerting to all owners [100%]
   References:
-  - Name: null
-    Link: null
-    Comment: null
+  - Name: FinOps++ Score Type - Percentage Calculation
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#percentage-calculation
+    Comment: precent is a kind of threshold type where the steps are specifically precentages leading to 100%.
   Supplemental Guidance:
   - |-
     Scoring for this actions is treated as percent. That means that if you have

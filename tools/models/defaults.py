@@ -37,11 +37,7 @@ Action = definitions.Action(
             )
         ],
         References=[
-            definitions.Reference(
-                Name=None,
-                Link=None,
-                Comment=None
-            )
+            definitions.ScoreTypeRefMap[definitions.ScoreTypeEnum.calculation.value]
         ],
         SupplementalGuidance=[
             None

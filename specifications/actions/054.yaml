@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-03-17'
-  Version: 0.7.0
+  Modified: '2026-05-12'
+  Version: 0.8.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -22,9 +22,9 @@ Specification:
   - Score: 0
     Condition: null
   References:
-  - Name: null
-    Link: null
-    Comment: null
+  - Name: FinOps++ Score Type - Calculation
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
+    Comment: the generic "calculation" type that is used as the default score type when creating a new score.
   Supplemental Guidance:
   - null
   Overrides: null

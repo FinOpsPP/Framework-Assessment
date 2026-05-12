@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-03-17'
-  Version: 1.7.0
+  Modified: '2026-05-12'
+  Version: 1.8.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -14,8 +14,7 @@ Metadata:
 Specification:
   ID: 62
   Title: Assess Workloads for Modernization
-  Description: Assess workloads for modernization (managed services, serverless, data
-    tiers).
+  Description: Assess workloads for modernization (managed services, serverless, data tiers).
   Slug: 62-assess-workloads
   Implementation Types:
   - null
@@ -43,9 +42,9 @@ Specification:
   - Score: 10
     Condition: 5 items completed
   References:
-  - Name: null
-    Link: null
-    Comment: null
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: bucket is an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
   - null
   Overrides: null
