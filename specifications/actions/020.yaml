@@ -35,7 +35,7 @@ Specification:
   References:
   - Name: FinOps++ Score Type - Percentage Calculation
     Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#percentage-calculation
-    Comment: precent is a kind of threshold type where the steps are specifically precentages leading to 100%.
+    Comment: a kind of threshold type where the steps are specifically precentages leading to 100%.
   Supplemental Guidance:
   - |-
     Scoring for this actions is treated as percent. That means that if you have

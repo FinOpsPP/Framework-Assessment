@@ -41,7 +41,7 @@ Specification:
   References:
   - Name: FinOps++ Score Type - Threshold Process
     Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#threshold-process
-    Comment: threshold is an evolution of sequential, where steps below a given level are complete when that level is reached.
+    Comment: an evolution of sequential, where steps below a given level are complete when that level is reached.
   Supplemental Guidance:
   - |-
     Scoring on this action is treated as sequential. If you have granularity

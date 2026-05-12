@@ -39,7 +39,7 @@ Specification:
   References:
   - Name: FinOps++ Score Type - Bucket
     Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
-    Comment: bucket is an evolution of binary, with more steps to take toward maturity.
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
   - Metric changes could be due to changes in usage, rates, or even input definitions or data integrity issues.
   - Reviews are important to capture changes in the business, but also mistakes in the data ingestion process.

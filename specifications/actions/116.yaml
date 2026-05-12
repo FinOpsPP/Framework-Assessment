@@ -44,7 +44,7 @@ Specification:
       This may not all fall to the FinOps team to organize, but this gives a good overview of what is involved.
   - Name: FinOps++ Score Type - Sequential Process
     Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#sequential-process
-    Comment: sequential can be used whenever the steps in an action need to be completed in a certain order.
+    Comment: can be used whenever the steps in an action need to be completed in a certain order.
   Supplemental Guidance:
   - |-
     Weights are about maturity priority and which actions are important to the business' goals.

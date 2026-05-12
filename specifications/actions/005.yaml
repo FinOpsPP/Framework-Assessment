@@ -24,7 +24,7 @@ Specification:
   References:
   - Name: FinOps++ Score Type - Calculation
     Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: the generic "calculation" type that is used as the default score type when creating a new score.
+    Comment: a generic "calculation" type used as the default score type when creating a new score.
   Supplemental Guidance:
   - null
   Overrides: null

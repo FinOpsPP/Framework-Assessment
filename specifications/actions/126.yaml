@@ -47,7 +47,7 @@ Specification:
   References:
   - Name: FinOps++ Score Type - Multiple Weighted Bucket
     Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md##multiple-weighted-buckets
-    Comment: multiBucket is an even more granular version of bucket, where steps are weight by importance to an action.
+    Comment: an even more granular version of bucket, where steps are weight by importance to an action.
   Supplemental Guidance:
   - CRAWL Partial environment coverage, billing data only, no tag configuration.
   - WALK 50-79% coverage, usage and billing data, partial tagging, informal config documentation.
