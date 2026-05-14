@@ -1,18 +1,17 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adopted: null
-  Modified: '2026-04-04'
-  Version: 0.8.0
-  Status: Proposed
+  Adopted: '2026-05-13'
+  Modified: '2026-05-13'
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: vlevy573@gmail.com
+    Date: '2026-05-13'
 Specification:
   ID: 94
   Title: Publish FinOps KPIs
-  Description: Publish KPIs (adoption, tagging compliance, anomaly response, savings
-    rate).
+  Description: Publish KPIs (adoption, tagging compliance, anomaly response, savings rate).
   Slug: 94-publish-finops
   Implementation Types:
   - null
