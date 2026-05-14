@@ -42,10 +42,24 @@ To fully develop for this, you will need to either have a properly licensed [Mic
 
 There are a few different versioning systems used for the Framework-Assessment project. And we know that that can lead to a little bit of confusion when trying to talk about exactly what "version" of the assessment you are using. So in this next section we hope to illuminate some of those version systems used to make it easier to understand your assessment.
 
-### Symantic Versioning
+### Semantic Versioning
 
-Used for the project, component, and specification versions
+Used for the Project, Component, and Specification versions. Also know as [SemVer](https://semver.org/), is a nice way to include what a version a version might fix or potentially break. Browing from the semver web page, it is
+
+```{text}
+Given a version number MAJOR.MINOR.PATCH, increment the:
+
+1. MAJOR version when you make incompatible API changes
+2. MINOR version when you add functionality in a backward compatible manner
+3. PATCH version when you make backward compatible bug fixes
+```
+
+Components & Specifications follow this pretty rigorously. With Patch version changes usually updated when fixing typos or grammer without really changing the semantics of the thing being changes. Minor versions updates can include things such as adding new fields, `Supplement Guidance`, `References`, or updating a `Formula` in such as way that `Scoring` is unchanged. While Major version would be incremented when removing or changing the names of fields, changing a `Score Type` to a different one, or updating a `Formula` in such a way that the `Scoring` is changed.
+
+The semantic version of the Project is a little more ad-hoc than those used by the Components or Specifications. The "Patch" version of the project is less about bug fixes (though still can be at time), and more about closing out some duration of work during a milestone. So for example, say a milestone is designed to take 3 months to finish, and the maintainers have broken that milestone down into 6 two week "sprints". When a sprint finishes, we update the Patch version of the Project. In a similar manner, when the milestone finishes, we will usually update the Minor version. Though if the milestone included a lot of potentially breaking changes, we will opt instead to increment the Major version.
 
 ### Date Versioning
 
-Used for the assessment version
+Used for the assessment version. We figured using the date as a timestamp-like version of a given framework (i.e Profile) and its' assessment made a lot of sense. Especially when an individual doing the assessment might want an easy way to show others when their assessment framework as created, so that others in their organizations can base their potential assessment on close date.
+
+Compressed versions of older assessments can be found for a framework by its' date version in the `history` subfolder under that Profile's assessment folder.
