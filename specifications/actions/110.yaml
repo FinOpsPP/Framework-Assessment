@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: null
-  Modified: '2026-04-04'
-  Version: 0.8.0
+  Modified: '2026-05-12'
+  Version: 0.9.0
   Status: Proposed
   Approvers:
   - Name: null
@@ -24,9 +24,9 @@ Specification:
   - Score: 10
     Condition: Completed
   References:
-  - Name: null
-    Link: null
-    Comment: null
+  - Name: FinOps++ Score Type - Binary
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#binary
+    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
   Supplemental Guidance:
   - null
   Overrides: null
