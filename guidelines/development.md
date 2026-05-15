@@ -60,6 +60,6 @@ The semantic version of the Project is a little more ad-hoc than those used by t
 
 ### Date Versioning
 
-Used for the assessment version. We figured using the date as a timestamp-like version of a given framework (i.e Profile) and its' assessment made a lot of sense. Especially when an individual doing the assessment might want an easy way to show others when their assessment framework as created, so that others in their organizations can base their potential assessment on close date.
+Used for the assessment version. We figured using the date as a timestamp-like version of a given framework (i.e Profile) and its' assessment made a lot of sense. Especially when an individual doing the assessment might want an easy way to show others when their assessment framework as created, so that others in their organizations can base their potential assessment on close date. Additional, this has the added benifit of allowing an individual to know just how old their current assessment version is, by just looking at the date. Something that is much more difficult when using something like SemVer above.
 
 Compressed versions of older assessments can be found for a framework by its' date version in the `history` subfolder under that Profile's assessment folder.
