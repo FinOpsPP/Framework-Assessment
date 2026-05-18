@@ -148,7 +148,8 @@ class StdOverride(BaseOverride, Config):
 
     # Custom function to ensure that the validator is setup
     # to always include the default lists for AddIDs and
-    # DropIDs. Can be defined with any name
+    # DropIDs.
+    # Method can be defined with any name
     @field_validator('AddIDs', 'DropIDs', mode='after')
     def setup_default(cls, value, values, **kwargs): # pylint: disable=no-self-argument,unused-argument
         if value:
@@ -192,6 +193,45 @@ class Reference(Config):
     Comment: str | None = Field(
         description='Comments or longer form description of how a reference related to a specification'
     )
+
+
+ScoreTypeRefMap = {
+    ScoreTypeEnum.binary.value: Reference(
+        Name='FinOps++ Score Type - Binary',
+        Link='https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#binary',
+        Comment='binary is a useful scoring to start of with, as it simple requires an action to be taken or not.'
+    ),
+    ScoreTypeEnum.bucket.value: Reference(
+        Name='FinOps++ Score Type - Bucket',
+        Link='https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments', # pylint: disable=line-too-long
+        Comment='an evolution of binary, with more steps to take toward maturity.'
+    ),
+    ScoreTypeEnum.calculation.value: Reference(
+        Name='FinOps++ Score Type - Calculation',
+        Link='https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae', # pylint: disable=line-too-long
+        Comment='a generic "calculation" type used as the default score type when creating a new score.'
+    ),
+    ScoreTypeEnum.multiBucket.value: Reference(
+        Name='FinOps++ Score Type - Multiple Weighted Bucket',
+        Link='https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md##multiple-weighted-buckets', # pylint: disable=line-too-long
+        Comment='an even more granular version of bucket, where steps are weight by importance to an action.'
+    ),
+    ScoreTypeEnum.percent.value: Reference(
+        Name='FinOps++ Score Type - Percentage Calculation',
+        Link='https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#percentage-calculation',
+        Comment='a kind of threshold type where the steps are specifically precentages leading to 100%.'
+    ),
+    ScoreTypeEnum.sequential.value: Reference(
+        Name='FinOps++ Score Type - Sequential Process',
+        Link='https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#sequential-process',
+        Comment='can be used whenever the steps in an action need to be completed in a certain order.'
+    ),
+    ScoreTypeEnum.threshold.value: Reference(
+        Name='FinOps++ Score Type - Threshold Process',
+        Link='https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#threshold-process',
+        Comment='an evolution of sequential, where steps below a given level are complete when that level is reached.'
+    )
+}
 
 class ScoringDetail(Config):
     """Scoring model using in Action models"""
@@ -243,19 +283,39 @@ class ActionSpec(ActionItem, SpecBase, SpecID, Config):
 
     # Custom function to help make sure the overrides
     # are always correctly ordered when serialized.
-    # Can be defined with any name
+    # Method can be defined with any name
     @model_serializer(when_used='json')
     def serialize_json_model(self):
         """Serialization helper in a format that works with pydantic"""
+        # NOTE: lookups on the model need to be the Alias and not
+        # the Field name.
         model = self.model_dump()
 
         # ensure overrides are always at the end of the serialized output
         # if they exist, by removing it and then adding it back.
-        if 'Overrides' in list(model.keys()):
-            overrides = model.get('Overrides')
+        if 'Overrides' in model:
+            overrides = model['Overrides']
             del model['Overrides']
             model['Overrides'] = overrides
-            return model
+
+        # ensure that the model always includes a reference for the score
+        # type. We add the reference if one doesn't exist. But we do not
+        # remove other score type references that already exists. This
+        # is because we figure that there are some situations where
+        # and individual would want multiple score type references.
+        # we leave this to the action author and PR reviews to determine.
+        score_type = model.get('Score Type')
+        references = model.get('References', [])
+        score_reference = ScoreTypeRefMap[score_type].model_dump()
+        if score_reference not in references:
+            references.append(score_reference)
+
+        # remove all references if they do not have a Name or URL
+        for index, reference in enumerate(references):
+            if reference['Name']:
+                continue
+
+            del references[index]
 
         # else just return the original model
         return model

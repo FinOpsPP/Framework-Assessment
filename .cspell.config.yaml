@@ -27,6 +27,7 @@ words:
   - secho
   - sharrma
   - sumif
+  - tcss
   - venv
   - xlsxwriter
 allowCompoundWords: true

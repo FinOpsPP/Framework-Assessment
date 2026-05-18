@@ -1,13 +1,13 @@
 Metadata:
   Proposed: '2026-03-25'
-  Adopted: null
-  Modified: null
-  Version: 0.0.1
-  Status: Proposed
+  Adopted: '2026-04-06'
+  Modified: '2026-05-12'
+  Version: 1.1.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: vlevy573@gmail.com
+    Date: '2026-04-06'
 Specification:
   ID: 136
   Title: Establish Executive Sponsorship
@@ -24,9 +24,9 @@ Specification:
   - Score: 10
     Condition: Executive sponsor formally identified and actively engaged
   References:
-  - Name: null
-    Link: null
-    Comment: null
+  - Name: FinOps++ Score Type - Binary
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#binary
+    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
   Supplemental Guidance:
   - null
   Overrides: null

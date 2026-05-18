@@ -10,8 +10,8 @@ Metadata:
     Date: null
 Specification:
   ID: 0
-  Title: null
-  Description: null
+  Title: Example Domain
+  Description: An example of a fully specified domain
   Capabilities:
-  - ID: null
-  Overrides: null
+  - ID: 0 # the example capability
+  Overrides: null # no overrides are needed for this

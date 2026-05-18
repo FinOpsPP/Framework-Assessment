@@ -1,0 +1,72 @@
+[
+    {
+        "serial_number": "000",
+        "version": "0.0.1",
+        "domain": "Example Domain",
+        "capabilities": [
+            {
+                "serial_number": "000",
+                "version": "0.0.1",
+                "capability": "Example Capability",
+                "actions": [
+                    {
+                        "action": "Title of specification",
+                        "serial_number": "000",
+                        "version": "1.0.0",
+                        "weights": 2.4,
+                        "formula": "If given, this formula is used to calculate the condition for the score\n\nCan be an equation or series of equations that feed into a final value\nor range of values",
+                        "scoring": [
+                            {
+                                "Score": 0,
+                                "Condition": "Condition required for min score value of 0"
+                            },
+                            {
+                                "Score": 10,
+                                "Condition": "Condition required for max score value of 10"
+                            }
+                        ],
+                        "weighted score": null
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "serial_number": null,
+        "version": null,
+        "domain": "Manual Domain",
+        "capabilities": [
+            {
+                "serial_number": null,
+                "version": null,
+                "capability": "Manual Capability 1",
+                "actions": []
+            },
+            {
+                "serial_number": null,
+                "version": null,
+                "capability": "Manual Capability 2",
+                "actions": [
+                    {
+                        "action": "Title of specification",
+                        "serial_number": "000",
+                        "version": "1.0.0",
+                        "weights": 2.4,
+                        "formula": "If given, this formula is used to calculate the condition for the score\n\nCan be an equation or series of equations that feed into a final value\nor range of values",
+                        "scoring": [
+                            {
+                                "Score": 0,
+                                "Condition": "Condition required for min score value of 0"
+                            },
+                            {
+                                "Score": 10,
+                                "Condition": "Condition required for max score value of 10"
+                            }
+                        ],
+                        "weighted score": null
+                    }
+                ]
+            }
+        ]
+    }
+]

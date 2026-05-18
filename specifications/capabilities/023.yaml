@@ -1,13 +1,16 @@
 Metadata:
   Proposed: '2026-03-25'
-  Adopted: null
-  Modified: null
-  Version: 0.0.1
-  Status: Proposed
+  Adopted: '2026-04-07'
+  Modified: '2026-04-07'
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: vlevy573@gmail.com
+    Date: '2026-04-07'
+  - Name: Kevin Wade
+    Email: kevin_wade@shi.com
+    Date: '2026-04-07'
 Specification:
   ID: 23
   Title: Executive Strategy Alignment

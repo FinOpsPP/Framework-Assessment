@@ -6,6 +6,10 @@
 # output extensions to ignore
 *.ods
 
+# suffixes to ignore
+*-proposed*
+*-deprecated*
+
 # Python related things to ignore
 build/
 finopspp.egg-info/

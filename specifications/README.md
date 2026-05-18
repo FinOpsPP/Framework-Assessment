@@ -89,8 +89,7 @@ $defs:
         - maxLength: 25
           type: string
         - type: 'null'
-        description: Machine parsable and human readable(ish) super short key label
-          for action
+        description: Machine parsable and human readable(ish) super short key label for action
         title: Slug
       Implementation Types:
         description: List of how the specification is implemented
@@ -112,6 +111,10 @@ $defs:
         default: null
         description: Formula used to compute the score condition
         title: Formula
+      Score Type:
+        $ref: '#/$defs/ScoreTypeEnum'
+        default: calculation
+        description: Type of scoring used for action
       Scoring:
         description: Scoring details used to determine the maturity of an action
         items:
@@ -127,8 +130,7 @@ $defs:
         title: References
         type: array
       Supplemental Guidance:
-        description: List of notes that provide additional insights for a specific
-          action
+        description: List of notes that provide additional insights for a specific action
         items:
           anyOf:
           - type: string
@@ -144,6 +146,7 @@ $defs:
     - Implementation Types
     - Weight
     - Formula
+    - Score Type
     - Scoring
     - References
     - Supplemental Guidance
@@ -239,8 +242,7 @@ $defs:
         anyOf:
         - type: string
         - type: 'null'
-        description: Comments or longer form description of how a reference related
-          to a specification
+        description: Comments or longer form description of how a reference related to a specification
         title: Comment
     required:
     - Name
@@ -248,6 +250,18 @@ $defs:
     - Comment
     title: Reference
     type: object
+  ScoreTypeEnum:
+    description: Enumeration of options for valid score types for an Action
+    enum:
+    - calculation
+    - bucket
+    - multi_bucket
+    - percent
+    - sequential
+    - binary
+    - threshold
+    title: ScoreTypeEnum
+    type: string
   ScoringDetail:
     description: Scoring model using in Action models
     properties:
@@ -684,8 +698,7 @@ $defs:
     title: Approver
     type: object
   CapabilityItem:
-    description: Special capability item model used for listing capabilities in other
-      specifications
+    description: Special capability item model used for listing capabilities in other specifications
     properties:
       Title:
         anyOf:
@@ -996,8 +1009,7 @@ $defs:
     title: Approver
     type: object
   CapabilityItem:
-    description: Special capability item model used for listing capabilities in other
-      specifications
+    description: Special capability item model used for listing capabilities in other specifications
     properties:
       Title:
         anyOf:

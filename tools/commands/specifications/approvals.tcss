@@ -1,0 +1,33 @@
+Screen {
+    align: center top;
+}
+
+Vertical {
+    height: 85%;
+}
+
+#horizontal-two {
+    height: auto;
+}
+
+Horizontal {
+    width: 100%;
+    border: solid $accent;
+}
+
+Label {
+    border: blank $accent;
+}
+
+SelectionList {
+    padding: 1;
+    height: 1fr;
+    width: 2fr;
+    border: solid $accent;
+}
+
+Pretty {
+    height: 1fr;
+    width: 1fr;
+    border: solid $accent;
+}
