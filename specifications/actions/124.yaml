@@ -55,7 +55,7 @@ Specification:
   - |
     RUN (19-26) Criteria fully documented and mapped to FinOps KPIs. 4+ personas
     contribute, reviewed annually, decisions auditable.
-  - |
+  - |-
     FLY (27-31) Criteria versioned under change control. Full KPI traceability,
     all 5 personas involved, quarterly reviews, drives governance.
   Overrides: null
