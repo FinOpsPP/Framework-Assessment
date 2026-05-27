@@ -1,13 +1,13 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adopted: null
-  Modified: '2026-05-17'
-  Version: 0.10.0
-  Status: Proposed
+  Adopted: '2026-05-27'
+  Modified: '2026-05-27'
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: vlevy573@gmail.com
+    Date: '2026-05-27'
 Specification:
   ID: 124
   Title: Assess Tooling Needs & Criteria
