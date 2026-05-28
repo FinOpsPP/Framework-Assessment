@@ -1,9 +1,9 @@
 # Assessment Design Guide
 
-* Mission statement type stuff?
-* Nice intro stuff telling people about the videos as guide
+* Nice intro stuff telling people about the assessment and background on what drove there creation.
 
-TODO: Mission Statement video
+For a nice video introduction of these and related ideas, check out the video by one of our maintainers from the 2025 FinOpsX Conference
+[![FinOpsX 2025](https://img.youtube.com/vi/mAaZKNXXas8/maxresdefault.jpg)](https://www.youtube.com/watch?v=mAaZKNXXas8)
 
 ## Components
 
