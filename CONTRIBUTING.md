@@ -2,6 +2,8 @@
 
 To start off, we wanted to say welcome! We are more than happy that you took the time to come over to this CONTRIBUTING.md document to see how you can start adding to the FinOps++ Framework-Assessment project. We accept contributions from all, but we do have specific ways of doing things that we ask you to follow. We will try and outline those procedures below to the best of our abilities. But if you have any additional questions on things, please feel free to reach out to maintainers via Email, or in an [Issue](#have-a-suggestion-found-an-issue) in for this repository.
 
+TODO: Video
+
 ## Have a suggestion? Found an Issue?
 
 * For bugs that are found, please open an issue based on Bug Report template
