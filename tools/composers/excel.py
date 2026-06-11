@@ -93,8 +93,9 @@ def create_overview_sheet(profile, dataframe, workbook):
 
     overview_sheet.insert_chart('C4', score_diff_chart)
 
-    # hide columns that should be hidden
-    #overview_sheet.set_column('G:XFD', None, None, {'hidden': True})
+    # hide rows and columns that should be hidden
+    overview_sheet.set_column('G:XFD', None, None, {'hidden': True})
+    overview_sheet.set_default_row(hide_unused_rows=True)
 
     overview_sheet.autofit()
     overview_sheet.activate()
@@ -111,8 +112,9 @@ def create_domains_chart(dataframe, workbook):
         'categories': f'=Overview!$A$5:$A${domain_shift}',
         'values': f'=Overview!$U$5:$U${domain_shift}'
     })
-    domain_chart.set_style(37)
+    domain_chart.set_style(29)
     domain_chart.set_legend({'none': True})
+    domain_chart.show_hidden_data()
 
     domain_chart_sheet = workbook.add_chartsheet('Maturity - Domains')
     domain_chart_sheet.set_chart(domain_chart)
@@ -133,8 +135,9 @@ def create_capabilities_chart(dataframe, workbook):
         'categories': f'=Overview!$A${extended_shift + 1}:$A${capabilities_shift}',
         'values': f'=Overview!$U${extended_shift + 1}:$U${capabilities_shift}'
     })
-    capabilities_chart.set_style(37)
+    capabilities_chart.set_style(29)
     capabilities_chart.set_legend({'none': True})
+    capabilities_chart.show_hidden_data()
 
     capabilities_chart_sheet = workbook.add_chartsheet('Maturity - Capabilities')
     capabilities_chart_sheet.set_chart(capabilities_chart)
@@ -171,8 +174,9 @@ def format_scoring_sheet(scoring_sheet, dataframe, workbook):
             string=serial_number
         )
 
-    # hide columns that should be hidden
+    # hide rows and columns that should be hidden
     scoring_sheet.set_column('J:XFD', None, None, {'hidden': True})
+    scoring_sheet.set_default_row(hide_unused_rows=True)
 
     # Autofit the scoring sheet and fix warning.
     scoring_sheet.autofit()
