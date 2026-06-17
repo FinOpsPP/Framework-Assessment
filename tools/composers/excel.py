@@ -94,8 +94,12 @@ def create_overview_sheet(profile, dataframe, workbook):
     overview_sheet.insert_chart('C4', score_diff_chart)
 
     # hide rows and columns that should be hidden
-    overview_sheet.set_column('G:XFD', None, None, {'hidden': True})
+    overview_sheet.set_column('F:XFD', None, None, {'hidden': True})
     overview_sheet.set_default_row(hide_unused_rows=True)
+
+    # unhide specific rows that show show up
+    overview_sheet.set_row(2, None, None, {'hidden': False})
+    overview_sheet.set_row(extended_shift - 1, None, None, {'hidden': False})
 
     overview_sheet.autofit()
     overview_sheet.activate()
