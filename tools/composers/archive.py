@@ -36,22 +36,16 @@ def assessment_generate(profile, profile_spec, base_path, domains, suffix):
     profile_spec['version'] = profile_spec.pop('version')
     profile_spec['domains'] = domains
 
-    # create a new json file for a pared-down framework
-    # that can be "rehydrated" to an assessment.xlsx if
-    # need be.
+    # create a new "json" file (really a gzipped file)
+    # for a pared-down framework that can be "rehydrated"
+    # to an assessment.xlsx if need be.
     archive_path = os.path.join(
         history_path,
         f'{today}{suffix}.json'
     )
-    with open(archive_path, 'w', encoding='utf-8') as outfile:
-        json.dump(profile_spec, outfile)
 
-    # compress file
-    with open(archive_path, 'rb') as in_file:
-        with gzip.open(f'{archive_path}.gz', 'wb') as outfile:
-            outfile.writelines(in_file)
-
-    # finally, cleanup non-compressed file
-    os.remove(archive_path)
+    # create compressed file gz file with the json data utf-8 encoded
+    with gzip.open(f'{archive_path}.gz', 'wb') as outfile:
+        outfile.write(json.dumps(profile_spec).encode('utf-8'))
 
     click.secho(f'Attempt to generate historical archive "{archive_path}.gz" succeeded', fg='green')
