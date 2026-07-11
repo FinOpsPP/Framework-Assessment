@@ -98,8 +98,9 @@ def create_overview_sheet(profile, dataframe, workbook):
     overview_sheet.set_default_row(hide_unused_rows=True)
 
     # unhide specific rows that show show up
+    # (note: row for xlsxwriter is excel row minus 1)
     overview_sheet.set_row(2, None, None, {'hidden': False})
-    overview_sheet.set_row(extended_shift - 1, None, None, {'hidden': False})
+    overview_sheet.set_row(extended_shift - 2, None, None, {'hidden': False})
 
     overview_sheet.autofit()
     overview_sheet.activate()
@@ -116,9 +117,15 @@ def create_domains_chart(dataframe, workbook):
         'categories': f'=Overview!$A$5:$A${domain_shift}',
         'values': f'=Overview!$U$5:$U${domain_shift}'
     })
+
+    # set basic style for domain radar chart
     domain_chart.set_style(29)
     domain_chart.set_legend({'none': True})
     domain_chart.show_hidden_data()
+
+    # set default ranges for chart area. Based on a max
+    # score of 10
+    domain_chart.set_y_axis({'min': 0, 'max': 10})
 
     domain_chart_sheet = workbook.add_chartsheet('Maturity - Domains')
     domain_chart_sheet.set_chart(domain_chart)
@@ -139,9 +146,15 @@ def create_capabilities_chart(dataframe, workbook):
         'categories': f'=Overview!$A${extended_shift + 1}:$A${capabilities_shift}',
         'values': f'=Overview!$U${extended_shift + 1}:$U${capabilities_shift}'
     })
+
+    # set basic style for capability radar chart
     capabilities_chart.set_style(29)
     capabilities_chart.set_legend({'none': True})
     capabilities_chart.show_hidden_data()
+
+    # set default ranges for chart area. Based on a max
+    # score of 10
+    capabilities_chart.set_y_axis({'min': 0, 'max': 10})
 
     capabilities_chart_sheet = workbook.add_chartsheet('Maturity - Capabilities')
     capabilities_chart_sheet.set_chart(capabilities_chart)
