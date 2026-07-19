@@ -12,7 +12,7 @@ Specification:
   ID: 5
   Title: Document Normalization Rules
   Description: Document normalization/augmentation rules and owners; version them.
-  Slug: 5-document-normaliza
+  Slug: 5-document-normalize
   Implementation Types:
   - null
   Weight: 0.0
