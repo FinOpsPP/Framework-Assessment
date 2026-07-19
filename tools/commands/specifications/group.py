@@ -14,7 +14,8 @@ from pydantic import TypeAdapter, ValidationError
 from rich.console import Console
 from rich.syntax import Syntax
 
-from finopspp.models import definitions, defaults
+from finopspp.models import Action, Capability, Domain, Profile, defaults
+from finopspp.models.specs import StatusEnum
 from finopspp.commands import utils
 from finopspp.commands.specifications import helpers
 
@@ -91,19 +92,27 @@ def new(id_, specification_type):
 @click.option(
     '--status-by',
     default=None,
-    type=click.Choice([enum.value for enum in definitions.StatusEnum] + [None]),
+    type=click.Choice([enum.value for enum in StatusEnum] + [None]),
     help='Filter by status. Defaults to "None"'
 )
 @click.option(
-    '--profile',
-    default='FinOps++',
-    type=click.Choice(list(utils.profiles().keys())),
-    help='Which assessment profile to list. Defaults to "FinOps++"'
+    '--specification-type',
+    type=click.Choice(list(utils.SpecSubspecMap.keys())),
+    default='profiles',
+    help='Which specification type to use. Defaults to "profiles"'
 )
-def list_specs(show_action_status, status_by, profile):
-    """List all Specifications by fully qualified ID per profile
-    
-    Fully qualified ID is of the format Domain.Capability-Action"""
+@click.option(
+    '--profile',
+    type=click.Choice(list(utils.profiles().keys())),
+    help='Which assessment profile to list. Takes preference over specification type'
+)
+def list_specs(show_action_status, status_by, specification_type, profile):
+    """List all Specifications by type or by fully qualified IDs per profile
+
+    The per profile option will take precedence over the use of specification type if
+    both options are passed.
+
+    Fully qualified ID is of the format DomainID.CapabilityID.ActionID-ActionSlug"""
     with open(utils.ProfilesMap[profile], 'r', encoding='utf-8') as yaml_file:
         spec = yaml.safe_load(
             yaml_file
@@ -253,13 +262,13 @@ def schema(specification_type, no_numbers):
     spec_schema = None
     match specification_type:
         case 'actions':
-            spec_schema = TypeAdapter(definitions.Action).json_schema(mode='serialization')
+            spec_schema = TypeAdapter(Action).json_schema(mode='serialization')
         case 'capabilities':
-            spec_schema = TypeAdapter(definitions.Capability).json_schema(mode='serialization')
+            spec_schema = TypeAdapter(Capability).json_schema(mode='serialization')
         case 'domains':
-            spec_schema = TypeAdapter(definitions.Domain).json_schema(mode='serialization')
+            spec_schema = TypeAdapter(Domain).json_schema(mode='serialization')
         case 'profiles':
-            spec_schema = TypeAdapter(definitions.Profile).json_schema(mode='serialization')
+            spec_schema = TypeAdapter(Profile).json_schema(mode='serialization')
 
     console = Console()
     syntax = Syntax(
@@ -306,13 +315,13 @@ def validate(selection, specification_type):
     model = None
     match specification_type:
         case 'actions':
-            model = definitions.Action
+            model = Action
         case 'capabilities':
-            model = definitions.Capability
+            model = Capability
         case 'domains':
-            model = definitions.Domain
+            model = Domain
         case 'profiles':
-            model = definitions.Profile
+            model = Profile
 
     specs_files = files(f'finopspp.specifications.{specification_type}')
     if selection == 'all':
@@ -389,13 +398,13 @@ def update(selection, specification_type, major, force):
     model = None
     match specification_type:
         case 'actions':
-            model = definitions.Action
+            model = Action
         case 'capabilities':
-            model = definitions.Capability
+            model = Capability
         case 'domains':
-            model = definitions.Domain
+            model = Domain
         case 'profiles':
-            model = definitions.Profile
+            model = Profile
 
     specs_files = files(f'finopspp.specifications.{specification_type}')
     if selection == 'all':

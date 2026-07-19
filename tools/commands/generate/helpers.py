@@ -7,7 +7,7 @@ import yaml
 from pydantic import ValidationError
 from rich.progress import track
 
-from finopspp.models import definitions
+from finopspp.models.overrides import OverrideMap
 
 def sub_specification_collector(spec, spec_file):
     """Helps find and pull Specification subsection from a specification
@@ -52,7 +52,7 @@ def overrides_collector(spec, profile, override_type='std'):
         overrides = []
 
     # pull correct override model based on override type
-    model = definitions.OverrideMap[override_type]
+    model = OverrideMap[override_type]
 
     validated_override = model(Profile=profile)
     for override in overrides:
