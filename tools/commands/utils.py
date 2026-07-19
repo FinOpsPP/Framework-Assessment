@@ -66,7 +66,7 @@ click.UsageError.show = patched_show
 
 
 ProfilesMap = {}
-def profiles():
+def profiles(testing=False):
     """Return all profiles. Including proposed one"""
     if ProfilesMap:
         return ProfilesMap
@@ -78,7 +78,7 @@ def profiles():
             # we only include profiles in the map that include a title,
             # and exclude the Example Profile
             title = yaml.safe_load(yaml_file).get('Specification').get('Title')
-            if not title or title == 'Example Profile':
+            if not title or (not testing and title == 'Example Profile'):
                 continue
 
             ProfilesMap[title] = path
