@@ -36,9 +36,9 @@ $defs:
         default: null
         description: Update the description of a specification
         title: Descriptionupdate
-      WeightUpdate:
+      SlugUpdate:
         anyOf:
-        - type: integer
+        - type: string
         - type: 'null'
         default: null
         description: Update the weight for an action
@@ -47,7 +47,7 @@ $defs:
     - Profile
     - TitleUpdate
     - DescriptionUpdate
-    - WeightUpdate
+    - SlugUpdate
     title: ActionOverride
     type: object
   ActionSpec:
@@ -377,9 +377,9 @@ $defs:
         default: null
         description: Update the description of a specification
         title: Descriptionupdate
-      WeightUpdate:
+      SlugUpdate:
         anyOf:
-        - type: integer
+        - type: string
         - type: 'null'
         default: null
         description: Update the weight for an action
@@ -388,7 +388,7 @@ $defs:
     - Profile
     - TitleUpdate
     - DescriptionUpdate
-    - WeightUpdate
+    - SlugUpdate
     title: ActionOverride
     type: object
   Approver:
@@ -656,9 +656,9 @@ $defs:
         default: null
         description: Update the description of a specification
         title: Descriptionupdate
-      WeightUpdate:
+      SlugUpdate:
         anyOf:
-        - type: integer
+        - type: string
         - type: 'null'
         default: null
         description: Update the weight for an action
@@ -667,7 +667,7 @@ $defs:
     - Profile
     - TitleUpdate
     - DescriptionUpdate
-    - WeightUpdate
+    - SlugUpdate
     title: ActionOverride
     type: object
   Approver:
@@ -967,9 +967,9 @@ $defs:
         default: null
         description: Update the description of a specification
         title: Descriptionupdate
-      WeightUpdate:
+      SlugUpdate:
         anyOf:
-        - type: integer
+        - type: string
         - type: 'null'
         default: null
         description: Update the weight for an action
@@ -978,7 +978,7 @@ $defs:
     - Profile
     - TitleUpdate
     - DescriptionUpdate
-    - WeightUpdate
+    - SlugUpdate
     title: ActionOverride
     type: object
   Approver:

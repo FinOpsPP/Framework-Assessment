@@ -47,9 +47,9 @@
 {% endfor %}{% if spec.Overrides %}
 ## Overrides
 
-| Profile | Weight Update | Title Update | Description Update |
+| Profile | Slug Update | Title Update | Description Update |
 | ------- | ------------- | ------------ | ------------------ |
 {%- for override in spec.Overrides %}
-| {{ override.Profile }} | {{ override.WeightUpdate | default('None') }} | {{ override.TitleUpdate | default('None') }} | {{ override.DescriptionUpdate | default('None') }} |
+| {{ override.Profile }} | {{ override.SlugUpdate | default('None') }} | {{ override.TitleUpdate | default('None') }} | {{ override.DescriptionUpdate | default('None') }} |
 {%- endfor %}
 {% endif %}

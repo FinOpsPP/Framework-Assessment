@@ -22,8 +22,8 @@ class BaseOverride(Config):
 
 class ActionOverride(BaseOverride, Config):
     """Override model only allowed for action specification"""
-    WeightUpdate: Optional[int] = Field(
-        default=None, description='Update the weight for an action'
+    SlugUpdate: Optional[str] = Field(
+        default=None, description='Update the slug for an action'
     )
 
 

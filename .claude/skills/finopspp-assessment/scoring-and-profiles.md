@@ -154,7 +154,7 @@ Scoring:
 - **1.0** = top priority
 - **0.5** = nice-to-have / stretch goal
 - **0.0** = effectively excluded from assessment
-- Profiles can override weights via `ActionOverride.WeightUpdate`
+- Users can override weights via the Variables `.fppvars` files
 
 ---
 
@@ -188,5 +188,5 @@ See `specifications/profiles/002.yaml` for the complete example.
 1. Load referenced domain IDs → read domain spec files
 2. Apply domain overrides (`AddIDs`/`DropIDs` for capabilities)
 3. For each capability, load by ID and apply capability overrides
-4. For each action, load by ID and apply action overrides (`WeightUpdate`)
+4. For each action, load by ID and apply action overrides (`SlugUpdate`)
 5. Inline domains/capabilities/actions in the profile spec are used as-is
