@@ -50,28 +50,38 @@ def list_inventory(show_action_status, status_by, profile):
     action_files = files('finopspp.specifications.actions')
     click.echo(f'Fully qualified IDs for {profile}. Profile ID: {profile_id}')
     for domain in domains:
-        domain_id = domain.get('ID')
+        domain_id = domain.get('ID', domain.get('Title'))
         if not domain_id:
             continue
 
-        domain_id = str(domain_id)
-        file = '0'*(3-len(domain_id)) + domain_id
-        with open(domain_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
-            capabilities = yaml.safe_load(
-                yaml_file
-            ).get('Specification').get('Capabilities')
+        # If a domain ID is include, look it up as a file
+        # else take whatever exists on that domain should
+        # a title exist
+        capabilities = domain.get('Capabilities') or []
+        if isinstance(domain_id, int):
+            domain_id = str(domain_id)
+            file = '0'*(3-len(domain_id)) + domain_id
+            with open(domain_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
+                capabilities = yaml.safe_load(
+                    yaml_file
+                ).get('Specification').get('Capabilities')
 
         for capability in capabilities:
-            capability_id = capability.get('ID')
+            capability_id = capability.get('ID', capability.get('Title'))
             if not capability_id:
                 continue
 
-            capability_id = str(capability_id)
-            file = '0'*(3-len(capability_id)) + capability_id
-            with open(capability_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
-                actions = yaml.safe_load(
-                    yaml_file
-                ).get('Specification').get('Actions')
+            # If a capability ID is include, look it up as a file
+            # else take whatever exists on that capability should
+            # a title exist
+            actions = capability.get('Actions') or []
+            if isinstance(capability_id, int):
+                capability_id = str(capability_id)
+                file = '0'*(3-len(capability_id)) + capability_id
+                with open(capability_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
+                    actions = yaml.safe_load(
+                        yaml_file
+                    ).get('Specification').get('Actions')
 
             for action in actions:
                 action_id = action.get('ID')
@@ -90,7 +100,7 @@ def list_inventory(show_action_status, status_by, profile):
                     continue
 
                 action_id = raw_action['Specification'].get('Slug') or action_id
-                unique_id = f'{domain_id}.{capability_id}.{action_id}'
+                unique_id = f'{domain_id}.{capability_id}.{action_id}'.replace(' ', '')
                 if show_action_status:
                     unique_id += f': (Action {action_status})'
 
