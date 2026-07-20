@@ -135,7 +135,7 @@ def show(id_, metadata, specification_type, no_numbers):
             default_flow_style=False,
             sort_keys=False,
             indent=2,
-            width=120 # will always be longer that what is allowed by yamllint
+            width=120 # will always be longer than what is allowed by yamllint
         ),
         'yaml',
         line_numbers=(not no_numbers)
@@ -188,7 +188,7 @@ def schema(specification_type, no_numbers):
             default_flow_style=False,
             sort_keys=False,
             indent=2,
-            width=120 # will always be longer that what is allowed by yamllint
+            width=120 # will always be longer than what is allowed by yamllint
         ),
         'yaml',
         line_numbers=(not no_numbers)
