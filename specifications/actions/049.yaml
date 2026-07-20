@@ -15,7 +15,7 @@ Specification:
   Slug: 49-select-kpis
   Implementation Types:
   - null
-  Weight: 0.0
+  Weight: 1.0
   Formula: null
   Score Type: binary
   Scoring:

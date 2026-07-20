@@ -15,7 +15,7 @@ Specification:
   Slug: 27-analyze-root
   Implementation Types:
   - null
-  Weight: 0.0
+  Weight: 1.0
   Formula: null
   Score Type: binary
   Scoring:
