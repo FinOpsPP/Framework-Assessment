@@ -15,7 +15,7 @@ Specification:
   Slug: 117-reassess-progres
   Implementation Types:
   - null
-  Weight: 0.0
+  Weight: 1.0
   Formula: |-
     * Schedule a cadence to report progress outcomes to key stakeholders.
     * Create reporting to show progress on key outcomes across all maturity initiatives.

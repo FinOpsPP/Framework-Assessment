@@ -15,12 +15,14 @@ Specification:
   Slug: 65-publish-benefits
   Implementation Types:
   - null
-  Weight: 0.0
+  Weight: 1.0
   Formula: null
-  Score Type: calculation
+  Score Type: binary
   Scoring:
   - Score: 0
-    Condition: null
+    Condition: Not done
+  - Score: 10
+    Condition: Completed
   References:
   - Name: FinOps++ Score Type - Calculation
     Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
