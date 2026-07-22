@@ -49,7 +49,7 @@ Config (BaseModel with extra='ignore')
   ├─ Reference (Name, Link, Comment)
   ├─ ScoreTypeEnum (calculation|bucket|multi_bucket|percent|sequential|binary|threshold)
   ├─ BaseOverride (Profile, TitleUpdate, DescriptionUpdate)
-  │   ├─ ActionOverride (+WeightUpdate: Optional[int])
+  │   ├─ ActionOverride (+SlugUpdate: Optional[str])
   │   └─ StdOverride (+AddIDs, +DropIDs)
   ├─ ActionItem (SpecID + Overrides)
   ├─ ActionSpec (ActionItem + SpecBase + Slug, ImplementationTypes, Weight, Formula, ScoreType, Scoring, References, SupplementalGuidance)
@@ -86,6 +86,7 @@ Top-level wrappers (what YAML files map to):
 ## Excel Composer
 
 Generates `.xlsx` assessment workbooks with:
+
 - **Overview sheet** — summary scores, domain/capability counts, pie chart
 - **Maturity - Domains** — radar chart by domain
 - **Maturity - Capabilities** — radar chart by capability
@@ -95,10 +96,10 @@ The `normalize()` helper in `composers/helpers.py` flattens the hierarchy into a
 
 ---
 
-## Key Internal Functions (in `__main__.py`)
+## Key Internal Functions (in different `helpers.py` files)
 
 - **`sub_specification_helper(spec, file_location)`** — resolves ID references to full specs by loading from YAML files
-- **`overrides_helper(spec, profile, override_type)`** — applies profile-specific overrides (AddIDs/DropIDs/WeightUpdate)
+- **`overrides_helper(spec, profile, override_type)`** — applies profile-specific overrides (AddIDs/DropIDs/SlugUpdate)
 - **`SpecSubspecMap`** — defines parent-child relationships: `profiles → domains → capabilities → actions`
 
 ---

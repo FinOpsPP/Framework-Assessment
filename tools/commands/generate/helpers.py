@@ -7,7 +7,8 @@ import yaml
 from pydantic import ValidationError
 from rich.progress import track
 
-from finopspp.models import definitions
+from finopspp.models.overrides import OverrideMap
+
 
 def sub_specification_collector(spec, spec_file):
     """Helps find and pull Specification subsection from a specification
@@ -36,6 +37,7 @@ def sub_specification_collector(spec, spec_file):
         sub_spec = full_sub.get('Specification') or {}
         return sub_metadata, sub_spec
 
+
 def overrides_collector(spec, profile, override_type='std'):
     """Helper for receiving the overrides for a profile if they exist
     
@@ -52,7 +54,7 @@ def overrides_collector(spec, profile, override_type='std'):
         overrides = []
 
     # pull correct override model based on override type
-    model = definitions.OverrideMap[override_type]
+    model = OverrideMap[override_type]
 
     validated_override = model(Profile=profile)
     for override in overrides:
@@ -74,6 +76,7 @@ def overrides_collector(spec, profile, override_type='std'):
         break
 
     return validated_override.model_dump()
+
 
 def domains_collector(profile, profile_spec, allowed_statuses):
     """Helper designed to collect and return a specific format for a domains dict
@@ -209,8 +212,8 @@ def domains_collector(profile, profile_spec, allowed_statuses):
                 if act_override.get('DescriptionUpdate'):
                     spec['Description'] = act_override.get('DescriptionUpdate')
 
-                if act_override.get('WeightUpdate'):
-                    spec['Weight'] = act_override.get('WeightUpdate')
+                if act_override.get('SlugUpdate'):
+                    spec['Slug'] = act_override.get('SlugUpdate')
 
                 spec_id = str(spec_id)
                 serial_number = '0'*(3-len(spec_id)) + spec_id

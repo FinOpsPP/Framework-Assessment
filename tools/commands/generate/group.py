@@ -7,7 +7,8 @@ import click
 import yaml
 from pydantic import TypeAdapter
 
-from finopspp.models import definitions
+from finopspp.models import Action, Capability, Domain, Profile
+from finopspp.models.specs import StatusEnum
 from finopspp.composers import archive, excel, markdown
 from finopspp.commands import utils
 from finopspp.commands.generate import helpers
@@ -72,16 +73,16 @@ def assessment(profile, proposed, deprecated):
         click.secho(f'Domains for profile={profile} must be a list', err=True, fg='red')
         sys.exit(1)
 
-    allowed_statuses = [definitions.StatusEnum.accepted.value]
+    allowed_statuses = [StatusEnum.accepted.value]
     suffix = ''
     if proposed:
         allowed_statuses.append(
-            definitions.StatusEnum.proposed.value
+            StatusEnum.proposed.value
         )
         suffix += '-proposed'
     if deprecated:
         allowed_statuses.append(
-            definitions.StatusEnum.deprecated.value
+            StatusEnum.deprecated.value
         )
         suffix += '-deprecated'
 
@@ -114,7 +115,7 @@ def assessment(profile, proposed, deprecated):
 def documents():
     """Generate schema documents markdown files from code"""
     schemas = {}
-    for definition in [definitions.Action, definitions.Capability, definitions.Domain, definitions.Profile]:
+    for definition in [Action, Capability, Domain, Profile]:
         schemas[definition.__name__.lower()] = yaml.dump(
             TypeAdapter(definition).json_schema(mode='serialization'),
             default_flow_style=False,

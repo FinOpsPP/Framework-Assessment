@@ -10,7 +10,7 @@ from textual.events import Mount
 from textual.widgets import Footer, Header, Label, Pretty, SelectionList, Switch
 from textual.widgets.selection_list import Selection
 
-from finopspp.models import definitions
+from finopspp.models.specs import StatusEnum
 
 def approval(approvers, number, today, specs):
     """Helper to add approval to a specification by number"""
@@ -23,7 +23,7 @@ def approval(approvers, number, today, specs):
     metadata['Version'] = '1.0.0'
     metadata['Adopted'] = today
     metadata['Modified'] = today
-    metadata['Status'] = definitions.StatusEnum.accepted.value
+    metadata['Status'] = StatusEnum.accepted.value
 
     # now update metadata approvers list with selected approvers
     approval_list = []
@@ -65,7 +65,7 @@ def approval_options(specification_type):
             specification_data = yaml.safe_load(yaml_file)
 
         # check if status is Proposed, and if it is, add as option to approve
-        if specification_data['Metadata']['Status'] != definitions.StatusEnum.proposed.value:
+        if specification_data['Metadata']['Status'] != StatusEnum.proposed.value:
             continue
 
         spec = specification_data['Specification']

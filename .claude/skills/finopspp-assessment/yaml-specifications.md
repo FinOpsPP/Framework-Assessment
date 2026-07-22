@@ -1,6 +1,6 @@
 # YAML Specification Schemas & Override System
 
-> Source: `tools/models/definitions.py`, `specifications/`
+> Source: `tools/models/`, `specifications/`
 
 All spec files have two top-level sections: `Metadata` and `Specification`.
 
@@ -108,7 +108,7 @@ Overrides:
 - Profile: "FinOps++"               # or {ID: 2}
   TitleUpdate: null
   DescriptionUpdate: null
-  WeightUpdate: null                 # Optional[int] — change weight for this profile
+  SlugUpdate: null                 # Optional[int] — change weight for this profile
 ```
 
 ### StdOverride (capabilities and domains)

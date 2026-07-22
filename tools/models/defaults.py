@@ -1,25 +1,26 @@
 """Includes smart defaults for the different specification models"""
 import datetime
 
-from finopspp.models import definitions
+from finopspp.models.specs import MetadataSpec, StatusEnum, Approver, SpecID
+from finopspp.models import actions, capabilities, domains, profiles
 
 
-Action = definitions.Action(
-    Metadata=definitions.MetadataSpec(
+Action = actions.Action(
+    Metadata=MetadataSpec(
         Proposed=datetime.date.today(),
         Adopted=None,
         Modified=None,
         Version='0.0.1',
-        Status=definitions.StatusEnum.proposed.value,
+        Status=StatusEnum.proposed.value,
         Approvers=[
-            definitions.Approver(
+            Approver(
                 Name=None,
                 Email=None,
                 Date=None
             )
         ]
     ),
-    Specification=definitions.ActionSpec(
+    Specification=actions.ActionSpec(
         ID=None,
         Title=None,
         Description=None,
@@ -29,15 +30,15 @@ Action = definitions.Action(
         ],
         Weight=0,
         Formula=None,
-        ScoreType=definitions.ScoreTypeEnum.calculation.value,
+        ScoreType=actions.ScoreTypeEnum.calculation.value,
         Scoring=[
-            definitions.ScoringDetail(
+            actions.ScoringDetail(
                 Score=0,
                 Condition=None
             )
         ],
         References=[
-            definitions.ScoreTypeRefMap[definitions.ScoreTypeEnum.calculation.value]
+            actions.ScoreTypeRefMap[actions.ScoreTypeEnum.calculation.value]
         ],
         SupplementalGuidance=[
             None
@@ -46,27 +47,27 @@ Action = definitions.Action(
 )
 
 
-Capability = definitions.Capability(
-    Metadata=definitions.MetadataSpec(
+Capability = capabilities.Capability(
+    Metadata=MetadataSpec(
         Proposed=datetime.date.today(),
         Adopted=None,
         Modified=None,
         Version='0.0.1',
-        Status=definitions.StatusEnum.proposed.value,
+        Status=StatusEnum.proposed.value,
         Approvers=[
-            definitions.Approver(
+            Approver(
                 Name=None,
                 Email=None,
                 Date=None
             )
         ]
     ),
-    Specification=definitions.CapabilitySpec(
+    Specification=capabilities.CapabilitySpec(
         ID=None,
         Title=None,
         Description=None,
         Actions=[
-            definitions.SpecID(
+            SpecID(
                 ID=None
             )
         ],
@@ -75,27 +76,27 @@ Capability = definitions.Capability(
 )
 
 
-Domain = definitions.Domain(
-    Metadata=definitions.MetadataSpec(
+Domain = domains.Domain(
+    Metadata=MetadataSpec(
         Proposed=datetime.date.today(),
         Adopted=None,
         Modified=None,
         Version='0.0.1',
-        Status=definitions.StatusEnum.proposed.value,
+        Status=StatusEnum.proposed.value,
         Approvers=[
-            definitions.Approver(
+            Approver(
                 Name=None,
                 Email=None,
                 Date=None
             )
         ]
     ),
-    Specification=definitions.DomainSpec(
+    Specification=domains.DomainSpec(
         ID=None,
         Title=None,
         Description=None,
         Capabilities=[
-            definitions.SpecID(
+            SpecID(
                 ID=None
             )
         ],
@@ -104,41 +105,41 @@ Domain = definitions.Domain(
 )
 
 
-Profile = definitions.Profile(
-    Metadata=definitions.MetadataSpec(
+Profile = profiles.Profile(
+    Metadata=MetadataSpec(
         Proposed=datetime.date.today(),
         Adopted=None,
         Modified=None,
         Version='0.0.1',
-        Status=definitions.StatusEnum.proposed.value,
+        Status=StatusEnum.proposed.value,
         Approvers=[
-            definitions.Approver(
+            Approver(
                 Name=None,
                 Email=None,
                 Date=None
             )
         ]
     ),
-    Specification=definitions.ProfileSpec(
+    Specification=profiles.ProfileSpec(
         ID=None,
         Title=None,
         Description=None,
         Domains=[
-            definitions.SpecID(
+            SpecID(
                 ID=None
             ),
-            definitions.DomainItem(
+            domains.DomainItem(
                 Title=None,
                 Description=None,
                 Capabilities=[
-                    definitions.SpecID(
+                    SpecID(
                         ID=None
                     ),
-                    definitions.CapabilityItem(
+                    capabilities.CapabilityItem(
                         Title=None,
                         Description=None,
                         Actions=[
-                            definitions.ActionItem(
+                            actions.ActionItem(
                                 ID=None,
                                 Overrides=None
                             )

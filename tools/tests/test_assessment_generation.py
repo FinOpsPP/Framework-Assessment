@@ -12,7 +12,7 @@ from finopspp.composers.helpers import normalize
 def test_normalize():
     """Test for the composer util 'normalize'"""
     profile = 'Example Profile'
-    profile_map = utils.profiles()
+    profile_map = utils.profiles(testing=True)
     with open(profile_map[profile], 'r', encoding='utf-8') as yaml_file:
         profile_yaml = yaml.safe_load(
             yaml_file
