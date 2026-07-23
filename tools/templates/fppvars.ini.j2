@@ -1,0 +1,11 @@
+[profile]
+title = {{ profile.Title | title }}
+version = {{ profile.Version }}
+status = {{ profile.Status }}
+
+
+[weights]
+; default set of weight variables that can be overwritten based on need
+{%- for action in profile.actions %}
+{{ action.fqid }} = {{ action.weight }}
+{%- endfor %}

@@ -55,7 +55,7 @@ IDs are zero-padded to 3 digits in filenames. ID 0 files are templates.
 | Change scoring for an action | `specifications/actions/NNN.yaml` Scoring section | `finopspp specifications validate --specification-type=actions NNN` |
 | Add action to a capability | `specifications/capabilities/NNN.yaml` Actions list | Validate, then generate |
 | Customize for a profile | Add Override block in the domain/capability/action YAML | Validate |
-| Change Excel layout | `tools/composers/excel.py` | `finopspp generate assessment --profile="<name>"` |
+| Change Excel layout | `tools/commands/generate/composers/excel.py` | `finopspp generate assessment --profile="<name>"` |
 | Change markdown format | `tools/templates/*.j2` | `finopspp generate components --specification-type=<type>` |
 | Add a field to a spec type | `tools/models/definitions.py` + `defaults.py` + template | `finopspp specifications update`, then regenerate |
 

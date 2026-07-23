@@ -18,4 +18,4 @@ def variables():
 @click.argument('name', type=click.STRING)
 def new(name, profile):
     """Create a new variables file for a profile"""
-    click.echo(f'Creating new {name}.fppvars file under profile {profile}')
+    click.echo(f'Creating new {name}.fppvars.ini file under profile {profile}')

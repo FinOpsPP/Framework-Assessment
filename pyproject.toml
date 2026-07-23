@@ -42,7 +42,6 @@ packages = ["finopspp", "finopspp.specifications"]
 [tool.setuptools.package-dir]
 "finopspp" = "tools"
 "finopspp.commands" = "tools/commands"
-"finopspp.composers" = "tools/composers"
 "finopspp.models" = "tools/models"
 "finopspp.specifications" = "specifications"
 "finopspp.templates" = "tools/templates"

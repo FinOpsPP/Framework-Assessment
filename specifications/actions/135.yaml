@@ -15,7 +15,7 @@ Specification:
   ID: 135
   Title: null
   Description: Define ingestion frequency; include mandatory metadata.
-  Slug: null
+  Slug: 135-ingest-frequency
   Implementation Types:
   - null
   Weight: 1.0

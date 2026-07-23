@@ -6,7 +6,7 @@ import yaml
 
 from finopspp.commands import utils
 from finopspp.commands.generate.helpers import domains_collector
-from finopspp.composers.helpers import normalize
+from finopspp.commands.generate.composers.helpers import normalize
 
 
 def test_normalize():

@@ -9,9 +9,9 @@ from pydantic import TypeAdapter
 
 from finopspp.models import Action, Capability, Domain, Profile
 from finopspp.models.specs import StatusEnum
-from finopspp.composers import archive, excel, markdown
 from finopspp.commands import utils
 from finopspp.commands.generate import helpers
+from finopspp.commands.generate.composers import archive, excel, markdown
 
 @click.group(cls=utils.ClickGroup)
 def generate():
