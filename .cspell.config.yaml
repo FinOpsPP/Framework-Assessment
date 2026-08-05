@@ -30,6 +30,7 @@ words:
   - sharrma
   - sumif
   - tcss
+  - tomllint
   - venv
   - xlsxwriter
 allowCompoundWords: true

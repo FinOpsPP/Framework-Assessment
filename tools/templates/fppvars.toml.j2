@@ -1,11 +1,10 @@
 [profile]
-title = {{ profile.Title | title }}
-version = {{ profile.Version }}
-status = {{ profile.Status }}
-
+title = "{{ profile.Specification.Title | title }}"
+version = "{{ profile.Metadata.Version }}"
+status = "{{ profile.Metadata.Status }}"
 
 [weights]
-; default set of weight variables that can be overwritten based on need
+# default set of weight variables that can be overwritten based on need
 {%- for action in profile.actions %}
 {{ action.fqid }} = {{ action.weight }}
 {%- endfor %}
