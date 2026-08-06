@@ -1,6 +1,6 @@
 # <a href="/components/profiles/002.md">002</a>: FinOps++ Maturity Assessment Framework
 
-**Creation Date:** 2026-07-20
+**Creation Date:** 2026-08-05
 
 **Specification Version:** 0.0.1
 
@@ -704,8 +704,8 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/135.md">135</a>: Define ingestion frequency; include mandatory metadata.
-                        <p>Specification Version: 1.6.0</p>
+                        <a href="/components/actions/135.md">135</a>: Define Data Ingestion Requirements
+                        <p>Specification Version: 1.6.1</p>
                         </td>
                     </tr>
                 </table>

@@ -41,8 +41,8 @@ $defs:
         - type: string
         - type: 'null'
         default: null
-        description: Update the weight for an action
-        title: Weightupdate
+        description: Update the slug for an action
+        title: Slugupdate
     required:
     - Profile
     - TitleUpdate
@@ -382,8 +382,8 @@ $defs:
         - type: string
         - type: 'null'
         default: null
-        description: Update the weight for an action
-        title: Weightupdate
+        description: Update the slug for an action
+        title: Slugupdate
     required:
     - Profile
     - TitleUpdate
@@ -661,8 +661,8 @@ $defs:
         - type: string
         - type: 'null'
         default: null
-        description: Update the weight for an action
-        title: Weightupdate
+        description: Update the slug for an action
+        title: Slugupdate
     required:
     - Profile
     - TitleUpdate
@@ -972,8 +972,8 @@ $defs:
         - type: string
         - type: 'null'
         default: null
-        description: Update the weight for an action
-        title: Weightupdate
+        description: Update the slug for an action
+        title: Slugupdate
     required:
     - Profile
     - TitleUpdate
