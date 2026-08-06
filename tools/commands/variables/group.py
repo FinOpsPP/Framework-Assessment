@@ -48,9 +48,7 @@ def new(name, profile, force):
         sys.exit(1)
 
     with open(utils.ProfilesMap[profile], 'r', encoding='utf-8') as yaml_file:
-        prof = yaml.safe_load(
-            yaml_file
-        )
+        prof = yaml.safe_load(yaml_file)
         prof['actions'] = []
 
 
@@ -148,7 +146,7 @@ def list_variables():
         path = spec_files.joinpath(file.name)
         with open(path, 'rb') as toml_file:
             var_file = tomllib.load(toml_file)
-            name = var_file.get('basic').get('name')
-            title = var_file.get('profile').get('title')
+            name = var_file.get('basic').get('name').replace(' ', '')
+            title = var_file.get('profile').get('title').replace(' ', '')
 
         click.echo(f'{name}-{title}')
