@@ -13,7 +13,7 @@ Metadata:
     Date: '2025-11-01'
 Specification:
   ID: 135
-  Title: null
+  Title: Define Data Ingestion Requirements
   Description: Define ingestion frequency; include mandatory metadata.
   Slug: 135-ingest-frequency
   Implementation Types:
