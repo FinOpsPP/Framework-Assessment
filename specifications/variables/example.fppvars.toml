@@ -1,3 +1,7 @@
+[basic]
+name = "example"
+version = "0.0.1"
+
 [profile]
 title = "Finops++"
 version = "0.0.1"

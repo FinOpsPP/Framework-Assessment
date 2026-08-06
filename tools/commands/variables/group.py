@@ -1,6 +1,7 @@
 """Command file for the Variables command"""
 import os
 import sys
+import tomllib
 from importlib.resources import files
 
 import click
@@ -31,10 +32,15 @@ def variables():
 )
 @click.argument('name', type=click.STRING)
 def new(name, profile, force):
-    """Create a new variables file for a profile"""
+    """Create a new variables file for a profile
+    
+    NOTE: The name you pass in can have space by surrounding 
+    your name in quotes. But if you use space, they will be
+    ignored in the file name itself.
+    """
     path = files(
         'finopspp.specifications.variables'
-    ).joinpath(f'{name}.fppvars.toml')
+    ).joinpath(f'{name.replace(" ", "")}.fppvars.toml')
     click.echo(f'Attempting to create "{path}" for profile={profile}:')
 
     if os.path.exists(path) and not force:
@@ -113,6 +119,7 @@ def new(name, profile, force):
     template = env.get_template('fppvars.toml.j2')
 
     output = template.render(
+        name=name,
         profile=prof
     )
 
@@ -122,3 +129,26 @@ def new(name, profile, force):
         outfile.write(output)
 
     click.secho(f'Attempt to create "{path}" succeeded', fg='green')
+
+
+@variables.command(name='list')
+def list_variables():
+    """List all registered variables files
+
+    List is in the form of Name-Profile (minus spaces) for each
+    saved variable files TOML file under finopspp.specifications.variables
+    """
+    click.echo('Variable IDs:')
+    spec_files = files('finopspp.specifications.variables')
+    for file in spec_files.iterdir():
+        # only include toml files
+        if not file.name.endswith('.toml'):
+            continue
+
+        path = spec_files.joinpath(file.name)
+        with open(path, 'rb') as toml_file:
+            var_file = tomllib.load(toml_file)
+            name = var_file.get('basic').get('name')
+            title = var_file.get('profile').get('title')
+
+        click.echo(f'{name}-{title}')

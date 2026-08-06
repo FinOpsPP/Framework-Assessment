@@ -110,7 +110,8 @@ def list_specifications(specification_type):
             spec = yaml.safe_load(yaml_file).get('Specification')
             spec_id = spec.get('ID')
             title = spec.get('Title').replace(' ', '')
-            click.echo(f'{spec_id}-{title}')
+
+        click.echo(f'{spec_id}-{title}')
 
 
 @specifications.command()
