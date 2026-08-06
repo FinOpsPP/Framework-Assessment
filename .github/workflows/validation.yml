@@ -41,7 +41,7 @@ jobs:
         pymarkdownlnt scan -r assessments components
     - name: Analyze & lint project toml files with tomllint
       run: |
-        tomllint **/*.toml
+        tomllint -v specifications/profiles/*.toml
     - name: Validate all profile specifications with finopspp tool
       run: |
         finopspp specifications validate --specification-type="profiles" all
