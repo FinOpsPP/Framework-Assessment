@@ -4,7 +4,7 @@ import os
 import click
 import pandas
 
-from finopspp.composers import helpers
+from finopspp.commands.generate.composers import helpers
 
 def create_overview_sheet(profile, dataframe, workbook):
     """Create overview sheet"""
@@ -205,7 +205,7 @@ def format_scoring_sheet(scoring_sheet, dataframe, workbook):
 
 
 def assessment_generate(profile, base_path, domains, suffix):
-    """Generate Excel files"""
+    """Generate Assessment excel file"""
     click.echo(f'Attempting to generate assessment.xlsx for profile={profile}:')
     dataframe = helpers.normalize(domains)
 

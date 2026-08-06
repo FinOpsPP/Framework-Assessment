@@ -1,6 +1,6 @@
 # Generation Pipeline
 
-> Source: `tools/models/`, `tools/composers/`, `tools/templates/`
+> Source: `tools/models/`, `tools/commands/`, `tools/templates/`
 
 ## Data Flow
 
@@ -8,7 +8,7 @@
 YAML specs (specifications/)
        │
        ▼
-Pydantic validation (tools/models/definitions.py)
+Pydantic validation (tools/models/<component>.py)
        │
        ├──► Jinja2 templates (tools/templates/*.j2)
        │         │
@@ -16,7 +16,7 @@ Pydantic validation (tools/models/definitions.py)
        │    Markdown components (components/)
        │    Framework docs (assessments/<profile>/framework.md)
        │
-       └──► Excel composer (tools/composers/excel.py)
+       └──► Excel composer (tools/commands/generate/composers/excel.py)
                   │
                   ▼
              Assessment worksheets (assessments/<profile>/assessment.xlsx)
@@ -31,9 +31,9 @@ Pydantic validation (tools/models/definitions.py)
 | `tools/__main__.py` | CLI entry point — all Click commands (~26KB) |
 | `tools/models/definitions.py` | Pydantic models for all spec types (~10KB) |
 | `tools/models/defaults.py` | Default values for `specifications new` (~3KB) |
-| `tools/composers/markdown.py` | Markdown file writing via Jinja2 |
-| `tools/composers/excel.py` | Excel workbook generation via xlsxwriter |
-| `tools/composers/helpers.py` | `normalize()` — converts hierarchy to pandas DataFrame |
+| `tools/commands/generate/composers/markdown.py` | Markdown file writing via Jinja2 |
+| `tools/commands/generate/composers/excel.py` | Excel workbook generation via xlsxwriter |
+| `tools/commands/generate/composers/helpers.py` | `normalize()` — converts hierarchy to pandas DataFrame |
 
 ---
 
@@ -116,7 +116,7 @@ The `normalize()` helper in `composers/helpers.py` flattens the hierarchy into a
 ## How to Modify Generated Output Format
 
 - **Markdown layout**: Edit the `.j2` template in `tools/templates/`
-- **Excel layout**: Edit `tools/composers/excel.py`
+- **Excel layout**: Edit `tools/commands/generate/composers/excel.py`
 - Then regenerate all affected outputs
 
 ---

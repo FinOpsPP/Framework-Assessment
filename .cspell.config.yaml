@@ -14,7 +14,7 @@ words:
   - fppvars
   - FQID
   - gamify
-  - itam
+  - ITAM
   - pbgc
   - prasshant
   - pydantic
@@ -30,6 +30,7 @@ words:
   - sharrma
   - sumif
   - tcss
+  - tomllint
   - venv
   - xlsxwriter
 allowCompoundWords: true

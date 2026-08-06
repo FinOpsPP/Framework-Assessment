@@ -82,6 +82,38 @@ def new(id_, specification_type):
     click.secho(f'Specification "{path}" successfully created', fg='green')
 
 
+@specifications.command(name='list')
+@click.option(
+    '--specification-type',
+    type=click.Choice(list(utils.SpecSubspecMap.keys())),
+    default='profiles',
+    help='Which specification type to use. Defaults to "profiles"'
+)
+def list_specifications(specification_type):
+    """List specifications for a given specification type
+
+    List is in the form of ID-Title (minus spaces in the title) for each
+    specification found for a given type. This will not show specifications
+    that do not have a YAML file.
+    """
+    click.echo(f'Specifications IDs for specification-type={specification_type}:')
+    spec_files = files(
+        f'finopspp.specifications.{specification_type}'
+    )
+    for file in spec_files.iterdir():
+        # only include yaml files
+        if not file.name.endswith('.yaml'):
+            continue
+
+        path = spec_files.joinpath(file.name)
+        with open(path, 'r', encoding='utf-8') as yaml_file:
+            spec = yaml.safe_load(yaml_file).get('Specification')
+            spec_id = spec.get('ID')
+            title = spec.get('Title').replace(' ', '')
+
+        click.echo(f'{spec_id}-{title}')
+
+
 @specifications.command()
 @click.option(
     '--metadata',

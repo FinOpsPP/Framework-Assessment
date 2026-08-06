@@ -31,7 +31,7 @@ The markdown files [generated](/README.md#generating-commands) by the `finopspp`
 
 ### Composers
 
-There are several composers used to aid in creating the different content provided by the Framework-Assessment project. It is quite possible, it could be argued, that of those, the most import is the one used to create the excel files used for the assessments. These live under [tools/composers/excel](/tools/composers/excel.py) and make use of the python version of `xlsxwriter`.
+There are several composers used to aid in creating the different content provided by the Framework-Assessment project. It is quite possible, it could be argued, that of those, the most import is the one used to create the excel files used for the assessments. These live under [tools/commands/generate/composers/excel](/tools/commands/generate/composers/excel.py) and make use of the python version of `xlsxwriter`.
 
 To fully develop for this, you will need to either have a properly licensed [Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel) installed, or be on a Linux or Unix-like system that packages the free & opened sourced [LibreOffice Calc](https://en.wikipedia.org/wiki/LibreOffice_Calc). In this latter situation, you specifically will need to make sure that the `libreoffice` and `make` commands are installed. If they are, you can use the provided [Makefile target](/Makefile) `make ods` to convert existing excel files in the project to a natively supported LibreOffice format.
 

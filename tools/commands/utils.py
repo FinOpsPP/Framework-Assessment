@@ -73,6 +73,10 @@ def profiles(testing=False):
 
     profile_specs = files('finopspp.specifications.profiles')
     for file in profile_specs.iterdir():
+        # only include yaml files
+        if not file.name.endswith('.yaml'):
+            continue
+
         path = profile_specs.joinpath(file.name)
         with open(path, 'r', encoding='utf-8') as yaml_file:
             # we only include profiles in the map that include a title,

@@ -27,7 +27,8 @@ dependencies = [
 validation = [
     "pylint == 4.0.3",
     "yamllint == 1.37.1",
-    "pymarkdownlnt == 0.9.33"
+    "pymarkdownlnt == 0.9.33",
+    "tomllint == 0.3.6"
 ]
 testing = [
     "pytest == 9.0.1"
@@ -42,7 +43,6 @@ packages = ["finopspp", "finopspp.specifications"]
 [tool.setuptools.package-dir]
 "finopspp" = "tools"
 "finopspp.commands" = "tools/commands"
-"finopspp.composers" = "tools/composers"
 "finopspp.models" = "tools/models"
 "finopspp.specifications" = "specifications"
 "finopspp.templates" = "tools/templates"

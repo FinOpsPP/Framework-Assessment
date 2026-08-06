@@ -1,6 +1,6 @@
 # <a href="/components/profiles/001.md">001</a>: FinOps Foundation Maturity Assessment Framework
 
-**Creation Date:** 2026-07-20
+**Creation Date:** 2026-08-05
 
 **Specification Version:** 1.0.0
 
@@ -1046,8 +1046,8 @@ Classic profile featuring controls provided by the finops foundation
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/135.md">135</a>: Define ingestion frequency; include mandatory metadata.
-                        <p>Specification Version: 1.6.0</p>
+                        <a href="/components/actions/135.md">135</a>: Define Data Ingestion Requirements
+                        <p>Specification Version: 1.6.1</p>
                         </td>
                     </tr>
                 </table>
