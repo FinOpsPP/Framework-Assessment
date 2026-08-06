@@ -33,7 +33,7 @@ def variables():
 def new(name, profile, force):
     """Create a new variables file for a profile"""
     path = files(
-        'finopspp.specifications.profiles'
+        'finopspp.specifications.variables'
     ).joinpath(f'{name}.fppvars.toml')
     click.echo(f'Attempting to create "{path}" for profile={profile}:')
 
