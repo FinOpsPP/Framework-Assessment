@@ -37,6 +37,11 @@ def generate():
     default=False,
     help='Include Deprecated components'
 )
+@click.option(
+    '--variables',
+    type=click.Choice(list(utils.variables().keys())),
+    help='Optional variables file to overright default assessment settings for a given profile'
+)
 def assessment(profile, proposed, deprecated):
     """Generate assessment files from their specifications
     
