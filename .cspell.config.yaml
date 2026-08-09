@@ -33,4 +33,5 @@ words:
   - tomllint
   - venv
   - xlsxwriter
+  - reprioritize
 allowCompoundWords: true
