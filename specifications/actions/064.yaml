@@ -21,7 +21,7 @@ Specification:
     * Track actual cost outcomes vs estimated savings documented in prior trade off analysis
     * Define and monitor success metrics (cost delta, performance, reliability) for each iteration
     * Hold structured retrospectives after each iteration to capture lessons learned
-    * Feed iteration outcomes back into the modernization backlog to reprioritise remaining work
+    * Feed iteration outcomes back into the modernization backlog to reprioritize remaining work
 
     10*Ceil(x/5)
   Score Type: bucket
