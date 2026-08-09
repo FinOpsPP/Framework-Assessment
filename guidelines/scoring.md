@@ -77,7 +77,7 @@ The bucket score relies on the fact that the formula items are independent, and 
 **YAML Format**:
 
   ```{yaml}
-  Formula: |-
+  Formula: |
     * Define and follow process for gathering deployment plans from teams
     * Determine timeline for each new project to adjust the forecast during that time
     * Determine how optimizations and lower run rate will impact the forecast on a rolling basis
@@ -116,7 +116,7 @@ Other combinations of formula items can be created as well that fit this method.
 **YAML Format**:
 
 ```{yaml}
-  Formula: |-
+  Formula: |
     1. Must do first
     2. Either or
         * choice 1
@@ -158,7 +158,7 @@ The scoring values are still based on the Ceil function mentioned in the bucket 
 **YAML Format**:
 
 ```{yaml}
-  Formula: |-
+  Formula: |
     1. item 1
     2. item 2
     3. etc...
@@ -169,9 +169,9 @@ The scoring values are still based on the Ceil function mentioned in the bucket 
   - Score: 4
     Condition: item 1 completed
   - Score: 7
-    Condition: items 1 and 2 completed
+    Condition: items 1-2 completed
   - Score: 10
-    Condition: items 1, 2, and 3 completed
+    Condition: items 1-3 completed
 ```
 
 ### Threshold Process
@@ -265,7 +265,7 @@ If your allocation is at 49%, you will receive a score of 4. It is only when it 
 
 If there is a way to get a consistent, reliable numerical value to measure progress on an action, we can use that number in a formula to measure maturity.
 There are no restrictions as of yet for what the formula could consist of, as long as the result is objective and repeatable.
-We welcome submissions of any scores that have a mathematical formula similar or different from any currently listed in the assessment. This is the default Score Type used when others are not clear applicable. As such, it acts as a sort of catch all score type.
+We welcome submissions of any scores that have a mathematical formula similar or different from any currently listed in the assessment. This is the default Score Type used when others are not clear applicable. As such, it acts as a sort of catch all score type and is used as the default score type when [creating new actions](/tools/README.md#new) with the `finopspp` tool.
 
 **Example**:
 
@@ -275,7 +275,7 @@ Feel free to find creative solutions that can quantify progress in any of the ac
 
 **YAML Format**:
 
-Any valid YAML scalar string can be accepted for this type. It is dealers choice on what to put and what they with to capture.
+Any valid YAML scalar string can be accepted for this type. It is dealers choice on what to put here based on what you want to capture with the action. So long as it is valid YAML.
 
 ## Weights
 

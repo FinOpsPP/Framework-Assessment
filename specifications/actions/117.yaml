@@ -1,13 +1,13 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adopted: null
-  Modified: '2026-03-17'
-  Version: 0.7.0
-  Status: Proposed
+  Adopted: '2026-07-20'
+  Modified: '2026-07-20'
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: vlevy573@gmail.com
+    Date: '2026-07-20'
 Specification:
   ID: 117
   Title: Reassess Progress & Update Priorities
@@ -15,7 +15,7 @@ Specification:
   Slug: 117-reassess-progres
   Implementation Types:
   - null
-  Weight: 0.0
+  Weight: 1.0
   Formula: |-
     * Schedule a cadence to report progress outcomes to key stakeholders.
     * Create reporting to show progress on key outcomes across all maturity initiatives.
@@ -34,9 +34,9 @@ Specification:
   - Score: 10
     Condition: 4 items completed
   References:
-  - Name: null
-    Link: null
-    Comment: null
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
   - null
   Overrides: null

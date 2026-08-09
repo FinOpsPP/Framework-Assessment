@@ -1,13 +1,13 @@
 Metadata:
   Proposed: '2026-03-25'
-  Adopted: null
-  Modified: null
-  Version: 0.0.1
-  Status: Proposed
+  Adopted: '2026-07-20'
+  Modified: '2026-07-20'
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: vlevy573@gmail.com
+    Date: '2026-07-20'
 Specification:
   ID: 139
   Title: Establish Decision Support Cadence
@@ -15,7 +15,7 @@ Specification:
   Slug: 139-decision-cadence
   Implementation Types:
   - null
-  Weight: 0.0
+  Weight: 1.0
   Formula: |-
     * Define a regular review cadence for technology investment decisions
     * Deliver cost and outcome comparisons for competing initiatives at reviews
@@ -33,9 +33,9 @@ Specification:
   - Score: 10
     Condition: 3 items completed
   References:
-  - Name: null
-    Link: null
-    Comment: null
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
   - null
   Overrides: null

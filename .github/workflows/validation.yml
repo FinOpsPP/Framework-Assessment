@@ -22,23 +22,26 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install lint and testing dependencies
+    - name: Install lint and validation dependencies
       run: |
         npm install -g cspell-cli@9.6.0
         python -m pip install --upgrade pip
         python -m pip install -e ".[validation]"
-    - name: Analyzing & lint project spelling with cspell
+    - name: Analyze & lint project spelling with cspell
       run: |
         cspell-cli lint .
-    - name: Analyzing & lint tools directory with pylint
+    - name: Analyze & lint tools directory with pylint
       run: |
         pylint tools
-    - name: Analyzing & lint specifications directory with yamllint
+    - name: Analyze & lint specifications directory with yamllint
       run: |
         yamllint specifications
-    - name: Analyzing & lint assessments and components directories with pymarkdownlnt
+    - name: Analyze & lint assessments and components directories with pymarkdownlnt
       run: |
         pymarkdownlnt scan -r assessments components
+    - name: Analyze & lint project toml files with tomllint
+      run: |
+        tomllint -v specifications/variables/*.toml
     - name: Validate all profile specifications with finopspp tool
       run: |
         finopspp specifications validate --specification-type="profiles" all
@@ -51,4 +54,3 @@ jobs:
     - name: Validate all action specifications with finopspp tool
       run: |
         finopspp specifications validate --specification-type="actions" all
-

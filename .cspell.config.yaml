@@ -11,8 +11,10 @@ words:
   - byol
   - collab
   - finopspp
+  - fppvars
+  - FQID
   - gamify
-  - itam
+  - ITAM
   - pbgc
   - prasshant
   - pydantic
@@ -27,6 +29,8 @@ words:
   - secho
   - sharrma
   - sumif
+  - tcss
+  - tomllint
   - venv
   - xlsxwriter
 allowCompoundWords: true

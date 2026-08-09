@@ -1,5 +1,9 @@
 # {{ profile.profile_link_title }} Maturity Assessment Framework
 
+**Creation Date:** {{ today }}
+
+**Specification Version:** {{ profile.version | default('Not specified') }}
+
 {{ profile.Description | capitalize}}
 
 ## Overview
@@ -16,6 +20,7 @@
         <b>{% if domain.serial_number -%}
         <a href="/components/domains/{{ domain.serial_number }}.md">{{ domain.serial_number }}</a>: {% endif -%}
         {{ domain.domain }}</b>
+        <p>Specification Version: {{ domain.version | default('Not specified') }}</p>
         </td>
         <td>
         <table style="table-layout: fixed;">
@@ -25,6 +30,7 @@
                 {% if capability.serial_number -%}
                 <a href="/components/capabilities/{{ capability.serial_number }}.md">{{ capability.serial_number }}</a>: {% endif -%}
                 {{ capability.capability }}
+                <p>Specification Version: {{ capability.version | default('Not specified') }}</p>
                 </td>
                 <td>
                 <table style="table-layout: fixed;">
@@ -32,6 +38,7 @@
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/{{ action.serial_number }}.md">{{ action.serial_number }}</a>: {{ action.action }}
+                        <p>Specification Version: {{ action.version | default('Not specified') }}</p>
                         </td>
                     </tr>
                 {%- endfor %}

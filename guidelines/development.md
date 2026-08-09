@@ -31,9 +31,35 @@ The markdown files [generated](/README.md#generating-commands) by the `finopspp`
 
 ### Composers
 
-There are several composers used to aid in creating the different content provided by the Framework-Assessment project. It is quite possible, it could be argued, that of those, the most import is the one used to create the excel files used for the assessments. These live under [tools/composers/excel](/tools/composers/excel.py) and make use of the python version of `xlsxwriter`.
+There are several composers used to aid in creating the different content provided by the Framework-Assessment project. It is quite possible, it could be argued, that of those, the most import is the one used to create the excel files used for the assessments. These live under [tools/commands/generate/composers/excel](/tools/commands/generate/composers/excel.py) and make use of the python version of `xlsxwriter`.
 
 To fully develop for this, you will need to either have a properly licensed [Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel) installed, or be on a Linux or Unix-like system that packages the free & opened sourced [LibreOffice Calc](https://en.wikipedia.org/wiki/LibreOffice_Calc). In this latter situation, you specifically will need to make sure that the `libreoffice` and `make` commands are installed. If they are, you can use the provided [Makefile target](/Makefile) `make ods` to convert existing excel files in the project to a natively supported LibreOffice format.
 
 > [!NOTE]
 > You can directly open a `.xlsx` file in LibreOffice Calc, but some elements might be broken. It is strongly encouraged that you covert before using.
+
+## Versioning
+
+There are a few different versioning systems used for the Framework-Assessment project. And we know that that can lead to a little bit of confusion when trying to talk about exactly what "version" of the assessment you are using. So in this next section we hope to illuminate some of those version systems used to make it easier to understand your assessment.
+
+### Semantic Versioning
+
+Used for the Project, Component, and Specification versions. Also know as [SemVer](https://semver.org/), is a nice way to include what a version a version might fix or potentially break. Browing from the semver web page, it is
+
+```{text}
+Given a version number MAJOR.MINOR.PATCH, increment the:
+
+1. MAJOR version when you make incompatible API changes
+2. MINOR version when you add functionality in a backward compatible manner
+3. PATCH version when you make backward compatible bug fixes
+```
+
+Components & Specifications follow this pretty rigorously. With Patch version changes usually updated when fixing typos or grammer without really changing the semantics of the thing being changes. Minor versions updates can include things such as adding new fields, `Supplement Guidance`, `References`, or updating a `Formula` in such as way that `Scoring` is unchanged. While Major version would be incremented when removing or changing the names of fields, changing a `Score Type` to a different one, or updating a `Formula` in such a way that the `Scoring` is changed.
+
+The semantic version of the Project is a little more ad-hoc than those used by the Components or Specifications. The "Patch" version of the project is less about bug fixes (though still can be at time), and more about closing out some duration of work during a milestone. So for example, say a milestone is designed to take 3 months to finish, and the maintainers have broken that milestone down into 6 two week "sprints". When a sprint finishes, we update the Patch version of the Project. In a similar manner, when the milestone finishes, we will usually update the Minor version. Though if the milestone included a lot of potentially breaking changes, we will opt instead to increment the Major version.
+
+### Date Versioning
+
+Used for the assessment version. We figured using the date as a timestamp-like version of a given framework (i.e Profile) and its' assessment made a lot of sense. Especially when an individual doing the assessment might want an easy way to show others when their assessment framework as created, so that others in their organizations can base their potential assessment on close date. Additional, this has the added benifit of allowing an individual to know just how old their current assessment version is, by just looking at the date. Something that is much more difficult when using something like SemVer above.
+
+Compressed versions of older assessments can be found for a framework by its' date version in the `history` subfolder under that Profile's assessment folder.

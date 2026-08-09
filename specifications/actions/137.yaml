@@ -1,22 +1,21 @@
 Metadata:
   Proposed: '2026-03-25'
-  Adopted: null
-  Modified: null
-  Version: 0.0.1
-  Status: Proposed
+  Adopted: '2026-07-20'
+  Modified: '2026-07-20'
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: vlevy573@gmail.com
+    Date: '2026-07-20'
 Specification:
   ID: 137
   Title: Define Decision Rights & Guardrails
-  Description: Document approval authority, spend guardrails, and ownership for technology
-    investments.
+  Description: Document approval authority, spend guardrails, and ownership for technology investments.
   Slug: 137-decision-rights
   Implementation Types:
   - null
-  Weight: 0.0
+  Weight: 1.0
   Formula: |-
     * Document decision rights and approval authority for technology spend
     * Define and publish spend guardrails with named owners
@@ -34,9 +33,9 @@ Specification:
   - Score: 10
     Condition: 3 items completed
   References:
-  - Name: null
-    Link: null
-    Comment: null
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
   - null
   Overrides: null

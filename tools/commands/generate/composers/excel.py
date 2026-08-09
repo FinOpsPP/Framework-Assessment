@@ -4,7 +4,7 @@ import os
 import click
 import pandas
 
-from finopspp.composers import helpers
+from finopspp.commands.generate.composers import helpers
 
 def create_overview_sheet(profile, dataframe, workbook):
     """Create overview sheet"""
@@ -21,9 +21,9 @@ def create_overview_sheet(profile, dataframe, workbook):
     })
 
     shape = dataframe.shape[0]
-    overview_sheet.write_formula('A2', f'=SUM(Scoring!E2:E{shape + 1})') # sum of weights
+    overview_sheet.write_formula('A2', f'=SUM(Scoring!F2:F{shape + 1})') # sum of weights
     overview_sheet.write_number('B2', 10) # max score
-    overview_sheet.write_formula('C2', f'=SUM(Scoring!H2:H{shape + 1})/A2') # average score
+    overview_sheet.write_formula('C2', f'=SUM(Scoring!I2:I{shape + 1})/A2') # average score
     overview_sheet.write_formula('D2', '=B2-C2') # score diff (max - average)
 
     # overview domain table
@@ -44,9 +44,9 @@ def create_overview_sheet(profile, dataframe, workbook):
         f'=SUM(Overview!$B$5:$B${domain_shift})'
     )
 
-    weight_col = f'Scoring!E2:E{shape + 1}'
-    index_col = f'Scoring!I2:I{shape + 1}'
-    score_col = f'Scoring!H2:H{shape + 1}'
+    weight_col = f'Scoring!F2:F{shape + 1}'
+    index_col = f'Scoring!J2:J{shape + 1}'
+    score_col = f'Scoring!I2:I{shape + 1}'
     for index in range(5, domain_shift + 1):
         overview_sheet.write_formula(
             f'U{index}',
@@ -72,7 +72,7 @@ def create_overview_sheet(profile, dataframe, workbook):
         f'=SUM(Overview!$B${extended_shift + 1}:$B${capabilities_shift})'
     )
 
-    index_col = f'Scoring!J2:J{shape + 1}'
+    index_col = f'Scoring!K2:K{shape + 1}'
     for index in range(extended_shift + 1, capabilities_shift + 1):
         overview_sheet.write_formula(
             f'U{index}',
@@ -93,8 +93,14 @@ def create_overview_sheet(profile, dataframe, workbook):
 
     overview_sheet.insert_chart('C4', score_diff_chart)
 
-    # hide columns that should be hidden
-    #overview_sheet.set_column('G:XFD', None, None, {'hidden': True})
+    # hide rows and columns that should be hidden
+    overview_sheet.set_column('F:XFD', None, None, {'hidden': True})
+    overview_sheet.set_default_row(hide_unused_rows=True)
+
+    # unhide specific rows that show show up
+    # (note: row for xlsxwriter is excel row minus 1)
+    overview_sheet.set_row(2, None, None, {'hidden': False})
+    overview_sheet.set_row(extended_shift - 2, None, None, {'hidden': False})
 
     overview_sheet.autofit()
     overview_sheet.activate()
@@ -111,8 +117,15 @@ def create_domains_chart(dataframe, workbook):
         'categories': f'=Overview!$A$5:$A${domain_shift}',
         'values': f'=Overview!$U$5:$U${domain_shift}'
     })
-    domain_chart.set_style(37)
+
+    # set basic style for domain radar chart
+    domain_chart.set_style(29)
     domain_chart.set_legend({'none': True})
+    domain_chart.show_hidden_data()
+
+    # set default ranges for chart area. Based on a max
+    # score of 10
+    domain_chart.set_y_axis({'min': 0, 'max': 10})
 
     domain_chart_sheet = workbook.add_chartsheet('Maturity - Domains')
     domain_chart_sheet.set_chart(domain_chart)
@@ -133,8 +146,15 @@ def create_capabilities_chart(dataframe, workbook):
         'categories': f'=Overview!$A${extended_shift + 1}:$A${capabilities_shift}',
         'values': f'=Overview!$U${extended_shift + 1}:$U${capabilities_shift}'
     })
-    capabilities_chart.set_style(37)
+
+    # set basic style for capability radar chart
+    capabilities_chart.set_style(29)
     capabilities_chart.set_legend({'none': True})
+    capabilities_chart.show_hidden_data()
+
+    # set default ranges for chart area. Based on a max
+    # score of 10
+    capabilities_chart.set_y_axis({'min': 0, 'max': 10})
 
     capabilities_chart_sheet = workbook.add_chartsheet('Maturity - Capabilities')
     capabilities_chart_sheet.set_chart(capabilities_chart)
@@ -152,14 +172,14 @@ def format_scoring_sheet(scoring_sheet, dataframe, workbook):
     })
 
     for counter, (_, row) in enumerate(dataframe.iterrows(), start=2):
-        scores = [f'{scoring['Score']}: {scoring["Condition"]}' for scoring in row.scoring]
-        scoring_sheet.write(f'G{counter}', scores[0]) # overwrite with correct default scores
-        scoring_sheet.data_validation(f'G{counter}', {
+        scores = [f'{scoring["Score"]}: {scoring["Condition"]}'.replace(',', '.') for scoring in row.scoring]
+        scoring_sheet.write(f'H{counter}', scores[0]) # overwrite with correct default scores
+        scoring_sheet.data_validation(f'H{counter}', {
             'validate' : 'list',
             'source': scores
         })
         scoring_sheet.write_formula(
-            f'H{counter}', f'=E{counter}*VALUE(LEFT(G{counter}, FIND(":", G{counter})-1))'
+            f'I{counter}', f'=F{counter}*VALUE(LEFT(H{counter}, FIND(":", H{counter})-1))'
         )
 
         # overwrite serial numbers with links to github markdown pages for the numbers
@@ -171,8 +191,9 @@ def format_scoring_sheet(scoring_sheet, dataframe, workbook):
             string=serial_number
         )
 
-    # hide columns that should be hidden
-    scoring_sheet.set_column('I:XFD', None, None, {'hidden': True})
+    # hide rows and columns that should be hidden
+    scoring_sheet.set_column('J:XFD', None, None, {'hidden': True})
+    scoring_sheet.set_default_row(hide_unused_rows=True)
 
     # Autofit the scoring sheet and fix warning.
     scoring_sheet.autofit()
@@ -180,17 +201,17 @@ def format_scoring_sheet(scoring_sheet, dataframe, workbook):
 
     # format cells for scoring sheet
     text_wrap_format = workbook.add_format({'text_wrap': True})
-    scoring_sheet.set_column('F:G', 40, text_wrap_format)
+    scoring_sheet.set_column('G:H', 40, text_wrap_format)
 
 
-def assessment_generate(profile, base_path, domains):
-    """Generate Excel files"""
+def assessment_generate(profile, base_path, domains, suffix):
+    """Generate Assessment excel file"""
     click.echo(f'Attempting to generate assessment.xlsx for profile={profile}:')
     dataframe = helpers.normalize(domains)
 
     out_path = os.path.join(
         base_path,
-        'assessment.xlsx'
+        f'assessment{suffix}.xlsx'
     )
     with pandas.ExcelWriter(out_path, engine='xlsxwriter') as writer:
         workbook = writer.book

@@ -1,13 +1,13 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adopted: null
-  Modified: '2026-03-31'
-  Version: 0.8.0
-  Status: Proposed
+  Adopted: '2026-07-20'
+  Modified: '2026-08-08'
+  Version: 2.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: vlevy573@gmail.com
+    Date: '2026-07-20'
 Specification:
   ID: 64
   Title: Implement Iteratively & Measure Results
@@ -23,7 +23,7 @@ Specification:
     * Hold structured retrospectives after each iteration to capture lessons learned
     * Feed iteration outcomes back into the modernisation backlog to reprioritise remaining work
 
-10*Ceil(x/5)
+    10*Ceil(x/5)
   Score Type: bucket
   Scoring:
   - Score: 0
@@ -39,9 +39,9 @@ Specification:
   - Score: 10
     Condition: 5 items completed
   References:
-  - Name: null
-    Link: null
-    Comment: null
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
   - null
   Overrides: null

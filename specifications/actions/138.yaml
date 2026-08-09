@@ -1,22 +1,21 @@
 Metadata:
   Proposed: '2026-03-25'
-  Adopted: null
-  Modified: null
-  Version: 0.0.1
-  Status: Proposed
+  Adopted: '2026-07-20'
+  Modified: '2026-07-20'
+  Version: 1.0.0
+  Status: Accepted
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Victoria Levy
+    Email: vlevy573@gmail.com
+    Date: '2026-07-20'
 Specification:
   ID: 138
   Title: Build Multi-Year Investment Forecast
-  Description: Forecast technology vendor commitments across categories over multiple
-    years.
+  Description: Forecast technology vendor commitments across categories over multiple years.
   Slug: 138-multiyear-invest
   Implementation Types:
   - null
-  Weight: 0.0
+  Weight: 1.0
   Formula: |-
     * Inventory vendor commitments across technology categories (cloud, SaaS, data center, AI)
     * Create a multi-year forecast incorporating renewal timelines and growth projections
@@ -34,9 +33,9 @@ Specification:
   - Score: 10
     Condition: 3 items completed
   References:
-  - Name: null
-    Link: null
-    Comment: null
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
   - null
   Overrides: null
