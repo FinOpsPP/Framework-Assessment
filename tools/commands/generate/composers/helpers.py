@@ -1,8 +1,8 @@
 """Shared helper functions used for formatting different generated content"""
 import pandas
 
-def normalize(domains):
-    """Takes in the domains and returns a dataframe
+def normalize(specification):
+    """Takes in a formatted specification and returns a dataframe
 
     the normalization that is done will remove domains and capabilities that
     do not have actions. That means, there can be divergences between the
@@ -10,7 +10,7 @@ def normalize(domains):
     does not. They are not included because without actions, nothing can be scored.
     """
     dataframe = pandas.json_normalize(
-        domains,
+        specification,
         record_path=['capabilities', 'actions'], # path to actions
         meta=['domain', ['capabilities', 'capability']]
     )

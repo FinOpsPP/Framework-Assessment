@@ -160,7 +160,6 @@ def create_capabilities_chart(dataframe, workbook):
     capabilities_chart_sheet.set_chart(capabilities_chart)
 
 
-
 def format_scoring_sheet(scoring_sheet, dataframe, workbook):
     """Setup main sheet of assessment, includes all score formatting"""
     # format for all links
@@ -204,10 +203,10 @@ def format_scoring_sheet(scoring_sheet, dataframe, workbook):
     scoring_sheet.set_column('G:H', 40, text_wrap_format)
 
 
-def assessment_generate(profile, base_path, domains, suffix):
+def assessment_generate(profile, base_path, specification, suffix):
     """Generate Assessment excel file"""
     click.echo(f'Attempting to generate assessment.xlsx for profile={profile}:')
-    dataframe = helpers.normalize(domains)
+    dataframe = helpers.normalize(specification)
 
     out_path = os.path.join(
         base_path,

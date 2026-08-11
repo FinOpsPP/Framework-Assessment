@@ -1,6 +1,6 @@
 # <a href="/components/profiles/002.md">002</a>: FinOps++ Maturity Assessment Framework
 
-**Creation Date:** 2026-08-05
+**Creation Date:** 2026-08-10
 
 **Specification Version:** 0.0.1
 

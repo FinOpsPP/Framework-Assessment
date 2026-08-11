@@ -8,7 +8,9 @@ import click
 import yaml
 from jinja2 import Environment, PackageLoader
 
+from finopspp.models.specs import StatusEnum
 from finopspp.commands import utils
+from finopspp.commands.generate import helpers as generate_helpers
 
 Templates = PackageLoader('finopspp', 'templates')
 
@@ -37,6 +39,10 @@ def new(name, profile, force):
     NOTE: The name you pass in can have space by surrounding 
     your name in quotes. But if you use space, they will be
     ignored in the file name itself.
+
+    NOTE: This will include components of any status type that
+    are specified. Even if a downstream assessment does not use
+    a specific status.
     """
     path = files(
         'finopspp.specifications.variables'
@@ -56,55 +62,60 @@ def new(name, profile, force):
     capability_files = files('finopspp.specifications.capabilities')
     action_files = files('finopspp.specifications.actions')
 
-    domains = prof.get('Specification').get('Domains')
-    for domain in domains:
-        domain_id = domain.get('ID', domain.get('Title'))
+    allowed_statuses = [
+        StatusEnum.accepted.value,
+        StatusEnum.proposed.value,
+        StatusEnum.deprecated.value
+    ]
+
+    for domain in prof.get('Specification').get('Domains'):
+        _, spec = generate_helpers.domain_collector(
+            profile,
+            domain,
+            domain_files,
+            allowed_statuses
+        )
+        if not spec:
+            continue
+
+        domain_id = spec.get('ID', spec.get('Title'))
         if not domain_id:
             continue
 
-        # If a domain ID is include, look it up as a file
-        # else take whatever exists on that domain should
-        # a title exist
-        capabilities = domain.get('Capabilities') or []
-        if isinstance(domain_id, int):
-            domain_id = str(domain_id)
-            file = '0'*(3-len(domain_id)) + domain_id
-            with open(domain_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
-                capabilities = yaml.safe_load(
-                    yaml_file
-                ).get('Specification').get('Capabilities')
+        domain_drops = spec['domain_drops']
+        for capability in spec.get('Capabilities'):
+            _, spec = generate_helpers.capability_collector(
+                profile,
+                capability,
+                capability_files,
+                domain_drops,
+                allowed_statuses
+            )
+            if not spec:
+                continue
 
-        for capability in capabilities:
-            capability_id = capability.get('ID', capability.get('Title'))
+            capability_id = spec.get('ID', spec.get('Title'))
             if not capability_id:
                 continue
 
-            # If a capability ID is include, look it up as a file
-            # else take whatever exists on that capability should
-            # a title exist
-            actions = capability.get('Actions') or []
-            if isinstance(capability_id, int):
-                capability_id = str(capability_id)
-                file = '0'*(3-len(capability_id)) + capability_id
-                with open(capability_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
-                    actions = yaml.safe_load(
-                        yaml_file
-                    ).get('Specification').get('Actions')
+            capability_drops = spec['capability_drops']
+            for action in spec.get('Actions'):
+                _, spec = generate_helpers.action_collector(
+                    profile,
+                    action,
+                    action_files,
+                    capability_drops,
+                    allowed_statuses
+                )
+                if not spec:
+                    continue
 
-            for action in actions:
-                action_id = action.get('ID')
+                action_id = spec.get('ID')
                 if not action_id:
                     continue
 
-                action_id = str(action_id)
-                file = '0'*(3-len(action_id)) + action_id
-                with open(action_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
-                    raw_action = yaml.safe_load(
-                        yaml_file
-                    )
-
-                action_weight = raw_action['Specification']['Weight']
-                action_id = raw_action['Specification'].get('Slug') or action_id
+                action_weight = spec['Weight']
+                action_id = spec.get('Slug') or action_id
                 unique_id = f'{domain_id}.{capability_id}.{action_id}'.replace(' ', '')
 
                 prof['actions'].append({

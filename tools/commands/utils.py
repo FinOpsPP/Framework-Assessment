@@ -99,8 +99,7 @@ def variables():
 
     variable_specs = files('finopspp.specifications.variables')
     for file in variable_specs.iterdir():
-        # only include toml files
-        click.echo(file.name)
+        # only include fppvars toml files
         if not file.name.endswith('fppvars.toml'):
             continue
 

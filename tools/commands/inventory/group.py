@@ -6,6 +6,7 @@ import yaml
 
 from finopspp.models.specs import StatusEnum
 from finopspp.commands import utils
+from finopspp.commands.generate import helpers as generate_helpers
 
 @click.group(cls=utils.ClickGroup)
 def inventory():
@@ -22,7 +23,7 @@ def inventory():
     '--status-by',
     default=None,
     type=click.Choice([enum.value for enum in StatusEnum] + [None]),
-    help='Filter by status. Defaults to "None"'
+    help='Filter on status per component. Defaults to "None"'
 )
 @click.option(
     '--profile',
@@ -42,66 +43,70 @@ def list_inventory(show_action_status, status_by, profile):
         spec = yaml.safe_load(
             yaml_file
         ).get('Specification')
-        domains = spec.get('Domains')
         profile_id = spec.get('ID')
 
     domain_files = files('finopspp.specifications.domains')
     capability_files = files('finopspp.specifications.capabilities')
     action_files = files('finopspp.specifications.actions')
+
+    allowed_statuses = [
+        StatusEnum.accepted.value,
+        StatusEnum.proposed.value,
+        StatusEnum.deprecated.value
+    ]
+    if status_by:
+        allowed_statuses = [status_by]
+
     click.echo(f'Fully qualified IDs for {profile}. Profile ID: {profile_id}')
-    for domain in domains:
-        domain_id = domain.get('ID', domain.get('Title'))
+    for domain in spec.get('Domains'):
+        metadata, spec = generate_helpers.domain_collector(
+            profile,
+            domain,
+            domain_files,
+            allowed_statuses
+        )
+        if not spec:
+            continue
+
+        domain_id = spec.get('ID', spec.get('Title'))
         if not domain_id:
             continue
 
-        # If a domain ID is include, look it up as a file
-        # else take whatever exists on that domain should
-        # a title exist
-        capabilities = domain.get('Capabilities') or []
-        if isinstance(domain_id, int):
-            domain_id = str(domain_id)
-            file = '0'*(3-len(domain_id)) + domain_id
-            with open(domain_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
-                capabilities = yaml.safe_load(
-                    yaml_file
-                ).get('Specification').get('Capabilities')
+        domain_drops = spec['domain_drops']
+        for capability in spec.get('Capabilities'):
+            _, spec = generate_helpers.capability_collector(
+                profile,
+                capability,
+                capability_files,
+                domain_drops,
+                allowed_statuses
+            )
+            if not spec:
+                continue
 
-        for capability in capabilities:
-            capability_id = capability.get('ID', capability.get('Title'))
+            capability_id = spec.get('ID', spec.get('Title'))
             if not capability_id:
                 continue
 
-            # If a capability ID is include, look it up as a file
-            # else take whatever exists on that capability should
-            # a title exist
-            actions = capability.get('Actions') or []
-            if isinstance(capability_id, int):
-                capability_id = str(capability_id)
-                file = '0'*(3-len(capability_id)) + capability_id
-                with open(capability_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
-                    actions = yaml.safe_load(
-                        yaml_file
-                    ).get('Specification').get('Actions')
+            capability_drops = spec['capability_drops']
+            for action in spec.get('Actions'):
+                metadata, spec = generate_helpers.action_collector(
+                    profile,
+                    action,
+                    action_files,
+                    capability_drops,
+                    allowed_statuses
+                )
+                if not spec:
+                    continue
 
-            for action in actions:
-                action_id = action.get('ID')
+                action_id = spec['ID']
                 if not action_id:
                     continue
 
-                action_id = str(action_id)
-                file = '0'*(3-len(action_id)) + action_id
-                with open(action_files.joinpath(f'{file}.yaml'), 'r', encoding='utf-8') as yaml_file:
-                    raw_action = yaml.safe_load(
-                        yaml_file
-                    )
-
-                action_status = raw_action['Metadata']['Status']
-                if status_by and status_by != action_status:
-                    continue
-
-                action_id = raw_action['Specification'].get('Slug') or action_id
+                action_id = spec.get('Slug') or str(action_id)
                 unique_id = f'{domain_id}.{capability_id}.{action_id}'.replace(' ', '')
                 if show_action_status:
-                    unique_id += f': (Action {action_status})'
+                    unique_id += f': (Action {metadata["Status"]})'
 
                 click.echo(unique_id)

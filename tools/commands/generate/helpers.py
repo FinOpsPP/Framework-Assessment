@@ -1,5 +1,6 @@
 """Helpers file for generate command group"""
 import sys
+import tomllib
 from importlib.resources import files
 
 import click
@@ -8,6 +9,7 @@ from pydantic import ValidationError
 from rich.progress import track
 
 from finopspp.models.overrides import OverrideMap
+from finopspp.commands import utils
 
 
 def sub_specification_collector(spec, spec_file):
@@ -78,8 +80,143 @@ def overrides_collector(spec, profile, override_type='std'):
     return validated_override.model_dump()
 
 
-def domains_collector(profile, profile_spec, allowed_statuses):
-    """Helper designed to collect and return a specific format for a domains dict
+def variables_collector(profile, variables):
+    """Collect variables name for a profile"""
+    path = utils.variables().get(variables)
+    with open(path, 'rb') as toml_file:
+        variables_spec = tomllib.load(toml_file)
+
+    variables_profile = variables_spec.get('profile').get('title')
+    if profile != variables_profile:
+        click.secho(
+            f'Variables="{variables}" requires profile="{variables_profile}". Cannot be used for profile="{profile}"',
+            fg='yellow'
+        )
+        return {}
+
+    return variables_spec
+
+
+def domain_collector(profile, domain, domain_files, allowed_statuses):
+    """Helper designed to collect a domain for a profile
+    
+    NOTE: Extends the spec's data structure to include capability
+    IDs to be added and dropped. Also applies any overrides for the
+    profile
+    """
+    metadata, spec = sub_specification_collector(domain, domain_files)
+
+    # continue early if the Domain Status exists and is not in the
+    # allowed statuses list
+    status = metadata.get('Status')
+    if status and status not in allowed_statuses:
+        return {}, {}
+
+    domain_override = overrides_collector(spec, profile)
+    spec['domain_drops'] = [drop['ID'] for drop in domain_override.get('DropIDs')]
+
+    if domain_override.get('TitleUpdate'):
+        spec['Title'] = domain_override.get('TitleUpdate')
+
+    if domain_override.get('DescriptionUpdate'):
+        spec['Description'] = domain_override.get('DescriptionUpdate')
+
+    if spec.get('Capabilities') is None:
+        spec['Capabilities'] = []
+    if not isinstance(spec['Capabilities'], list):
+        click.secho(
+            f'Capabilities for domain={spec["Title"]} must be null or a list. Exiting',
+            err=True,
+            fg='red'
+        )
+        sys.exit(1)
+
+    spec.get('Capabilities').extend(domain_override.get('AddIDs'))
+
+    return metadata, spec
+
+
+def capability_collector(profile, capability, capability_files, domain_drops, allowed_statuses):
+    """Helper designed to collect a capability for a domain
+    
+    NOTE: Extends the spec's data structure to include action
+    IDs to be added and dropped. Also applies any overrides for
+    the profile
+    """
+    metadata, spec = sub_specification_collector(capability, capability_files)
+
+    # continue early if the Capability ID is one to be dropped
+    # NOTE: there might not always be a Capability ID if a profile
+    # is made "Manually" or ad-hoc
+    capability_id = spec.get('ID')
+    if capability_id and capability_id in domain_drops:
+        return {}, {}
+
+    # continue early if the Capability Status exists and is not in the
+    # allowed statuses list
+    status = metadata.get('Status')
+    if status and status not in allowed_statuses:
+        return {}, {}
+
+    capability_override = overrides_collector(spec, profile)
+    spec['capability_drops'] = [drop['ID'] for drop in capability_override.get('DropIDs')]
+
+    if capability_override.get('TitleUpdate'):
+        spec['Title'] = capability_override.get('TitleUpdate')
+
+    if capability_override.get('DescriptionUpdate'):
+        spec['Description'] = capability_override.get('DescriptionUpdate')
+
+    if spec.get('Actions') is None:
+        spec['Actions'] = []
+    if not isinstance(spec.get('Actions'), list):
+        click.secho(
+            f'Actions for capability={spec["TItle"]} must be null or a list. Exiting',
+            err=True,
+            fg='red'
+        )
+        sys.exit(1)
+
+    spec.get('Actions').extend(capability_override.get('AddIDs'))
+
+    return metadata, spec
+
+
+def action_collector(profile, action, action_files, capability_drops, allowed_statuses):
+    """Helper designed to collect an action for a capability
+    
+    NOTE: Also applies any overrides for the profile
+    """
+    metadata, spec = sub_specification_collector(action, action_files)
+
+    # continue early if the Action ID is one to be dropped
+    action_id = spec['ID']
+    if action_id in capability_drops:
+        return {}, {}
+
+    # continue early if the Action Status exists and is not in the
+    # allowed statuses list
+    status = metadata.get('Status')
+    if status and status not in allowed_statuses:
+        return {}, {}
+
+    act_override = overrides_collector(spec, profile, 'action')
+
+    if act_override.get('TitleUpdate'):
+        spec['Title'] = act_override.get('TitleUpdate')
+
+    if act_override.get('DescriptionUpdate'):
+        spec['Description'] = act_override.get('DescriptionUpdate')
+
+    if act_override.get('SlugUpdate'):
+        spec['Slug'] = act_override.get('SlugUpdate')
+
+    return metadata, spec
+
+
+def specification_collector(profile, profile_spec, allowed_statuses, variables):
+    """Helper designed to collect and return a specific format for a top-level
+    specification dict
     
     This format is required to work properly with the composers to
     generate the different parts of an assessment.
@@ -89,8 +226,10 @@ def domains_collector(profile, profile_spec, allowed_statuses):
     ignored.
     """
     domain_files = files('finopspp.specifications.domains')
-    cap_files = files('finopspp.specifications.capabilities')
+    capability_files = files('finopspp.specifications.capabilities')
     action_files = files('finopspp.specifications.actions')
+
+    weights = variables.get('weights', {})
 
     domains = []
     # all profile specs should have a Domains field that is a list by this point.
@@ -99,132 +238,86 @@ def domains_collector(profile, profile_spec, allowed_statuses):
     for domain in track(profile_domains, 'Loading profile'):
         capabilities = []
 
-        metadata, spec = sub_specification_collector(domain, domain_files)
-
-        # continue early if the Domain Status exists and is not in the
-        # allowed statuses list
-        status = metadata.get('Status')
-        if status and status not in allowed_statuses:
+        metadata, spec = domain_collector(
+            profile,
+            domain,
+            domain_files,
+            allowed_statuses
+        )
+        if not spec:
             continue
 
-        domain_override = overrides_collector(spec, profile)
-        domain_drops = [drop['ID'] for drop in domain_override.get('DropIDs')]
+        domain_id = spec.get('ID')
+        domain_title = spec['Title']
+        domain_drops = spec['domain_drops']
 
-        if domain_override.get('TitleUpdate'):
-            spec['Title'] = domain_override.get('TitleUpdate')
-        title = spec.get('Title')
-
-        if domain_override.get('DescriptionUpdate'):
-            spec['Description'] = domain_override.get('DescriptionUpdate')
-
-        if spec.get('Capabilities') is None:
-            spec['Capabilities'] = []
-        if not isinstance(spec['Capabilities'], list):
-            click.secho(
-                f'Capabilities for domain={title} must be null or a list. Exiting',
-                err=True,
-                fg='red'
-            )
-            sys.exit(1)
-
-        spec_id = spec.get('ID')
         serial_number = None
-        if isinstance(spec_id, int): # will skip over None type IDs
-            spec_id = str(spec_id)
-            serial_number = '0'*(3-len(spec_id)) + spec_id
+        if isinstance(domain_id, int): # will skip over None type IDs
+            domain_id = str(domain_id)
+            serial_number = '0'*(3-len(domain_id)) + domain_id
 
         domains.append({
             'serial_number': serial_number,
             'version': metadata.get('Version'),
-            'domain': title,
+            'domain': domain_title,
             'capabilities': capabilities
         })
-        spec.get('Capabilities').extend(domain_override.get('AddIDs'))
         for capability in spec.get('Capabilities'):
             actions = []
 
-            metadata, spec = sub_specification_collector(capability, cap_files)
-
-            # continue early if the Capability ID is one to be dropped
-            spec_id = spec.get('ID')
-            if spec_id and spec_id in domain_drops:
+            metadata, spec = capability_collector(
+                profile,
+                capability,
+                capability_files,
+                domain_drops,
+                allowed_statuses
+            )
+            if not spec:
                 continue
 
-            # continue early if the Capability Status exists and is not in the
-            # allowed statuses list
-            status = metadata.get('Status')
-            if status and status not in allowed_statuses:
-                continue
-
-            cap_override = overrides_collector(spec, profile)
-            cap_drops = [drop['ID'] for drop in cap_override.get('DropIDs')]
-
-            if cap_override.get('TitleUpdate'):
-                spec['Title'] = cap_override.get('TitleUpdate')
-            title = spec.get('Title')
-
-            if cap_override.get('DescriptionUpdate'):
-                spec['Description'] = cap_override.get('DescriptionUpdate')
-
-            if spec.get('Actions') is None:
-                spec['Actions'] = []
-            if not isinstance(spec.get('Actions'), list):
-                click.secho(
-                    f'Actions for capability={title} must be null or a list. Exiting',
-                    err=True,
-                    fg='red'
-                )
-                sys.exit(1)
+            capability_id = spec.get('ID')
+            capability_title = spec['Title']
+            capability_drops = spec['capability_drops']
 
             serial_number = None
-            spec_id = spec.get('ID')
-            if isinstance(spec_id, int): # will skip over None type IDs
-                spec_id = str(spec_id)
-                serial_number = '0'*(3-len(spec_id)) + spec_id
+            if isinstance(capability_id, int): # will skip over None type IDs
+                capability_id = str(capability_id)
+                serial_number = '0'*(3-len(capability_id)) + capability_id
 
             capabilities.append({
                 'serial_number': serial_number,
                 'version': metadata.get('Version'),
-                'capability': title,
+                'capability': capability_title,
                 'actions': actions
             })
-            spec.get('Actions').extend(cap_override.get('AddIDs'))
             for action in spec.get('Actions'):
-                metadata, spec = sub_specification_collector(action, action_files)
-
-                # continue early if the Action ID is one to be dropped
-                spec_id = spec.get('ID')
-                if spec_id and spec_id in cap_drops:
+                metadata, spec = action_collector(
+                    profile,
+                    action,
+                    action_files,
+                    capability_drops,
+                    allowed_statuses
+                )
+                if not spec:
                     continue
 
-                # continue early if the Action Status exists and is not in the
-                # allowed statuses list
-                status = metadata.get('Status')
-                if status and status not in allowed_statuses:
-                    continue
+                action_id = str(spec['ID'])
+                serial_number = '0'*(3-len(action_id)) + action_id
 
-                act_override = overrides_collector(spec, profile, 'action')
-
-                if act_override.get('TitleUpdate'):
-                    spec['Title'] = act_override.get('TitleUpdate')
-                title = spec.get('Title')
-
-                if act_override.get('DescriptionUpdate'):
-                    spec['Description'] = act_override.get('DescriptionUpdate')
-
-                if act_override.get('SlugUpdate'):
-                    spec['Slug'] = act_override.get('SlugUpdate')
-
-                spec_id = str(spec_id)
-                serial_number = '0'*(3-len(spec_id)) + spec_id
+                # if there is a weights override, use that
+                # else fallback to the spec default
+                domain_id = domain_id or domain_title
+                capability_id = capability_id or capability_title
+                action_id = spec.get('Slug') or action_id
+                weight = weights.get(domain_id, {}).get(capability_id, {}).get(action_id) or spec.get('Weight')
 
                 # since not every action has a title yet, fall back to
                 # description when it does not exist or is None.
                 actions.append({
-                    'action': spec.get('Title') or spec.get('Description'),
+                    'action': spec['Title'] or spec.get('Description'),
                     'serial_number': serial_number,
                     'version': metadata.get('Version'),
-                    'weights': spec.get('Weight'),
+                    'weights': weight,
                     'formula': spec.get('Formula'),
                     'scoring': spec.get('Scoring'),
                     'weighted score': None
