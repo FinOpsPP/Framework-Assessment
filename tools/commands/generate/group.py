@@ -84,12 +84,14 @@ def assessment(profile, proposed, deprecated, variables):
         allowed_statuses.append(
             StatusEnum.proposed.value
         )
-        suffix += '-proposed'
+        suffix += '.proposed'
     if deprecated:
         allowed_statuses.append(
             StatusEnum.deprecated.value
         )
-        suffix += '-deprecated'
+        suffix += '.deprecated'
+    if variables:
+        suffix += '.variables'
 
     # pull in formatted domains data-dict
     variables_spec = helpers.variables_collector(

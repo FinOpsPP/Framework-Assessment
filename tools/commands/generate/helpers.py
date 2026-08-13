@@ -82,7 +82,15 @@ def overrides_collector(spec, profile, override_type='std'):
 
 def variables_collector(profile, variables):
     """Collect variables name for a profile"""
+    # look up variable path, and if none if found
+    # return early
     path = utils.variables().get(variables)
+    if not path:
+        return {}
+
+    # at this point, we expect a real path
+    # so just open it and feed it into tomllib
+    # to parse
     with open(path, 'rb') as toml_file:
         variables_spec = tomllib.load(toml_file)
 
