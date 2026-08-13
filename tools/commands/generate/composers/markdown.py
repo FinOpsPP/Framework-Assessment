@@ -7,7 +7,7 @@ from jinja2 import Environment, PackageLoader
 
 Templates = PackageLoader('finopspp', 'templates')
 
-def assessment_generate(profile, profile_spec, base_path, domains, suffix):
+def assessment_generate(profile, profile_spec, base_path, specification, suffix):
     """Generate Assessment markdown files"""
     click.echo(f'Attempting to generate framework for profile={profile}:')
 
@@ -30,7 +30,7 @@ def assessment_generate(profile, profile_spec, base_path, domains, suffix):
     output = template.render(
         today=datetime.date.today(),
         profile=profile_spec,
-        domains=domains,
+        specification=specification,
         assessment=assessment_link
     )
 

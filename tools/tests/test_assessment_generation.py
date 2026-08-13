@@ -5,7 +5,7 @@ import os
 import yaml
 
 from finopspp.commands import utils
-from finopspp.commands.generate.helpers import domains_collector
+from finopspp.commands.generate.helpers import specification_collector
 from finopspp.commands.generate.composers.helpers import normalize
 
 
@@ -25,8 +25,9 @@ def test_normalize():
     allowed_statuses = [
         'Proposed'
     ]
-    domains = domains_collector(
-        profile, profile_spec, allowed_statuses
+    variables = {}
+    domains = specification_collector(
+        profile, profile_spec, allowed_statuses, variables
     )
     assert domains
 

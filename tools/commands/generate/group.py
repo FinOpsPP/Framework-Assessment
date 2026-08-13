@@ -37,7 +37,12 @@ def generate():
     default=False,
     help='Include Deprecated components'
 )
-def assessment(profile, proposed, deprecated):
+@click.option(
+    '--variables',
+    type=click.Choice(list(utils.variables().keys())),
+    help='Optional variables file to overright default assessment settings for a given profile'
+)
+def assessment(profile, proposed, deprecated, variables):
     """Generate assessment files from their specifications
     
     By default, this will generate an assessment and its' corresponding files
@@ -79,16 +84,21 @@ def assessment(profile, proposed, deprecated):
         allowed_statuses.append(
             StatusEnum.proposed.value
         )
-        suffix += '-proposed'
+        suffix += '.proposed'
     if deprecated:
         allowed_statuses.append(
             StatusEnum.deprecated.value
         )
-        suffix += '-deprecated'
+        suffix += '.deprecated'
+    if variables:
+        suffix += '.variables'
 
     # pull in formatted domains data-dict
-    domains = helpers.domains_collector(
-        profile, profile_spec, allowed_statuses
+    variables_spec = helpers.variables_collector(
+        profile, variables
+    )
+    specification = helpers.specification_collector(
+        profile, profile_spec, allowed_statuses, variables_spec
     )
 
     # check if assessment directory exists for this profile
@@ -102,13 +112,15 @@ def assessment(profile, proposed, deprecated):
         os.mkdir(base_path)
 
     # create assessment framework overview markdown
-    markdown.assessment_generate(profile, profile_spec, base_path, domains, suffix)
+    markdown.assessment_generate(profile, profile_spec, base_path, specification, suffix)
 
     # next try and create the workbook for this profile.
-    excel.assessment_generate(profile, base_path, domains, suffix)
+    excel.assessment_generate(profile, base_path, specification, suffix)
 
     # finally, create the assessment archive file for the current version
-    archive.assessment_generate(profile, profile_spec, base_path, domains, suffix)
+    # NOTE: The data structure for specification will not be the same after running the
+    # following
+    archive.assessment_generate(profile, profile_spec, base_path, specification, suffix)
 
 
 @generate.command()

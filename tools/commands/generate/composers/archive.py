@@ -6,7 +6,7 @@ import os
 
 import click
 
-def assessment_generate(profile, profile_spec, base_path, domains, suffix):
+def assessment_generate(profile, profile_spec, base_path, specification, suffix):
     """Generate Assessment archive files"""
     click.echo(f'Attempting to historical archive entry for profile={profile}:')
     today = str(datetime.date.today())
@@ -34,7 +34,7 @@ def assessment_generate(profile, profile_spec, base_path, domains, suffix):
     profile_spec['serial_number'] = serial_number
     profile_spec['profile'] = profile_spec.pop('Title')
     profile_spec['version'] = profile_spec.pop('version')
-    profile_spec['domains'] = domains
+    profile_spec['specification'] = specification
 
     # create a new "json" file (really a gzipped file)
     # for a pared-down framework that can be "rehydrated"

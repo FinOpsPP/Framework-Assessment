@@ -1,4 +1,5 @@
 """Common utilities used by the finopspp commands"""
+import tomllib
 from importlib.resources import files
 
 import click
@@ -88,6 +89,31 @@ def profiles(testing=False):
             ProfilesMap[title] = path
 
     return ProfilesMap
+
+
+VariablesMap = {}
+def variables():
+    """Return all fppvars names and paths"""
+    if VariablesMap:
+        return VariablesMap
+
+    variable_specs = files('finopspp.specifications.variables')
+    for file in variable_specs.iterdir():
+        # only include fppvars toml files
+        if not file.name.endswith('fppvars.toml'):
+            continue
+
+        path = variable_specs.joinpath(file.name)
+        with open(path, 'rb') as toml_file:
+            # we only include proper variables wit names
+            name = tomllib.load(toml_file).get('basic').get('name')
+            if not name:
+                continue
+
+            VariablesMap[name] = path
+
+    return VariablesMap
+
 
 SpecSubspecMap = {
     'profiles': 'domains',

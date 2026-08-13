@@ -7,8 +7,9 @@
 *.ods
 
 # suffixes to ignore
-*-proposed*
-*-deprecated*
+*.proposed*
+*.deprecated*
+*.variables*
 
 # Python related things to ignore
 build/
