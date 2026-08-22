@@ -1,8 +1,8 @@
 """Defines the YAML models used by the action component"""
 from enum import Enum
-from typing import Optional
+from typing import Optional, Annotated
 
-from pydantic import Field, model_serializer
+from pydantic import Field, model_serializer, NonNegativeInt, NonNegativeFloat, TypeAdapter
 
 from finopspp.models.core import Config
 from finopspp.models.specs import MetadataSpec, SpecBase, SpecID
@@ -83,10 +83,9 @@ ScoreTypeRefMap = {
 
 class ScoringDetail(Config):
     """Scoring model using in Action models"""
-    Score: int = Field(
+    Score: NonNegativeInt = Field(
         default=0,
         description='Score value associated with a condition',
-        ge=0,
         le=10
     )
     Condition: str | None = Field(
@@ -104,9 +103,8 @@ class ActionSpec(ActionItem, SpecBase, SpecID, Config):
         description='List of how the specification is implemented',
         alias='Implementation Types'
     )
-    Weight: float = Field(
-        description='Priority or risk related weight for a score',
-        ge=0
+    Weight: NonNegativeFloat = Field(
+        description='Priority or risk related weight for a score'
     )
     Formula: Optional[str] = Field(
         default=None,
@@ -174,3 +172,7 @@ class Action(Config):
     """Top-level Action Component model"""
     Metadata: MetadataSpec = Field(description='Metadata for an Action specification')
     Specification: ActionSpec = Field(description='An action specification')
+
+# setup validators to be used
+_WeightField = ActionSpec.model_fields.get('Weight')
+WeightValidator = TypeAdapter(Annotated[_WeightField.annotation, _WeightField])

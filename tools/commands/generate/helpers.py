@@ -8,6 +8,7 @@ import yaml
 from pydantic import ValidationError
 from rich.progress import track
 
+from finopspp.models.actions import WeightValidator
 from finopspp.models.overrides import OverrideMap
 from finopspp.commands import utils
 
@@ -314,10 +315,23 @@ def specification_collector(profile, profile_spec, allowed_statuses, variables):
 
                 # if there is a weights override, use that
                 # else fallback to the spec default
+                weight = spec.get('Weight')
+
                 domain_id = domain_id or domain_title
                 capability_id = capability_id or capability_title
                 action_id = spec.get('Slug') or action_id
-                weight = weights.get(domain_id, {}).get(capability_id, {}).get(action_id) or spec.get('Weight')
+                variable_weight = weights.get(domain_id, {}).get(capability_id, {}).get(action_id)
+
+                if variable_weight is not None:
+                    try:
+                        weight = WeightValidator.validate_python(variable_weight, strict=True)
+                    except ValidationError as val_error:
+                        click.secho(
+                            f'\nValidation for "{domain_id}.{capability_id}.{action_id}" failed with --\n', fg='yellow'
+                        )
+                        click.secho(str(val_error), err=True, fg='red')
+                        sys.exit(1)
+
 
                 # since not every action has a title yet, fall back to
                 # description when it does not exist or is None.
