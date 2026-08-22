@@ -3,7 +3,7 @@ import datetime
 from enum import Enum
 
 import semver
-from pydantic import Field
+from pydantic import Field, PositiveInt
 from pydantic_core import core_schema
 
 from finopspp.models.core import Config
@@ -85,9 +85,8 @@ class MetadataSpec(Config):
 
 class SpecID(Config):
     """Specification ID model"""
-    ID: int | None = Field(
+    ID: PositiveInt | None = Field(
         description='Unique, with respect to a specification type, ID for a specification',
-        gt=0,
         lt=1000
     )
 
