@@ -9,24 +9,24 @@ from finopspp.models.actions import WeightValidator
 
 class Basic(Config):
     """Model for the basic section of the variables config"""
-    name: str | None = Field(
-        description='Name or short title of a reference'
+    name: str = Field(
+        description='Name of the variable file is indexed under'
     )
-    version: SemanticVersion | None = Field(
-        description='Name or short title of a reference'
+    version: SemanticVersion = Field(
+        description='Version of the variables file'
     )
 
 
 class Profile(Config):
     """Model for the profile section of the variables config"""
-    title: str | None = Field(
-        description='Name or short title of a reference'
+    title: str = Field(
+        description='Title of the profile tied to the variables'
     )
-    version: SemanticVersion | None = Field(
-        description='Name or short title of a reference'
+    version: SemanticVersion = Field(
+        description='Version of the profile used to generate variables'
     )
     status: StatusEnum = Field(
-        description='Lifecycle status for a specification'
+        description='Status of the profile at time of variables generation'
     )
 
 
