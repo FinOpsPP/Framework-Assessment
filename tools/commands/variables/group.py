@@ -7,7 +7,9 @@ from importlib.resources import files
 import click
 import yaml
 from jinja2 import Environment, PackageLoader
+from pydantic import ValidationError
 
+from finopspp.models.variables import Variables
 from finopspp.models.specs import StatusEnum
 from finopspp.commands import utils
 from finopspp.commands.generate import helpers as generate_helpers
@@ -161,3 +163,33 @@ def list_variables():
             title = var_file.get('profile').get('title').replace(' ', '')
 
         click.echo(f'{name}-{title}')
+
+
+@variables.command()
+def validate():
+    """Validate all variable files"""
+    model = Variables
+    specs_files = files('finopspp.specifications.variables')
+
+    failed = False
+    for spec in specs_files.iterdir():
+        path = specs_files.joinpath(spec.name)
+        click.echo(f'Validating "{path}":')
+        with open(path, 'rb') as toml_file:
+            specification_data = tomllib.load(toml_file)
+
+        try:
+            model.model_validate(specification_data)
+        except ValidationError as val_error:
+            failed = True
+            click.secho(
+                f'Validation for "{path}" failed with --\n', fg='yellow'
+            )
+            click.secho(str(val_error) + '\n', err=True, fg='red')
+        else:
+            click.secho(
+                f'Validation for "{path}" passed', fg='green'
+            )
+
+    if failed:
+        sys.exit(1)
