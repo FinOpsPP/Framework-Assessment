@@ -9,6 +9,7 @@ from pydantic import ValidationError
 from rich.progress import track
 
 from finopspp.models.actions import WeightValidator
+from finopspp.models.variables import Variables
 from finopspp.models.overrides import OverrideMap
 from finopspp.commands import utils
 
@@ -95,7 +96,9 @@ def variables_collector(profile, variables):
     with open(path, 'rb') as toml_file:
         variables_spec = tomllib.load(toml_file)
 
-    variables_profile = variables_spec.get('profile').get('title')
+    variables = Variables(**variables_spec)
+
+    variables_profile = variables.profile.title
     if profile != variables_profile:
         click.secho(
             f'Variables="{variables}" requires profile="{variables_profile}". Cannot be used for profile="{profile}"',
@@ -103,7 +106,7 @@ def variables_collector(profile, variables):
         )
         return {}
 
-    return variables_spec
+    return variables
 
 
 def domain_collector(profile, domain, domain_files, allowed_statuses):
@@ -238,7 +241,7 @@ def specification_collector(profile, profile_spec, allowed_statuses, variables):
     capability_files = files('finopspp.specifications.capabilities')
     action_files = files('finopspp.specifications.actions')
 
-    weights = variables.get('weights', {})
+    weights = variables.weights
 
     domains = []
     # all profile specs should have a Domains field that is a list by this point.
@@ -320,18 +323,9 @@ def specification_collector(profile, profile_spec, allowed_statuses, variables):
                 domain_id = domain_id or domain_title
                 capability_id = capability_id or capability_title
                 action_id = spec.get('Slug') or action_id
-                variable_weight = weights.get(domain_id, {}).get(capability_id, {}).get(action_id)
-
-                if variable_weight is not None:
-                    try:
-                        weight = WeightValidator.validate_python(variable_weight, strict=True)
-                    except ValidationError as val_error:
-                        click.secho(
-                            f'\nValidation for "{domain_id}.{capability_id}.{action_id}" failed with --\n', fg='yellow'
-                        )
-                        click.secho(str(val_error), err=True, fg='red')
-                        sys.exit(1)
-
+                weight_id = f'{domain_id}.{capability_id}.{action_id}'
+                if hasattr(weights, weight_id):
+                    weight = getattr(weights, weight_id)
 
                 # since not every action has a title yet, fall back to
                 # description when it does not exist or is None.

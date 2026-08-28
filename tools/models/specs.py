@@ -11,7 +11,8 @@ from finopspp.models.core import Config
 
 # modified from:
 # https://python-semver.readthedocs.io/en/latest/advanced/combine-pydantic-and-semver.html
-class _Version: # pylint: disable=too-few-public-methods
+class SemanticVersion: # pylint: disable=too-few-public-methods
+    """Version type specification"""
     @classmethod
     def __get_pydantic_core_schema__(cls, _source_type, _handler):
         def validate_from_str(value: str):
@@ -72,7 +73,7 @@ class MetadataSpec(Config):
     Modified: datetime.date | None = Field(
         description='ISO 8601 date a specification was last modified'
     )
-    Version: _Version = Field(
+    Version: SemanticVersion = Field(
         description='Semantic version for a specification'
     )
     Status: StatusEnum = Field(
