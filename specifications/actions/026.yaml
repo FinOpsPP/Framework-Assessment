@@ -1,7 +1,7 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
+  Modified: '2026-09-03'
   Version: 1.0.0
   Status: Accepted
   Approvers:
@@ -16,17 +16,71 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Denominator: all anomalies detected during the review period. A field item is met when the field is
+    populated on 90% or more of those records.
+
+    * Single system of record
+    * Scope fields populated (billing account, service, region, and a named accountable owner)
+    * Impact fields populated (variance amount in the reporting currency, and the start and end of the
+      period the variance covers)
+    * Timeline fields populated (first occurrence, detection, notification, and resolution timestamps)
+    * Disposition field populated (true, expected change, or false)
+    * Retention and queryability (records retained for at least 13 months and queryable by scope,
+      disposition, and root cause)
+
+    10*Ceil(x/6)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 5
+    Condition: 3 items completed
+  - Score: 7
+    Condition: 4 items completed
+  - Score: 9
+    Condition: 5 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 6 items completed
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: NIST CSF 2.0 - RS.AN-06
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Actions performed during an investigation are recorded, and the records' integrity and provenance are
+      preserved." A cost anomaly deserves the same record a security incident gets, for the same reason:
+      without it, nothing downstream can be measured or defended.
+  - Name: FinOps KPI - Total Unpredicted Variance of Spend
+    Link: https://www.finops.org/kpi/total-unpredicted-variance-of-spend/
+    Comment: the impact field in item 3 is what makes this KPI computable across a period.
+  - Name: FinOps KPI - Anomaly-Detected Cost Avoidance
+    Link: https://www.finops.org/kpi/anomaly-detected-cost-avoidance/
+    Comment: |-
+      Cost avoidance depends on both the variance amount and the duration the anomaly ran, so it cannot be
+      claimed without the impact and timeline fields recorded here.
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    The items are unordered because a team can start from any field. They are all about the record itself,
+    not about how fast the team responds. Detection, notification, and resolution times are scored by
+    action 28, which can only be measured once the timeline in item 4 is being captured.
+  - |
+    The 90% threshold, rather than 100%, accepts that a small number of records will be opened late or
+    closed without a full field set. Below 90% the field is not reliable enough to compute a KPI from, so
+    the item is not met. The rate is computed over the full review period rather than sampled.
+  - |
+    Retention is set at 13 months so that a period can be compared with the same period one year earlier.
+    A shorter window makes year over year comparison impossible and hides seasonal recurrence.
+  - |
+    Without a recorded disposition there is no denominator for a false
+    positive rate, which is what action 29 tunes against.
+  - |-
+    The record does not need a dedicated tool. An existing ticketing or incident system is usually the
+    better choice, because it already carries ownership, history, and retention. This tool should not
+    be email, chat, or spreadsheet, because those are not queryable and do not have a single source of truth.
   Overrides: null
