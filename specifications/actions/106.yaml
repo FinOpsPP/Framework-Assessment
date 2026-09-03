@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
-  Version: 1.0.0
+  Modified: '2026-09-03'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,56 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    1. Set a review cadence for every policy and record the next review date on the policy itself
+    2. Gather evidence for the review: compliance rates, exception volume and age, violations, and feedback
+    3. Record an outcome for each policy reviewed, being one of keep, amend, or retire
+    4. Version the change, publish it with its rationale and effective date, and update the matching guardrails
+    5. Measure the effect at the next review, and retire policies that no longer earn their enforcement cost
+
+    10*Ceil(x/5)
+  Score Type: sequential
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: item 1 completed
+  - Score: 4
+    Condition: items 1-2 completed
+  - Score: 6
+    Condition: items 1-3 completed
+  - Score: 8
+    Condition: items 1-4 completed
   - Score: 10
-    Condition: Completed
+    Condition: items 1-5 completed
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: NIST CSF 2.0 - GV.PO-02
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Policy ... is reviewed, updated, communicated, and enforced to reflect changes in requirements,
+      threats, technology, and organizational mission." This action is that subcategory almost line for line.
+  - Name: NIST CSF 2.0 - GV.OV-03
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Risk management performance is evaluated and reviewed for adjustments needed." Item 5 is the review of
+      the policy program itself, not of any single policy.
+  - Name: FinOps++ Score Type - Sequential Process
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#sequential-process
+    Comment: can be used whenever the steps in an action need to be completed in a certain order.
   Supplemental Guidance:
-  - null
+  - |
+    The order holds because each step supplies what the next one needs. There is no review without a cadence,
+    no decision without evidence, no change to publish without a decision, and nothing to measure without a
+    published change.
+  - |
+    Item 2 is where the rest of this capability pays off. Compliance rates come from action 105, exception
+    volume from the exception path in action 102, and stakeholder feedback from the enablement channels in
+    action 104.
+  - |
+    Retiring a policy is a legitimate outcome and is scored the same as amending one. A policy library that
+    only grows becomes impossible to enable against, and the guardrails that enforce it are never free.
+  - |-
+    Item 4 names the guardrails on purpose. A policy amended without updating its enforcement leaves the
+    published rule and the enforced rule saying different things, which is the drift that action 103 closes
+    at its highest score.
   Overrides: null

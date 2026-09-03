@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
-  Version: 1.0.0
+  Modified: '2026-09-03'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -17,16 +17,47 @@ Specification:
   - null
   Weight: 1.0
   Formula: null
-  Score Type: binary
+  Score Type: threshold
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: Policy exists but is not published anywhere practitioners work
+  - Score: 2
+    Condition: Published as readable guidance in a discoverable, single location
+  - Score: 4
+    Condition: Guidance paired with worked examples, reference architectures, or templates teams can copy
+  - Score: 6
+    Condition: Detective guardrails report violations automatically against the published guidance
+  - Score: 8
+    Condition: Preventive guardrails block non-conforming changes at deploy time, with an exception path
   - Score: 10
-    Condition: Completed
+    Condition: Guardrails maintained as code beside the policy, versioned and released with it
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: NIST CSF 2.0 - GV.PO-01
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      Policy is "communicated and enforced." This action scores the enforcement half of that outcome, where
+      action 102 scores the drafting and action 104 scores the communication.
+  - Name: FinOps Framework - Governance, Policy & Risk
+    Link: https://www.finops.org/framework/capabilities/governance-policy-risk/
+    Comment: the capability definition, which places automation controls at the mature end of the practice.
+  - Name: FinOps++ Score Type - Threshold Process
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#threshold-process
+    Comment: an evolution of sequential, where steps below a given level are complete when that level is reached.
   Supplemental Guidance:
-  - Example is policies as code
+  - |
+    This is a threshold rather than a sequence because organizations reach enforcement by different routes.
+    A platform team that ships a policy as an admission control rule on day one has preventive guardrails
+    without ever having written the reference architecture, and should not be penalized for the order.
+  - |
+    Score against the policy set as a whole. Where different policies sit at different levels, use the level
+    that covers the majority of policies by the spend they govern, not by policy count.
+  - |
+    The step from 4 to 6 is the largest real jump in this action. Everything below it depends on somebody
+    choosing to read the guidance, and everything at or above it does not.
+  - |
+    Preventive guardrails only earn score 8 when the exception path from action 102 actually works. A block
+    with no sanctioned way around it gets routed around instead, usually through an account nobody governs.
+  - |-
+    Score 10 is the "policy as code" end state. The published rule and the enforced rule come from the same
+    source and ship together, so the two can no longer drift apart between reviews.
   Overrides: null

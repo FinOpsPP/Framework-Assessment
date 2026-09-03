@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
-  Version: 1.0.0
+  Modified: '2026-09-03'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,61 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    * Each policy states the outcome it protects and the business or FinOps goal it serves
+    * Each policy names an accountable owner and the approver who signed it off
+    * Each policy defines its scope: the accounts, environments, technology categories, and personas it binds
+    * Each policy defines "good" in terms that can be measured, rather than in statements of intent
+    * Each policy defines its exception path, including who grants an exception and when it expires
+    * Policies are drafted with the teams they bind, and held in version control with a stated review date
+
+    10*Ceil(x/6)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 5
+    Condition: 3 items completed
+  - Score: 7
+    Condition: 4 items completed
+  - Score: 9
+    Condition: 5 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 6 items completed
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: NIST CSF 2.0 - GV.PO-01
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Policy for managing cybersecurity risks is established based on organizational context, strategy, and
+      priorities and is communicated and enforced." Item 1 is the organizational context requirement read
+      through a FinOps lens.
+  - Name: NIST CSF 2.0 - GV.RR-02
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Roles, responsibilities, and authorities ... are established, communicated, understood, and enforced."
+      A policy without a named owner and approver has none of these, which is what item 2 tests.
+  - Name: FinOps Framework - Governance, Policy & Risk
+    Link: https://www.finops.org/framework/capabilities/governance-policy-risk/
+    Comment: the capability this action opens, and the source of the "what good looks like" framing.
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    The items are unordered because a policy library is usually improved one attribute at a time across every
+    policy at once, rather than one policy at a time. Score against the policy set, not the best example in it.
+  - |
+    Item 4 is the item that separates a policy from a preference. "Resources should be tagged appropriately"
+    cannot be assessed, enforced, or argued with. "Every resource carries the four required tags" can be all
+    three, and gives action 105 something to monitor.
+  - |
+    Item 5 exists because a policy with no sanctioned way to deviate is a policy that gets quietly ignored.
+    An exception that never expires is the same failure with better paperwork.
+  - |-
+    Item 6 is the discipline the security field learned first. A policy written for a team lands as a rule
+    imposed on them, and a policy without a review date accumulates until nobody can say what is still in force.
   Overrides: null
