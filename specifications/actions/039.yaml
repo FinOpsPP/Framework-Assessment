@@ -14,7 +14,7 @@ Metadata:
 Specification:
   ID: 39
   Title: Run & Refresh Rolling Forecasts
-  Description: Run rolling forecasts; refresh weekly/biweekly for accuracy.
+  Description: Run rolling forecasts and determine refresh frequency
   Slug: 39-run-forecasts
   Implementation Types:
   - null
@@ -54,13 +54,14 @@ Specification:
     Next, we have the forecast Frequency. This is how often you update your forecast based on the speed of change
     in your hosting environments. Are big changes happening rapidly, or is there a slow stable trend? This will
     determine if you need to update the forecast more rapidly based on certain driver variables.
+    This is the definition we are using to determine scores in this action, as higher frequency is more accurate.
   - |
     There is also the Backwards Horizon where you set a time limit on how much historical data to bring in. Do we
     only care about the last three months of data? Or do we need to look at previous years to determine a 
     seasonality pattern? Has there been a significant optimization or change that makes data from last month no
     longer representative of the usage of a particular team? If so, make sure to only pull in relevant data.
   - |
-    Lastly, we have foreacst Granularity. This is the sum of the cost over a set time period. For example, are
+    Lastly, we have forecast Granularity. This is the sum of the cost over a set time period. For example, are
     you predicting costs for a year to plan EDP contracts? Do you need to provide a quarterly number for updates
     to Wall Street? Or do you need Daily numbers to determine capacity planning? This depends on the decisions you
     need to make as a result of doing this forecast.
