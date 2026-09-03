@@ -44,7 +44,7 @@ Specification:
     Link: https://o9solutions.com/videos/structure-of-demand-planning-model
     Comment: This video goes into more detail about the definitions of each part of the forecasting model.
   Supplemental Guidance:
-  -   - |-
+  - |-
     A few definitions are impportant to understand before scoring this action. First, there is the Time Horizon
     which defines the point in time you are forecasting out to. For example, this could be next month's spend or
     total spend at the end of the year. A Rolling Forecast would mean that your time horizon is always a set time
@@ -57,7 +57,7 @@ Specification:
     This is the definition we are using to determine scores in this action, as higher frequency is more accurate.
   - |
     There is also the Backwards Horizon where you set a time limit on how much historical data to bring in. Do we
-    only care about the last three months of data? Or do we need to look at previous years to determine a 
+    only care about the last three months of data? Or do we need to look at previous years to determine a
     seasonality pattern? Has there been a significant optimization or change that makes data from last month no
     longer representative of the usage of a particular team? If so, make sure to only pull in relevant data.
   - |
