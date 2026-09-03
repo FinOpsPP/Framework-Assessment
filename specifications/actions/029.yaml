@@ -1,7 +1,7 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
+  Modified: '2026-09-03'
   Version: 1.0.0
   Status: Accepted
   Approvers:
@@ -16,17 +16,72 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    * Weighted sum
+      Alert precision (score x4),
+      Missed anomalies (score x3),
+      Tuning cadence (score x2),
+      Tuning governance (score x1).
+      Max raw (50)
+
+    * Alert_Precision: Alerts confirmed as true positives divided by all alerts raised in the review period
+      (0=Not measured, 1<50%, 2=50-69%, 3=70-84%, 4=85-94%, 5=95%+)
+    * Missed_Anomalies: Share of anomalies first found by invoice review, budget variance, or an owner
+      (0=Not measured, 1>25%, 2=10-25%, 3=5-9%, 4=1-4%, 5<1%)
+    * Tuning_Cadence: How often thresholds are reviewed and adjusted against observed outcomes
+      (0=Never, 1=Ad-hoc, 2=Annual, 3=Quarterly, 4=Monthly, 5=Continuous or automated)
+    * Tuning_Governance: How a threshold change is decided and recorded
+      (0=Undocumented, 1=Changed by one person, 2=Documented with rationale,
+      3=Reviewed with the alert recipients, 4=Version controlled and auditable,
+      5=Version controlled and replayed against historical anomalies before release)
+
+    * Output Range (0-50)
+  Score Type: multi_bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: Low Maturity, Score Range (0-14)
+  - Score: 4
+    Condition: Developing, Score Range (15-30)
+  - Score: 7
+    Condition: Established, Score Range (31-42)
   - Score: 10
-    Condition: Completed
+    Condition: Optimizing, Score Range (43-50)
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: NIST CSF 2.0 - DE.AE-08
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Incidents are declared when adverse events meet the defined incident criteria." A threshold is that
+      criteria, which is why tuning it is a governed change and not a personal preference.
+  - Name: NIST CSF 2.0 - ID.IM-01
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Improvements are identified from evaluations." Precision and missed anomalies are the evaluation that
+      tells a team whether the last tuning change helped.
+  - Name: FinOps KPI - Anomaly Detection Rate
+    Link: https://www.finops.org/kpi/anomaly-detection-rate/
+    Comment: |-
+      A useful companion signal. A detection rate that drops after a tuning change is either a real
+      improvement or a rise in missed anomalies, and only the second measure here separates the two.
+  - Name: FinOps++ Score Type - Multiple Weighted Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md##multiple-weighted-buckets
+    Comment: an even more granular version of bucket, where steps are weight by importance to an action.
   Supplemental Guidance:
-  - null
+  - |
+    CRAWL (0-14) Thresholds are whatever the tool shipped with. Nobody counts false positives, nobody knows
+    what was missed, and alerts are muted rather than tuned.
+  - |
+    WALK (15-30) Precision is measured and thresholds are reviewed on a schedule. Changes are written down
+    with a reason, but they are still made by one person without the recipients in the room.
+  - |
+    RUN (31-42) Precision and missed anomalies are both tracked. Tuning happens monthly or better, changes
+    are reviewed with the people who receive the alerts, and threshold state is version controlled.
+  - |
+    FLY (43-50) Tuning is continuous or automated. A proposed threshold is replayed against historical
+    anomalies before release, so the team knows what a change would have missed before it ships.
+  - |
+    Precision is weighted highest because noise is what destroys trust in the alert, and a channel that
+    owners have learned to ignore scores zero on every other action in this capability.
+  - |-
+    Missed anomalies is weighted second because a quiet channel is not the same as a healthy one. A team
+    that raises thresholds until precision looks perfect will show it here.
   Overrides: null
