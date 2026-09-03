@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Modified: '2026-09-01'
+  Version: 1.9.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -14,7 +14,7 @@ Metadata:
 Specification:
   ID: 39
   Title: Run & Refresh Rolling Forecasts
-  Description: Run rolling forecasts; refresh weekly/biweekly for accuracy.
+  Description: Run rolling forecasts and determine refresh frequency
   Slug: 39-run-forecasts
   Implementation Types:
   - null
@@ -40,6 +40,29 @@ Specification:
   - Name: FinOps++ Score Type - Threshold Process
     Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#threshold-process
     Comment: an evolution of sequential, where steps below a given level are complete when that level is reached.
+  - Name: Demand Planning Model
+    Link: https://o9solutions.com/videos/structure-of-demand-planning-model
+    Comment: This video goes into more detail about the definitions of each part of the forecasting model.
   Supplemental Guidance:
-  - TODO - Needs more info
+  - |-
+    A few definitions are impportant to understand before scoring this action. First, there is the Time Horizon
+    which defines the point in time you are forecasting out to. For example, this could be next month's spend or
+    total spend at the end of the year. A Rolling Forecast would mean that your time horizon is always a set time
+    out from the date of the forecast. For example, you could forecast the next three months and each month you
+    create a new forecast for the following three months, and so on.
+  - |
+    Next, we have the forecast Frequency. This is how often you update your forecast based on the speed of change
+    in your hosting environments. Are big changes happening rapidly, or is there a slow stable trend? This will
+    determine if you need to update the forecast more rapidly based on certain driver variables.
+    This is the definition we are using to determine scores in this action, as higher frequency is more accurate.
+  - |
+    There is also the Backwards Horizon where you set a time limit on how much historical data to bring in. Do we
+    only care about the last three months of data? Or do we need to look at previous years to determine a
+    seasonality pattern? Has there been a significant optimization or change that makes data from last month no
+    longer representative of the usage of a particular team? If so, make sure to only pull in relevant data.
+  - |
+    Lastly, we have forecast Granularity. This is the sum of the cost over a set time period. For example, are
+    you predicting costs for a year to plan EDP contracts? Do you need to provide a quarterly number for updates
+    to Wall Street? Or do you need Daily numbers to determine capacity planning? This depends on the decisions you
+    need to make as a result of doing this forecast.
   Overrides: null

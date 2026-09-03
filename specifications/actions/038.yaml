@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Modified: '2026-09-01'
+  Version: 1.9.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -20,10 +20,10 @@ Specification:
   - null
   Weight: 1.0
   Formula: |-
-    * Data based on existing patterns
-    * Proactive investigations and interviews with teams
-    * Proactive self reporting by the business and/or teams
-    * 100% catch rate of spikes before they happen
+    * Collect data based on existing patterns observed in spend
+    * Conduct proactive investigations and interviews with teams
+    * Gather existing self reporting by the business and/or teams
+    * Factor in expected increases to the forecast model
 
     10*Ceil(x/4)
   Score Type: bucket
@@ -42,6 +42,15 @@ Specification:
   - Name: FinOps++ Score Type - Bucket
     Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
     Comment: an evolution of binary, with more steps to take toward maturity.
+  - Name: Business Drivers - CFI
+    Link: https://corporatefinanceinstitute.com/resources/financial-modeling/business-drivers/
+    Comment: How to narrow down primary business drivers leading to activities that have a cost like the 5-Why's.
   Supplemental Guidance:
-  - null
+  - |-
+    In order to create accurate forecasts, some subject-matter-expert intuition is required. For example, a national
+    gym studio might ramp up web and database resources in January in expectation of new years resolution sign ups.
+    While this may show up as seasonality in historical data, the business is usually already aware of this change.
+    Similarly, engineering teams may have a deployment schedule where they create resources to support new features,
+    but if this info isn't shared with FinOps, it won't make it into the forecast. Thus, it's important for FinOps
+    to work with multiple stakeholders to determine what are the major business drivers of cost for their company.
   Overrides: null
