@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
-  Version: 1.0.0
+  Modified: '2026-09-03'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,63 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    * State why each forecast exists and which decision it supports, such as a budget, a commitment, or a plan
+    * Name the method in use for each forecast: run rate, trend, driver based, or a hybrid, and why it fits
+    * Define the time horizon each forecast reaches, the backwards horizon it draws on, and its granularity
+    * Define what is in scope, including commitments, credits, taxes, and shared costs
+    * Record the inputs and assumptions each forecast depends on, along with the owner of each one
+    * Set an accuracy tolerance for each forecast and the action taken when it falls outside that tolerance
+
+    10*Ceil(x/6)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 5
+    Condition: 3 items completed
+  - Score: 7
+    Condition: 4 items completed
+  - Score: 9
+    Condition: 5 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 6 items completed
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: FinOps Framework - Forecasting
+    Link: https://www.finops.org/framework/capabilities/forecasting/
+    Comment: the capability definition this action opens, covering purpose, method, horizon, and granularity.
+  - Name: FinOps++ Action 39 - Run & Refresh Rolling Forecasts
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/components/actions/039.md
+    Comment: |-
+      Carries the working definitions of time horizon, frequency, backwards horizon, and granularity that
+      item 3 of this action is written against.
+  - Name: FinOps KPI - Forecast Accuracy Rate (Spend)
+    Link: https://www.finops.org/kpi/forecast-accuracy-rate-spend/
+    Comment: the tolerance set in item 6 is expressed against this KPI, and is scored in practice by action 40.
+  - Name: FinOps KPI - Forecast Drift Rate
+    Link: https://www.finops.org/kpi/forecast-drift-rate/
+    Comment: |-
+      Drift between successive forecasts is only interpretable when the assumptions in item 5 are recorded,
+      since otherwise a changed forecast cannot be told apart from a changed assumption.
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    The items are unordered because an organization can arrive at a documented approach from any direction.
+    Most teams already have a method in use and have simply never written down why they chose it.
+  - |
+    Cadence is deliberately absent from this list. How often a forecast is refreshed is the frequency scored
+    by action 39, and scoring it twice would double count a single practice. This action scores the decision
+    to have set one, alongside the horizons and granularity that action 39 defines but does not score.
+  - |
+    More than one forecast is normal and expected. A commitment purchase forecast and an annual budget
+    forecast answer different questions over different horizons, and each is scored against these items.
+  - |-
+    Item 4 is where most reconciliation disputes begin. A forecast that quietly excludes amortized commitment
+    cost, credits, or shared cost will not reconcile to an invoice no matter how good the method is.
   Overrides: null
