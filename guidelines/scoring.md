@@ -9,6 +9,8 @@ Below we list each of the approved scoring methods and detail how to construct n
 **Contents**:
 
 * [Score Types](#score-types)
+* [References](#references)
+* [Supplemental Guidance](#supplemental-guidance)
 * [Weights](#weights)
 * [Targets](#targets)
 
@@ -276,6 +278,77 @@ Feel free to find creative solutions that can quantify progress in any of the ac
 **YAML Format**:
 
 Any valid YAML scalar string can be accepted for this type. It is dealers choice on what to put here based on what you want to capture with the action. So long as it is valid YAML.
+
+## References
+
+Every action carries a list of references pointing to the sources behind its score.
+References are how a reader checks our work, and how the assessment ties back to the frameworks it borrows from.
+
+The `finopspp` tool adds one reference for you.
+Whenever a specification is written out, the entry for its score type is appended from `ScoreTypeRefMap`
+if it is not already present.
+Do not write this entry by hand.
+If that automatic entry contains a mistake, fix it in [tools/models/actions.py](/tools/models/actions.py), where it would be overwritten on the next generation.
+
+Beyond that automatic entry, we encourage the addition of two kinds of references.
+
+**NIST CSF outcomes**.
+This project describes itself as a NIST CSF Community Profile.
+An action that maps to a CSF outcome should say which one.
+Name the outcome by its identifier, quote the outcome text, and say in a sentence or two why the FinOps reading holds.
+Not every action maps to a CSF outcome; no mapping is better than a forced one.
+
+**FinOps KPIs**.
+Where an action makes a published FinOps KPI computable, cite the KPI and name the formula item that supplies it.
+This keeps our scores tied to measurements practitioners already collect.
+
+Other outside sources are welcome wherever they teach something the action assumes.
+Whatever the source, the `Comment` field should carry reasoning rather than restate the title.
+
+**YAML Format**:
+
+```{yaml}
+  References:
+  - Name: NIST CSF 2.0 - RS.AN-06
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Actions performed during an investigation are recorded, and the records'
+      integrity and provenance are preserved." A cost anomaly deserves the same
+      record a security incident gets.
+  - Name: FinOps KPI - Total Unpredicted Variance of Spend
+    Link: https://www.finops.org/kpi/total-unpredicted-variance-of-spend/
+    Comment: the impact field in item 3 is what makes this KPI computable across a period.
+```
+
+## Supplemental Guidance
+
+Supplemental Guidance explains the parts of a score that the formula and the score table cannot carry on their own.
+Good entries answer a question a reader would otherwise have to ask.
+
+* Why this score type was chosen if there is an alternative that looked equally reasonable
+* Where a number in the formula came from, such as a coverage threshold or a retention window
+* Which item is load bearing, and which downstream action depends on it
+
+Only the formula is scored.
+Anything that changes a score belongs in the formula and not in Supplemental Guidance.
+An exclusion written only in guidance carries no weight and does not change a score.
+
+For the same reason, guidance is written as a third person rationale for how the specification is built.
+It does not instruct the assessor, and it does not instruct the FinOps pracitioner.
+
+**YAML Format**:
+
+```{yaml}
+  Supplemental Guidance:
+  - |
+    Each item depends on the one before it, so this is scored sequentially rather than
+    as a bucket. An unowned anomaly is not analyzed, and a cause that was never
+    classified cannot be shown to recur.
+  - |-
+    The 90% threshold, rather than 100%, accepts that a small number of records will be
+    opened late or closed without a full field set. Below 90% the field is not reliable
+    enough to compute a KPI from, so the item is not met.
+```
 
 ## Weights
 
