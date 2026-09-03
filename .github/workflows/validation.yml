@@ -54,3 +54,6 @@ jobs:
     - name: Validate all action specifications with finopspp tool
       run: |
         finopspp specifications validate --specification-type="actions" all
+    - name: Validate all variable files
+      run: |
+        finopspp variables validate

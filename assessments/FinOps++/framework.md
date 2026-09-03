@@ -1,6 +1,6 @@
 # <a href="/components/profiles/002.md">002</a>: FinOps++ Maturity Assessment Framework
 
-**Creation Date:** 2026-08-13
+**Creation Date:** 2026-08-27
 
 **Specification Version:** 0.0.1
 
@@ -351,13 +351,13 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/064.md">064</a>: Implement Iteratively & Measure Results
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/065.md">065</a>: Publish Benefits & Update References
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>

@@ -8,6 +8,7 @@ import yaml
 from pydantic import ValidationError
 from rich.progress import track
 
+from finopspp.models.variables import Variables
 from finopspp.models.overrides import OverrideMap
 from finopspp.commands import utils
 
@@ -94,7 +95,9 @@ def variables_collector(profile, variables):
     with open(path, 'rb') as toml_file:
         variables_spec = tomllib.load(toml_file)
 
-    variables_profile = variables_spec.get('profile').get('title')
+    variables = Variables(**variables_spec)
+
+    variables_profile = variables.profile.title
     if profile != variables_profile:
         click.secho(
             f'Variables="{variables}" requires profile="{variables_profile}". Cannot be used for profile="{profile}"',
@@ -102,7 +105,7 @@ def variables_collector(profile, variables):
         )
         return {}
 
-    return variables_spec
+    return variables.dict()
 
 
 def domain_collector(profile, domain, domain_files, allowed_statuses):
@@ -312,12 +315,15 @@ def specification_collector(profile, profile_spec, allowed_statuses, variables):
                 action_id = str(spec['ID'])
                 serial_number = '0'*(3-len(action_id)) + action_id
 
-                # if there is a weights override, use that
-                # else fallback to the spec default
+                # if there is a weights variable override,
+                # use that else fallback to the spec default
+                weight = spec.get('Weight')
+
                 domain_id = domain_id or domain_title
                 capability_id = capability_id or capability_title
                 action_id = spec.get('Slug') or action_id
-                weight = weights.get(domain_id, {}).get(capability_id, {}).get(action_id) or spec.get('Weight')
+                weight_id = f'{domain_id}.{capability_id}.{action_id}'
+                weight = weights.get(weight_id, weight)
 
                 # since not every action has a title yet, fall back to
                 # description when it does not exist or is None.
