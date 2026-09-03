@@ -44,7 +44,7 @@ Specification:
     Comment: an evolution of binary, with more steps to take toward maturity.
   - Name: Business Drivers - CFI
     Link: https://corporatefinanceinstitute.com/resources/financial-modeling/business-drivers/
-    Comment: How to narrow down primary business drivers leading to activities that have a cost
+    Comment: How to narrow down primary business drivers leading to activities that have a cost like the 5-Why's.
   Supplemental Guidance:
   - |-
     In order to create accurate forecasts, some subject-matter-expert intuition is required. For example, a national
