@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
-  Version: 1.0.0
+  Modified: '2026-09-03'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,65 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    * Weighted sum
+      Purchase cadence (score x3),
+      Commitment utilization (score x4),
+      Coverage of eligible spend (score x3).
+      Max raw (50)
+
+    * Purchase_Cadence - How often the portfolio is reviewed and incremental purchases are made
+      (0=Never, 1=Ad-hoc, 2=Annual, 3=Quarterly, 4=Monthly, 5=Weekly or automated)
+    * Commitment_Utilization - Used commitment divided by total commitment over the period
+      (0=Not measured, 1<70%, 2=70-79%, 3=80-89%, 4=90-94%, 5=95%+)
+    * Eligible_Coverage - Share of commitment eligible spend covered by a commitment discount
+      (0=Not measured, 1<25%, 2=25-49%, 3=50-69%, 4=70-84%, 5=85%+)
+
+    * Output Range (0-50)
+  Score Type: multi_bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: Low Maturity, Score Range (0-14)
+  - Score: 4
+    Condition: Developing, Score Range (15-30)
+  - Score: 7
+    Condition: Established, Score Range (31-42)
   - Score: 10
-    Condition: Completed
+    Condition: Optimizing, Score Range (43-50)
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: FinOps KPI - Commitment Utilization Score
+    Link: https://www.finops.org/kpi/commitment-utilization-score/
+    Comment: the source measure for the second component, and the "healthy utilization" the title asks for.
+  - Name: FinOps KPI - Percent of Compute Spend Covered by Commitment Discounts
+    Link: https://www.finops.org/kpi/percent-of-compute-spend-covered-by-commitment-based-discounts/
+    Comment: the source measure for the third component.
+  - Name: FinOps KPI - Percentage of Commitment Discount Waste
+    Link: https://www.finops.org/kpi/percentage-of-commitment-based-discount-waste/
+    Comment: the inverse of utilization, and often the easier number to pull from a billing export.
+  - Name: FinOps++ Score Type - Multiple Weighted Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md##multiple-weighted-buckets
+    Comment: an even more granular version of bucket, where steps are weight by importance to an action.
   Supplemental Guidance:
-  - Example ~80%+
+  - |
+    CRAWL (0-14) Commitments are bought once a year, or whenever someone remembers. Utilization and coverage
+    are not measured, so nobody can say whether the last purchase was a good one.
+  - |
+    WALK (15-30) Purchases happen on a quarterly rhythm. Utilization is tracked and sits in a defensible
+    range, but coverage of eligible spend is still thin or measured only for compute.
+  - |
+    RUN (31-42) Monthly purchases against a reviewed pipeline. Utilization holds above 90% and coverage
+    reaches most eligible spend across services, not just the one service that was easiest to model.
+  - |
+    FLY (43-50) Purchasing is continuous or automated against a laddered portfolio. Utilization stays at or
+    above 95% and coverage is high enough that the remaining on demand spend is a deliberate choice.
+  - |
+    Utilization carries the heaviest weight because an unused commitment is worse than no commitment. Buying
+    frequently while utilization falls is the failure mode this weighting is meant to expose.
+  - |
+    Coverage is judged against commitment eligible spend, not total spend. Counting spend that no commitment
+    could ever cover understates a portfolio that is working as intended.
+  - |-
+    A high coverage target is not automatically the right one. Workloads with a short remaining life or an
+    architecture change in flight are correctly left on demand, and action 79 is where that reasoning is
+    documented so that a lower coverage score can be read as a decision rather than a gap.
   Overrides: null
