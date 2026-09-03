@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
-  Version: 1.0.0
+  Modified: '2026-09-03'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,53 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    1. Hold a recurring review of the allocation strategy on a published cadence with a named owner
+    2. Bring allocation measures into the review: unallocated cost, untagged cost, and tagging policy compliance
+    3. Version each change to metadata, hierarchy, or shared cost rules with its rationale and effective date
+    4. Communicate approved changes to the affected resource and budget owners before the effective date
+    5. Measure adoption after each change and carry the remaining gaps into the next review
+
+    10*Ceil(x/5)
+  Score Type: sequential
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: item 1 completed
+  - Score: 4
+    Condition: items 1-2 completed
+  - Score: 6
+    Condition: items 1-3 completed
+  - Score: 8
+    Condition: items 1-4 completed
   - Score: 10
-    Condition: Completed
+    Condition: items 1-5 completed
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: FinOps KPI - Percentage of Costs Associated with Unallocated CSP Cloud Resources
+    Link: https://www.finops.org/kpi/percentage-of-costs-associated-with-unallocated-csp-cloud-resources/
+    Comment: one of the measures a review uses to decide whether the current allocation strategy still holds.
+  - Name: FinOps KPI - Percentage of CSP Cloud Costs that are Tagging Policy Compliant
+    Link: https://www.finops.org/kpi/percentage-of-csp-cloud-costs-that-are-tagging-policy-compliant/
+    Comment: compliance against the published taxonomy is the evidence that a communicated change was adopted.
+  - Name: NIST CSF 2.0 - GV.PO-02
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Policy ... is reviewed, updated, communicated, and enforced to reflect changes in requirements,
+      threats, technology, and organizational mission." An allocation strategy is a policy over how cost is
+      attributed, so it earns the same review and communication loop.
+  - Name: FinOps++ Score Type - Sequential Process
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#sequential-process
+    Comment: can be used whenever the steps in an action need to be completed in a certain order.
   Supplemental Guidance:
-  - null
+  - |
+    The steps are ordered on purpose. A change cannot be communicated before it is made, and adoption cannot
+    be measured before the change takes effect. A team that announces a taxonomy change without versioning it
+    leaves owners unable to tell which rules applied during a given period.
+  - |
+    Item 4 is scored on reaching the owners a change binds, not on volume of communication. A change published
+    only to the FinOps team does not meet it.
+  - |-
+    This action closes the loop opened by actions 9 through 14. It does not re-score coverage or compliance
+    themselves, which are measured by actions 10, 12, and 13.
   Overrides: null
