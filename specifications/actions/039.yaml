@@ -1,7 +1,7 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-09-01'
+  Modified: '2026-09-07'
   Version: 1.9.0
   Status: Accepted
   Approvers:
@@ -40,9 +40,6 @@ Specification:
   - Name: FinOps++ Score Type - Threshold Process
     Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#threshold-process
     Comment: an evolution of sequential, where steps below a given level are complete when that level is reached.
-  - Name: Demand Planning Model
-    Link: https://o9solutions.com/videos/structure-of-demand-planning-model
-    Comment: This video goes into more detail about the definitions of each part of the forecasting model.
   Supplemental Guidance:
   - |-
     A few definitions are impportant to understand before scoring this action. First, there is the Time Horizon
