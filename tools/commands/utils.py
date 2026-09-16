@@ -3,6 +3,7 @@ import os
 import tomllib
 import shutil
 import sys
+from collections import namedtuple
 from importlib.resources import files
 
 import click
@@ -138,6 +139,23 @@ class ClickGroup(DYMGroup, HelpColorsGroup):
         )
 
 
+class AllDiffOrIntRangeParamType(click.ParamType):
+    """Class to deal with selection valid specification IDs"""
+    name = 'All, Diff, or ID'
+
+    def get_metavar(self, param, ctx):
+        return f'{param.name.upper()} [all|diff|1-999]'
+
+    def convert(self, value, param, ctx):
+        try:
+            if value in ['all', 'diff']:
+                return value
+
+            return str(click.IntRange(1, 999).convert(value, param, ctx))
+        except click.BadParameter:
+            self.fail(f"'{value}' must be \"all\", \"diff\", or an int between 1-999")
+
+
 def safe_git_repo(path=os.getenv('FINOPSPP_REPO_LOCATION')):
     """Safely find the FinOps++ Framework-Assessment local git repository"""
     if shutil.which('git') is None:
@@ -159,3 +177,44 @@ def safe_git_repo(path=os.getenv('FINOPSPP_REPO_LOCATION')):
         sys.exit(1)
 
     return repo
+
+
+def all_diff_id_helper(selection, specs_files, specification_type=None):
+    """Helper function for commands using the All, Diff or ID selections"""
+    # special "Spec" named tuple to help with certain options provided by the
+    # user.
+    Spec = namedtuple('Spec', ['name'])
+
+    specs = []
+    if selection == 'all':
+        specs = specs_files.iterdir()
+    elif selection == 'diff':
+        repo = safe_git_repo('.')
+        diffs = list(repo.index.diff(repo.branches.main.commit))
+        diffs.extend(list(repo.index.diff(None)))
+        specs = []
+        for diff in diffs:
+            diff = diff.b_path
+
+            # filter out any diffs that are not related to the specification type
+            # of interest
+            if os.path.join('specifications', specification_type) not in diff:
+                continue
+
+            # also filter out anything that isn't a yaml file
+            if not diff.endswith('.yaml'):
+                continue
+
+            # at this point, everything should be the files we expect
+            # so split the diff and take the last value
+            file = os.path.basename(os.path.normpath(diff))
+            specs.append(Spec(name=file))
+    else:
+        # we need a light-weight object here to enable spec.name
+        # to be a valid attribute blow to match was is yielded
+        # by specs_files.iterdir above. So using a named tuple
+        file = '0'*(3-len(selection)) + selection
+        Spec = namedtuple('Spec', ['name'])
+        specs = [Spec(name=f'{file}.yaml')]
+
+    return specs
