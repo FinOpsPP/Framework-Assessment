@@ -156,7 +156,7 @@ class AllDiffOrIntRangeParamType(click.ParamType):
             self.fail(f"'{value}' must be \"all\", \"diff\", or an int between 1-999")
 
 
-def safe_git_repo(path=os.getenv('FINOPSPP_REPO_LOCATION')):
+def safe_git_repo():
     """Safely find the FinOps++ Framework-Assessment local git repository"""
     if shutil.which('git') is None:
         click.secho(
@@ -166,10 +166,20 @@ def safe_git_repo(path=os.getenv('FINOPSPP_REPO_LOCATION')):
         )
         sys.exit(1)
 
+    # find the finopspp module location in the file system
+    # and use that as the basis for finding the Framework-Assessment
+    # local git repository
+    path = files('finopspp')._paths.pop() # pylint: disable=protected-access
     try:
-        repo = git.Repo(path)
+        # the finopspp tool will not be in the same directory a the .git folder
+        # so allow searching of parents.
+        repo = git.Repo(path, search_parent_directories=True)
     except git.exc.InvalidGitRepositoryError:
-        click.secho(f'Provided path {path} is not a local git repository. Missing .git folder', err=True, fg='red')
+        click.secho(
+            f'Provided path {path} does not contain a local git repository. Missing .git folder',
+            err=True,
+            fg='red'
+        )
         sys.exit(1)
 
     if 'Framework-Assessment' not in repo.git_dir:
@@ -189,7 +199,7 @@ def all_diff_id_helper(selection, specs_files, specification_type=None):
     if selection == 'all':
         specs = specs_files.iterdir()
     elif selection == 'diff':
-        repo = safe_git_repo('.')
+        repo = safe_git_repo()
         diffs = list(repo.index.diff(repo.branches.main.commit))
         diffs.extend(list(repo.index.diff(None)))
         specs = []
