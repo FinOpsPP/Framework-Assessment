@@ -229,21 +229,21 @@ def schema(specification_type, no_numbers):
         console.print(syntax)
 
 
-class AllOrIntRangeParamType(click.ParamType):
+class AllDiffOrIntRangeParamType(click.ParamType):
     """Class to deal with selection valid specification IDs"""
-    name = 'All or ID'
+    name = 'All, Diff, or ID'
 
     def get_metavar(self, param, ctx):
-        return f'{param.name.upper()} [all|1-999]'
+        return f'{param.name.upper()} [all|diff|1-999]'
 
     def convert(self, value, param, ctx):
         try:
-            if value == 'all':
+            if value in ['all', 'diff']:
                 return value
 
             return str(click.IntRange(1, 999).convert(value, param, ctx))
         except click.BadParameter:
-            self.fail(f"'{value}' must be \"all\" or an int between 1-999")
+            self.fail(f"'{value}' must be \"all\", \"diff\", or an int between 1-999")
 
 @specifications.command()
 @click.option(
@@ -252,9 +252,12 @@ class AllOrIntRangeParamType(click.ParamType):
     default='profiles',
     help='Which specification type to show. Defaults to "profiles"'
 )
-@click.argument('selection', type=AllOrIntRangeParamType())
+@click.argument('selection', type=AllDiffOrIntRangeParamType())
 def validate(selection, specification_type):
-    """Validate all or a specific specification ID, for a given specification type."""
+    """Validate all or a specific specification ID, for a given specification type.
+    
+    NOTE: If you are using "diff" as the option, you must have git installed.
+    """
     model = None
     match specification_type:
         case 'actions':
@@ -266,9 +269,33 @@ def validate(selection, specification_type):
         case 'profiles':
             model = Profile
 
+    # special "Spec" named tuple to help with certain options provided by the
+    # user.
+    Spec = namedtuple('Spec', ['name'])
     specs_files = files(f'finopspp.specifications.{specification_type}')
     if selection == 'all':
         specs = specs_files.iterdir()
+    elif selection == 'diff':
+        repo = utils.safe_git_repo('.')
+        diffs = list(repo.index.diff(repo.branches.main.commit))
+        diffs.extend(list(repo.index.diff(None)))
+        specs = []
+        for diff in diffs:
+            diff = diff.b_path
+
+            # filter out any diffs that are not related to the specification type
+            # of interest
+            if os.path.join('specifications', specification_type) not in diff:
+                continue
+
+            # also filter out anything that isn't a yaml file
+            if not diff.endswith('.yaml'):
+                continue
+
+            # at this point, everything should be the files we expect
+            # so split the diff and take the last value
+            file = os.path.basename(os.path.normpath(diff))
+            specs.append(Spec(name=file))
     else:
         # we need a light-weight object here to enable spec.name
         # to be a valid attribute blow to match was is yielded
@@ -304,6 +331,23 @@ def validate(selection, specification_type):
 
     if failed:
         sys.exit(1)
+
+
+class AllOrIntRangeParamType(click.ParamType):
+    """Class to deal with selection valid specification IDs"""
+    name = 'All or ID'
+
+    def get_metavar(self, param, ctx):
+        return f'{param.name.upper()} [all|1-999]'
+
+    def convert(self, value, param, ctx):
+        try:
+            if value in ['all']:
+                return value
+
+            return str(click.IntRange(1, 999).convert(value, param, ctx))
+        except click.BadParameter:
+            self.fail(f"'{value}' must be \"all\" or an int between 1-999")
 
 
 @specifications.command()

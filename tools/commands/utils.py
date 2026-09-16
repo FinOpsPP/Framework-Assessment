@@ -1,8 +1,12 @@
 """Common utilities used by the finopspp commands"""
+import os
 import tomllib
+import shutil
+import sys
 from importlib.resources import files
 
 import click
+import git
 import yaml
 from click_didyoumean import DYMGroup
 from click_help_colors import HelpColorsGroup
@@ -132,3 +136,26 @@ class ClickGroup(DYMGroup, HelpColorsGroup):
             name=name,
             **kwargs
         )
+
+
+def safe_git_repo(path=os.getenv('FINOPSPP_REPO_LOCATION')):
+    """Safely find the FinOps++ Framework-Assessment local git repository"""
+    if shutil.which('git') is None:
+        click.secho(
+            'Git must be installed and accessible to this tool to use this feature. Exiting!',
+            err=True,
+            fg='red'
+        )
+        sys.exit(1)
+
+    try:
+        repo = git.Repo(path)
+    except git.exc.InvalidGitRepositoryError:
+        click.secho(f'Provided path {path} is not a local git repository. Missing .git folder', err=True, fg='red')
+        sys.exit(1)
+
+    if 'Framework-Assessment' not in repo.git_dir:
+        click.secho('Path to local Framework-Assessment not found', err=True, fg='red')
+        sys.exit(1)
+
+    return repo
