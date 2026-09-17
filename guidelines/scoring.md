@@ -334,7 +334,7 @@ Anything that changes a score belongs in the formula and not in Supplemental Gui
 An exclusion written only in guidance carries no weight and does not change a score.
 
 For the same reason, guidance is written as a third person rationale for how the specification is built.
-It does not instruct the assessor, and it does not instruct the FinOps pracitioner.
+It does not instruct the assessor, and it does not instruct the FinOps practitioner.
 
 **YAML Format**:
 
