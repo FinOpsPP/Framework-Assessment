@@ -36,6 +36,7 @@ The Framework-Assessment project uses an [As-Code](https://arxiv.org/pdf/2507.05
 
 Once you have updated your specification(s), this is the minimum we require for a change to be submitted for consideration. But, if your want or would like to go one step further, you can consider using the commands from the [finopspp cli](/tools/README.md#cli-tool) to [generate](/tools/README.md#generating-commands) updates to the Components and Frameworks. If not, that is fine too. At some point soon after merging, these command will be run by the maintainers before the next release to make sure your changes are represented in the next milestone release.
 
+
 ### Submitting tools changes
 
 Please! Before attempting to update any code in cools, be sure to first read over and follow the [Developing the finopspp CLI tool](/guidelines/development.md#developing-the-finopspp-cli-tool) and [Python Style Guide](/guidelines/style.md#python). New/tweaked features and bug fixes for the CLI commands are what we generally expect to make of the bulk of tools changes. And they will generally follow the standard procedures for PR reviews.
