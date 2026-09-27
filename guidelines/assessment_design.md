@@ -13,7 +13,7 @@
 * Define content and align it with the goals of this project.
 * How is the score determined?
 
-## Accessability
+## Accessibility
 
 FinOps++ Strives to be as open as possible we take the opinion that we should be largely vendor agnostic. Generally, we will gravitate towards projects, specifications, and tools that are open to make the assessment. Though this is not always possible given market shares, it is a "North Star" for us. And where we have to use one vendor over another (such as using Excel as the default assessment format), we will do our best to ensure that the assessment is easily modifable to meet the needs of others.
 
