@@ -32,7 +32,15 @@ jobs:
         finopspp generate components --specification-type="actions" all
         finopspp generate components --specification-type="capabilities" all
         finopspp generate components --specification-type="domains" all
+    - name: Check for changes
+      run: |
+        if git diff --exit-code; then
+          echo "::set-env name=changes_exist::false"
+        else
+          echo "::set-env name=changes_exist::true"
+        fi
     - name: Commit and Push Changes
+      if: env.changes_exist == 'true'
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
