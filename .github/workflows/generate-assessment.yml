@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       profile:
-        description: 'Tag to use to create a release'
+        description: 'Profile to generate assessment for'
         required: true
         type: choice
-        option:
+        options:
           - FinOps++
           - FinOps Foundation
 
