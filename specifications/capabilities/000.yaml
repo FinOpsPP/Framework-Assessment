@@ -1,13 +1,13 @@
 Metadata:
   Proposed: '2025-10-10'
-  Adopted: null
-  Modified: null
+  Adopted: '2026-10-01'
+  Modified: '2026-10-01'
   Version: 0.0.1
   Status: Proposed
   Approvers:
-  - Name: null
-    Email: null
-    Date: null
+  - Name: Travis Salas Cox
+    Email: travissalascox@proton.me
+    Date: '2026-10-01'
 Specification:
   ID: 0
   Title: Example Capability
