@@ -1,6 +1,6 @@
 # <a href="/components/profiles/002.md">002</a>: FinOps++ Maturity Assessment Framework
 
-**Creation Date:** 2026-08-27
+**Creation Date:** 2026-10-03
 
 **Specification Version:** 0.0.1
 
@@ -881,13 +881,13 @@ Finops++ profile that is an extension and reorganization of the finops foundatio
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/038.md">038</a>: Collect Business Drivers Regularly
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 1.9.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/039.md">039</a>: Run & Refresh Rolling Forecasts
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 1.9.0</p>
                         </td>
                     </tr>
                     <tr>
