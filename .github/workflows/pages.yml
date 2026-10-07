@@ -27,9 +27,9 @@ jobs:
           cp README.md docs/index.md
           cp CONTRIBUTING.md docs/contributing.md
           cp SECURITY.md docs/security.md
-          cp assessments/* docs/assessments/
-          cp components/* docs/components/
-          cp guidelines/* docs/guidelines/
+          cp -r assessments/* docs/assessments/
+          cp -r components/* docs/components/
+          cp -r guidelines/* docs/guidelines/
 
           echo "# Assessments" > docs/assessments/index.md
           echo "" >> docs/assessments/index.md
