@@ -17,3 +17,9 @@ finopspp.egg-info/
 __pycache__/
 tools/scratch/*.json
 tools/scratch/*.xlsx
+
+# Ignore local pages testing
+pages/**/*.md
+!pages/assessments/index.md
+!pages/components/index.md
+!pages/guidelines/index.md
