@@ -19,64 +19,11 @@ jobs:
       - name: Checkout source repo
         uses: actions/checkout@v7
       - name: Construct docs
-        run: |
-          mkdir -p docs/assessments
-          mkdir -p docs/components
-          mkdir -p docs/guidelines
-
-          touch docs/assessments/index.md
-          touch docs/components/index.md
-          touch docs/guidelines/index.md
-          
-          cp README.md docs/index.md
-          cp CONTRIBUTING.md docs/contributing.md
-          cp SECURITY.md docs/security.md
-          cp -r assessments/ docs/assessments/
-          cp -r components/ docs/components/
-          cp guidelines/* docs/guidelines/
-
-          echo "# Assessments" > docs/assessments/index.md
-          echo "" >> docs/assessments/index.md
-          ls -1 assessments/**/*.md | while read file; do
-            parentname=$(basename $(dirname "$file"))
-            filename=$(basename "$file" .md)
-            echo "- [$parentname](/assessments/$parentname/$filename.md)" >> docs/assessments/index.md
-          done
-
-          echo "# Components" > docs/components/index.md
-          echo "" >> docs/components/index.md
-          ls -1 components/**/*.md | while read file; do
-            parentname=$(basename $(dirname "$file"))
-            filename=$(basename "$file" .md)
-            echo "- [/components/$parentname](/components/$parentname/$filename.md)" >> docs/components/index.md
-          done
-          
-          cp guidelines/* docs/guidelines/ 2>/dev/null || true
-          echo "# Guidelines" > docs/guidelines/index.md
-          echo "" >> docs/guidelines/index.md
-          ls -1 guidelines/*.md | while read file; do
-            filename=$(basename "$file" .md)
-            echo "- [$filename](/guidelines/$filename.md)" >> docs/guidelines/index.md
-          done
-      - name: Create Jekyll config
-        run: |
-          cat > docs/_config.yml << 'EOF'
-          title: FinOps++
-          description: Home of the Open Source FinOps++ Assessments
-          theme: jekyll-theme-cayman
-          
-          header_pages:
-            - index.md
-            - contributing.md
-            - security.md
-            - assessments/index.md
-            - components/index.md
-            - guidelines/index.md
-          EOF
+        run: make -B pages
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
-          source: ./docs
+          source: ./pages
           destination: ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

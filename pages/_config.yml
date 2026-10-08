@@ -1,0 +1,10 @@
+title: FinOps++
+description: Home of the Open Source FinOps++ Assessments
+theme: jekyll-theme-cayman
+header_pages:
+  - index.md
+  - contributing.md
+  - security.md
+  - assessments/index.md
+  - components/index.md
+  - guidelines/index.md
