@@ -8,3 +8,7 @@ ods:
 # create the github pages for the project
 pages:
 	bash pages/create.sh
+
+.PHONE: serve-pages
+serve-pages: pages
+	bundle exec jekyll serve --source pages destination _site
