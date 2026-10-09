@@ -20,6 +20,8 @@ jobs:
         uses: actions/checkout@v7
       - name: Construct docs
         run: make -B pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
