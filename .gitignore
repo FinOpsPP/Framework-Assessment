@@ -20,6 +20,11 @@ tools/scratch/*.xlsx
 
 # Ignore local pages testing
 pages/**/*.md
-!pages/assessments/index.md
-!pages/components/index.md
-!pages/guidelines/index.md
+pages/**/*.yaml
+pages/**/*.toml
+pages/**/*.xlsx
+!pages/**/index.md
+Gemfile.lock
+_site/
+.bundle/
+vendor/
