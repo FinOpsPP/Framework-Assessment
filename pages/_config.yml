@@ -1,18 +1,18 @@
 title: FinOps++
 description: Home of the Open Source FinOps++ Assessments
 theme: jekyll-theme-cayman
-baseurl: ''
+baseurl: '/Framework-Assessment'
 nav_links:
   - title: Home
-    url: /index.html
+    url: /Framework-Assessment/index.html
   - title: Assessments
-    url: /assessments/
+    url: /Framework-Assessment/assessments/
   - title: Components
-    url: /components/
+    url: /Framework-Assessment/components/
   - title: Specifications
-    url: /specifications/
+    url: /Framework-Assessment/specifications/
   - title: Guidelines
-    url: /guidelines/
+    url: /Framework-Assessment/guidelines/
 exclude:
   - create.sh
   - "**/.gitkeep"
