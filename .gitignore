@@ -19,11 +19,10 @@ tools/scratch/*.json
 tools/scratch/*.xlsx
 
 # Ignore local pages testing
-pages/**/*.md
+pages/*.md
 pages/**/*.yaml
 pages/**/*.toml
 pages/**/*.xlsx
-!pages/**/index.md
 Gemfile.lock
 _site/
 .bundle/

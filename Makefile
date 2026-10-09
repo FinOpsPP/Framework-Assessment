@@ -11,4 +11,4 @@ pages:
 
 .PHONE: serve-pages
 serve-pages: pages
-	bundle exec jekyll serve --source pages destination _site
+	bundle exec jekyll serve --source pages destination _site --baseurl "/Framework-Assessment"
