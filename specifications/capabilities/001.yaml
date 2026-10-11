@@ -20,7 +20,7 @@ Metadata:
 Specification:
   ID: 1
   Title: Allocation
-  Description: >
+  Description: >-
      Define strategies to assign and share cost and usage using accounts,
       tags, labels, and other metadata, creating accountability among teams
       and projects within an organization.
