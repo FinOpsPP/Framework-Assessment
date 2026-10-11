@@ -20,7 +20,11 @@ Metadata:
 Specification:
   ID: 6
   Title: Governance, Policy & Risk
-  Description: null
+  Description: >
+     Establishing and evolving policies, controls, and governance mechanisms
+      to ensure that technology use across every FinOps Scope aligns with
+      business objectives, complies with regulatory requirements,
+      and mitigates financial and operational risk.
   Actions:
   - ID: 102
   - ID: 103
