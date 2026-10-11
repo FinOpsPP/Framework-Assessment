@@ -20,7 +20,10 @@ Metadata:
 Specification:
   ID: 2
   Title: Anomaly Management
-  Description: null
+  Description: >-
+     Detect, identify, alert and manage unexpected or un-forecasted technology cost
+      and usage irregularities in a timely manner to lower risk
+      and ensure cost-effective operations.
   Actions:
   - ID: 23
   - ID: 24

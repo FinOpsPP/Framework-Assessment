@@ -20,7 +20,13 @@ Metadata:
 Specification:
   ID: 3
   Title: Quantify Business Value
-  Description: null
+  Description: >-
+     This Domain connects usage with business value to ensure the impact
+      and value created for that usage is transparently within expectations.
+      Organizations map technology usage – with corresponding cost metrics
+      – to budgets, use historical information and future plans to forecast,
+      establish and measure KPIs and other performance indicators,
+      and perform benchmarking between teams and with other organizations.
   Capabilities:
   - ID: 4
   - ID: 5

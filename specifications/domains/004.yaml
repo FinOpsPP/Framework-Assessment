@@ -20,7 +20,12 @@ Metadata:
 Specification:
   ID: 4
   Title: Understand Usage & Cost
-  Description: null
+  Description: >-
+     Within this Domain, organizations work to gather all required information
+      about their technology costs, usage, and other metrics; normalize it across
+      data sources; define how it will be allocated among cost centers;
+      and define reporting to make data available for use by
+      all personas in this and in other Domains.
   Capabilities:
   - ID: 1
   - ID: 2
