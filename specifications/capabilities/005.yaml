@@ -20,7 +20,10 @@ Metadata:
 Specification:
   ID: 5
   Title: Budgeting
-  Description: null
+  Description: >
+     Strategic and ongoing process for setting limits, monitoring,
+      and managing technology spending, aligned with business objectives, to
+      ensure accountability and predictable financial outcomes for IT systems.
   Actions:
   - ID: 43
   - ID: 44
