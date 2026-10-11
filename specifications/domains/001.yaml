@@ -20,7 +20,8 @@ Metadata:
 Specification:
   ID: 1
   Title: Manage the FinOps Practice
-  Description: This Domain enables continuous improvement to change and align the entire organization – its people, processes and technology – to adopt FinOps and use technology in ways that create value for the company.
+  Description: |-
+- This Domain enables continuous improvement to change and align the entire organization – its people, processes and technology – to adopt FinOps and use technology in ways that create value for the company.
   Capabilities:
   - ID: 6
   - ID: 9
