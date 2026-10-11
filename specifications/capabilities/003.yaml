@@ -20,7 +20,13 @@ Metadata:
 Specification:
   ID: 3
   Title: Architecting & Workload Placement
-  Description: null
+  Description: >
+     Designing and modernizing solutions with cost awareness and efficiency
+      to maximize business value, while meeting performance, scalability, and
+      operational objectives. Evaluating and directing workload placement within
+      and across technology categories in a way that provides transparency to
+      cost, usage, and impact, while supporting operational objectives
+      and establishing or maintaining cost effectiveness.
   Actions:
   - ID: 61
   - ID: 62
