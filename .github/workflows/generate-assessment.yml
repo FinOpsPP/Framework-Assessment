@@ -34,7 +34,7 @@ jobs:
         python -m pip install -e .
     - name: Generate Assessments
       run: |
-        finopspp generate assessment --profile=${{ inputs.profile }}
+        finopspp generate assessment --profile="${{ inputs.profile }}"
     - name: Check for changes
       run: |
         if git diff --exit-code; then
