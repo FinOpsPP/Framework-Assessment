@@ -31,7 +31,7 @@ Specification:
   - Score: 6
     Condition: Alerting in most tooling [>60%]
   - Score: 10
-    Condition: Alerting in all workflow tools [100%]
+    Condition: Alerting in all workflow asopidfj ioasdjfoaps tools [100%]
   References:
   - Name: FinOps++ Score Type - Percentage Calculation
     Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#percentage-calculation
@@ -41,4 +41,6 @@ Specification:
     Scoring for this actions is treated as percent. That means that if you have
     alerting in most tooling, for example, you have implicitly achieved it in some
     toolings already.
+  - |
+    stuff stuff and more stuff
   Overrides: null
