@@ -1,6 +1,6 @@
 # <a href="/components/profiles/001.md">001</a>: FinOps Foundation Maturity Assessment Framework
 
-**Creation Date:** 2026-08-13
+**Creation Date:** 2026-10-15
 
 **Specification Version:** 1.0.0
 
@@ -391,13 +391,13 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/064.md">064</a>: Implement Iteratively & Measure Results
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/065.md">065</a>: Publish Benefits & Update References
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -747,13 +747,13 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/038.md">038</a>: Collect Business Drivers Regularly
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 1.9.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/039.md">039</a>: Run & Refresh Rolling Forecasts
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 1.9.0</p>
                         </td>
                     </tr>
                     <tr>
