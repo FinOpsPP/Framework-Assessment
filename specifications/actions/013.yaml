@@ -50,7 +50,7 @@ Specification:
     Condition: Near 100%
   References:
   - Name: FinOps++ Score Type - Percentage Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#percentage-calculation
+    Link: /guidelines/scoring.md#percentage-calculation
     Comment: a kind of threshold type where the steps are specifically precentages leading to 100%.
   Supplemental Guidance:
   - null

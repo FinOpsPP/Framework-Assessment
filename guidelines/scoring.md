@@ -36,7 +36,7 @@ This includes a choice between either a yes or no, has or has not, defined or un
 We want to use this type sparingly because we would rather give more details on how to achieve competency.
 But it is a good first step if you are looking to contribute to the assessment. And typically an explicit formula would not be required.
 
-**Example**: From action [079](https://github.com/FinOpsPP/Framework-Assessment/blob/main/components/actions/079.md)
+**Example**: From action [079](/components/actions/079.md)
 
 This action states to "Document commitment strategy (RIs/Savings Plans/CUDs) and guardrails."
 While the documentation would look different for every organization, the existence of a document is objective.
@@ -68,7 +68,7 @@ These are not comprehensive tasks for an action, but represent tasks that lead t
 These tasks are unordered, meaning that different orgs can achieve the same score for the action via different tasks.
 This is because there isn't just one way to reach maturity, and we wanted to leave flexibility for teams to choose their own path to get there.
 
-**Example**: From action [034](https://github.com/FinOpsPP/Framework-Assessment/blob/main/components/actions/034.md)
+**Example**: From action [034](/components/actions/034.md)
 
 This action falls under the Planning and Estimating Capability and is titled: "Establish Scenario Decision Process."
 For this score, we have a bucket of three items to complete to reach a high maturity.
@@ -184,7 +184,7 @@ The scoring values are still based on the Ceil function mentioned in the bucket 
 
 This is a sequential process that does not require one to meet all previous sequencies to achieve a higher maturity score.
 
-**Example**: From action [039](https://github.com/FinOpsPP/Framework-Assessment/blob/main/components/actions/039.md)
+**Example**: From action [039](/components/actions/039.md)
 
 This action lists a series of time resolutions. It would not make sense to require one to make remake a forcast bi-weekly if they already were retraining the forcast model instantaneously when new data was available. So this one becomes a series of threshold that an organization can meet in order to earn a higher score.
 
@@ -220,7 +220,7 @@ This scoring method is straightforward. This score applies when there is a clear
 For example, percent of resources that are deployed with a mandatory tag, or percent of teams complying with a policy, etc.
 It can be thought of as a sub-type of the threshold process since, very similarly to that score type, you are able achieve a higher score without having to first go through all previous scores in the sequence. The real difference is that this scoring types works well with pure mathematical formulas, whereas the threshold process typically requires no formula at all.
 
-**Example**: From action [010](https://github.com/FinOpsPP/Framework-Assessment/blob/main/components/actions/010.md)
+**Example**: From action [010](/components/actions/010.md)
 
 This action falls under the Allcoation Capability and is titled: "Identify Shared Costs & Rules"
 Here, we would like to determine our apportionment rules for shared costs, and document progress towards full allocation.

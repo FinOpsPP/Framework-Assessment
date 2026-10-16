@@ -32,7 +32,7 @@ Specification:
     Condition: Manual review and automated trend detection
   References:
   - Name: FinOps++ Score Type - Sequential Process
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#sequential-process
+    Link: /guidelines/scoring.md#sequential-process
     Comment: can be used whenever the steps in an action need to be completed in a certain order.
   Supplemental Guidance:
   - |-
