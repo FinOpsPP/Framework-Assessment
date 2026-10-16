@@ -24,7 +24,7 @@ pages_link_converter() {
     # Add repo-name prefix to relative links
     sed -i '/\/Framework-Assessment\//! s|\(/assessments\)|'"${REPO_NAME}"'\1|g' "$file"
     sed -i '/\/Framework-Assessment\//! s|\(/components\)|'"${REPO_NAME}"'\1|g' "$file"
-    sed -i '/\/Framework-Assessmen\//! s|\(/guidelines\)|'"${REPO_NAME}"'\1|g' "$file"
+    sed -i '/\/Framework-Assessment\//! s|\(/guidelines\)|'"${REPO_NAME}"'\1|g' "$file"
     sed -i '/\/Framework-Assessment\//! s|\(/specifications\)|'"${REPO_NAME}"'\1|g' "$file"
     sed -i 's|\(/tools\)|'"https://github.com/FinOpsPP/Framework-Assessment/tree/main"'\1|g' "$file"
     sed -i 's|\(/pyproject\)|'"https://github.com/FinOpsPP/Framework-Assessment/tree/main"'\1|g' "$file"
