@@ -1,6 +1,6 @@
 # Assessment Design Guide
 
-Helping FinOps practitioners build a roadmap to maturity by standardizing the specific actions done by mature practices and FinOps Professionals.
+FinOps++ is an open assessment framework that measures how consistently a FinOps practice performs the specific actions that turn technology spend into business value. We break each FinOps Foundation capability into discrete actions and score each against an explicit formula, so practitioners spend less time debating what a score means and more time closing the gaps it reveals. The actions are organized the way the NIST Cybersecurity Framework organizes security controls, so that cost governance can be assessed and reported with the rigor an organization already applies to security.
 
 ## Components
 
