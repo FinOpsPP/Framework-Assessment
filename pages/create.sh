@@ -16,14 +16,19 @@ pages_link_converter() {
     local file="$1"
     
     # Replace .md with .html
-    sed -i 's/\.md\(#[^)">]*\)\?\([">]\)/\.html\1\2/g' "$file"
+    sed -i '/\/tools/! { /\/Framework-Assessment\//! s/\.md/\.html/g; }' "$file"
+
+    # Replace README with index
+    sed -i '/\/tools/! s/README/index/g' "$file"
     
     # Add repo-name prefix to relative links
-    sed -i 's|\(/assessments\)|'"${REPO_NAME}"'\1|g' "$file"
-    sed -i 's|\(/components\)|'"${REPO_NAME}"'\1|g' "$file"
-    sed -i 's|\(/guidelines\)|'"${REPO_NAME}"'\1|g' "$file"
-    sed -i 's|\(/specifications\)|'"${REPO_NAME}"'\1|g' "$file"
+    sed -i '/\/Framework-Assessment\//! s|\(/assessments\)|'"${REPO_NAME}"'\1|g' "$file"
+    sed -i '/\/Framework-Assessment\//! s|\(/components\)|'"${REPO_NAME}"'\1|g' "$file"
+    sed -i '/\/Framework-Assessmen\//! s|\(/guidelines\)|'"${REPO_NAME}"'\1|g' "$file"
+    sed -i '/\/Framework-Assessment\//! s|\(/specifications\)|'"${REPO_NAME}"'\1|g' "$file"
     sed -i 's|\(/tools\)|'"https://github.com/FinOpsPP/Framework-Assessment/tree/main"'\1|g' "$file"
+    sed -i 's|\(/pyproject\)|'"https://github.com/FinOpsPP/Framework-Assessment/tree/main"'\1|g' "$file"
+    sed -i 's|\(/Makefile\)|'"https://github.com/FinOpsPP/Framework-Assessment/tree/main"'\1|g' "$file"
 }
 
 pages_link_converter pages/index.md

@@ -43,7 +43,7 @@ finopspp generate components --specification-type=<desired-spec-type> <spec-id-o
 > [!NOTE]
 > The serialization number for a markdown file uses the schema `xxx.md`, where `xxx` will match the serialization number of the yaml specification for the profile or component.
 
-Using this command, you can generate a component markdown file for a specific specification ID, for a specific specification type. If you pass in `all`, you can generate the component markdown files for all specifications under a given type specific type. While passing `diff` will generate component markdown files for the specifications of a given type that have changed when compared to the `main` branch of the repository. This last option requires the `git` tool to be installed. For more on that please read the [Development](../guidelines/development.md) Guideline.
+Using this command, you can generate a component markdown file for a specific specification ID, for a specific specification type. If you pass in `all`, you can generate the component markdown files for all specifications under a given type specific type. While passing `diff` will generate component markdown files for the specifications of a given type that have changed when compared to the `main` branch of the repository. This last option requires the `git` tool to be installed. For more on that please read the [Development](/guidelines/development.md) Guideline.
 
 ## Specification commands
 

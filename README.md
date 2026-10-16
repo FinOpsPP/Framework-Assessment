@@ -40,11 +40,13 @@ These specifications can be found in the [specifications/](/specifications/) dir
 > [!NOTE]
 > The serialization number for a file uses the schema `xxx.yaml` with enough `0`s before the ID to pad out the length of the file name to 3 digits.
 
-For more on schemas used for the different specification types, please check-out [specifications/README.md](./specifications/README.md).
+For more on schemas used for the different specification types, please check-out [specifications/README.md](/specifications/README.md).
 
 ### Tools
 
-Assisting in the ideas that motivated the creation of the specifications, such as ease of reproducibility and sub-divisibility, the [tools/](/tools/) directory was setup to house all the custom programmed scripts and tools used to maintain the specifications. The main "product" of this directory being the `finopspp` CLI tools. You can read more about this tool, different commands that it includes, and how to get started with it in [CLI Tool](/tools/README.md#cli-tool) and [Developing the FinOpsPP CLI Tool](/guidelines/development.md#developing-the-finopspp-cli-tool).
+Assisting in the ideas that motivated the creation of the specifications, such as ease of reproducibility and sub-divisibility, the [tools/](/tools/) directory was setup to house all the custom programmed scripts and tools used to maintain the specifications.
+The main "product" of this directory being the `finopspp` CLI tools. You can read more about this tool, different commands that it includes, and how to get started with it in [CLI Tool](/tools/README.md#cli-tool) and
+[Developing the FinOpsPP CLI Tool](/guidelines/development.md#developing-the-finopspp-cli-tool).
 
 ### Guidelines
 
