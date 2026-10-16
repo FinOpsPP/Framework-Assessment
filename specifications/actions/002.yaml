@@ -36,7 +36,7 @@ Specification:
     pieces from those sources that are useful for FinOps.
   - For example, if observability data about usage or performance metrics already exist in a
     database, then consider creating specific views or queries from the database that FinOps can
-    reference. 
+    reference.
   - For cloud billing data, often times the vendors have their own visibility tools, but you can't
     always bring all your data into that one place. In this scenario, it is useful to export the
     billing and usage reports into files that can be conveniently ingested into your data tooling.
