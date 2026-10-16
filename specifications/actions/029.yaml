@@ -63,7 +63,7 @@ Specification:
       A useful companion signal. A detection rate that drops after a tuning change is either a real
       improvement or a rise in missed anomalies, and only the second measure here separates the two.
   - Name: FinOps++ Score Type - Multiple Weighted Bucket
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md##multiple-weighted-buckets
+    Link: /guidelines/scoring.md##multiple-weighted-buckets
     Comment: an even more granular version of bucket, where steps are weight by importance to an action.
   Supplemental Guidance:
   - |
