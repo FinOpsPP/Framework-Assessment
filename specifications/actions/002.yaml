@@ -28,19 +28,22 @@ Specification:
     Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
     Comment: a generic "calculation" type used as the default score type when creating a new score.
   Supplemental Guidance:
-  - |-
+  - |
     Once all the relevant data sources have been identified, FinOps and Stakeholders will need a
     place to store and reference this data. A lot of this data will already be stored somewhere
     but not in a way that easy for FinOps to make use of. Thus, FinOps needs tooling to be
     established so that all the identified data sources can be brought together, and only the
     pieces from those sources that are useful for FinOps.
-  - For example, if observability data about usage or performance metrics already exist in a
+  - |
+    For example, if observability data about usage or performance metrics already exist in a
     database, then consider creating specific views or queries from the database that FinOps can
     reference.
-  - For cloud billing data, often times the vendors have their own visibility tools, but you can't
+  - |
+    For cloud billing data, often times the vendors have their own visibility tools, but you can't
     always bring all your data into that one place. In this scenario, it is useful to export the
     billing and usage reports into files that can be conveniently ingested into your data tooling.
-  - The actual tooling used should be able to provide visibility into the raw billing data, the
+  - |-
+    The actual tooling used should be able to provide visibility into the raw billing data, the
     usage leading to charges, any business or telemetry data you have, etc. This visibility can
     include charts, graphs, tables, etc. with the capability to customize the data shown based on
     the use case, bring together disparate data sources into calculated metrics that can then be
