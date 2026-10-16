@@ -28,5 +28,15 @@ Specification:
     Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
     Comment: a generic "calculation" type used as the default score type when creating a new score.
   Supplemental Guidance:
-  - null
+  - |
+    This exercise is around identifying all of the data sources needed to create the visibility
+    required by the FinOps team and leadership. To start, most teams identify which cloud accounts
+    they want to have visibility into. Other teams also add on SaaS consumption as another
+    data source to ingest.
+  - |-
+    In order to gain competency in other capabilities, a team might decide to pull in observability
+    data to pair with the cost data. This can help teams to develop KPIs they may want to track
+    such as cost per performance. When moving towards unit economics, a team may pull in internal
+    business data. For example, if tracking cost per customer for a new product, you can use both
+    cost data and customer onboarding data to calculate this number and track it over time.
   Overrides: null
