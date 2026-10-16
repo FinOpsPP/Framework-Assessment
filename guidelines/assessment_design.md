@@ -1,17 +1,14 @@
 # Assessment Design Guide
 
-* Mission statement type stuff?
+Helping FinOps practitioners build a roadmap to maturity by standardizing the specific actions done by mature practices and FinOps Professionals.
 
 ## Components
 
-* What is required in a component (or whatever we decide to call it) doc?
-* What is optional?
-* How is it formatted?
+Our framework takes the current FinOps Foundation framework and breaks each capability into specific actions representing behaviors done to accomplish proficiency. These actions can be done at different levels of maturity. Each action is made up of a scoring formula, a score breakdown, supplemental guidance, and references to assist in the scoring process.
 
 ## Framework
 
-* Define content and align it with the goals of this project.
-* How is the score determined?
+The FinOps++ framework provides a more granular assessment of FinOps practices and scopes with specific formulas for calculating objective scores. We include the ability to adjust weights before aggregation for a customized assessment scope that can still be benchmarked against others for accurate comparisons.
 
 ## Accessibility
 
