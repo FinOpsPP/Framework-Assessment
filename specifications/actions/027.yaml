@@ -1,7 +1,7 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
+  Modified: '2026-09-03'
   Version: 1.0.0
   Status: Accepted
   Approvers:
@@ -16,17 +16,66 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Denominator: anomalies recorded with a true positive disposition during the review period. Items 1
+    through 4 are met when the stated field is populated on 90% or more of those records.
+
+    1. Owner and due date (each record carries a named accountable owner and an analysis due date)
+    2. Root cause recorded (each record carries a root cause entry naming the change that triggered it)
+    3. Cause classified (each root cause assigned exactly one category from a published, fixed
+       category list)
+    4. Remediation recorded (each record carries a remediation action, its completion date, and the
+       measured spend delta over the period following the fix)
+    5. Preventive control registered (every cause category observed 3 or more times in the trailing
+       12 months has a linked policy, guardrail, budget, or detection rule)
+
+    10*Ceil(x/5)
+  Score Type: sequential
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: item 1 completed
+  - Score: 4
+    Condition: items 1-2 completed
+  - Score: 6
+    Condition: items 1-3 completed
+  - Score: 8
+    Condition: items 1-4 completed
   - Score: 10
-    Condition: Completed
+    Condition: items 1-5 completed
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: NIST CSF 2.0 - RS.AN-03
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Analysis is performed to establish what has taken place during an incident and the root cause of the
+      incident." Item 2 is the FinOps reading of that outcome.
+  - Name: NIST CSF 2.0 - ID.IM-03
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Improvements are identified from execution of operational processes, procedures, and activities."
+      Item 5 is where anomaly response stops being reactive and starts changing the control environment.
+  - Name: FinOps KPI - Anomaly-Detected Cost Avoidance
+    Link: https://www.finops.org/kpi/anomaly-detected-cost-avoidance/
+    Comment: the verified effect on spend called for in item 4 is what this KPI reports.
+  - Name: FinOps++ Score Type - Sequential Process
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#sequential-process
+    Comment: can be used whenever the steps in an action need to be completed in a certain order.
   Supplemental Guidance:
-  - null
+  - |
+    Each item depends on the one before it, so this is scored sequentially rather than as a bucket. An
+    unowned anomaly is not analyzed, an undiagnosed anomaly cannot be classified, and a cause that was
+    never classified cannot be shown to recur.
+  - |
+    A root cause taxonomy does not need to be elaborate to earn item 3. Categories such as deployment change,
+    rate or commitment change, organic usage growth, allocation or tagging defect, and third party change are
+    enough to make the counts useful.
+  - |
+    Item 4 scores the recorded remediation and its measured spend delta, because those are the parts an
+    assessor can verify. Whether a fix addressed the cause or only the symptom is a judgment the assessment
+    does not adjudicate. It shows up instead in the trailing count in item 5: a symptom fix leaves the cause
+    category recurring, which is what pulls the category over the threshold of 3.
+  - |-
+    Suppressing an alert, raising a threshold, or granting a standing exception is not a remediation action.
+    Threshold changes are scored separately by action 29, where they are governed rather than ad hoc.
   Overrides: null

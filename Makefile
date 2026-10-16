@@ -4,3 +4,11 @@
 # in linux envs without Office applications. It is assumed only assessment files are .xlsx
 ods:
 	find . -type f -name "*.xlsx" -execdir libreoffice --headless --convert-to ods '{}' \;
+
+# create the github pages for the project
+pages:
+	bash pages/create.sh
+
+.PHONE: serve-pages
+serve-pages: pages
+	bundle exec jekyll serve --source pages destination _site --baseurl "/Framework-Assessment"

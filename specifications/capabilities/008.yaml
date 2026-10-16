@@ -20,7 +20,10 @@ Metadata:
 Specification:
   ID: 8
   Title: Data Ingestion
-  Description: null
+  Description: >-
+     Collect, transfer, store, and normalize data from various sources,
+      with a goal of creating a complete, contextual dataset of usage
+      and cost data available for analysis.
   Actions:
   - ID: 1
   - ID: 2

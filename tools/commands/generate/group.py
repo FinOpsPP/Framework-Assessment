@@ -147,9 +147,13 @@ def documents():
     type=click.Choice(list(utils.SpecSubspecMap.keys())),
     help='Which specification type to generate. Defaults to "profiles"'
 )
-def components(specification_type):
-    """Generate component markdown files from their specifications"""
-    spec_files = files(f'finopspp.specifications.{specification_type}')
+@click.argument('selection', type=utils.AllDiffOrIntRangeParamType())
+def components(selection, specification_type):
+    """Generate component markdown files from their specifications
+
+    NOTE: If you are using "diff" as the option, you must have git installed.
+    """
+    specs_files = files(f'finopspp.specifications.{specification_type}')
 
     # get subspec to help fill in names and other important pieces of
     # information from the sub specification.
@@ -159,7 +163,7 @@ def components(specification_type):
         subspec_files = files(f'finopspp.specifications.{subspec_type}')
 
     # iterate over the specification files and generate markdown files
-    for spec in spec_files.iterdir():
+    for spec in utils.all_diff_id_helper(selection, specs_files, specification_type):
         number, _ = os.path.splitext(spec.name)
         # skip over example 0 specs
         if not int(number):
@@ -168,7 +172,7 @@ def components(specification_type):
         # all added fields to a specification should be in lowercase!
         # to help differentiate them against the uppercase fields in
         # the specifications itself.
-        path = spec_files.joinpath(spec.name)
+        path = specs_files.joinpath(spec.name)
         with open(path, 'r', encoding='utf-8') as yaml_file:
             full_yaml = yaml.safe_load(yaml_file)
             spec = full_yaml.get('Specification')
