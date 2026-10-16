@@ -37,10 +37,10 @@ Specification:
   - For example, if observability data about usage or performance metrics already exist in a
     database, then consider creating specific views or queries from the database that FinOps can
     reference. 
-  - For cloud biling data, often times the vendors have their own visibility tools, but you can't
+  - For cloud billing data, often times the vendors have their own visibility tools, but you can't
     always bring all your data into that one place. In this scenario, it is useful to export the
-    bililng and usage reports into files that can be conveniently ingested into your data tooling.
-  - The actual tooling used should be able to provide visibility into the raw bililng data, the
+    billing and usage reports into files that can be conveniently ingested into your data tooling.
+  - The actual tooling used should be able to provide visibility into the raw billing data, the
     usage leading to charges, any business or telemetry data you have, etc. This visibility can
     include charts, graphs, tables, etc. with the capability to customize the data shown based on
     the use case, bring together disparate data sources into calculated metrics that can then be
