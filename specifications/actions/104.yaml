@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
-  Version: 1.0.0
+  Modified: '2026-10-17'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -11,22 +11,72 @@ Metadata:
 Specification:
   ID: 104
   Title: Educate Stakeholders on Policy
-  Description: Enable/educate stakeholders on policy expectations and exceptions.
+  Description: Enable stakeholders on policy expectations, exceptions, and who accepts the risk.
   Slug: 104-educate-policy
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: every policy in force during the review period, and the personas each one binds.
+
+    * Expectations delivered (each policy has been communicated to the personas it binds, not only to the
+      FinOps team)
+    * Exception path communicated (the personas a policy binds know how to request an exception, who
+      decides, and how long one lasts)
+    * Risk acceptance recorded (where a policy is waived or a breach is tolerated, the leader accepting
+      that risk is named in the record)
+    * Handover covered (a new owner receives the policies that bind their scope when they take ownership)
+
+    10*Ceil(x/4)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 items completed
+  - Score: 8
+    Condition: 3 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 4 items completed
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: NIST CSF 2.0 - GV.RR-02
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Roles, responsibilities, and authorities related to cybersecurity risk management are established,
+      communicated, understood, and enforced." Items 1 and 3 are the communicated and understood parts.
+      Establishment is scored by action 102 and enforcement by action 103.
+  - Name: NIST CSF 2.0 - ID.RA-07
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Changes and exceptions are managed, assessed for risk impact, recorded, and tracked." Item 2 is the
+      FinOps reading. An exception nobody knows how to request becomes an exception taken without asking.
+  - Name: FinOps Framework - Governance, Policy & Risk Capability
+    Link: https://www.finops.org/framework/capabilities/policy-governance/
+    Comment: |-
+      The capability asks Leadership to accept accountability for risk decisions within their scope of
+      authority, which item 3 makes checkable, and asks Product to apply policies in planning, which only
+      works once item 1 is met.
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    Item 1 is met by reaching the people a policy binds, not by volume of communication. A policy published
+    only where the FinOps team reads it has not been communicated, however well written it is.
+  - |
+    The Framework asks leaders to accept accountability for risk decisions within their authority, and a
+    waiver with no named acceptor is a risk the organization is carrying without knowing whose it is.
+    Recording the name is also what makes the waiver reviewable later.
+  - |
+    No coverage rate applies. Policies and the personas they bind are both short lists, so an assessor
+    checks the pairs rather than computing a percentage.
+  - |
+    Action 101 in the FinOps Education & Enablement capability scores training breadth and whether content
+    is refreshed. This action is narrower, covering only what a policy requires of the people it binds. A
+    practice can run excellent general enablement and still fail every item here.
+  - |-
+    Item 4 looks like administration and is where most practices lose the score. Ownership changes far more
+    often than policy does, and a policy set communicated once decays as the people it bound move on.
   Overrides: null
