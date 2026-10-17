@@ -1,17 +1,14 @@
 # Assessment Design Guide
 
-* Mission statement type stuff?
+FinOps++ is an open assessment framework that measures how consistently a FinOps practice performs the specific actions that turn technology spend into business value. We break each FinOps Foundation capability into discrete actions and score each against an explicit formula, so practitioners spend less time debating what a score means and more time closing the gaps it reveals. The actions are organized the way the NIST Cybersecurity Framework organizes security controls, so that cost governance can be assessed and reported with the rigor an organization already applies to security.
 
 ## Components
 
-* What is required in a component (or whatever we decide to call it) doc?
-* What is optional?
-* How is it formatted?
+Our framework takes the current FinOps Foundation framework and breaks each capability into specific actions representing behaviors done to accomplish proficiency. These actions can be done at different levels of maturity. Each action is made up of a scoring formula, a score breakdown, supplemental guidance, and references to assist in the scoring process.
 
 ## Framework
 
-* Define content and align it with the goals of this project.
-* How is the score determined?
+The FinOps++ framework provides a more granular assessment of FinOps practices and scopes with specific formulas for calculating objective scores. We include the ability to adjust weights before aggregation for a customized assessment scope that can still be benchmarked against others for accurate comparisons.
 
 ## Accessibility
 
