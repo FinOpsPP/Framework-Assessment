@@ -1,6 +1,6 @@
 # <a href="/components/profiles/001.md">001</a>: FinOps Foundation Maturity Assessment Framework
 
-**Creation Date:** 2026-10-15
+**Creation Date:** 2026-10-17
 
 **Specification Version:** 1.0.0
 
@@ -30,20 +30,20 @@ Classic profile featuring controls provided by the finops foundation
                 <table style="table-layout: fixed;">
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/102.md">102</a>: Draft Cloud Financial Policies
-                        <p>Specification Version: 1.0.0</p>
+                        <a href="/components/actions/102.md">102</a>: Define Technology Financial Policies
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/103.md">103</a>: Publish Guidelines & Guardrails
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/104.md">104</a>: Educate Stakeholders on Policy
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -54,8 +54,8 @@ Classic profile featuring controls provided by the finops foundation
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/106.md">106</a>: Iterate Policies Based on Feedback
-                        <p>Specification Version: 1.0.0</p>
+                        <a href="/components/actions/106.md">106</a>: Iterate Policies on Outcomes & Risk
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                 </table>
@@ -559,19 +559,19 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/081.md">081</a>: Purchase Commitments Regularly
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/082.md">082</a>: Track ROI & Notify Owners
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/083.md">083</a>: Allocate Upfront Costs Transparently
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -741,7 +741,7 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/037.md">037</a>: Establish Forecasting Approach
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -931,7 +931,7 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/015.md">015</a>: Iterate Strategies & Communicate
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                 </table>
@@ -1022,6 +1022,12 @@ Classic profile featuring controls provided by the finops foundation
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
+                        <a href="/components/actions/135.md">135</a>: Define Data Ingestion Requirements
+                        <p>Specification Version: 1.6.1</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/005.md">005</a>: Document Normalization Rules
                         <p>Specification Version: 1.0.0</p>
                         </td>
@@ -1042,12 +1048,6 @@ Classic profile featuring controls provided by the finops foundation
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/008.md">008</a>: Optimize Pipelines for Timeliness
                         <p>Specification Version: 1.0.0</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
-                        <a href="/components/actions/135.md">135</a>: Define Data Ingestion Requirements
-                        <p>Specification Version: 1.6.1</p>
                         </td>
                     </tr>
                 </table>
