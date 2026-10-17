@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
-  Version: 1.0.0
+  Modified: '2026-10-17'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,68 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: every commitment held during the review period. These are few enough to enumerate, so
+    items are assessed against each commitment rather than as a coverage rate.
+
+    * Amortized view published (commitment cost is reported spread across the commitment term rather than
+      landing in the month it is invoiced)
+    * Allocation rule documented (how the upfront amount and the remaining term charges reach the teams
+      whose usage the commitment covers, including the treatment of unused commitment)
+    * Benefit visible to the team (a team can see the discounted rate it received, not only an aggregate
+      saving for the organization)
+    * Unallocated commitment cost reported (the amount no team receives is reported in currency for the
+      period)
+
+    10*Ceil(x/4)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 items completed
+  - Score: 8
+    Condition: 3 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 4 items completed
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: /guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: FinOps Framework - Rate Optimization Capability
+    Link: https://www.finops.org/framework/capabilities/rate-optimization/
+    Comment: |-
+      The capability asks Finance to model and support decision making with respect to prepayment for
+      discounts, and its Run tier expects discounts to be allocated automatically. The Framework says little
+      else about prepaid treatment, so items 1, 3 and 4 go further than it does.
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order, though amortization usually comes
+    first because the other three are hard to explain to a team while a year of commitment lands in one
+    month's invoice.
+  - |
+    No coverage rate applies. A commitment portfolio is a short list, so an assessor checks each one. A
+    percentage would round hard on a list of two.
+  - |
+    This action is measured over every commitment, not only the ones with an upfront payment. Paying
+    nothing upfront is a legitimate way to preserve cash, and a practice that chooses it should not be
+    unable to score. Item 1 asks for cost reported across the term rather than in the month it is
+    invoiced, so an all-monthly portfolio satisfies it as soon as that reporting exists, because monthly
+    charges already fall in the months they cover. The item bites when a year of commitment lands in one
+    invoice and nobody spreads it.
+  - |
+    Item 4 is the one teams skip. Reporting the unallocated amount is uncomfortable because it names the
+    cost nobody owns, and that is exactly why it belongs in the score. A practice that allocates 60% of
+    commitment cost and reports the other 40% is in better shape than one that allocates 60% and says
+    nothing.
+  - |
+    The word "appropriately" in this action's description is not scored, because no two assessors would
+    read it the same way. What is scored is whether the rule is written down and whether the amount it
+    fails to place is reported.
+  - |-
+    This action covers the commitment slice only. Action 10 sets shared cost apportionment rules across the
+    whole practice and action 13 measures unallocated cost in general, both in the Allocation capability.
+    Item 4 here is deliberately narrower than action 13, counting only commitment cost.
   Overrides: null
