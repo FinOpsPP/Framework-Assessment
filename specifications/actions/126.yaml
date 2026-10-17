@@ -46,7 +46,7 @@ Specification:
     Condition: Optimizing, Score Range (45-52)
   References:
   - Name: FinOps++ Score Type - Multiple Weighted Bucket
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md##multiple-weighted-buckets
+    Link: /guidelines/scoring.md##multiple-weighted-buckets
     Comment: an even more granular version of bucket, where steps are weight by importance to an action.
   Supplemental Guidance:
   - CRAWL Partial environment coverage, billing data only, no tag configuration.
