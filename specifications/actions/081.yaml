@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
-  Version: 1.0.0
+  Modified: '2026-10-17'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,109 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    * Weighted sum
+      Effective savings rate (score x4),
+      Commitment coverage (score x3),
+      Purchase cadence (score x2),
+      Purchase criteria (score x1).
+      Max raw (50)
+
+    * Effective savings rate achieved on the portfolio, net of unused commitment, scored as a share of
+      the rate the portfolio's own commitment terms make available
+      (expected rate = 25% + 7.5% x (weighted-average commitment term in years - 1), so one-year terms
+      expect 25%, two-year 32.5%, and three-year 40%)
+      (0=Not measured, 1<50%, 2=50-69%, 3=70-84%, 4=85-99%, 5=100% or higher)
+    * Share of eligible usage covered by a commitment over the review period
+      (0=Not measured, 1<25%, 2=25-49%, 3=50-69%, 4=70-84%, 5=85% or higher)
+    * How often commitments are purchased rather than left to renew in bulk
+      (0=None purchased, 1=One-off, 2=Annual, 3=Quarterly, 4=Monthly or more often,
+      5=Purchases triggered automatically by coverage and utilization reporting)
+    * Which numeric tests a purchase must pass before approval
+      (0=None, 1=A savings target stated informally, 2=Savings per dollar of commitment recorded,
+      3=Break-even window also recorded, 4=Expected usage life recorded and the term justified against it,
+      5=All three applied to each decision and the portfolio rebalanced against realized usage)
+
+    * Output Range (0-50)
+  Score Type: multi_bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: Low Maturity, Score Range (0-14)
+  - Score: 4
+    Condition: Developing, Score Range (15-30)
+  - Score: 7
+    Condition: Established, Score Range (31-42)
   - Score: 10
-    Condition: Completed
+    Condition: Optimizing, Score Range (43-50)
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: NIST CSF 2.0 - GV.RM-02
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Risk appetite and risk tolerance statements are established, communicated, and maintained." Buying a
+      commitment is a risk appetite decision, trading flexibility for a lower rate. The savings threshold
+      and the break-even window in the purchase criteria are the tolerance statements.
+  - Name: FinOps Framework - Rate Optimization Capability
+    Link: https://www.finops.org/framework/capabilities/rate-optimization/
+    Comment: |-
+      Supplies the numbers used in the bands: a utilization upper-waterline around 80% for steady-state
+      usage, at least 90% savings per dollar of commitment, a break-even within 9 months, and purchases
+      spread over the year rather than bought in bulk.
+  - Name: FinOps++ Score Type - Multiple Weighted Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md##multiple-weighted-buckets
+    Comment: an even more granular version of bucket, where steps are weight by importance to an action.
   Supplemental Guidance:
-  - Example ~80%+
+  - |
+    CRAWL (0-14) Purchases default to on-demand or to whatever was bought last time. Nobody computes a
+    savings rate, so nobody knows whether the last purchase returned anything.
+  - |
+    WALK (15-30) Savings rate and coverage are both measured and purchases happen on a schedule, but the
+    numbers are reported after the fact rather than used to decide the next purchase.
+  - |
+    RUN (31-42) The portfolio captures most of the savings its terms allow, coverage reaches the bulk of
+    eligible usage, purchases happen monthly or more often, and savings per dollar, break-even and
+    expected usage life are all recorded against each decision.
+  - |
+    FLY (43-50) Purchases are triggered automatically by coverage and utilization reporting rather than
+    by a person watching a dashboard, and the portfolio is rebalanced against realized usage, so a
+    commitment that stops matching demand gets corrected rather than waited out.
+  - |
+    Utilization is not scored on its own, and this is deliberate. Commitment waste is acceptable when the
+    savings justify it. A portfolio running at 70% utilization can beat one at 98% if it covers far more
+    usage and returns more money, and a practice chasing a high utilization number will get there by
+    buying less. Effective savings rate already nets the unused commitment out, which is why it carries
+    the heaviest weight.
+  - |
+    Coverage is weighted second as the counterweight. A tiny, perfectly used portfolio can post a strong
+    savings rate while most of the bill still pays on-demand rates, and coverage is what exposes that.
+    The two numbers together say whether the portfolio is both well sized and well used.
+  - |
+    The savings rate is scored against what the portfolio's terms allow, not against a flat percentage. A
+    one-year commitment yields far less discount than a three-year one, so a flat band would score a
+    practice on the length of its commitments rather than on how well it bought them. A team that buys
+    one-year terms because the usage genuinely ends in a year is doing the right thing and should not lose
+    points for it.
+  - |
+    Scoring the raw rate also rewarded the wrong decision. Under a flat band, buying three-year terms on a
+    workload being retired would raise the score while stranding commitment nobody can use. Normalizing
+    removes that incentive.
+  - |
+    Band 4 of the purchase criteria exists to catch a mistake the savings rate cannot show in time.
+    Buying a three-year term for a workload retiring in fifteen months scores well while the workload
+    still runs, because the commitment is fully used and the rate looks right. The damage lands in the
+    following period, once the usage ends and the commitment has nothing left to cover. Recording the
+    expected usage life and justifying the term against it is visible in the period the decision was
+    made, so it works as a leading indicator where the rate is a lagging one.
+  - |
+    The expected-rate formula is practitioner judgment rather than a published figure. The Framework gives
+    a floor of more than 10% return on investment but states no expected rate by term, so the 25% base and
+    the 7.5% per additional year come from observed commitment discounts. The coverage bands are ours for
+    the same reason. Treat both as a starting point for discussion.
+  - |
+    The word "healthy" in this action's description is not scored, because no two assessors would read it
+    the same way. Utilization still belongs in the conversation, and action 82 scores whether anyone is
+    told when it declines.
+  - |-
+    Action 79 scores the documented commitment strategy and its guardrails. Action 80 scores building the
+    repeatable coverage, utilization, and breakeven analysis. This action scores the purchasing that follows
+    from them, so a practice can hold a good strategy on paper and still score poorly here.
   Overrides: null
