@@ -46,7 +46,7 @@ Specification:
     Link: https://www.finops.org/framework/capabilities/unit-economics/
     Comment: Additional guidance from the FinOps Foundation about what unit economics entails with examples
   - Name: FinOps++ Score Type - Bucket
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
     Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
   - null

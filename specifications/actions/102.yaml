@@ -66,7 +66,7 @@ Specification:
   - |
     No coverage rate applies to the items. A policy set is a list you can print, so an assessor reads each
     policy. A percentage would round hard on a set of three.
-  - |
+  - |-
     This action scores the quality of the policy record, not how much of the estate the policies reach. A
     practice with one well-documented policy can score 10 here. Coverage is scored by action 103 through
     guardrail reach, and adherence by action 105.

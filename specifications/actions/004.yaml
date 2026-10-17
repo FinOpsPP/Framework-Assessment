@@ -40,11 +40,27 @@ Specification:
     Condition: Instant
   References:
   - Name: FinOps++ Score Type - Threshold Process
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#threshold-process
+    Link: /guidelines/scoring.md#threshold-process
     Comment: an evolution of sequential, where steps below a given level are complete when that level is reached.
   Supplemental Guidance:
-  - |-
+  - |
     Scoring on this action is treated as sequential. If you have granularity
     of say 2 days, for example, you have implicitly achieved all previous levels
     of granularity.
+  - |
+    Ideally, FinOps teams would have access to relevant spend and metric data instantly to make quick
+    decisions. Getting real-time data has a cost, as does ingesting data at very granular levels.
+    For example, to get data every second would require more processing and more storage costs to maintain.
+    Thus, it may not always be necessary to have that level of granularity. When it comes to cost data,
+    sometimes having granularity to the minute is useful when comparing with testing intervals of infrastructure.
+    But after the analysis is complete, the data could be aggregated into hourly numbers instead.
+  - |
+    On the other hand, sometimes the data is not granular enough. Perhaps combining cost data with customer
+    onboarding metrics becomes difficult because the metrics are only at a daily granularity. That then limits
+    the granularity of the unit economics you can calculate with the cost data.
+  - |-
+    When it comes to observability and business data, FinOps and supporting teams can decide on the granularity
+    that would be needed. But sometimes that granularity is limited by what vendors are able to provide.
+    Therefore, when scoring for this action, you can have a different score depending on the scope being
+    evaluated. Or for a broad evaluation, focus on the primary spend data source and its granularity level.
   Overrides: null
