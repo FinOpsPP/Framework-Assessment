@@ -40,10 +40,10 @@ Specification:
     Link: https://www.finops.org/wg/finops-assessment/#assessment-stage-1-introduction
     Comment: Target groups and testing parameters needed before starting any assessment
   - Name: FinOps++ Scoring
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md
+    Link: /guidelines/scoring.md
     Comment: Scoring guidance used by the FinOps++ Project for all actions.
   - Name: FinOps++ Score Type - Bucket
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
     Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
   - |-
