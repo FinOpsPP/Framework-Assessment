@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
-  Version: 1.0.0
+  Modified: '2026-10-17'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -11,22 +11,85 @@ Metadata:
 Specification:
   ID: 103
   Title: Publish Guidelines & Guardrails
-  Description: Publish guidelines, guardrails, and automation controls.
+  Description: Publish technology guidelines and the guardrails and automation that enforce them.
   Slug: 103-publish-guideline
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    * Weighted sum
+      Guardrail coverage (score x4),
+      Enforcement mode (score x3),
+      Guideline publication (score x2),
+      Exception path (score x1).
+      Max raw (50)
+
+    * Share of routine technology decisions that pass through an automated guardrail
+      (0=Not measured, 1<20%, 2=20-39%, 3=40-59%, 4=60-79%, 5=80% or higher)
+    * How a guardrail responds when a decision breaches policy
+      (0=No guardrails, 1=Reported after the fact, 2=Warns the requester, 3=Warns and notifies the owner,
+      4=Blocks the breach with an override path, 5=Blocks and remediates the drift automatically)
+    * Where guidelines are published and who can reach them
+      (0=Unpublished, 1=Shared on request, 2=Published to the FinOps team,
+      3=Published to the personas each guideline binds, 4=Reachable from the tools where decisions are
+      made, 5=Versioned, with changes announced to the personas they bind)
+    * How an exception is requested and bounded
+      (0=No exception path, 1=Granted informally, 2=Requested and recorded, 3=Approved by a named role,
+      4=Carries an expiry date, 5=Reviewed at expiry and either renewed with rationale or withdrawn)
+
+    * Output Range (0-50)
+  Score Type: multi_bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: Low Maturity, Score Range (0-14)
+  - Score: 4
+    Condition: Developing, Score Range (15-30)
+  - Score: 7
+    Condition: Established, Score Range (31-42)
   - Score: 10
-    Condition: Completed
+    Condition: Optimizing, Score Range (43-50)
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: /guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: NIST CSF 2.0 - PR.PS-05
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Installation and execution of unauthorized software are prevented." A guardrail that stops a
+      non-compliant deployment is the same control in a financial register: prevention at the point of the
+      decision rather than a report afterwards. The enforcement mode criterion is that distinction.
+  - Name: FinOps Framework - Governance, Policy & Risk Capability
+    Link: https://www.finops.org/framework/capabilities/policy-governance/
+    Comment: |-
+      Its Run tier expects guardrails and automation to cover the majority of routine technology decisions
+      across all FinOps Scopes, which is where the coverage bands come from, and it names Guardrail
+      Effectiveness and Governance Automation Coverage among its measures of success.
+  - Name: FinOps++ Score Type - Multiple Weighted Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md##multiple-weighted-buckets
+    Comment: an even more granular version of bucket, where steps are weight by importance to an action.
   Supplemental Guidance:
-  - Example is policies as code
+  - |
+    CRAWL (0-14) Guidelines exist somewhere a determined person could find them. Breaches are noticed in
+    the invoice, if at all, and exceptions are whatever somebody agreed to in a meeting.
+  - |
+    WALK (15-30) Guardrails cover some routine decisions and warn the requester. Guidelines are published,
+    though mostly to the FinOps team rather than to the engineers making the decisions.
+  - |
+    RUN (31-42) Guardrails cover most routine decisions and block a breach rather than reporting it,
+    guidelines are reachable from the tools where decisions get made, and exceptions carry expiry dates.
+  - |
+    FLY (43-50) Guardrails remediate drift without waiting for a person, guideline changes are announced to
+    the personas they bind, and an exception is either renewed with a reason at expiry or it lapses.
+  - |
+    Coverage carries the heaviest weight because an unenforced guideline is a suggestion. Enforcement mode
+    is next because coverage alone can be entirely advisory: a practice can route 90% of decisions through
+    a guardrail that only ever writes a log line.
+  - |
+    The two together are the honest measure. Coverage without enforcement is theater, and enforcement
+    without coverage protects a corner of the estate while the rest proceeds unchecked.
+  - |
+    The exception path is weighted lightest but is not optional. A guardrail with no way around it gets
+    switched off the first time it blocks something urgent, and then coverage drops to zero without anybody
+    recording a decision.
+  - |-
+    Action 102 scores defining the policies. This action scores publishing them and enforcing them. Action
+    105 scores monitoring adherence and reporting breaches, so the share of spend that actually complies is
+    measured there rather than here.
   Overrides: null
