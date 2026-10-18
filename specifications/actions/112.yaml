@@ -1,13 +1,13 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adopted: '2026-07-20'
+  Adopted: '2025-11-01'
   Modified: '2026-10-17'
   Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
     Email: vlevy573@gmail.com
-    Date: '2026-07-20'
+    Date: '2025-11-01'
 Specification:
   ID: 112
   Title: Resolve Variances & Increase Coverage
@@ -63,7 +63,7 @@ Specification:
       needed." Criterion 4 is the FinOps reading. Reviewing coverage is what turns an exclusion list from a
       permanent state into a backlog.
   - Name: FinOps++ Score Type - Multiple Weighted Bucket
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md##multiple-weighted-buckets
+    Link: /guidelines/scoring.md##multiple-weighted-buckets
     Comment: an even more granular version of bucket, where steps are weight by importance to an action.
   Supplemental Guidance:
   - |

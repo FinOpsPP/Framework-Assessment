@@ -1,13 +1,13 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adopted: '2026-07-20'
+  Adopted: '2025-11-01'
   Modified: '2026-10-17'
   Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
     Email: vlevy573@gmail.com
-    Date: '2026-07-20'
+    Date: '2025-11-01'
 Specification:
   ID: 91
   Title: Define Org Model & Budget
@@ -55,7 +55,7 @@ Specification:
       responsibilities, and policies." Items 2 and 4 are the FinOps reading. A practice asked to govern
       spend without funded roles is a policy with nobody behind it.
   - Name: FinOps++ Score Type - Bucket
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
     Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
   - |
