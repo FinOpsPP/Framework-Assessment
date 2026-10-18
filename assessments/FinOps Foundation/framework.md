@@ -1,6 +1,6 @@
 # <a href="/components/profiles/001.md">001</a>: FinOps Foundation Maturity Assessment Framework
 
-**Creation Date:** 2026-10-17
+**Creation Date:** 2026-10-18
 
 **Specification Version:** 1.0.0
 
@@ -151,37 +151,37 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/091.md">091</a>: Define Org Model & Budget
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/092.md">092</a>: Create Implementation Roadmap
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/093.md">093</a>: Integrate Cost Data in Workflows
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/094.md">094</a>: Publish FinOps KPIs
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/095.md">095</a>: Drive Stakeholder Engagement
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/096.md">096</a>: Automate Tasks & Review Maturity
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                 </table>
@@ -283,37 +283,37 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/107.md">107</a>: Map Invoices to Allocation Model
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/108.md">108</a>: Reconcile Rates & Track Completion
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/109.md">109</a>: Design Chargeback with Finance
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/110.md">110</a>: Automate Chargeback Data Flows
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/111.md">111</a>: Distribute Reports & Track Accuracy
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/112.md">112</a>: Resolve Variances & Increase Coverage
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                 </table>
@@ -373,7 +373,7 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/061.md">061</a>: Establish Architecture Review Process
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -501,37 +501,37 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/073.md">073</a>: Inventory Licenses & Map Resources
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/074.md">074</a>: Document Licensing Models
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/075.md">075</a>: Integrate Billing with Procurement
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/076.md">076</a>: Validate Utilization & Remediate
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/077.md">077</a>: Influence Workload Design Choices
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/078.md">078</a>: Publish License Spend & Utilization
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                 </table>
