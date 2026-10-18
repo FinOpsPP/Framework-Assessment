@@ -4,7 +4,7 @@
             "allowed_elements": "a,table"
         },
         "line-length": {
-            "line_length": 120,
+            "line_length": 135,
             "heading_line_length": 100
         }
     }
