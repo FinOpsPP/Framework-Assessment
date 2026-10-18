@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-05-13'
-  Modified: '2026-05-13'
-  Version: 1.0.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,68 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: every chargeback report issued during the review period, and every dispute raised
+    against one.
+
+    * Recipients named (each cost center has a named recipient for its report)
+    * Distribution tied to close (reports reach recipients on a stated schedule relative to financial
+      close)
+    * Cycle time measured (the time from close to report delivered is measured against a stated target)
+    * Accuracy published with the report (recipients see the accuracy figure alongside their charges
+      rather than it being held internally)
+    * Dispute outcomes recorded (each dispute records what was challenged, how it resolved, and whether
+      the charge changed)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - Invoicing & Chargeback Capability
+    Link: https://www.finops.org/framework/capabilities/invoicing-chargeback/
+    Comment: |-
+      Its KPIs include chargeback processing time, which item 3 measures, and percentage accuracy of
+      chargebacks, which item 4 asks to be shown to the recipient rather than kept internally. It assigns
+      Engineering to review allocated costs for the services they own, which only works once item 1 names
+      who receives what.
+  - Name: NIST CSF 2.0 - GV.OV-03
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Organizational cybersecurity risk management performance is evaluated and reviewed for adjustments
+      needed." Item 5 is the FinOps reading. A dispute is the clearest signal a chargeback model is wrong,
+      and it is only useful if the outcome is written down.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order. Reports usually go out long before
+    anyone measures how late they are.
+  - |
+    Item 4 asks for the accuracy figure to travel with the report. A practice that computes accuracy and
+    keeps it internally is grading its own work, and a recipient who cannot see it has no way to judge
+    whether a charge is worth checking.
+  - |
+    Item 5 scores the record, not the count. A period with no disputes earns it if the route and the
+    recording exist, and a practice with no way to capture a dispute outcome does not. Zero disputes can
+    mean the charges are right or that nobody believes challenging them will change anything.
+  - |
+    Action 112 scores the accuracy level the practice achieves. This action scores whether recipients are
+    told what it is. A practice can run at 1% variance and still score poorly here by never publishing it.
+  - |-
+    Action 109 documents the correction path, which is the accounting route for fixing a posted charge
+    after close. Item 5 here is the service side of the same story: what a recipient raised, and what
+    happened to it.
   Overrides: null

@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-05-13'
-  Modified: '2026-05-13'
-  Version: 1.0.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,47 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Scored at the highest stage the chargeback run reaches. A practice does not need the stages below it,
+    because a run integrated into finance tooling has already replaced the spreadsheet it grew out of.
+  Score Type: threshold
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: Assembled in spreadsheets and posted by manual journal entry
+  - Score: 2
+    Condition: Centralized tooling produces the figures, which are then exported and edited by hand
+  - Score: 5
+    Condition: The run is automated end to end and a person posts the result
+  - Score: 7
+    Condition: The run posts to the financial system, with a person reviewing before release
   - Score: 10
-    Condition: Completed
+    Condition: Chargeback and showback reporting is integrated automatically into finance tooling, with
+      exceptions routed for review
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - Invoicing & Chargeback Capability
+    Link: https://www.finops.org/framework/capabilities/invoicing-chargeback/
+    Comment: |-
+      The ladder is the capability's own maturity arc. Its Crawl tier describes chargeback running on
+      spreadsheets and manual journal entries, its Walk tier describes centralized tooling whose output is
+      still exported and manually edited, and its Run tier expects chargeback and showback reporting
+      integrated automatically into the company's finance tooling.
+  - Name: FinOps++ Score Type - Threshold Process
+    Link: /guidelines/scoring.md#threshold-process
+    Comment: an evolution of sequential, where steps below a given level are complete when that level is reached.
   Supplemental Guidance:
-  - null
+  - |
+    This is a threshold rather than a bucket because the stages replace one another. A practice posting
+    automatically into finance tooling is not also maintaining the spreadsheet, so asking it to tick the
+    lower rungs would measure history rather than maturity.
+  - |
+    The gap between stage 2 and stage 5 is where most practices sit. Tooling
+    that produces a figure somebody then edits in a spreadsheet is not automation, because the edit is
+    where the errors and the delay both live.
+  - |
+    Stage 10 keeps exceptions routed for review on purpose. Full automation that silently posts whatever
+    it computes is not the top of this ladder, since a chargeback nobody can intercept is one a cost center
+    disputes after the fact instead of before.
+  - |-
+    Action 109 scores the documented design of the chargeback, and action 111 scores distributing the
+    output and tracking what happens to it. This action scores only how the run itself is produced.
   Overrides: null

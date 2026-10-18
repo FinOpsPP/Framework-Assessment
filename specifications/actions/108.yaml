@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-05-13'
-  Modified: '2026-05-13'
-  Version: 1.0.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -11,22 +11,62 @@ Metadata:
 Specification:
   ID: 108
   Title: Reconcile Rates & Track Completion
-  Description: Reconcile rates/discounts/credits quickly; track completion SLA.
+  Description: Reconcile rates, discounts, and credits against a stated SLA and track completion.
   Slug: 108-reconcile-rates
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: every provider invoice received during the review period.
+
+    * Reconciliation cadence published (invoices are reconciled on a stated cadence with a named owner)
+    * Scope stated (reconciliation covers rates, discounts, and credits rather than the total alone)
+    * Completion measured against an SLA (the time from invoice receipt to reconciliation complete is
+      measured against a stated target)
+    * Discrepancies recorded (each discrepancy carries its amount, its cause, and how it was resolved)
+    * Finance reconciles independently (Finance completes a reconciliation without the central FinOps team
+      doing it for them)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - Invoicing & Chargeback Capability
+    Link: https://www.finops.org/framework/capabilities/invoicing-chargeback/
+    Comment: |-
+      Its measures of success include periodic reconciliation of invoices to ensure rate, discounts, and
+      credits are validated, which is items 1 and 2, and it asks the Practitioner to validate the provider
+      invoice with Finance on a monthly basis. Its Run tier expects Finance to reconcile without central
+      FinOps help, which is item 5.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    The description asks for reconciliation against a stated SLA rather than quickly, because quickly is
+    not a target anyone can be measured against. The target is yours to set, and the Framework expects
+    monthly validation as the baseline rhythm, so an SLA longer than the invoice cycle means the next
+    invoice arrives before the last one is settled.
+  - |
+    These are scored as a bucket because you can do them in any order, though most practices measure
+    completion time only after a reconciliation has slipped past a close.
+  - |
+    Item 5 is the maturity marker. The Framework's Run tier has Finance
+    reconciling without the central team, which means the data, the method, and the access all have to be
+    usable by somebody who does not work in FinOps.
+  - |-
+    Action 107 scores the invoice reaching the ledger. This action scores whether what the invoice says is
+    correct. A practice can map every line perfectly and still be paying an unapplied discount.
   Overrides: null
