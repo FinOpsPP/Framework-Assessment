@@ -1,16 +1,13 @@
 Metadata:
   Proposed: '2025-09-16'
-  Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Adopted: '2026-07-20'
+  Modified: '2026-10-17'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
     Email: vlevy573@gmail.com
-    Date: '2025-11-01'
-  - Name: Andrew Quigley
-    Email: andrewquigley@northwesternmutual.com
-    Date: '2025-11-01'
+    Date: '2026-07-20'
 Specification:
   ID: 61
   Title: Establish Architecture Review Process
@@ -19,17 +16,75 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: the review process itself for items 1 to 3, and every review conducted during the
+    period for items 4 and 5. Reviews are few enough to enumerate, so those two are assessed against each
+    review rather than as a coverage rate.
+
+    * Intake trigger defined (which designs enter review: new builds, material changes, and spend above a
+      stated threshold)
+    * Triage signals stated (candidates are prioritized using spend, usage, value, and adoption signals
+      rather than order of arrival)
+    * Trade-off model documented (the review weighs cost, value, sovereignty, resilience, and
+      sustainability)
+    * Approver named (the role that approves a placement decision and accepts its trade-offs is recorded
+      for each review)
+    * Model updated from outcomes (the review records whether what was built matched what was approved,
+      and the trade-off model changes when it did not)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Does not exist
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: Exists
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - Architecting & Workload Placement Capability
+    Link: https://www.finops.org/framework/capabilities/architecting-workload-placement/
+    Comment: |-
+      Every item is taken from the capability's own language. Its Run tier expects formalized triage and
+      review processes that prioritize candidates using spend, usage, value, and adoption signals, and its
+      Walk tier expects a documented model weighing cost, value, sovereignty, resilience, and
+      sustainability.
+  - Name: NIST CSF 2.0 - ID.RA-07
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Changes and exceptions are managed, assessed for risk impact, recorded, and tracked." An intake
+      review is the point where a design change is assessed before it is built rather than after the
+      invoice arrives.
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order. Most practices name an approver
+    long before anyone writes down which designs are supposed to come to review at all.
+  - |
+    Item 1 should typically be done first, though nothing stops a practice
+    documenting a trade-off model or naming an approver before it settles which designs have to come to
+    review at all. The capability describes the immature state as decisions made case by case, which is
+    what a review with no defined trigger produces. The threshold is yours to set, but it has to be
+    written down, because an unwritten threshold means the trigger is whoever remembered to ask.
+  - |
+    Without the stated signals in item 2, a review works through whatever arrived first, which is how a
+    small change jumps a large one.
+  - |
+    The five dimensions in item 3 are from the Framework's list. A practice weighing only cost
+    is doing a cost review, not a placement review, and will keep approving designs that are cheap and
+    fragile.
+  - |-
+    Action 62 scores the modernization review, including its cadence and exception criteria, so cadence is
+    not scored here. Action 63 scores estimating the trade-offs for a given case. This action scores the
+    model the review applies and the gate it sits behind. Action 64 tracks actual cost against estimated
+    savings per iteration, so item 5 is narrower: it asks only whether the review's own model gets
+    corrected when a build diverges from what was approved.
   Overrides: null
