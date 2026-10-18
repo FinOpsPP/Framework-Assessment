@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-05-13'
-  Modified: '2026-05-13'
-  Version: 1.0.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,52 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: the personas the practice depends on during the review period.
+
+    * Personas listed (the personas the practice depends on are named, not assumed)
+    * Need recorded per persona (what each one has to understand to play its part is written down)
+    * Current level recorded (what each persona knows today is assessed against that need)
+    * Gaps ranked (the gaps are ordered, so the next content produced has a stated reason)
+    * Reassessed on a stated cadence (the assessment is repeated on a schedule with a named owner)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - FinOps Education & Enablement Capability
+    Link: https://www.finops.org/framework/capabilities/finops-education-enablement/
+    Comment: |-
+      The capability describes enablement at the Crawl tier as happening within specific teams based on
+      the needs of each team, and at the Walk tier as extending across teams. Items 1 and 2 are what make
+      that progression measurable rather than asserted.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order. Most practices know their gaps
+    informally long before anyone writes down what each persona is supposed to understand.
+  - |
+    Item 4 stops this becoming a survey nobody acts on. A list of gaps with no order produces
+    content about whatever the author finds interesting, and the persona with the widest gap is rarely
+    the one who asked loudest.
+  - |
+    No coverage rate applies. A persona list is short, so an assessor reads it rather than sampling.
+  - |-
+    Action 91 records the skills the FinOps team itself needs and the gaps in them. This action covers the
+    personas the practice depends on across the organization: engineering, finance, procurement, product
+    and leadership. A practice can have a fully skilled FinOps team and no idea what anyone else knows.
   Overrides: null
