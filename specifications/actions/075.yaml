@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-05-13'
-  Modified: '2026-05-13'
-  Version: 1.0.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,55 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: the license and SaaS billing and entitlement feeds in use during the review period.
+
+    * Retrieved without a person (billing arrives on a schedule rather than being downloaded by hand)
+    * Normalized schema (billing arrives in a common format such as FOCUS rather than per vendor
+      exports)
+    * Entitlements joined (purchased quantities sit alongside the spend, so utilization can be computed)
+    * Shared with asset management (contracts, usage and spend are available to the IT and software
+      asset management functions rather than held inside FinOps)
+    * Named counterparts (Procurement, Finance and asset management each have a named contact)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - Licensing & SaaS Capability
+    Link: https://www.finops.org/framework/capabilities/licensing-saas/
+    Comment: |-
+      Its Walk tier expects licensing and SaaS billing data to arrive in FOCUS format, and its Run tier
+      expects billing retrieval to be automated where possible and FinOps and software asset management
+      to share tooling and data for contracts, usage and spend.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order. Named counterparts usually come
+    first, because the data arrives by asking someone before it arrives on a schedule.
+  - |
+    Item 3 makes the capability measurable. Spend without entitlement counts
+    cannot produce a utilization rate, so a practice missing this item can report what it paid and not
+    whether it used what it bought.
+  - |
+    Item 4 is where the data sits rather than who owns it. Asset management teams hold the contract
+    and license position, and a practice that keeps usage data to itself leaves them reconciling by
+    email.
+  - |-
+    Action 1 in the Data Ingestion capability covers inventorying data sources generally. This action is
+    narrower, covering the license and SaaS feeds and the entitlement data that has to arrive with them.
   Overrides: null
