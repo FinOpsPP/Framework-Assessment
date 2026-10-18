@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-05-13'
-  Modified: '2026-05-13'
-  Version: 1.0.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,53 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: the personas the practice works with during the review period.
+
+    * Named contacts (each persona the practice depends on has a named counterpart on both sides)
+    * Regular contact (engagement happens on a stated cadence rather than when something breaks)
+    * Wins published (savings and avoided cost are reported with the team that earned them named)
+    * Misses published (targets that were missed are reported in the same place as the wins)
+    * Requests tracked (a request to the practice carries an owner and a response, so a persona can see
+      what happened to it)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - FinOps Practice Operations Capability
+    Link: https://www.finops.org/framework/capabilities/finops-practice-operations/
+    Comment: |-
+      Organizational awareness of the FinOps team, and adoption of FinOps practices and culture, is one
+      of the capability's measures of success. Items 1 and 2 are what that awareness is built from.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order except for items 3 and 4
+    which come in a pair. Named contacts usually come
+    first, since the rest is hard without knowing who to talk to.
+  - |
+    Items 3 and 4 are deliberately a pair. A practice that publishes only wins is doing marketing, and
+    the engineers it depends on will read it that way. Publishing a missed target in the same place is
+    what makes the wins believable.
+  - |
+    Regarding item 5, a persona who raises a question and never hears back stops raising them,
+    and the practice loses the signal before it notices the silence.
+  - |-
+    Action 104 covers enabling stakeholders on policy specifically, and the FinOps Education capability
+    covers training. This action is about the standing relationship rather than any single message.
   Overrides: null
