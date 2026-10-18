@@ -9,7 +9,7 @@ Metadata:
     Email: vlevy573@gmail.com
     Date: '2025-11-01'
   - Name: Andrew Quigley
-    Email: andrewquigley@northwesternmutual.com
+    Email: Q@mf-family.com
     Date: '2025-11-01'
 Specification:
   ID: 20
@@ -34,7 +34,7 @@ Specification:
     Condition: Alerting in all workflow tools [100%]
   References:
   - Name: FinOps++ Score Type - Percentage Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#percentage-calculation
+    Link: /guidelines/scoring.md#percentage-calculation
     Comment: a kind of threshold type where the steps are specifically precentages leading to 100%.
   Supplemental Guidance:
   - |-

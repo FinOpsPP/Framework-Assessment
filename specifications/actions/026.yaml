@@ -62,7 +62,7 @@ Specification:
       Cost avoidance depends on both the variance amount and the duration the anomaly ran, so it cannot be
       claimed without the impact and timeline fields recorded here.
   - Name: FinOps++ Score Type - Bucket
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
     Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
   - |

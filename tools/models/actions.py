@@ -45,37 +45,37 @@ class Reference(Config):
 ScoreTypeRefMap = {
     ScoreTypeEnum.binary.value: Reference(
         Name='FinOps++ Score Type - Binary',
-        Link='https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#binary',
+        Link='/guidelines/scoring.md#binary',
         Comment='binary is a useful scoring to start of with, as it simple requires an action to be taken or not.'
     ),
     ScoreTypeEnum.bucket.value: Reference(
         Name='FinOps++ Score Type - Bucket',
-        Link='https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments', # pylint: disable=line-too-long
+        Link='/guidelines/scoring.md#bucket-of-accomplishments', # pylint: disable=line-too-long
         Comment='an evolution of binary, with more steps to take toward maturity.'
     ),
     ScoreTypeEnum.calculation.value: Reference(
         Name='FinOps++ Score Type - Calculation',
-        Link='https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae', # pylint: disable=line-too-long
+        Link='/guidelines/scoring.md#other-mathematical-formulae', # pylint: disable=line-too-long
         Comment='a generic "calculation" type used as the default score type when creating a new score.'
     ),
     ScoreTypeEnum.multiBucket.value: Reference(
         Name='FinOps++ Score Type - Multiple Weighted Bucket',
-        Link='https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md##multiple-weighted-buckets', # pylint: disable=line-too-long
+        Link='/guidelines/scoring.md##multiple-weighted-buckets', # pylint: disable=line-too-long
         Comment='an even more granular version of bucket, where steps are weight by importance to an action.'
     ),
     ScoreTypeEnum.percent.value: Reference(
         Name='FinOps++ Score Type - Percentage Calculation',
-        Link='https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#percentage-calculation',
+        Link='/guidelines/scoring.md#percentage-calculation',
         Comment='a kind of threshold type where the steps are specifically precentages leading to 100%.'
     ),
     ScoreTypeEnum.sequential.value: Reference(
         Name='FinOps++ Score Type - Sequential Process',
-        Link='https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#sequential-process',
+        Link='/guidelines/scoring.md#sequential-process',
         Comment='can be used whenever the steps in an action need to be completed in a certain order.'
     ),
     ScoreTypeEnum.threshold.value: Reference(
         Name='FinOps++ Score Type - Threshold Process',
-        Link='https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#threshold-process',
+        Link='/guidelines/scoring.md#threshold-process',
         Comment='an evolution of sequential, where steps below a given level are complete when that level is reached.'
     )
 }

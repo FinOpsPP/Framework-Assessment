@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
-  Version: 1.0.0
+  Modified: '2026-10-17'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -11,22 +11,76 @@ Metadata:
 Specification:
   ID: 37
   Title: Establish Forecasting Approach
-  Description: Establish "why," approach (simple/trend/driver-based), cadence, and horizon.
+  Description: Establish "why," approach (static/trend/driver-based), cadence, and horizon.
   Slug: 37-forecast-approach
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    * Purpose recorded (the decisions the forecast exists to support, and the stakeholders who agreed them)
+    * Technique recorded (static, trend-based, or driver-based, stated for each organizational level the
+      forecast is produced at)
+    * Cadence requirement recorded (when a forecast is due, and how often it is expected to be updated)
+    * Horizon recorded (how far forward the forecast reaches, how much history feeds it, and at what
+      granularity)
+
+    10*Ceil(x/4)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 items completed
+  - Score: 8
+    Condition: 3 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 4 items completed
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: NIST CSF 2.0 - GV.RM-06
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "A standardized method for calculating, documenting, categorizing, and prioritizing cybersecurity
+      risks is established and communicated." A forecasting approach is the equivalent standardized method
+      for anticipating cost, which is why this action scores the method rather than any single forecast.
+  - Name: NIST CSF 2.0 - GV.RM-01
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Risk management objectives are established and agreed to by organizational stakeholders." Item 1 is
+      the FinOps reading, and the agreement is what separates a recorded purpose from an assumed one.
+  - Name: FinOps Framework - Forecasting Capability
+    Link: https://www.finops.org/framework/capabilities/forecasting/
+    Comment: |-
+      The four items are drawn from the capability's own functional activities: defining forecast parameters
+      in the context of business objectives, determining the applicable technique by organizational level,
+      and establishing when forecasting is due and how frequently it updates.
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    The three techniques in item 2 come from the FinOps Framework. A static forecast predicts for the fiscal
+    year with no adjustments. A trend-based forecast uses historic trends to project future spend, ideally
+    taking seasonality into account, but it will not capture out-of-band events such as launching a new
+    product. A driver-based forecast uses a business KPI to project spend, applying the KPI growth to actual
+    cost, but it will not forecast workloads that do not exist in the cloud yet. Most practices end up
+    combining trend-based and driver-based, which is what the Framework describes at its Run tier.
+  - |
+    These are scored as a bucket because you can do them in any order. Plenty of teams inherit a cadence
+    from the finance calendar long before anyone writes down why the forecast exists. Others pick a
+    technique first and work out the horizon later.
+  - |
+    [Action 39](/components/actions/039.md) scores how often the forecast actually gets refreshed, and its
+    guidance defines forward horizon, backwards horizon, frequency, and granularity. This action is about
+    what you decided and wrote down. A team that documents a monthly cadence but delivers quarterly earns
+    item 3 here and scores low on 39. Both numbers together tell you more than either one alone.
+  - |
+    There is no percentage to calculate here. The approach is one document, so an item is met when you can
+    point to where the decision is written. If you have to infer it, it is not written.
+  - |-
+    Item 1 is the foundation, even though the order does not matter for scoring. A monthly,
+    driver-based, twelve-month forecast is either exactly right or badly over-built, and you cannot tell
+    which until someone writes down what decisions it feeds. The FinOps Framework frames forecasting as
+    telling you what you need to know to act now, rather than predicting the future.
   Overrides: null

@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
-  Version: 1.0.0
+  Modified: '2026-10-17'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,54 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: every change to metadata, hierarchy, or shared cost rules made during the review period.
+    Changes are few enough to enumerate, so items are assessed against each one rather than as a coverage
+    rate.
+
+    * Recurring review (the allocation strategy is reviewed on a published cadence with a named owner)
+    * Change record (every change carries a rationale and an effective date)
+    * Advance notice (every change reaches affected resource and budget owners before the effective date)
+    * Carried gaps (each review records the gaps it did not close, and the next review lists them)
+
+    10*Ceil(x/4)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 items completed
+  - Score: 8
+    Condition: 3 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 4 items completed
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: NIST CSF 2.0 - GV.PO-02
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Policy for managing cybersecurity risks is reviewed, updated, communicated, and enforced to reflect
+      changes in requirements, threats, technology, and organizational mission." An allocation strategy is a
+      policy over how cost is attributed, so it earns the same loop. Three of the four outcomes map to items
+      here: reviewed is item 1, updated is item 2, and communicated is item 3. Enforcement is scored by
+      actions 12 and 14 rather than here.
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    A team can add change notices before it adds versioning, so the items are not preconditions for one
+    another and this is scored as a bucket rather than a sequential process. The word iterate suggests a
+    loop, which invites the wrong score type.
+  - |
+    No coverage threshold is stated because the population is a handful of changes in a period. A percentage
+    rounds hard at that size: with three changes, one miss falls to 67%. An assessor enumerates the changes
+    instead of computing a rate.
+  - |
+    Advance notice is met by reaching the owners a change binds, not by volume of communication. A change
+    published only to the FinOps team does not meet it.
+  - |-
+    Actions 10, 12, and 13 measure unallocated cost, tagging coverage, and compliance gaps. Those measures
+    are the inputs this review consumes, and they are scored there rather than here.
   Overrides: null

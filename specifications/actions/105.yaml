@@ -9,7 +9,7 @@ Metadata:
     Email: vlevy573@gmail.com
     Date: '2025-11-01'
   - Name: Andrew Quigley
-    Email: andrewquigley@northwesternmutual.com
+    Email: Q@mf-family.com
     Date: '2025-11-01'
 Specification:
   ID: 105
@@ -32,7 +32,7 @@ Specification:
     Condition: Automated remediation
   References:
   - Name: FinOps++ Score Type - Threshold Process
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#threshold-process
+    Link: /guidelines/scoring.md#threshold-process
     Comment: an evolution of sequential, where steps below a given level are complete when that level is reached.
   Supplemental Guidance:
   - null

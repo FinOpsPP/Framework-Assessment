@@ -9,7 +9,7 @@ Metadata:
     Email: vlevy573@gmail.com
     Date: '2025-11-01'
   - Name: Andrew Quigley
-    Email: andrewquigley@northwesternmutual.com
+    Email: Q@mf-family.com
     Date: '2025-11-01'
 Specification:
   ID: 11
@@ -36,7 +36,7 @@ Specification:
     Condition: 2 items completed
   References:
   - Name: FinOps++ Score Type - Bucket
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
     Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
   - null

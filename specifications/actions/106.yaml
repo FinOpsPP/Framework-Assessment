@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-07-20'
-  Modified: '2026-07-20'
-  Version: 1.0.0
+  Modified: '2026-10-17'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -10,23 +10,82 @@ Metadata:
     Date: '2026-07-20'
 Specification:
   ID: 106
-  Title: Iterate Policies Based on Feedback
-  Description: Iterate policies based on outcomes and stakeholder feedback.
+  Title: Iterate Policies on Outcomes & Risk
+  Description: Iterate policies on adherence outcomes, realized risk, and stakeholder feedback.
   Slug: 106-iterate-policies
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: every policy in force during the review period, and every change made to one.
+
+    * Review cadence published (the policy set is reviewed on a stated cadence with a named owner)
+    * Outcome data feeds the review (adherence rate, breach counts, and guardrail false positives are
+      inputs to it rather than reported separately)
+    * Feedback path open (the personas a policy binds can raise an issue through a stated route, and
+      those issues reach the review)
+    * Change recorded (each policy change records its rationale and effective date)
+    * Retirement path exists (a policy can be withdrawn through a stated route, and each review records
+      which policies were kept, amended, or withdrawn)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Calculation
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#other-mathematical-formulae
-    Comment: a generic "calculation" type used as the default score type when creating a new score.
+  - Name: NIST CSF 2.0 - GV.PO-02
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Policy for managing cybersecurity risks is reviewed, updated, communicated, and enforced to reflect
+      changes in requirements, threats, technology, and organizational mission." Items 1 and 4 are the
+      reviewed and updated parts. Action 15 cites the same outcome for the allocation strategy, which is a
+      different policy over a different subject.
+  - Name: NIST CSF 2.0 - GV.OV-01
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Cybersecurity risk management strategy outcomes are reviewed to inform and adjust strategy and
+      direction." Item 2 is the FinOps reading, and it is the difference between reviewing policies on a
+      calendar and reviewing them against what they achieved.
+  - Name: FinOps Framework - Governance, Policy & Risk Capability
+    Link: https://www.finops.org/framework/capabilities/policy-governance/
+    Comment: |-
+      Its Walk tier expects a regular review cadence to exist, which is item 1, and it names Time to Policy
+      Response and False Positive Rate among its measures, both of which belong in the review as item 2
+      inputs.
+  - Name: FinOps++ Score Type - Bucket
+    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    A review driven only by who complained loudest will tighten the policies that annoy people and leave
+    the ones quietly costing money, because nobody complains about a policy they are ignoring. That is why
+    item 2 asks for outcome data as an input rather than treating feedback as the only signal.
+  - |
+    These are scored as a bucket because you can do them in any order. Most practices start with a cadence
+    and a feedback inbox, and only later connect the adherence and breach numbers that make the review
+    worth holding.
+  - |
+    Item 2 names guardrail false positives on purpose. A guardrail that blocks legitimate work is a policy
+    problem wearing a tooling costume, and it will be routed around rather than reported unless the review
+    asks for the number.
+  - |
+    Item 5 scores the route and the record, not a tally. A practice whose policies are all still needed
+    earns it by recording that decision, and a practice with no way to withdraw one does not. Without the
+    route a policy set only ever grows, and every stale rule is something a guardrail still enforces and an
+    engineer still works around.
+  - |-
+    Action 105 scores monitoring adherence and reporting breaches. This action scores whether those reports
+    change anything. A practice with excellent compliance reporting that never amends a policy earns 105
+    and not this one.
   Overrides: null

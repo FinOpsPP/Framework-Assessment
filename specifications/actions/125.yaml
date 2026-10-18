@@ -9,7 +9,7 @@ Metadata:
     Email: vlevy573@gmail.com
     Date: '2025-11-01'
   - Name: Andrew Quigley
-    Email: andrewquigley@northwesternmutual.com
+    Email: Q@mf-family.com
     Date: '2025-11-01'
 Specification:
   ID: 125
@@ -50,7 +50,7 @@ Specification:
     Link: https://www.finops.org/framework/maturity-model/
     Comment: null
   - Name: FinOps++ Score Type - Multiple Weighted Bucket
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md##multiple-weighted-buckets
+    Link: /guidelines/scoring.md##multiple-weighted-buckets
     Comment: an even more granular version of bucket, where steps are weight by importance to an action.
   Supplemental Guidance:
   - |

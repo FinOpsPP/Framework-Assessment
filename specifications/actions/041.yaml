@@ -9,7 +9,7 @@ Metadata:
     Email: vlevy573@gmail.com
     Date: '2025-11-01'
   - Name: Andrew Quigley
-    Email: andrewquigley@northwesternmutual.com
+    Email: Q@mf-family.com
     Date: '2025-11-01'
 Specification:
   ID: 41
@@ -28,7 +28,7 @@ Specification:
     Condition: Alerting exists
   References:
   - Name: FinOps++ Score Type - Binary
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#binary
+    Link: /guidelines/scoring.md#binary
     Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
   Supplemental Guidance:
   - null

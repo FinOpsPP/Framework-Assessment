@@ -77,7 +77,7 @@ def process_row_gsheet(row, specification_files, today):
     # set approvers
     data['Metadata']['Approvers'] = [
         {'Name': 'Victoria Levy', 'Email': 'vlevy573@gmail.com', 'Date': today},
-        {'Name': 'Andrew Quigley', 'Email': 'andrewquigley@northwesternmutual.com', 'Date': today}
+        {'Name': 'Andrew Quigley', 'Email': 'Q@mf-family.com', 'Date': today}
     ]
 
     # set approval date

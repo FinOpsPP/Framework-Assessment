@@ -9,7 +9,7 @@ Metadata:
     Email: vlevy573@gmail.com
     Date: '2025-11-01'
   - Name: Andrew Quigley
-    Email: andrewquigley@northwesternmutual.com
+    Email: Q@mf-family.com
     Date: '2025-11-01'
 Specification:
   ID: 68
@@ -32,7 +32,7 @@ Specification:
     Condition: Enforced Policy with tagged/identifiable classifications
   References:
   - Name: FinOps++ Score Type - Sequential Process
-    Link: https://github.com/FinOpsPP/Framework-Assessment/blob/main/guidelines/scoring.md#sequential-process
+    Link: /guidelines/scoring.md#sequential-process
     Comment: can be used whenever the steps in an action need to be completed in a certain order.
   Supplemental Guidance:
   - |-
