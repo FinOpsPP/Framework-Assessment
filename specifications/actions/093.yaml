@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-05-13'
-  Modified: '2026-05-13'
-  Version: 1.0.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,53 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: the forecasting, budgeting, and procurement workflows the organization runs.
+
+    * Forecasting consumes cost data (the forecast is built from the same cost data the practice
+      publishes, not a separate extract)
+    * Budgeting consumes cost data (budget setting and tracking draw on it)
+    * Procurement consumes cost data (renewal and purchase decisions see current and committed spend)
+    * Delivered where the work happens (the data reaches each workflow in the tool its owners already
+      use rather than a FinOps report they must seek out)
+    * Freshness stated (each workflow records how current the data it receives is)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - FinOps Practice Operations Capability
+    Link: https://www.finops.org/framework/capabilities/finops-practice-operations/
+    Comment: |-
+      The capability frames Practice Operations as driving a culture of accountability by running an
+      effective FinOps team, and names organizational adoption of FinOps practices among its measures of
+      success. Cost data that never reaches a workflow cannot drive a decision in it.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because the three workflows are independent. Procurement often
+    integrates last, because it sits furthest from the engineering tooling most practices start with.
+  - |
+    Item 4 separates integration from reporting. A monthly deck emailed to budget owners is not
+    integration, because the decision happens in the budgeting tool and the deck is somewhere else.
+  - |
+    With item 5, the procurement team deciding a renewal against data three months
+    old will make a worse call than one that is aware the data is three months old and waits.
+  - |-
+    The Forecasting, Budgeting, and Invoicing capabilities score what those workflows do with the data.
+    This action scores only whether the data reaches them.
   Overrides: null

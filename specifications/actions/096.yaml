@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-05-13'
-  Modified: '2026-05-13'
-  Version: 1.0.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -11,22 +11,57 @@ Metadata:
 Specification:
   ID: 96
   Title: Automate Tasks & Review Maturity
-  Description: Automate repetitive tasks; review practice maturity quarterly.
+  Description: Automate repetitive FinOps tasks; review the effect on team effort and cycle time.
   Slug: 96-automate-tasks
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: the tasks the practice performs more than once during the review period.
+
+    * Repeated tasks inventoried (the tasks the practice repeats are listed, with how often each runs)
+    * Effort recorded (each repeated task carries an estimate of the time it consumes)
+    * Automation candidates ranked (tasks are ordered by effort saved against cost to automate)
+    * Effect measured (time or cycle time before and after an automation is recorded)
+
+    10*Ceil(x/4)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 items completed
+  - Score: 8
+    Condition: 3 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 4 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - FinOps Practice Operations Capability
+    Link: https://www.finops.org/framework/capabilities/finops-practice-operations/
+    Comment: |-
+      The capability covers the activities required to operate a FinOps practice, and its Run tier
+      expects a team whose need is well supported. A practice that cannot say where its own hours go
+      cannot argue for the funding to change it.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order, though ranking candidates without
+    an effort estimate tends to rank them by annoyance instead.
+  - |
+    The description asks for the effect on team effort and cycle time rather than naming a review
+    frequency. How often a practice looks depends on how fast its toil changes, and fixing a cadence in
+    the description would score the calendar rather than the work.
+  - |
+    Item 4 separates this from a backlog of automation ideas. An automation nobody measured may
+    have moved the work rather than removed it, which is common when a manual step becomes a manual
+    review of an automated step.
+  - |-
+    This action covers the practice's own repetitive work. Automating controls inside other capabilities
+    is scored where those controls live, such as action 14 for tagging enforcement, action 110 for
+    chargeback runs, and action 103 for guardrails. Reviewing capability maturity belongs to the FinOps
+    Assessment capability, where action 117 scores reassessment on a cadence.
   Overrides: null
