@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-05-13'
-  Modified: '2026-05-13'
-  Version: 1.0.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,52 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: the learning opportunities offered during the review period.
+
+    * Certification route exists (a funded path to FinOps certification is offered, and who is eligible
+      is written down)
+    * Informal sessions run on a stated cadence (office hours, lunch and learns or equivalent, on a
+      schedule rather than when somebody volunteers)
+    * Opportunities counted (the number offered in the period is recorded)
+    * Open beyond the practice (allied personas can attend, not only the FinOps team)
+
+    10*Ceil(x/4)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 items completed
+  - Score: 8
+    Condition: 3 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 4 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - FinOps Education & Enablement Capability
+    Link: https://www.finops.org/framework/capabilities/finops-education-enablement/
+    Comment: |-
+      Count of FinOps Learning Opportunities Offered is one of the capability's KPIs, which is item 3. It
+      asks Finance and Procurement to become trained and certified as a FinOps Practitioner or
+      equivalent, and asks allied personas to seek out learning opportunities, which item 4 makes
+      possible.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order. Informal sessions usually start
+    first, because they cost nothing but an hour.
+  - |
+    Item 1 asks whether the route is funded and who qualifies, not how many people hold a certificate. A
+    practice that will pay for certification but has never said so has not offered it, because nobody
+    asks for a budget they do not know exists.
+  - |
+    Regarding item 4, certification budgets tend to sit with the FinOps team
+    and the engineers who make the daily spend decisions never see the offer.
+  - |-
+    Action 98 covers the standing curriculum. This action covers what is offered on top of it: the
+    certifications and the sessions people can choose to attend.
   Overrides: null

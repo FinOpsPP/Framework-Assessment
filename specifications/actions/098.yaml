@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-05-13'
-  Modified: '2026-05-13'
-  Version: 1.0.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,56 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: the personas the practice depends on during the review period.
+
+    * Material exists per persona (each persona has content aimed at it rather than one general deck)
+    * More than one level (content exists beyond an introduction, so somebody can go further)
+    * Organization specific content included (material covers how FinOps works here, not only generic
+      concepts)
+    * Onboarding carries it (new employees and contractors receive the material relevant to their
+      persona when they join)
+    * Owner named (each curriculum records who maintains it)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - FinOps Education & Enablement Capability
+    Link: https://www.finops.org/framework/capabilities/finops-education-enablement/
+    Comment: |-
+      Its measures of success call for training materials available to every discipline, at every level,
+      covering both generic and company specific information, which is items 1 to 3. The capability also
+      asks for FinOps to be included in onboarding for new employees and contractors, which is item 4.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order, though organization specific
+    content usually arrives after someone notices that the generic material does not explain how
+    chargeback works here.
+  - |
+    Item 3 decides whether the material gets used twice. Generic FinOps content explains
+    the concepts and stops at the point where somebody has to act, because acting depends on which tools
+    and which approval path this organization has.
+  - |
+    Item 5 looks like administration and is why content goes stale. A curriculum with no named owner is
+    nobody's to update when the tagging policy changes.
+  - |-
+    Action 127 in the Automation, Tools & Services capability covers training users on a specific tool
+    and putting data in their path. Action 104 covers enabling stakeholders on policy. This action covers
+    the standing curriculum behind both.
   Overrides: null
