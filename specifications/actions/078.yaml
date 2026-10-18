@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-05-13'
-  Modified: '2026-05-13'
-  Version: 1.0.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -11,22 +11,56 @@ Metadata:
 Specification:
   ID: 78
   Title: Publish License Spend & Utilization
-  Description: Publish license/SaaS spend and utilization to stakeholders regularly.
+  Description: Publish license and SaaS spend and utilization to stakeholders on a stated cadence.
   Slug: 78-publish-license
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: the license and SaaS reporting issued during the review period.
+
+    * Published on a stated cadence (the report is issued on a schedule rather than on request)
+    * Spend included (license and SaaS spend for the period, split by agreement)
+    * Utilization included (assigned licenses divided by purchased licenses, as a rate)
+    * Reaches the holders (the teams holding the licenses receive it, not only Procurement and Finance)
+    * Renewal horizon shown (agreements approaching renewal are listed with their dates)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - Licensing & SaaS Capability
+    Link: https://www.finops.org/framework/capabilities/licensing-saas/
+    Comment: |-
+      Its measures of success include license and SaaS costs being visible and reported on, and licenses
+      purchased through a marketplace being fully utilized. Item 3 uses the capability's own License
+      Utilization Rate, assigned licenses divided by purchased licenses.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+    These are scored as a bucket because you can do them in any order. Spend is almost always published
+    before utilization, because spend arrives on an invoice and utilization has to be assembled.
+  - |
+    Item 3 is what makes the report actionable. Spend alone says what was paid; utilization says whether
+    it bought anything. A team at 40% on a renewing agreement has a decision to make, and a team reading
+    only the spend figure does not know that.
+  - |
+    Regarding item 4, :rocurement and Finance receive these numbers by default, and
+    the team actually holding the unused licenses is the one that can release them.
+  - |-
+    Action 94 publishes the practice's own KPI set. This action publishes license and SaaS spend and
+    utilization specifically, to the people who hold the agreements.
   Overrides: null

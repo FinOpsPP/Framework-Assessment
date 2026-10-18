@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-05-13'
-  Modified: '2026-05-13'
-  Version: 1.0.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,60 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: every workload design reviewed during the period that consumes licensed software.
+
+    * License position supplied (the review receives what the organization already owns and what it
+      would need)
+    * Options compared (the same workload is costed under infrastructure with an existing license,
+      a managed platform service, and a SaaS product)
+    * Compliance checked (the design states whether the license terms permit the deployment)
+    * Decision recorded (the option chosen and the licensing reason behind it are written into the
+      design record)
+
+    10*Ceil(x/4)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 3
+    Condition: 1 item completed
+  - Score: 5
+    Condition: 2 items completed
+  - Score: 8
+    Condition: 3 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 4 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - Licensing & SaaS Capability
+    Link: https://www.finops.org/framework/capabilities/licensing-saas/
+    Comment: |-
+      The capability asks the Practitioner to join workload licensing discussions and model tradeoffs
+      between architectures and license options, and asks Engineering to consider existing licenses when
+      designing infrastructure. Items 1 and 2 are those two activities made checkable.
+  - Name: NIST CSF 2.0 - ID.RA-07
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Changes and exceptions are managed, assessed for risk impact, recorded, and tracked." Item 3 is
+      the FinOps reading. Deploying software outside its license terms is a compliance exposure, and the
+      design review is where it is cheapest to catch.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order, though a team usually supplies a
+    license position before it can compare anything.
+  - |
+    Item 2 names three shapes because the cost ordering between them reverses depending on what the
+    organization already owns. A workload that looks cheapest as a managed service can be cheaper on
+    plain infrastructure when an existing license covers it, a the comparison is the only way to know.
+  - |
+    Item 3 is not a formality. Some license terms restrict deployment by processor count, by tenancy, or
+    by hosting provider, and a design that breaches them creates an exposure that surfaces at audit
+    rather than at deployment.
+  - |-
+    Action 61 scores the architecture review process itself, including its trade-off model and who
+    approves a placement decision. This action scores the licensing input into that review. A practice
+    can run an excellent review that never asks what it already owns.
   Overrides: null

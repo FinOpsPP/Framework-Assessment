@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2026-05-13'
-  Modified: '2026-05-13'
-  Version: 1.0.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -16,17 +16,61 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: every license and SaaS agreement held during the review period.
+
+    * Model recorded (each agreement records whether it is an organizational agreement, perpetual,
+      as-a-service, or a marketplace purchase)
+    * Change terms recorded (whether licenses can be added mid-contract, and when they can be reduced)
+    * Metered charges recorded (charges beyond the license itself, such as access counts, API calls, or
+      stored data)
+    * Bring your own license eligibility tagged (resources running software under an existing license
+      carry a tag identifying them)
+    * Allocation target named (each agreement records the cost center its cost reaches)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: Completed
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - Licensing & SaaS Capability
+    Link: https://www.finops.org/framework/capabilities/licensing-saas/
+    Comment: |-
+      The capability names organizational agreements, perpetual against as-a-service, and marketplace
+      purchasing as the licensing models, and describes true-up and true-down terms, which is item 2. It
+      asks Engineering to tag resources to show bring your own license eligibility, which is item 4.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order. Most practices record the model
+    first because it comes off the contract, and discover the metered charges when an invoice jumps.
+  - |
+    Item 2 matters because the two directions are not symmetric. An organization can usually add licenses
+    part way through a contract but cannot reduce them until renewal, so a team that over-commits carries
+    the cost to the end of the term. Recording which way a given agreement moves is what makes a renewal
+    date worth watching.
+  - |
+    For item 3, a license priced per seat can carry charges for access
+    counts, API usage, or stored data, and a practice tracking only the seat count will forecast the
+    wrong number.
+  - |
+    No coverage rate applies. An agreement list is short enough to read, so an assessor checks each one
+    rather than sampling.
+  - |-
+    Action 73 inventories the licenses and maps them to resources. This action records what the terms of
+    each one are. Action 12 in the Cost Allocation capability scores tagging standards generally; item 4
+    here is narrower, covering only the tag that marks a resource as running under an existing license.
   Overrides: null
