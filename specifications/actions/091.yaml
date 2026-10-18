@@ -1,35 +1,81 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Modified: '2026-10-17'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
     Email: vlevy573@gmail.com
     Date: '2025-11-01'
-  - Name: Andrew Quigley
-    Email: Q@mf-family.com
-    Date: '2025-11-01'
 Specification:
   ID: 91
   Title: Define Org Model & Budget
   Description: Define org model, staffing/skills, and operating budget for FinOps.
-  Slug: 91-define-org
+  Slug: 91-org-model-budget
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    * Operating model recorded (which shape the team takes, whether a single central team, a fully virtual
+      team, or a hub and spoke with members embedded in Engineering, and where it reports)
+    * Staffing plan recorded (the roles the practice needs, requested against filled, and which support is
+      virtual rather than hired)
+    * Skills mapped (leadership, communication, analytical, and technical skills mapped to the roles, with
+      the gaps named)
+    * Funding source named (the team has a standing budget line rather than a one-off allocation)
+    * Decision model documented (how a cross-functional or urgent decision gets made, and who makes it)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: Defined
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - FinOps Practice Operations Capability
+    Link: https://www.finops.org/framework/capabilities/finops-practice-operations/
+    Comment: |-
+      The three team shapes in item 1 are the capability's own, and its Crawl tier expects an initial
+      staffing plan, list of resources, and proposed budget. Its Run tier expects a regular funding source,
+      which is what item 4 asks for, and a well documented decision model, which is item 5.
+  - Name: NIST CSF 2.0 - GV.RR-03
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Adequate resources are allocated commensurate with the cybersecurity risk strategy, roles,
+      responsibilities, and policies." Items 2 and 4 are the FinOps reading. A practice asked to govern
+      spend without funded roles is a policy with nobody behind it.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order. A practice often has a funding
+    source before anyone writes down the operating model, because the budget came with the first hire.
+  - |
+    Item 1 uses the capability's three shapes rather than the words centralized, federated, and hybrid.
+    Those are common in the wider industry but the Framework describes a single central team, a fully
+    virtual team drawn from Finance and Engineering, and a hub and spoke model, so those are the terms
+    used here.
+  - |
+    Item 4 asks about the source, not the amount. A practice funded generously out of whatever budget had
+    room this year is less stable than one funded modestly from a line that renews, and only the second can
+    plan past the current period. The Framework's Run tier calls this a regular funding source.
+  - |
+    A fully virtual team can score 10. Item 2 asks which support is virtual rather than hired, not that
+    roles be filled by headcount, because the Framework names virtual support as a legitimate shape rather
+    than a shortfall.
+  - |-
+    Action 96 reviews practice maturity on a cadence. This action covers the shape, staffing, skills,
+    funding, and decision model of the team itself, which the Framework treats as a separate review of the
+    team's needs, size, roles, and placement.
   Overrides: null

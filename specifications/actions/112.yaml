@@ -1,15 +1,12 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Modified: '2026-10-17'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
     Email: vlevy573@gmail.com
-    Date: '2025-11-01'
-  - Name: Andrew Quigley
-    Email: Q@mf-family.com
     Date: '2025-11-01'
 Specification:
   ID: 112
@@ -19,17 +16,87 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    * Weighted sum
+      Chargeback accuracy (score x4),
+      Shared cost coverage (score x3),
+      Variance resolution (score x2),
+      Coverage reviewed (score x1).
+      Max raw (50)
+
+    * Variance between what was charged and what was actually consumed, as a share of the amount charged
+      (0=Not measured, 1>20%, 2=10-20%, 3=5-9%, 4=2-4%, 5 under 2%)
+    * Share of shared cost allocated to the cost centers consuming it rather than held centrally
+      (0=Not measured, 1=None allocated, 2 under 25%, 3=25-49%, 4=50-79%, 5=80% or higher)
+    * What happens to a variance once it is found
+      (0=Absorbed centrally without record, 1=Recorded, 2=Owner named,
+      3=Corrected by a true-up entry in the next close, 4=Root cause recorded against the correction,
+      5=Root cause feeds a change to the allocation rules)
+    * How coverage is reviewed
+      (0=Not reviewed, 1=Discussed informally, 2=Reported for the period,
+      3=Reviewed with Finance on a stated cadence, 4=Candidate shared costs are listed with a reason for
+      each exclusion, 5=The exclusion list is worked down against a plan)
+
+    * Output Range (0-50)
+  Score Type: multi_bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: Low Maturity, Score Range (0-14)
+  - Score: 4
+    Condition: Developing, Score Range (15-30)
+  - Score: 7
+    Condition: Established, Score Range (31-42)
   - Score: 10
-    Condition: Defined
+    Condition: Optimizing, Score Range (43-50)
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - Invoicing & Chargeback Capability
+    Link: https://www.finops.org/framework/capabilities/invoicing-chargeback/
+    Comment: |-
+      Its Crawl tier describes teams charged on estimated spend with notable variance from actuals and
+      shared costs held centrally, and its Run tier expects teams to see direct and allocated shared costs
+      based on actual consumption. Those two ends are what criteria 1 and 2 measure. The capability also
+      names chargeback accuracy and variance between estimates and actuals among its KPIs.
+  - Name: NIST CSF 2.0 - GV.OV-03
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Organizational cybersecurity risk management performance is evaluated and reviewed for adjustments
+      needed." Criterion 4 is the FinOps reading. Reviewing coverage is what turns an exclusion list from a
+      permanent state into a backlog.
+  - Name: FinOps++ Score Type - Multiple Weighted Bucket
+    Link: /guidelines/scoring.md##multiple-weighted-buckets
+    Comment: an even more granular version of bucket, where steps are weight by importance to an action.
   Supplemental Guidance:
-  - null
+  - |
+    CRAWL (0-14) Cost centers are charged on estimates and the gap to actuals is nobody's number. Shared
+    costs sit in a central bucket because that is easier than agreeing a split.
+  - |
+    WALK (15-30) Variance is measured and some shared cost is allocated by consumption. Corrections happen
+    when somebody complains, and the coverage number is reported rather than worked on.
+  - |
+    RUN (31-42) Variance is inside a few percent, most shared cost reaches the teams consuming it,
+    corrections post as true-up entries in the next close, and coverage is reviewed with Finance on a
+    cadence.
+  - |
+    FLY (43-50) A variance leads to a change in the allocation rules rather than a correction alone, and
+    the list of shared costs still held centrally is a backlog with a plan rather than a standing
+    exception.
+  - |
+    Accuracy carries the heaviest weight because a cost center that does not trust its charges will
+    dispute them, and settling a dispute usually costs more in Finance and engineering time than the
+    amount in question. Once a team starts checking every line, chargeback consumes more effort than it
+    saves. Coverage is next, because a precise charge covering a third of the bill leaves most of the
+    spend unowned.
+  - |
+    Coverage is scored as a level rather than as an increase. A practice already
+    allocating 85% can barely improve, and scoring the increase would mark it down for having arrived.
+    Item 4 is where the direction of travel is scored instead, by asking whether the remaining
+    exclusions are being worked rather than accepted.
+  - |
+    Shared cost coverage depends on shared costs being identifiable in the first place, which the Cost
+    Allocation capability owns. A practice that cannot separate shared cost from direct cost will stall at
+    band 1 or 2 here for reasons action 10 scores rather than reasons this action does.
+  - |-
+    Action 109 scores the documented design, including the correction path. Action 111 scores distributing
+    reports and tracking accuracy and disputes. This action scores the numbers those produce and what gets
+    done about them.
   Overrides: null

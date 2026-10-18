@@ -1,15 +1,12 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Modified: '2026-10-17'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
     Email: vlevy573@gmail.com
-    Date: '2025-11-01'
-  - Name: Andrew Quigley
-    Email: Q@mf-family.com
     Date: '2025-11-01'
 Specification:
   ID: 109
@@ -19,17 +16,68 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    * Finance approval recorded (Finance is named in the chargeback rules and has signed off on them)
+    * Allocation rules documented (which cost types reach which cost centers, including shared costs and
+      commitment discounts)
+    * Showback and chargeback scope stated (which scopes are shown for information and which post to
+      official accounting budgets)
+    * Cadence documented (when the run happens relative to financial close, and when cost centers receive
+      their figures)
+    * Correction path documented (how a posted charge is corrected after close, including true-up entries)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: Done and clearly defined
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - Invoicing & Chargeback Capability
+    Link: https://www.finops.org/framework/capabilities/invoicing-chargeback/
+    Comment: |-
+      The capability distinguishes showback from chargeback by formality, showback being informational and
+      chargeback posting expenses to official accounting budgets, which is item 3. It asks the capability
+      to provide a process for situations where chargeback reporting needs correcting after close, and
+      names true-up entries as Finance's activity, which is item 5.
+  - Name: NIST CSF 2.0 - GV.RR-02
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Roles, responsibilities, and authorities related to cybersecurity risk management are established,
+      communicated, understood, and enforced." Item 1 is the FinOps reading. Chargeback moves money between
+      budgets, so the authority to set its rules has to sit with Finance rather than with the FinOps team
+      alone.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order, though most practices document
+    allocation rules first and discover the correction path the first time a charge lands on the wrong
+    cost center after close.
+  - |
+    Item 1 makes this action different from writing a chargeback design alone. The
+    Framework treats the decision on whether shared costs stay central or get allocated by consumption as
+    a joint one between FinOps and Finance, and a rule set Finance has not signed is a proposal.
+  - |
+    Item 3 matters because showback and chargeback carry different obligations. Showback can run at any
+    granularity and is always worth doing. Chargeback posts to a budget somebody is accountable for, so it
+    depends on accounting policy and cannot be switched on by the FinOps team deciding to.
+  - |
+    Item 5 is about the route existing, not how often it is used. A practice with no corrections in the
+    period earns it by having the path documented. A practice that handles corrections by emailing Finance
+    each time does not.
+  - |-
+    This action scores the design. Action 110 scores automating the runs, action 111 scores distributing
+    reports and tracking accuracy and disputes, and action 112 scores resolving the variances and widening
+    shared cost coverage. A practice can hold an excellent documented design and score poorly on all three.
   Overrides: null
