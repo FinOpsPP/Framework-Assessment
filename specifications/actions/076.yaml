@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -19,17 +19,61 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: every license and SaaS entitlement held during the review period.
+
+    * Compliance checked (resources requiring a license are checked against the entitlements held, and
+      the shortfall or surplus is recorded)
+    * Idle assignment identified (assigned licenses with no activity are identified against a stated
+      inactivity window)
+    * Reclamation threshold stated (the usage level at which a license is reclaimed or reassigned is
+      written down)
+    * Reclamation path exists (a license below the threshold can be reclaimed or reassigned through a
+      stated route, and each review records what was reclaimed, reassigned, or kept)
+    * Triggers fire without a person (reclamation starts from the usage data rather than from somebody
+      remembering to look)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: Not done
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: Policy in place and published
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - Licensing & SaaS Capability
+    Link: https://www.finops.org/framework/capabilities/licensing-saas/
+    Comment: |-
+      Its measures of success include resources requiring a license being compliant and marketplace
+      licenses being fully utilized, which are items 1 and 2. Its Run tier expects reclamation triggers
+      to be automated against usage thresholds, which is item 5.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order. A compliance check usually comes
+    first because it is the one an auditor asks for, and reclamation arrives later because it means
+    taking something away from a team.
+  - |
+    Item 3: without a written threshold, reclaiming a license is an
+    argument every time, and the team that argues hardest keeps the seat it does not use.
+  - |
+    Item 4 scores the route and the record, not a count. A period where nothing needed reclaiming earns
+    it by recording that decision against each entitlement. A practice with no way to reclaim does not.
+  - |
+    The inactivity window in item 2 is yours to set and has to be written down. Thirty days of silence
+    means something different for a daily reporting tool than for software used at quarter end, and an
+    unwritten window means the answer changes with whoever runs the report.
+  - |-
+    Action 78 publishes the utilization rate. This action acts on it. A practice can publish an accurate
+    40% every month and score nothing here if no license ever comes back.
   Overrides: null
