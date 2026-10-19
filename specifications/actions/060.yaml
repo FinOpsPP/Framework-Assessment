@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -19,17 +19,59 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
-  Score Type: binary
+  Formula: |-
+    Measured over: every unit cost improvement communicated during the review period.
+
+    * Evidence recorded (each win records the baseline, what was changed, and the outcome)
+    * Unit named (the win states which unit metric moved, not only a currency amount)
+    * Measurement type separated (avoidance, savings and cost reduction are reported as distinct
+      figures rather than one total)
+    * Team credited (the team whose change produced the result is named)
+    * Delivered per persona (each audience receives it in the channel it already uses)
+
+    10*Ceil(x/5)
+  Score Type: bucket
   Scoring:
   - Score: 0
-    Condition: None
+    Condition: No items completed
+  - Score: 2
+    Condition: 1 item completed
+  - Score: 4
+    Condition: 2 items completed
+  - Score: 6
+    Condition: 3 items completed
+  - Score: 8
+    Condition: 4 items completed
   - Score: 10
-    Condition: communicates wins in KPI thresholds and unit costs
+    Condition: 5 items completed
   References:
-  - Name: FinOps++ Score Type - Binary
-    Link: /guidelines/scoring.md#binary
-    Comment: binary is a useful scoring to start of with, as it simple requires an action to be taken or not.
+  - Name: FinOps Framework - Unit Economics Capability
+    Link: https://www.finops.org/framework/capabilities/unit-economics/
+    Comment: |-
+      The capability asks Product to capture baseline, intervention and outcome evidence, which is item
+      1, and the Practitioner to separate avoidance, savings and cost reduction measurements, which is
+      item 3. It also asks for visibility to unit metrics in appropriate channels for each persona.
+  - Name: FinOps++ Score Type - Bucket
+    Link: /guidelines/scoring.md#bucket-of-accomplishments
+    Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order. Most practices name a currency
+    figure long before they name the unit that moved.
+  - |
+    Item 2 separates a unit economics win from a savings announcement. Spend falling by
+    two hundred thousand could mean the architecture got cheaper or the business got smaller, and only
+    the unit metric separates those two.
+  - |
+    Item 3 exists because the three figures are not interchangeable. Avoidance is cost that never
+    arrived, savings is cost that fell, and a reduction can be either. Reporting one total invites a
+    finance partner to look for money that is not in the budget.
+  - |
+    The capability describes unit costs as guiding a cultural shift rather than only reporting one,
+    which is item 5. A win delivered where engineers already work changes behavior; the same
+    win in a monthly finance pack does not reach them.
+  - |-
+    Action 95 publishes the practice's wins and misses generally. This action is narrower, covering unit
+    cost improvements and the evidence behind them. Action 55 defines the units and action 56 documents
+    how they are calculated.
   Overrides: null

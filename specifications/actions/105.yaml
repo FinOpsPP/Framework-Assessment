@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -19,7 +19,11 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
+  Formula: |-
+    Scored at the highest stage the practice reaches for policy breaches. The stages replace one
+    another: a practice remediating automatically is not also waiting to be told.
+
+    Measured over: the policies in force during the review period and the resources they bind.
   Score Type: threshold
   Scoring:
   - Score: 0
@@ -31,9 +35,43 @@ Specification:
   - Score: 10
     Condition: Automated remediation
   References:
+  - Name: FinOps Framework - Governance, Policy & Risk Capability
+    Link: https://www.finops.org/framework/capabilities/policy-governance/
+    Comment: |-
+      Policy Adherence Rate, the proportion of technology spend covered by compliant resources, is one of
+      the capability's measures of success, and its Run tier expects guardrails and automation to cover
+      the majority of routine decisions. This action scores what happens to the breaches that get
+      through.
+  - Name: NIST CSF 2.0 - DE.CM-06
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "External service provider activities and services are monitored to find potentially adverse
+      events." Monitoring provider spend against policy is the financial reading, and it is the
+      difference between stage 0 and everything above it.
+  - Name: NIST CSF 2.0 - DE.AE-06
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Information on adverse events is provided to authorized staff and tools." Stage 2 is that outcome
+      and no more: somebody is told. The stages above add what happens next.
   - Name: FinOps++ Score Type - Threshold Process
     Link: /guidelines/scoring.md#threshold-process
     Comment: an evolution of sequential, where steps below a given level are complete when that level is reached.
   Supplemental Guidance:
-  - null
+  - |
+    This is a threshold rather than a bucket because the stages replace one another. A practice whose
+    breaches are remediated automatically is not also reporting them to somebody who fixes them by hand,
+    so asking it to tick the lower rungs would score its history.
+  - |
+    Action 103 scores guardrails, which stop a breach at the moment of the decision. This action scores
+    what happens to breaches that occur anyway, whether because no guardrail covers that case or because
+    one was overridden. Prevention and detection are different controls and a practice needs both; a
+    high score here with a low score on 103 means the practice is good at cleaning up after itself.
+  - |
+    The gap between reported and manually remediated is where most practices sit. A breach report with
+    no owner and no expected fix becomes a standing list that grows, and the report stops being read
+    once it is long enough.
+  - |-
+    Automated remediation at stage 10 means the fix runs without waiting for a person, not that nobody
+    reviews it. A remediation that can delete or resize something an owner depends on needs the same
+    exception path action 103 scores, or it gets switched off the first time somebody reacts to it.
   Overrides: null

@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -19,7 +19,12 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
+  Formula: |-
+    x = Resource and budget owners who receive anomaly alerts for the scopes they own, routed
+    automatically
+    y = All owners whose scopes anomaly detection covers
+
+    x / y
   Score Type: percent
   Scoring:
   - Score: 0
@@ -33,12 +38,35 @@ Specification:
   - Score: 10
     Condition: Alerting to all owners [100%]
   References:
+  - Name: FinOps Framework - Anomaly Management Capability
+    Link: https://www.finops.org/framework/capabilities/anomaly-management/
+    Comment: |-
+      Its Crawl tier describes alerts sent to a central team or requiring manual action to look, and its
+      Walk tier expects unexpected spending to be automatically routed to responsible teams. The
+      numerator counts the second case and the denominator is the whole owner list.
+  - Name: NIST CSF 2.0 - DE.AE-06
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Information on adverse events is provided to authorized staff and tools." Routing an anomaly to
+      the owner who can act on it is that outcome, and the percentage is how much of the organization it
+      reaches.
   - Name: FinOps++ Score Type - Percentage Calculation
     Link: /guidelines/scoring.md#percentage-calculation
     Comment: a kind of threshold type where the steps are specifically precentages leading to 100%.
   Supplemental Guidance:
+  - |
+    The denominator is every owner whose scope detection covers, not every owner who has ever received
+    an alert. A practice routing perfectly to the three teams it monitors, out of thirty teams running
+    spend, is not near 100%. It has a detection coverage problem that this percentage is meant to show.
+  - |
+    Routed automatically is the distinction the capability draws between its Crawl and Walk tiers.
+    Alerts landing with a central team who then forward them are the Crawl state, however quickly the
+    forwarding happens, because the delay and the judgment both sit with a person.
+  - |
+    Reaching the owner means reaching somebody who can act. An alert routed to a shared mailbox that
+    nobody owns counts the same as no alert, and the number will look fine while nothing happens.
   - |-
-    Scoring for this actions is treated as percent. That means that if you have
-    alerting to most owners, for example, you have implicitly achieved it in some
-    owners already.
+    Action 23 configures what gets detected and action 24 defines what happens next. This action
+    measures only how much of the organization the alerts reach. Action 28 measures how long the
+    notification takes once routing exists.
   Overrides: null

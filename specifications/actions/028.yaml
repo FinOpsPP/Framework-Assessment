@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Modified: '2026-10-18'
+  Version: 1.9.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -20,14 +20,23 @@ Specification:
   - null
   Weight: 1.0
   Formula: |-
-    * Number of detections per time period
-    * Number of detections over threshold
-    * Time to send notifications to stakeholders
-    * Time to validate anomaly
-    * Resolution Time/SLA adherence
-    * False positive rate
-    * Cost Avoidance due to detection
-    * Percent anomalies addressed
+    Measured over: the measures themselves. An item is met when the measure is reported for the review
+    period.
+
+    * Number of detections per time period (the count of anomalies detected is reported per period)
+    * Number of detections over threshold (the count exceeding a stated materiality threshold is reported
+      separately from the total)
+    * Time to send notifications to stakeholders (elapsed time from detection to the notification reaching a
+      named recipient)
+    * Time to validate anomaly (elapsed time from notification to a recorded disposition of true, expected
+      or false)
+    * Resolution Time/SLA adherence (elapsed time to resolution, reported against the response SLA set in
+      action 24)
+    * False positive rate (anomalies dispositioned false as a share of all anomalies detected)
+    * Cost Avoidance due to detection (the variance amount avoided, from the variance rate and how long the
+      anomaly ran before it was fixed)
+    * Percent anomalies addressed (anomalies carrying a recorded remediation as a share of those
+      dispositioned true)
 
     10*Ceil(x/8)
   Score Type: bucket
@@ -51,9 +60,28 @@ Specification:
   - Score: 10
     Condition: 8 items completed
   References:
+  - Name: FinOps Framework - Anomaly Management Capability
+    Link: https://www.finops.org/framework/capabilities/anomaly-management/
+    Comment: |-
+      Seven of the eight items are the capability's own measures of success: mean time to detect, mean
+      time to notify the owner, time to investigate and address, duration of unresolved anomalies, false
+      positives against missed anomalies, the count of anomalies acted on with spend avoided, and the
+      count of unactionable ones.
   - Name: FinOps++ Score Type - Bucket
     Link: /guidelines/scoring.md#bucket-of-accomplishments
     Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    Each item asks whether the measure is tracked, not whether the number is good. A practice with a
+    twelve day mean time to detect still earns item 1 by knowing that it is twelve days. Improving it is
+    what the rest of the capability is for.
+  - |
+    The false positive rate in item 6 has no denominator without a recorded disposition on each anomaly,
+    which action 26 supplies. A practice scoring this item without that is estimating.
+  - |
+    Cost avoidance in item 7 needs both the variance amount and how long the anomaly ran before it was
+    fixed, because the avoided amount is the second multiplied by the first. Action 26 records both.
+  - |-
+    Action 29 tunes thresholds using the false positive rate from item 6 and the missed anomalies behind
+    item 8. This action scores whether the numbers exist; action 29 scores whether they are acted on.
   Overrides: null
