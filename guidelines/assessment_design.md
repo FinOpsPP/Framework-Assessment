@@ -1,17 +1,20 @@
 # Assessment Design Guide
 
-* Mission statement type stuff?
+FinOps++ is an open assessment framework that measures how consistently a FinOps practice performs the specific actions that turn technology spend into business value. We break each FinOps Foundation capability into discrete actions and score each against an explicit formula, so practitioners spend less time debating what a score means and more time closing the gaps it reveals. The actions are organized the way the NIST Cybersecurity Framework organizes security controls, so that cost governance can be assessed and reported with the rigor an organization already applies to security.
 
 ## Components
 
-* What is required in a component (or whatever we decide to call it) doc?
-* What is optional?
-* How is it formatted?
+Domains and capabilities come from the FinOps Framework, where domains are the outcomes of a practice and capabilities describe how to achieve them. FinOps++ adds one layer beneath them: we break each capability into specific actions, the things a FinOps practice does or ensures get done. We score actions rather than capabilities because an action is specific enough to answer yes or no. You can say whether a practice records anomaly timelines; you can't say whether it "does anomaly management."
+
+That extra layer is our secret sauce, and the idea came from NIST CSF. The Framework's domains already line up with CSF functions and its capabilities with CSF categories. Actions supply the level that was missing: CSF sub-categories. Our profiles correspond to CSF profiles.
+
+Each action is made up of a scoring formula, a score breakdown, supplemental guidance, and references to assist in the scoring process.
 
 ## Framework
 
-* Define content and align it with the goals of this project.
-* How is the score determined?
+The FinOps++ framework assesses a practice action by action, and an assessment can cover a whole practice or a single scope. Weights can be adjusted before aggregation, so a practice can tune the assessment to what the business actually cares about. Raw action scores stay comparable even when weights differ, which is what makes it possible to compare across teams, across scopes, and over time.
+
+The deliverable is an assessment worksheet, published per profile under `assessments/`, that a practice scores itself against.
 
 ## Accessibility
 
