@@ -4,7 +4,11 @@ FinOps++ is an open assessment framework that measures how consistently a FinOps
 
 ## Components
 
-Our framework takes the current FinOps Foundation framework and breaks each capability into specific actions representing behaviors done to accomplish proficiency. These actions can be done at different levels of maturity. Each action is made up of a scoring formula, a score breakdown, supplemental guidance, and references to assist in the scoring process.
+Domains and capabilities come from the FinOps Framework, where domains are the outcomes of a practice and capabilities describe how to achieve them. FinOps++ adds one layer beneath them: we break each capability into specific actions, the things a FinOps practice does or ensures get done. We score actions rather than capabilities because an action is specific enough to answer yes or no. You can say whether a practice records anomaly timelines; you can't say whether it "does anomaly management."
+
+That extra layer is our secret sauce, and the idea came from NIST CSF. The Framework's domains already line up with CSF functions and its capabilities with CSF categories. Actions supply the level that was missing: CSF sub-categories. Our profiles correspond to CSF profiles.
+
+Each action is made up of a scoring formula, a score breakdown, supplemental guidance, and references to assist in the scoring process.
 
 ## Framework
 
