@@ -1,6 +1,6 @@
 # <a href="/components/profiles/001.md">001</a>: FinOps Foundation Maturity Assessment Framework
 
-**Creation Date:** 2026-10-18
+**Creation Date:** 2026-10-19
 
 **Specification Version:** 1.0.0
 
@@ -111,31 +111,31 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/097.md">097</a>: Assess Skills & Training Needs
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/098.md">098</a>: Develop Role-Based Learning Content
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/099.md">099</a>: Offer Certifications & Informal Learning
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/100.md">100</a>: Leverage Vendor Training Resources
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/101.md">101</a>: Track Training Impact & Refresh Content
-                        <p>Specification Version: 1.0.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                 </table>
