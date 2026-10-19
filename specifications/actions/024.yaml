@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Modified: '2026-10-18'
+  Version: 1.9.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -20,12 +20,20 @@ Specification:
   - null
   Weight: 1.0
   Formula: |
-    * Defined severity tiers
-    * Thresholds associated with severity tiers are defined
-    * Defined and adhered to response SLAs
-    * Published response runbooks
-    * Runbook percent successful or completed
-    * RCA completed after alerts
+    Measured over: the severity tiers the practice defines, and every runbook execution during the review
+    period for item 5. A tier set is small enough to enumerate, so items 1 to 4 are assessed against each
+    tier rather than as a coverage rate.
+
+    * Defined severity tiers (a fixed set of named severity levels exists)
+    * Thresholds associated with severity tiers are defined (each tier carries a number that places an
+      anomaly in it, such as a variance amount or a percentage)
+    * Defined and adhered to response SLAs (each tier carries a response time target, and adherence against
+      it is reported for the period)
+    * Published response runbooks (a runbook exists per tier or anomaly type and is reachable by whoever
+      responds)
+    * Runbook percent successful or completed (the share of runbook executions that resolved the case
+      without improvisation is measured)
+    * RCA completed after alerts (a root cause analysis is recorded for the severity tiers that call for one)
 
     10*Ceil(x/6)
   Score Type: bucket
@@ -45,9 +53,35 @@ Specification:
   - Score: 10
     Condition: 6 items completed
   References:
+  - Name: FinOps Framework - Anomaly Management Capability
+    Link: https://www.finops.org/framework/capabilities/anomaly-management/
+    Comment: |-
+      The capability's Run tier expects anomaly alerts of appropriate scale or urgency to integrate with
+      event management or ticketing systems, and the results and resolution of each alert to be captured.
+      Items 3 to 6 are what make that possible.
+  - Name: NIST CSF 2.0 - DE.AE-08
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Incidents are declared when adverse events meet the defined incident criteria." Items 1 and 2 are
+      those criteria for cost. Without them every anomaly is the same size and the response is whatever
+      the person on duty decides.
   - Name: FinOps++ Score Type - Bucket
     Link: /guidelines/scoring.md#bucket-of-accomplishments
     Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    Severity tiers without thresholds are opinions, which is why items 1 and 2 are separate. A tier
+    called high that nobody can test against a number will be argued about every time an alert fires.
+  - |
+    Item 5 measures the runbooks. A runbook that does not resolve the case
+    it was written for sends the responder back to improvising, and the published document hides that
+    until somebody counts.
+  - |
+    The Framework does not define severity levels or a response time target, so both are yours to set.
+    What it does expect is that alerts of appropriate urgency reach an event management or ticketing
+    process rather than an inbox.
+  - |-
+    Item 6 asks whether a root cause analysis happened. Action 27 scores how good it was, stepping
+    through ownership, cause, classification, remediation and preventive control. A practice can tick
+    item 6 here by writing something in a field and still score poorly on action 27.
   Overrides: null

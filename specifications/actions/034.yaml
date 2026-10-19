@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Modified: '2026-10-18'
+  Version: 1.9.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -20,9 +20,15 @@ Specification:
   - null
   Weight: 1.0
   Formula: |-
-    * Define and follow process for gathering deployment plans from teams
-    * Determine timeline for each new project to adjust the forecast during that time
-    * Determine how optimizations and lower run rate will impact the forecast on a rolling basis
+    Measured over: the projects and optimization work feeding the forecast during the review period. These
+    are few enough to enumerate, so items are assessed against each one rather than as a coverage rate.
+
+    * Define and follow process for gathering deployment plans from teams (the process names who submits
+      plans, on what cadence, and in what form)
+    * Determine timeline for each new project to adjust the forecast during that time (each project carries
+      start and ramp dates, so its spend lands in the periods it occurs in)
+    * Determine how optimizations and lower run rate will impact the forecast on a rolling basis (committed
+      optimization work is carried into the forecast as a reduction on a stated schedule)
 
     10*Ceil(x/3)
   Score Type: bucket
@@ -36,9 +42,25 @@ Specification:
   - Score: 10
     Condition: 3 items completed
   References:
+  - Name: FinOps Framework - Planning & Estimating Capability
+    Link: https://www.finops.org/framework/capabilities/planning-estimating/
+    Comment: |-
+      The capability asks a practice to explore scenarios in a technology category, define the scope and
+      detail of an estimate, and model parameters for a future state. Its Run tier expects estimating
+      scenarios to support rolling, trend-based and driver-based forecasting, which item 3 feeds.
   - Name: FinOps++ Score Type - Bucket
     Link: /guidelines/scoring.md#bucket-of-accomplishments
     Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    These are scored as a bucket because you can do them in any order, though a practice usually
+    gathers deployment plans before it works out how to time them into the forecast.
+  - |
+    Item 3 keeps a forecast from drifting upward. Optimization work lowers the run rate
+    on its own schedule, and a forecast that only adds new projects will sit above reality until
+    somebody reconciles it by hand.
+  - |-
+    Action 37 records the forecasting approach and action 39 scores how often the forecast is refreshed.
+    This action covers the decision process that chooses which scenarios go into it. A practice can hold
+    a well documented forecasting approach and still feed it whatever plans arrived by email.
   Overrides: null

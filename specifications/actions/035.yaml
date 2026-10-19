@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -19,7 +19,11 @@ Specification:
   Implementation Types:
   - null
   Weight: 1.0
-  Formula: null
+  Formula: |-
+    x = Estimates whose actual cost landed inside the variance threshold set for them
+    y = All estimates made whose actual cost is now known
+
+    x / y
   Score Type: percent
   Scoring:
   - Score: 0
@@ -45,9 +49,31 @@ Specification:
   - Score: 10
     Condition: Near 100%
   References:
+  - Name: FinOps Framework - Planning & Estimating Capability
+    Link: https://www.finops.org/framework/capabilities/planning-estimating/
+    Comment: |-
+      Estimate cost against actual cost trending within an established percentage threshold of variance
+      is one of the capability's measures of success. The threshold is the practice's own; the Framework
+      sets no number.
   - Name: FinOps++ Score Type - Percentage Calculation
     Link: /guidelines/scoring.md#percentage-calculation
     Comment: a kind of threshold type where the steps are specifically precentages leading to 100%.
   Supplemental Guidance:
-  - null
+  - |
+    The denominator counts only estimates whose actual cost is known. An estimate for work that has not
+    run yet cannot be right or wrong, and including it would make the number move whenever the pipeline
+    changed rather than when accuracy did.
+  - |
+    A wide threshold makes this number look excellent. A practice allowing fifty percent variance will
+    sit near 100% and have learned nothing, so the figure is only meaningful next to the threshold it
+    was measured against. Action 30 defines the estimating scope and policy constraints, including that
+    threshold, and the two should be read together.
+  - |
+    The capability expects the threshold to tighten as a practice matures. Its Crawl tier accepts
+    estimates that are not especially granular or accurate, its Walk tier expects higher accuracy
+    organizationally, and its Run tier expects an explicit range and confidence level rather than a
+    single number.
+  - |-
+    Action 34 chooses which scenarios are estimated and action 40 compares the forecast against actuals.
+    This action measures whether the estimates themselves came true.
   Overrides: null

@@ -1,8 +1,8 @@
 Metadata:
   Proposed: '2025-09-16'
   Adopted: '2025-11-01'
-  Modified: '2026-05-12'
-  Version: 1.8.0
+  Modified: '2026-10-18'
+  Version: 2.0.0
   Status: Accepted
   Approvers:
   - Name: Victoria Levy
@@ -20,31 +20,62 @@ Specification:
   - null
   Weight: 1.0
   Formula: |-
-    * Manual inspection of spikes
-    * Out-of-the-box tool based anomaly alerts
-    * Custom simple increase alert calculations
-    * Custom alerts per business unit, team, etc.
-    * Alerts per unit costs above thresholds
+    * Out-of-the-box tool based anomaly alerts (the anomaly detection shipped by the provider or cost tool
+      is enabled)
+    * Custom simple increase alert calculations (the practice defines its own increase threshold, stating the
+      comparison period and the percentage or amount that triggers it)
+    * Custom alerts per business unit, team, etc. (alert scopes are set per business unit, team or
+      application rather than only on the total)
+    * Alerts per unit costs above thresholds (an alert is configured against a unit cost metric with a stated
+      threshold)
 
-    10*Ceil(x/5)
+    10*Ceil(x/4)
   Score Type: bucket
   Scoring:
   - Score: 0
     Condition: No items completed
-  - Score: 2
+  - Score: 3
     Condition: 1 item completed
-  - Score: 4
+  - Score: 5
     Condition: 2 items completed
-  - Score: 6
-    Condition: 3 items completed
   - Score: 8
-    Condition: 4 items completed
+    Condition: 3 items completed
   - Score: 10
-    Condition: 5 items completed
+    Condition: 4 items completed
   References:
+  - Name: FinOps Framework - Anomaly Management Capability
+    Link: https://www.finops.org/framework/capabilities/anomaly-management/
+    Comment: |-
+      The capability defines its job as detecting, identifying and alerting on unexpected technology cost
+      and usage irregularities in a timely manner. Its Walk tier expects context relevant thresholds such
+      as percentage of spend change and single item spend ceilings, which items 3 to 5 provide.
+  - Name: NIST CSF 2.0 - DE.CM-09
+    Link: https://doi.org/10.6028/NIST.CSWP.29
+    Comment: |-
+      "Computing hardware and software, runtime environments, and their data are monitored to find
+      potentially adverse events." A cost spike is the financial reading of an adverse event, and this
+      action is where the monitoring that finds it gets configured.
   - Name: FinOps++ Score Type - Bucket
     Link: /guidelines/scoring.md#bucket-of-accomplishments
     Comment: an evolution of binary, with more steps to take toward maturity.
   Supplemental Guidance:
-  - null
+  - |
+    The four items are detection configurations that stack rather than replace one another. A practice
+    running custom per team alerts still benefits from the provider's own alerts, because the two find
+    different things.
+  - |
+    An alert on total spend catches large
+    obvious spikes. An alert per business unit catches the spike that is large for that team and invisible
+    in the total, and a unit cost alert catches the case where spend looks normal because usage grew
+    with it.
+  - |
+    Coverage is not scored here. A practice can tick all four items and still have detection configured
+    for a fraction of its estate. Action 25 scores how much of the organization the resulting alerts
+    actually reach.
+  - |-
+    Every item here is something a practice configures. A person noticing that a number looks wrong is
+    not a configuration, and scoring it gives a practice with no detection at all a point for reading its
+    own bill. What happens once a spike surfaces belongs elsewhere: action 24 defines severity tiers and
+    response SLAs, and action 28 measures time to notify and time to validate. A spike is investigated
+    when it appears, not on a schedule, so nothing here asks for a review cadence.
   Overrides: null
