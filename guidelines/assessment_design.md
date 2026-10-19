@@ -8,7 +8,9 @@ Our framework takes the current FinOps Foundation framework and breaks each capa
 
 ## Framework
 
-The FinOps++ framework provides a more granular assessment of FinOps practices and scopes with specific formulas for calculating objective scores. We include the ability to adjust weights before aggregation for a customized assessment scope that can still be benchmarked against others for accurate comparisons.
+The FinOps++ framework assesses a practice action by action, and an assessment can cover a whole practice or a single scope. Weights can be adjusted before aggregation, so a practice can tune the assessment to what the business actually cares about. Raw action scores stay comparable even when weights differ, which is what makes it possible to compare across teams, across scopes, and over time.
+
+The deliverable is an assessment worksheet, published per profile under `assessments/`, that a practice scores itself against.
 
 ## Accessibility
 
