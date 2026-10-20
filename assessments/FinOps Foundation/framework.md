@@ -1,6 +1,6 @@
 # <a href="/components/profiles/001.md">001</a>: FinOps Foundation Maturity Assessment Framework
 
-**Creation Date:** 2026-10-19
+**Creation Date:** 2026-10-20
 
 **Specification Version:** 1.0.0
 
@@ -49,7 +49,7 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/105.md">105</a>: Monitor Compliance & Report Breaches
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -811,13 +811,13 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/034.md">034</a>: Establish Scenario Decision Process
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 1.9.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/035.md">035</a>: Report Estimate Accuracy
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -839,7 +839,7 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/055.md">055</a>: Define Business-Relevant Units
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 1.9.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -869,7 +869,7 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/060.md">060</a>: Communicate Unit Cost Wins
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                 </table>
@@ -947,19 +947,19 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/023.md">023</a>: Configure Cost Spike Detection
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/024.md">024</a>: Define Severity & Response SLAs
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 1.9.0</p>
                         </td>
                     </tr>
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/025.md">025</a>: Automate Alert Routing
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 2.0.0</p>
                         </td>
                     </tr>
                     <tr>
@@ -977,7 +977,7 @@ Classic profile featuring controls provided by the finops foundation
                     <tr>
                         <td style="width: 400px; overflow-wrap: break-word; white-space: normal;">
                         <a href="/components/actions/028.md">028</a>: Track Metrics & Avoidance Rates
-                        <p>Specification Version: 1.8.0</p>
+                        <p>Specification Version: 1.9.0</p>
                         </td>
                     </tr>
                     <tr>
