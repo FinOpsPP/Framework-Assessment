@@ -36,6 +36,7 @@ Specification:
     Condition: Weekly
   - Score: 10
     Condition: Daily
+  - Score: 11
   References:
   - Name: FinOps++ Score Type - Threshold Process
     Link: /guidelines/scoring.md#threshold-process
