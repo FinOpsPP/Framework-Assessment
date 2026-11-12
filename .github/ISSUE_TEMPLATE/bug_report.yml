@@ -9,7 +9,6 @@ body:
     attributes:
       label: What part of the Framework-Assessment did not work as expected?
       options:
-        - label: "tool"
         - label: "assessment"
         - label: "markdown file"
         - label: "other"
@@ -20,8 +19,6 @@ body:
     attributes:
       label: Version
       description: |
-        For tools issues, include the output of `finopspp version`. 
-        
         For workbook issues, include the release version of the workbook, profile the
         workbook was under, and the Operating System & Version you are running the
         workbook on. 
@@ -29,13 +26,6 @@ body:
         For markdown file issues, include a github link to where the issue was found in
         the default branch of this repository.
       placeholder: |
-        $ finopspp version
-        Version: 0.0.2a0
-        Python Version: 3.13.7
-        System: Linux (6.17.0-8-generic)
-
-        Or
-
         Release: 0.0.2-alpha
         Profile: FinOps++
         Operating System & Version: Ubuntu 24.04
