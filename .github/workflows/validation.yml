@@ -25,7 +25,7 @@ jobs:
     - name: Install lint and validation dependencies
       run: |
         npm install -g cspell-cli@9.6.0
-        pip install finopspp
+        pip install finopspp yamllint==1.37.1 pymarkdownlnt==0.9.33 tomllint==0.3.6
         finopspp init
     - name: Analyze & lint project spelling with cspell
       run: |
