@@ -11,7 +11,6 @@ body:
       options:
         - label: "specification"
         - label: "assessment"
-        - label: "tool"
         - label: "documentation"
         - label: "other"
     validations:

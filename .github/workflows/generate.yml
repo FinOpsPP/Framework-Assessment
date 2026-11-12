@@ -24,9 +24,10 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install finopspp tool for generation
+    - name: Install & setup finopspp tool for generation
       run: |
-        python -m pip install -e .
+        pip install finopspp
+        finopspp init
     - name: Generate Components
       run: |
         finopspp generate components --specification-type="actions" all

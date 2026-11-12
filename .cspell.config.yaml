@@ -3,9 +3,6 @@ ignorePaths:
   - build/**
   - components/**
   - assessments/**
-  - finopspp.egg-info/**
-  - tools/scratch/**
-  - pyproject.toml
 words:
   - actuals
   - byol
@@ -34,4 +31,5 @@ words:
   - venv
   - xlsxwriter
   - reprioritize
+  - pipx
 allowCompoundWords: true
